@@ -137,6 +137,14 @@ button{font:inherit;cursor:pointer}
 .btn{font-family:var(--cut);font-size:17px;border:3px solid var(--char);padding:12px 20px;background:var(--neon);color:var(--char);box-shadow:4px 4px 0 var(--char)}
 .btn.ghost{background:transparent;color:var(--char);box-shadow:none}
 .btn:disabled{opacity:.4;cursor:not-allowed}
+.vs{display:flex;align-items:center;gap:14px;margin:4px 0 18px;flex-wrap:wrap}
+.vs figure{margin:0;background:#fbf6ec;border:2px solid var(--char);padding:10px 10px 6px;width:130px;box-shadow:4px 4px 0 var(--char);position:relative}
+.vs figure:first-child{transform:rotate(-4deg)}.vs figure:last-child{transform:rotate(3deg)}
+.vs figure::before{content:"";position:absolute;top:-10px;left:50%;width:60px;height:18px;transform:translateX(-50%) rotate(-3deg);background:rgba(212,255,58,.7);border:1px solid rgba(23,19,15,.2)}
+.vs figure:last-child::before{background:rgba(255,46,136,.5)}
+.vs .ph{height:96px;border:2px dashed var(--char);display:grid;place-items:center;font-family:var(--pen);font-size:54px;line-height:1;color:var(--char)}
+.vs figcaption{font-family:var(--pen);font-size:22px;text-align:center;margin-top:4px}
+.vs .or{font-family:var(--cut);font-size:26px}
 .err{color:var(--clay);font-weight:700;font-size:15px;min-height:1.4em;margin-top:8px}
 .done{text-align:left}
 .done h3{font-family:var(--cut);font-weight:400;font-size:clamp(32px,6vw,52px);margin:0 0 10px;line-height:1}
@@ -269,6 +277,7 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
       </div>
       <div class="step" data-step hidden>
         <label class="q" for="q7">Shrek or Stitch: who's cooler, and why?</label>
+        <div class="vs" aria-hidden="true"><figure><div class="ph">?</div><figcaption>the ogre</figcaption></figure><span class="or">OR</span><figure><div class="ph">?</div><figcaption>the alien</figcaption></figure></div>
         <p class="hint">Round here, cool means being exactly who you are.</p>
         <textarea id="q7" name="cool" required></textarea>
       </div>
