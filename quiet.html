@@ -223,30 +223,35 @@ footer small{display:block;margin-top:18px;font-size:13px;color:var(--soft)}
     <div class="count" id="count" aria-live="polite"></div>
 
     <div class="step" data-step>
-      <label class="q" for="q1">What would bring more va va voom to your life here?</label>
-      <p class="hint">In this town, this week, this year. Whatever comes up.</p>
-      <textarea id="q1" name="voom" required></textarea>
-    </div>
-    <div class="step" data-step hidden>
-      <label class="q" for="q2">What could you bring?</label>
-      <p class="hint">A skill, a field, a van, a recipe, a terrible joke. All useful.</p>
-      <textarea id="q2" name="bring" required></textarea>
-    </div>
-    <div class="step" data-step hidden>
-      <label class="q" for="q3">When did you last try something just to see what happened?</label>
-      <p class="hint">Tell us what happened.</p>
-      <textarea id="q3" name="experiment" required></textarea>
-    </div>
-    <div class="step" data-step hidden>
-      <label class="q" for="q4">Which of the five feels easiest for you, and which is the stretch?</label>
-      <p class="hint">Come as you are · Talk less, do more · We're all leaders here · Deep chats and silliness · If it's alive, we follow it</p>
-      <textarea id="q4" name="five" required></textarea>
-    </div>
-    <div class="step" data-step hidden>
-      <label class="q" for="q5">Are you cool? And what does cool even mean to you?</label>
-      <p class="hint">Round here, cool means being exactly who you are.</p>
-      <textarea id="q5" name="cool" required></textarea>
-    </div>
+        <label class="q" for="q1">What would bring more va va voom to your life here?</label>
+        <p class="hint">In this town, this week, this year. Whatever comes up.</p>
+        <textarea id="q1" name="voom" required></textarea>
+      </div>
+      <div class="step" data-step hidden>
+        <label class="q" for="q2">Which of the five comes easiest to you?</label>
+        <p class="hint">Come as you are · Talk less, do more · We're all leaders here · Deep chats and silliness · If it's alive, we follow it</p>
+        <textarea id="q2" name="five_easy" required></textarea>
+      </div>
+      <div class="step" data-step hidden>
+        <label class="q" for="q3">What could you bring?</label>
+        <p class="hint">A skill, a field, a van, a recipe, a terrible joke. All useful.</p>
+        <textarea id="q3" name="bring" required></textarea>
+      </div>
+      <div class="step" data-step hidden>
+        <label class="q" for="q4">When did you last try something just to see what happened?</label>
+        <p class="hint">Tell us what happened.</p>
+        <textarea id="q4" name="experiment" required></textarea>
+      </div>
+      <div class="step" data-step hidden>
+        <label class="q" for="q5">Which of the five would you struggle with most?</label>
+        <p class="hint">That's where you get to grow. Come as you are · Talk less, do more · We're all leaders here · Deep chats and silliness · If it's alive, we follow it</p>
+        <textarea id="q5" name="five_grow" required></textarea>
+      </div>
+      <div class="step" data-step hidden>
+        <label class="q" for="q7">Shrek or Stitch: who's cooler, and why?</label>
+        <p class="hint">Round here, cool means being exactly who you are.</p>
+        <textarea id="q7" name="cool" required></textarea>
+      </div>
     <div class="step" data-step hidden>
       <p class="q" id="q6l">Honestly: is this for you?</p>
       <div class="choices" role="radiogroup" aria-labelledby="q6l">
@@ -294,7 +299,7 @@ footer small{display:block;margin-top:18px;font-size:13px;color:var(--soft)}
   var form=document.getElementById('vvv'), steps=[].slice.call(form.querySelectorAll('[data-step]'));
   var i=0, back=document.getElementById('back'), next=document.getElementById('next'), err=document.getElementById('err');
   var fill=document.getElementById('barfill'), count=document.getElementById('count');
-  var FIT=5, LAST=steps.length-1;
+  var FIT=6, LAST=steps.length-1;
   function show(n){
     steps.forEach(function(s,k){s.hidden=k!==n});
     i=n; back.style.visibility=n===0?'hidden':'visible';
