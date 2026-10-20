@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Va Va Voom Quiet</title>
+<meta name="description" content="What if Godalming had a bit more va va voom?">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Caveat:wght@500;700&display=swap">
+<style>
+/* Layout: one ink on paper, a field notebook — a single column, generous air, pencil sketches in the margins, pink used only as a spark */
+:root{
+  --paper:#f3f0e6;
+  --ink:#1e2a1f;      /* the one colour: a deep field green-black */
+  --soft:#5b6a5c;     /* ink at rest, for quieter text */
+  --line:#c9cbbb;
+  --spark:#c4005b;    /* the odd accent */
+  --display:'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+  --body:'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+  --hand:'Caveat', 'Bradley Hand', cursive;
+  --logo:'Bungee', Impact, 'Arial Black', sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#151b16;--ink:#ebe7db;--soft:#a9b2a6;--line:#38423a;--spark:#ff5c9d;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#151b16;--ink:#ebe7db;--soft:#a9b2a6;--line:#38423a;--spark:#ff5c9d;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6;overflow-x:hidden}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:56px;border-top:1px solid var(--line)}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.05;letter-spacing:-.01em;margin:0 0 22px;text-wrap:balance}
+.label{font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--soft);margin-bottom:10px}
+.hand{font-family:var(--hand);font-weight:500}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--spark);outline-offset:3px}
+svg.sketch{display:block;color:var(--ink);overflow:visible}
+svg.sketch path,svg.sketch line,svg.sketch circle{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+svg.sketch .sp{stroke:var(--spark)}
+
+/* HERO */
+.hero{padding-block:44px 24px}
+.logo{display:inline-flex;flex-direction:column;align-items:flex-start;gap:3px}
+.logo span{font-family:var(--logo);font-size:clamp(48px,11vw,84px);line-height:.9}
+.logo .o{color:transparent;-webkit-text-stroke:1.6px var(--ink)}
+.logo .b{background:var(--ink);color:var(--paper);padding:3px 10px}
+.logo small{font-weight:600;font-size:13px;letter-spacing:.34em;margin-top:8px}
+.hero-sketch{margin-top:28px;width:100%;max-width:100%;height:auto}
+.question{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,52px);line-height:1.05;letter-spacing:-.015em;margin:26px 0 0;max-width:16ch;text-wrap:balance}
+.question em{font-style:normal;background:linear-gradient(transparent 62%, color-mix(in srgb, var(--spark) 28%, transparent) 62%)}
+.strap{color:var(--soft);max-width:44ch;margin:18px 0 0}
+.cta{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--spark);padding-bottom:3px}
+.cta:hover{color:var(--spark)}
+
+/* WHAT IT IS */
+.oneline{font-family:var(--display);font-weight:600;font-size:clamp(22px,3.6vw,30px);line-height:1.25;margin:0 0 22px;max-width:30ch;text-wrap:balance}
+.context{display:grid;gap:8px;max-width:56ch}
+.context p{margin:0}
+.context .note{font-family:var(--hand);font-size:clamp(28px,4.4vw,36px);line-height:1.1;margin-top:12px;color:var(--spark)}
+
+/* HINTS */
+.hints{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 32px}
+.hints li{font-family:var(--hand);font-size:clamp(26px,3.6vw,32px);line-height:1.2}
+
+/* THE FIVE */
+.five{list-style:none;padding:0;margin:0;display:grid;counter-reset:f}
+.five li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:baseline;counter-increment:f;padding-block:14px;border-bottom:1px dashed var(--line);font-size:clamp(19px,2.6vw,23px);font-weight:600;line-height:1.3}
+.five li:last-child{border-bottom:0}
+.five li::before{content:counter(f);font-family:var(--hand);font-size:34px;font-weight:700;color:var(--soft)}
+
+/* NOT FOR YOU */
+.notfor{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.notfor li{padding-left:32px;position:relative}
+.notfor li::before{content:"";position:absolute;left:2px;top:.75em;width:16px;height:1.6px;background:var(--ink)}
+.aside{font-family:var(--hand);font-size:28px;margin-top:22px;color:var(--soft)}
+
+/* NETWORK */
+.net{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px}
+.place h3{font-family:var(--display);font-weight:800;font-size:22px;margin:10px 0 4px}
+.place p{margin:0;color:var(--soft);font-size:16px}
+.place svg{height:64px;width:auto}
+.things{margin-top:36px;display:flex;flex-wrap:wrap;gap:8px}
+.things span{border:1px solid var(--ink);border-radius:999px;padding:4px 12px;font-size:15px}
+.things span.hi{border-color:var(--spark);color:var(--spark)}
+
+/* JOIN */
+.form{border:1.6px solid var(--ink);padding:clamp(20px,4vw,32px);border-radius:4px}
+.intro{max-width:52ch;margin:0 0 26px;color:var(--soft)}
+.bar{height:3px;background:var(--line);margin-bottom:20px}
+.bar i{display:block;height:100%;background:var(--spark);width:0;transition:width .3s}
+.count{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--soft);margin-bottom:8px}
+.q{display:block;font-family:var(--display);font-weight:800;font-size:clamp(22px,3.6vw,28px);line-height:1.2;margin:0 0 6px;text-wrap:balance}
+.hint{color:var(--soft);font-size:16px;margin:0 0 16px}
+textarea,input[type=text],input[type=tel],input[type=email]{width:100%;font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:1.6px solid var(--ink);padding:10px 2px;border-radius:0}
+textarea{min-height:120px;resize:vertical;border:1.6px solid var(--ink);padding:12px}
+.fields{display:grid;gap:18px}
+.fields label{font-weight:600;font-size:14px;display:grid;gap:4px}
+.choices{display:grid;gap:10px}
+.choice{display:flex;gap:12px;align-items:center;border:1.6px solid var(--ink);padding:12px 16px;cursor:pointer;font-weight:600;border-radius:4px}
+.choice input{accent-color:var(--spark);width:20px;height:20px}
+.choice:has(input:checked){border-color:var(--spark);box-shadow:inset 0 0 0 1px var(--spark)}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer}
+.btn{font-weight:800;border:1.6px solid var(--ink);padding:11px 22px;background:var(--ink);color:var(--paper);border-radius:999px}
+.btn:hover{background:var(--spark);border-color:var(--spark);color:var(--paper)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{color:var(--spark);border-color:var(--spark)}
+.err{color:var(--spark);font-weight:600;font-size:15px;min-height:1.4em;margin-top:8px}
+.done h3{font-family:var(--display);font-weight:800;font-size:clamp(30px,5vw,44px);margin:0 0 8px}
+.done .hand{font-size:28px}
+
+footer{padding-block:40px 64px;border-top:1px solid var(--line)}
+footer .big{font-family:var(--hand);font-size:clamp(30px,5vw,42px);line-height:1.1;max-width:22ch;margin:0}
+footer small{display:block;margin-top:18px;font-size:13px;color:var(--soft)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.2"/></filter>
+</svg>
+
+<header class="hero wrap">
+  <h1 class="sr">Va Va Voom Godalming</h1>
+  <div class="logo" role="img" aria-label="Va Va Voom Godalming">
+    <span>VA</span><span class="o">VA</span><span class="b">VOOM</span><small>GODALMING</small>
+  </div>
+
+  <svg class="sketch hero-sketch" viewBox="0 0 600 260" role="img" aria-label="Pencil sketch of the Surrey hills with an oak tree, a low sun and birds" filter="url(#rough)">
+    <g class="sp"><circle cx="118" cy="78" r="20"/><line x1="118" y1="44" x2="118" y2="34"/><line x1="118" y1="112" x2="118" y2="122"/><line x1="84" y1="78" x2="74" y2="78"/><line x1="152" y1="78" x2="162" y2="78"/><line x1="94" y1="54" x2="87" y2="47"/><line x1="142" y1="102" x2="149" y2="109"/><line x1="142" y1="54" x2="149" y2="47"/><line x1="94" y1="102" x2="87" y2="109"/></g>
+    <path d="M250 92 q8 -8 16 0 q8 -8 16 0"/><path d="M290 70 q6 -6 12 0 q6 -6 12 0"/><path d="M228 66 q5 -5 10 0 q5 -5 10 0"/>
+    <path d="M0 206 C70 172 150 180 220 196 S360 222 430 190 S550 166 600 184"/>
+    <path d="M0 236 C110 216 210 228 310 222 S500 208 600 226"/>
+    <path d="M30 204 l12 -6 M60 196 l12 -6 M90 190 l12 -5 M150 188 l12 -4 M190 194 l12 -4 M250 204 l12 -4 M300 212 l12 -4"/>
+    <path d="M444 192 C442 168 446 150 441 128"/>
+    <path d="M443 160 C430 150 420 146 410 136"/><path d="M444 150 C458 142 468 136 478 126"/>
+    <path d="M404 136 C384 128 388 98 412 96 C414 72 448 68 458 86 C478 76 504 94 494 114 C514 124 502 150 478 145 C468 158 444 156 432 148 C418 158 398 150 404 136 Z"/>
+    <path d="M420 120 q6 -4 12 0 M452 108 q6 -4 12 0 M470 130 q5 -4 10 0"/>
+    <path d="M60 238 l3 -12 M66 238 l-1 -14 M72 238 l5 -10 M520 228 l3 -12 M526 228 l-1 -14 M532 228 l5 -10 M300 240 l2 -10 M305 240 l-1 -12"/>
+  </svg>
+
+  <p class="question">What if Godalming had a bit more <em>va va voom?</em></p>
+  <p class="strap">Moving towards what is good, true and beautiful, and having fun doing it along the way.</p>
+  <a class="cta" href="#join">See if it's for you <span aria-hidden="true">→</span></a>
+</header>
+
+<section aria-labelledby="h-what"><div class="wrap">
+  <div class="label" id="h-what">What it is</div>
+  <p class="oneline">A bunch of Godalming people getting stuck into projects that make our town more creative, more resilient and more ours.</p>
+  <div class="context">
+    <p>Empty shop windows. Fields eyed up for houses. Bills that only go one way.</p>
+    <p>We keep being told it's an emergency, and most days it doesn't feel like one.</p>
+    <p>So this is a quieter kind of change. We could moan about it, or we could get going. Doing it now costs less than doing it later.</p>
+    <p class="note">And doing it together is a lot more fun.</p>
+  </div>
+</div></section>
+
+<section aria-label="Hints"><div class="wrap">
+  <ul class="hints">
+    <li>Nobody's coming to do it for us.</li>
+    <li>So we thought we might.</li>
+    <li>A spark, not a committee.</li>
+    <li>Money, food, fire, land, each other.</li>
+    <li>Some nights deep. Some nights daft.</li>
+    <li>A drink, if you fancy one.</li>
+  </ul>
+</div></section>
+
+<section aria-labelledby="h-five"><div class="wrap">
+  <div class="label">How we show up</div>
+  <h2 id="h-five">The five</h2>
+  <ol class="five">
+    <li>Come as you are.</li>
+    <li>Talk less, do more.</li>
+    <li>We're all leaders here. It's our space, and we all look after it.</li>
+    <li>Deep chats and silliness, in equal measure.</li>
+    <li>If it's alive, we follow it.</li>
+  </ol>
+</div></section>
+
+<section aria-labelledby="h-not"><div class="wrap">
+  <div class="label">Straight up</div>
+  <h2 id="h-not">This isn't for you if…</h2>
+  <ul class="notfor">
+    <li>You're here to make speeches.</li>
+    <li>You'd rather talk about it than do it.</li>
+    <li>You're looking for a stage.</li>
+    <li>You want somewhere to moan.</li>
+    <li>You're not up for experimenting and playing.</li>
+  </ul>
+  <p class="aside">Still reading? Good sign.</p>
+</div></section>
+
+<section aria-labelledby="h-net"><div class="wrap">
+  <div class="label">Our little local network</div>
+  <h2 id="h-net">Where you'll find us</h2>
+  <div class="net">
+    <div class="place">
+      <svg class="sketch" viewBox="0 0 110 64" aria-hidden="true" filter="url(#rough)"><path d="M6 58 H104"/><path d="M14 58 V30 L36 16 L58 30 V58"/><path d="M30 58 V42 H42 V58"/><path d="M66 58 V36 Q76 26 86 36 V58"/><path d="M70 46 H82"/><path d="M92 58 l2 -8 M97 58 l-1 -10 M101 58 l3 -7"/></svg>
+      <h3>Norney Farm</h3><p>Land, fire, muddy boots. Where things get made.</p>
+    </div>
+    <div class="place">
+      <svg class="sketch" viewBox="0 0 110 64" aria-hidden="true" filter="url(#rough)"><path d="M4 58 C30 30 70 24 106 44"/><path d="M44 36 V20 H70 V34"/><path d="M40 22 L57 10 L74 22"/><path d="M52 34 V26 H62 V33"/><g class="sp"><path d="M88 10 l0 8 M84 14 l8 0"/></g></svg>
+      <h3>The studio on the hill</h3><p>Circles, quiet thinking and the occasional loud idea.</p>
+    </div>
+    <div class="place">
+      <svg class="sketch" viewBox="0 0 110 64" aria-hidden="true" filter="url(#rough)"><path d="M28 12 H52 L48 40 Q40 46 32 40 Z"/><path d="M40 44 V58 M30 58 H50"/><path d="M31 22 H49"/><path d="M66 20 H86 V54 Q76 60 66 54 Z"/><path d="M86 28 Q96 30 94 40 Q92 46 86 44"/><path d="M68 26 q8 4 16 0"/></svg>
+      <h3>Trinkfluss</h3><p>The clubhouse. Bastian pours, we plot.</p>
+    </div>
+  </div>
+  <div class="things" aria-label="What happens">
+    <span>Circles</span><span>Walks</span><span>Pub nights</span><span>Workshops</span><span class="hi">Money smarts</span><span>Making stuff</span><span>Smarter homes</span><span>AI</span><span>Grounding</span><span>Good food</span><span>Stories</span><span>Skills</span><span>Learning</span><span>Creating</span><span>Innovating</span><span>Being healthy</span><span>Running</span><span>Riding</span><span>Sitting</span><span>Breathing</span><span>Living sustainably</span><span>Being resilient</span><span>Living lighter</span><span>Cleaner living</span><span>Regenerative growing (&amp; living)</span><span>Following the seasons</span><span>Shackleford too</span>
+  </div>
+</div></section>
+
+<section id="join" aria-labelledby="h-join"><div class="wrap">
+  <div class="label">Want in?</div>
+  <h2 id="h-join">Put a little effort in</h2>
+  <p class="intro">A few questions, one at a time. No right answers. Take your time, it helps you work out whether this is for you. After that, we may be in touch.</p>
+
+  <form class="form" id="vvv" novalidate>
+    <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
+    <div class="count" id="count" aria-live="polite"></div>
+
+    <div class="step" data-step>
+      <label class="q" for="q1">What would bring more va va voom to your life here?</label>
+      <p class="hint">In this town, this week, this year. Whatever comes up.</p>
+      <textarea id="q1" name="voom" required></textarea>
+    </div>
+    <div class="step" data-step hidden>
+      <label class="q" for="q2">What could you bring?</label>
+      <p class="hint">A skill, a field, a van, a recipe, a terrible joke. All useful.</p>
+      <textarea id="q2" name="bring" required></textarea>
+    </div>
+    <div class="step" data-step hidden>
+      <label class="q" for="q3">When did you last try something just to see what happened?</label>
+      <p class="hint">Tell us what happened.</p>
+      <textarea id="q3" name="experiment" required></textarea>
+    </div>
+    <div class="step" data-step hidden>
+      <label class="q" for="q4">Which of the five feels easiest for you, and which is the stretch?</label>
+      <p class="hint">Come as you are · Talk less, do more · We're all leaders here · Deep chats and silliness · If it's alive, we follow it</p>
+      <textarea id="q4" name="five" required></textarea>
+    </div>
+    <div class="step" data-step hidden>
+      <label class="q" for="q5">Are you cool? And what does cool even mean to you?</label>
+      <p class="hint">Round here, cool means being exactly who you are.</p>
+      <textarea id="q5" name="cool" required></textarea>
+    </div>
+    <div class="step" data-step hidden>
+      <p class="q" id="q6l">Honestly: is this for you?</p>
+      <div class="choices" role="radiogroup" aria-labelledby="q6l">
+        <label class="choice"><input type="radio" id="q6a" name="fit" value="in" required> I'm in.</label>
+        <label class="choice"><input type="radio" id="q6b" name="fit" value="out"> Not for me, and that's fine.</label>
+      </div>
+    </div>
+    <div class="step" data-step hidden>
+      <p class="q">Who are you, and where do we find you?</p>
+      <div class="fields">
+        <label for="nm">Your name<input type="text" id="nm" name="name" autocomplete="name" required></label>
+        <label for="ph">Phone<input type="tel" id="ph" name="phone" autocomplete="tel" required></label>
+        <label for="em">Email (optional)<input type="email" id="em" name="email" autocomplete="email"></label>
+        <label for="wh">Where you live<input type="text" id="wh" name="where" placeholder="Godalming, Shackleford, Busbridge…"></label>
+      </div>
+    </div>
+
+    <div class="err" id="err" role="alert"></div>
+    <div class="nav">
+      <button type="button" class="btn ghost" id="back">← Back</button>
+      <button type="submit" class="btn" id="next">Next →</button>
+    </div>
+  </form>
+
+  <div class="form done" id="thanks" hidden>
+    <h3>Noted.</h3>
+    <p>We read every one of these properly. If it feels alive, we may be in touch.</p>
+    <p class="hand">Until then, go do something just to see what happens.</p>
+  </div>
+  <div class="form done" id="bye" hidden>
+    <h3>Fair enough.</h3>
+    <p>Thanks for being honest. That's very much in the spirit of the thing. If it ever starts to feel alive for you, the door's still here.</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <svg class="sketch" viewBox="0 0 160 40" width="160" height="40" aria-hidden="true" filter="url(#rough)"><path d="M6 34 C40 30 80 22 150 8"/><path d="M30 31 q-6 -10 -2 -16 M30 31 q8 -6 14 -4 M60 26 q-6 -10 -2 -16 M60 26 q8 -6 14 -4 M90 20 q-6 -10 -2 -16 M90 20 q8 -6 14 -4 M120 14 q-4 -8 0 -12 M120 14 q6 -4 12 -2"/></svg>
+  <p class="big">Moving towards what is good, true and beautiful. Having fun doing it along the way.</p>
+  <small>Va Va Voom Godalming · made by citizens, not committees</small>
+</div></footer>
+
+<script>
+(function(){
+  // TODO: send each submission to the Va Va Voom Google Sheet (to be connected). For now answers stay in this browser only.
+  var form=document.getElementById('vvv'), steps=[].slice.call(form.querySelectorAll('[data-step]'));
+  var i=0, back=document.getElementById('back'), next=document.getElementById('next'), err=document.getElementById('err');
+  var fill=document.getElementById('barfill'), count=document.getElementById('count');
+  var FIT=5, LAST=steps.length-1;
+  function show(n){
+    steps.forEach(function(s,k){s.hidden=k!==n});
+    i=n; back.style.visibility=n===0?'hidden':'visible';
+    next.textContent=n===LAST?'Send it →':'Next →';
+    fill.style.width=Math.round(n/LAST*100)+'%';
+    count.textContent='Question '+(n+1)+' of '+steps.length;
+    err.textContent='';
+    var f=steps[n].querySelector('textarea,input'); if(f&&n>0) f.focus({preventScroll:true});
+  }
+  function valid(){
+    var s=steps[i];
+    if(i===FIT){ if(!form.querySelector('input[name=fit]:checked')){err.textContent='Pick one. Either answer is a good answer.';return false} return true }
+    var req=[].slice.call(s.querySelectorAll('[required]'));
+    for(var k=0;k<req.length;k++){
+      if(!req[k].value.trim()){err.textContent=i===LAST?'We need a name and a number, just in case.':'Give it a go. A sentence is plenty.';req[k].focus();return false}
+    }
+    return true;
+  }
+  back.addEventListener('click',function(){ if(i>0) show(i-1) });
+  form.addEventListener('submit',function(e){
+    e.preventDefault(); if(!valid()) return;
+    if(i===FIT && form.querySelector('input[name=fit]:checked').value==='out'){ finish('bye'); return }
+    if(i<LAST){ show(i+1); return }
+    finish('thanks');
+  });
+  function finish(id){
+    var data={when:new Date().toISOString()};
+    new FormData(form).forEach(function(v,k){data[k]=v});
+    try{var all=JSON.parse(localStorage.getItem('vvv-answers')||'[]');all.push(data);localStorage.setItem('vvv-answers',JSON.stringify(all))}catch(e){}
+    form.hidden=true; document.getElementById(id).hidden=false;
+    document.getElementById(id).scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  show(0);
+})();
+</script>
+
+</body>
+</html>

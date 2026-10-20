@@ -36,6 +36,9 @@ h2{font-family:var(--cut);font-weight:400;font-size:clamp(30px,6vw,52px);line-he
 .pen{font-family:var(--pen)}
 a{color:inherit}
 :focus-visible{outline:3px dashed var(--neon);outline-offset:3px}
+.join :focus-visible{outline-color:var(--neon2)}
+.join .form :focus-visible{outline-color:var(--char)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* LOGO — B2 stacked pink */
 .logo{display:inline-flex;flex-direction:column;align-items:flex-start;gap:4px;background:var(--neon);padding:28px 32px 22px;margin-top:18px;transform:rotate(-1deg);box-shadow:6px 6px 0 var(--char)}
@@ -47,7 +50,7 @@ a{color:inherit}
 .what .oneline{font-family:var(--cut);font-size:clamp(24px,4.4vw,38px);line-height:1.15;margin:0 0 24px;max-width:24ch;text-wrap:balance}
 .what .context{display:grid;gap:6px;max-width:58ch;font-size:clamp(17px,2.2vw,20px)}
 .what .context p{margin:0}
-.what .context .kick{font-family:var(--pen);font-size:clamp(24px,3.8vw,32px);color:var(--neon);margin-top:14px;transform:rotate(-1deg);display:inline-block}
+.what .context .kick{font-family:var(--pen);font-size:clamp(24px,3.8vw,32px);color:#c2005f;margin-top:14px;transform:rotate(-1deg);display:inline-block}
 /* HERO */
 .hero{padding-block:48px 40px;position:relative}
 .kicker{font-family:var(--pen);color:var(--clay);font-size:20px;transform:rotate(-2deg);display:inline-block}
@@ -71,14 +74,14 @@ a{color:inherit}
 @media (max-width:640px){.stamp{position:static;margin:24px 0 0 auto;width:96px;height:96px;font-size:11px}}
 
 /* HINTS — orange torn band */
-.band{background:var(--ember);color:var(--paper);position:relative;
+.band{background:var(--ember);color:var(--char);position:relative;
   clip-path:polygon(0 3%,6% 0,14% 2.5%,23% .5%,33% 3%,44% 0,56% 2.5%,67% .5%,78% 3%,89% .5%,100% 2.5%,100% 97%,92% 100%,81% 97.5%,70% 99.5%,59% 97%,47% 100%,36% 97.5%,25% 99.5%,13% 97%,4% 99.5%,0 97%)}
 .band .wrap{padding-block:64px}
 .hints{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px 28px}
 .hints li{font-family:var(--pen);font-size:clamp(22px,3.6vw,30px);line-height:1.15}
 .hints li:nth-child(odd){transform:rotate(-1.5deg)}
 .hints li:nth-child(even){transform:rotate(1.2deg)}
-.hints li:nth-child(4){color:var(--char)}
+.hints li:nth-child(4){color:var(--paper);background:var(--char);padding:2px 8px;justify-self:start}
 
 /* THE FIVE — taped index card */
 .card{background:#fbf6ec;border:2px solid var(--char);padding:34px clamp(18px,4vw,40px) 28px;position:relative;transform:rotate(-.6deg);box-shadow:6px 7px 0 rgba(29,23,20,.85)}
@@ -109,7 +112,7 @@ a{color:inherit}
 .things{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
 .things span{border:2px solid var(--char);padding:6px 12px;font-weight:700;font-size:15px;background:var(--paper)}
 .things span:nth-child(3n){background:var(--clay);color:var(--paper)}
-.things span:nth-child(4n){background:var(--neon2)}
+.things span:nth-child(4n){background:var(--neon2);color:var(--char)}
 
 /* JOIN — one question at a time */
 .join{background:var(--moss);color:var(--paper)}
@@ -150,6 +153,7 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
 
 
 <header class="hero wrap">
+  <h1 class="sr">Va Va Voom Godalming</h1>
   <span class="kicker">psst. pass it on.</span>
   <div><div class="logo" role="img" aria-label="Va Va Voom Godalming">
     <span>VA</span><span class="p">VA</span><span class="l">VOOM</span><small>GODALMING</small>
@@ -236,7 +240,7 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
 
     <form class="form" id="vvv" novalidate>
       <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
-      <div class="count" id="count"></div>
+      <div class="count" id="count" aria-live="polite"></div>
 
       <div class="step" data-step>
         <label class="q" for="q1">What would bring more va va voom to your life here?</label>
