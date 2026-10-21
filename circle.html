@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The First Circle</title>
+
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Bungee&family=Courier+Prime:wght@400;700&family=Permanent+Marker&display=swap">
+<style>
+/* Layout: down the rabbit hole. A dark tunnel opener spirals into one taped invitation card on paper */
+:root{
+  --paper:#f3eee2; --ink:#221e19; --sheet:#fbf8f1; --rose:#ee8fa4; --sun:#f2c75a; --slate:#3d5a8c; --moss:#46643b;
+  --zap:#e8337f; --volt:#c9f24a; --berry:#b8285f;
+  --cut:'Bowlby One SC', Impact, 'Arial Black', sans-serif;
+  --type:'Courier Prime', 'Courier New', monospace;
+  --pen:'Permanent Marker', 'Comic Sans MS', cursive;
+  --logo:'Bungee', Impact, 'Arial Black', sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--type);font-size:17px;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:3px dashed var(--zap);outline-offset:3px}
+
+.hole{background:var(--ink);color:var(--paper);text-align:center;overflow:hidden;position:relative}
+.hole .wrap{padding-block:44px 54px;position:relative}
+.spiral{width:min(300px,70vw);height:auto;display:block;margin:0 auto}
+.spiral circle{fill:none;stroke-width:2}
+.rab{width:86px;height:86px;position:absolute;left:50%;top:50%;transform:translate(-50%,-62%)}
+.found{font-family:var(--pen);font-size:clamp(24px,5vw,34px);color:var(--volt);margin:18px 0 0;transform:rotate(-2deg)}
+.hole small{display:block;margin-top:6px;color:#d9d2c4;font-size:14px}
+.tunnel{position:relative;display:inline-block}
+@media (prefers-reduced-motion:no-preference){
+  .spiral{animation:spin 26s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .rab{animation:drop 2.4s ease-out both}
+  @keyframes drop{0%{transform:translate(-50%,-62%) scale(1.6) rotate(-20deg)}100%{transform:translate(-50%,-62%) scale(1) rotate(0)}}
+}
+
+main{padding-block:44px 30px}
+.card{background:var(--sheet);border:2px solid var(--ink);box-shadow:5px 5px 0 rgba(34,30,25,.5);padding:34px clamp(18px,4vw,40px) 30px;position:relative;transform:rotate(-.5deg)}
+.card::before,.card::after{content:"";position:absolute;top:-13px;width:110px;height:26px;border:1px solid rgba(34,30,25,.2)}
+.card::before{left:24px;background:rgba(201,242,74,.75);transform:rotate(-5deg)}
+.card::after{right:24px;background:rgba(232,51,127,.45);transform:rotate(4deg)}
+.eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--slate)}
+h1{font-family:var(--cut);font-weight:400;font-size:clamp(36px,8vw,64px);line-height:.98;margin:8px 0 6px;text-wrap:balance}
+h1 span{background:var(--zap);padding:0 10px;display:inline-block;transform:rotate(-1.5deg)}
+.invite{font-family:var(--pen);font-size:clamp(22px,4vw,30px);line-height:1.2;margin:18px 0 6px}
+.qs{list-style:none;padding:0;margin:0 0 6px;display:grid;gap:8px}
+.qs li{font-family:var(--pen);font-size:clamp(21px,3.6vw,27px);line-height:1.2;padding-left:30px;position:relative}
+.qs li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;background:var(--zap);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}
+.qs li:nth-child(even)::before{background:var(--moss)}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:28px 0 0}
+.fact{border:2px solid var(--ink);padding:14px 16px;background:var(--paper);min-width:0}
+.fact:nth-child(1){transform:rotate(-1deg)}.fact:nth-child(2){transform:rotate(.8deg)}.fact:nth-child(3){transform:rotate(-.5deg)}
+.fact h2{font-family:var(--cut);font-weight:400;font-size:15px;letter-spacing:.06em;margin:0 0 4px;color:var(--slate)}
+.fact p{margin:0;font-weight:700;font-size:18px;line-height:1.3}
+.fact .tbc{display:inline-block;background:var(--sun);padding:0 6px;margin-top:4px}
+.cal{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-size:14px;font-weight:700;border:2px dashed var(--ink);padding:6px 10px;color:var(--ink);opacity:.65}
+
+.block{margin-top:28px}
+.block h2{font-family:var(--cut);font-weight:400;font-size:clamp(22px,3.8vw,28px);margin:0 0 8px}
+.block ul{margin:0;padding-left:22px;display:grid;gap:4px}
+.block p{margin:0;max-width:56ch}
+.note{font-family:var(--pen);font-size:clamp(20px,3.2vw,24px);color:var(--berry);margin-top:8px;transform:rotate(-1deg);display:inline-block}
+.cta{display:inline-block;margin-top:30px;font-family:var(--cut);font-size:19px;background:var(--rose);color:var(--ink);padding:13px 20px;text-decoration:none;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transform:rotate(-1deg)}
+.cta:hover{box-shadow:7px 7px 0 var(--zap)}
+.sig{margin-top:22px;font-family:var(--pen);font-size:22px}
+footer{padding-block:20px 56px;text-align:center;font-size:14px}
+footer a{font-weight:700}
+.shh{font-family:var(--pen);font-size:20px;color:var(--slate);display:block;margin-bottom:8px}
+</style>
+</head>
+<body>
+<header class="hole">
+  <div class="wrap">
+    <div class="tunnel" aria-hidden="true">
+      <svg class="spiral" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="96" stroke="#e8337f"/><circle cx="102" cy="98" r="80" stroke="#c9f24a" stroke-dasharray="6 6"/>
+        <circle cx="99" cy="101" r="64" stroke="#ee8fa4"/><circle cx="101" cy="99" r="49" stroke="#f2c75a" stroke-dasharray="4 5"/>
+        <circle cx="100" cy="100" r="35" stroke="#5aa9e6"/><circle cx="100" cy="100" r="22" stroke="#e8337f" stroke-dasharray="3 4"/>
+      </svg>
+      <svg class="rab" viewBox="0 0 64 64"><path d="M22 30 C14 18 12 6 17 4 C22 2 27 14 28 26" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M19 9 C21 14 23 19 24 24" stroke="#ee8fa4" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+<path d="M34 26 C36 12 42 2 47 5 C52 8 46 20 39 30" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M44 9 C42 14 39 20 37 25" stroke="#ee8fa4" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+<ellipse cx="31" cy="40" rx="17" ry="15" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5"/>
+<circle cx="25" cy="38" r="2.6" fill="#221e19"/><circle cx="37" cy="38" r="2.6" fill="#221e19"/>
+<path d="M29 45 l2 2 l2 -2" stroke="#221e19" stroke-width="2.5" fill="#e8337f" stroke-linejoin="round"/>
+<path d="M18 46 h-8 M18 49 l-7 3 M44 46 h8 M44 49 l7 3" stroke="#221e19" stroke-width="2" stroke-linecap="round"/>
+<path d="M50 6 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 l5 -2z" fill="#c9f24a" stroke="#221e19" stroke-width="1.8" stroke-linejoin="round"/></svg>
+    </div>
+    <p class="found">You found the rabbit hole.</p>
+    <small>Not many people do. Keep it to yourself, or pass it to someone who'd get it.</small>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="card" aria-labelledby="h-circle">
+    <div class="eyebrow">Va Va Voom Godalming · an invitation</div>
+    <h1 id="h-circle">The <span>first circle</span></h1>
+    <p class="invite">Come and sit in circle with us. We'll be asking:</p>
+    <ul class="qs">
+      <li>What is Godalming's flavour?</li>
+      <li>Who are we?</li>
+      <li>What's going on here today?</li>
+      <li>What do we want more of?</li>
+    </ul>
+
+    <div class="facts">
+      <div class="fact"><h2>Where</h2><p>The Studio on the Hill<br>Catteshall Lane, Godalming</p></div>
+      <div class="fact"><h2>When</h2><p>7.30pm to 9.30pm<br><span class="tbc">Date TBC</span></p><span class="cal" aria-disabled="true">Calendar link once the date's set</span></div>
+      <div class="fact"><h2>Hosted by</h2><p>Kev Self</p></div>
+    </div>
+
+    <section class="block" aria-labelledby="h-bring">
+      <h2 id="h-bring">What to bring</h2>
+      <ul>
+        <li>An open heart and an open mind</li>
+        <li>Snacks</li>
+        <li>A bottle, if you fancy something to share</li>
+      </ul>
+    </section>
+
+    <section class="block" aria-labelledby="h-look">
+      <h2 id="h-look">What it'll look like</h2>
+      <p>Deep conversation, plenty of laughs, and a few Post-its.</p>
+      <span class="note">I promise it won't feel like a workshop, even if it looks a bit like one.</span>
+    </section>
+
+    <section class="block" aria-labelledby="h-away">
+      <h2 id="h-away">What you'll come away with</h2>
+      <p>The realisation that there are some pretty cool people living round here. And a few seeds for what's to come.</p>
+    </section>
+
+    <a class="cta" href="zing.html#join">Want in? Answer the questions →</a>
+    <p class="sig">See you down there. Kev</p>
+  </article>
+</main>
+
+<footer class="wrap">
+  <span class="shh">shh.</span>
+  <a href="zing.html">Back up the rabbit hole</a>
+</footer>
+</body>
+</html>
