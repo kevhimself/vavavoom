@@ -79,6 +79,11 @@ h1 span{background:var(--zap);padding:0 10px;display:inline-block;transform:rota
 .three::before{background:rgba(223,131,80,.7)}.three::after{background:rgba(107,79,160,.45)}
 .three h1 span{background:#df8350}
 .lead3{margin:10px 0 0;max-width:58ch}
+.opener svg{width:min(220px,56vw);height:auto;display:block;margin:0 auto}
+@media (prefers-reduced-motion:no-preference){.opener svg{animation:bob 3.6s ease-in-out infinite}@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}}
+.c3 h1 span{background:#df8350}
+.card.c3::before{background:rgba(223,131,80,.7)}
+.others{margin:18px 0 0;font-family:var(--pen);font-size:20px;color:var(--slate)}
 footer{padding-block:20px 56px;text-align:center;font-size:14px}
 footer a{font-weight:700}
 .shh{font-family:var(--pen);font-size:20px;color:var(--slate);display:block;margin-bottom:8px}
@@ -110,7 +115,7 @@ footer a{font-weight:700}
 
 <main class="wrap">
   <article class="card" aria-labelledby="h-circle">
-    <div class="eyebrow">Va Va Voom Godalming · invitation one</div>
+    <div class="eyebrow">Va Va Voom Godalming · an invitation</div>
     <h1 id="h-circle">The <span>first circle</span></h1>
     <p class="invite">Come and sit in circle with us. We'll be asking:</p>
     <ul class="qs">
@@ -149,60 +154,11 @@ footer a{font-weight:700}
     <a class="cta" href="zing.html#join">Want in? Answer the questions →</a>
     <p class="sig">See you down there. Kev</p>
   </article>
-
-  <article class="card two" aria-labelledby="h-pk">
-    <div class="eyebrow">Va Va Voom Godalming · invitation two</div>
-    <h1 id="h-pk">The <span>no-prep PechaKucha</span></h1>
-    <p class="invite">No slides. No preparation. Five minutes to tell us about something you're passionate about.</p>
-
-    <div class="facts">
-      <div class="fact"><h2>Where</h2><p>Trinkfluss, Godalming<br>with good independent wines</p></div>
-      <div class="fact"><h2>When</h2><p>A Wednesday in November<br>7pm to 9pm · <span class="tbc">Date TBC</span></p><span class="cal" aria-disabled="true">Calendar link once the date's set</span></div>
-      <div class="fact"><h2>Hosted by</h2><p>Kev Self</p></div>
-    </div>
-
-    <section class="block" aria-labelledby="h-pk-how">
-      <h2 id="h-pk-how">How it works</h2>
-      <ol class="steps">
-        <li><b>Three passions.</b> Three people, five minutes each, no notes, no prep. Whatever lights you up.</li>
-        <li><b>Small circles.</b> After each one, a short facilitated conversation about what we just heard.</li>
-        <li><b>One big circle.</b> To finish: what are we taking away, and who fancies doing one next time?</li>
-      </ol>
-      <span class="note">You don't have to speak. You might just want to.</span>
-    </section>
-
-    <a class="cta" href="zing.html#join">Want in? Answer the questions →</a>
-  </article>
-
-  <article class="card three" aria-labelledby="h-fc">
-    <div class="eyebrow">Va Va Voom Godalming · invitation three</div>
-    <h1 id="h-fc">The <span>Fireside Council</span></h1>
-    <p class="invite">Good Humans welcome.</p>
-    <p class="lead3">Council is an ancient way of gathering. Somewhere along the line it became a word for debate and delay. This is the other kind: we meet, we decide, we act.</p>
-    <p class="lead3">A call to the good humans of Godalming who want to be part of change. As citizens, what can we do for ourselves?</p>
-
-    <div class="facts">
-      <div class="fact"><h2>Where</h2><p>Norney Farm<br>Shackleford</p></div>
-      <div class="fact"><h2>When</h2><p>A Thursday, second week of January<br>7pm to 9.30pm · <span class="tbc">Date TBC</span></p><span class="cal" aria-disabled="true">Calendar link once the date's set</span></div>
-      <div class="fact"><h2>Hosted by</h2><p>Kev Self</p></div>
-    </div>
-
-    <section class="block" aria-labelledby="h-fc-bring">
-      <h2 id="h-fc-bring">What to bring</h2>
-      <ul>
-        <li>A warm coat</li>
-        <li>A big question</li>
-        <li>A bottle, if you like</li>
-      </ul>
-    </section>
-    <span class="note">No speeches. No minutes. Just good humans, a fire, and what happens next.</span>
-    <br>
-    <a class="cta" href="zing.html#join">Want in? Answer the questions →</a>
-  </article>
 </main>
 
 <footer class="wrap">
   <span class="shh">shh.</span>
+  <p class="others">There are other portals. Keep your eyes open.</p>
   <a href="zing.html">Back up the rabbit hole</a>
 </footer>
 </body>
