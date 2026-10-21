@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>The First Circle</title>
+<title>The Rabbit Hole</title>
 
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,6 +70,11 @@ h1 span{background:var(--zap);padding:0 10px;display:inline-block;transform:rota
 .cta{display:inline-block;margin-top:30px;font-family:var(--cut);font-size:19px;background:var(--rose);color:var(--ink);padding:13px 20px;text-decoration:none;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transform:rotate(-1deg)}
 .cta:hover{box-shadow:7px 7px 0 var(--zap)}
 .sig{margin-top:22px;font-family:var(--pen);font-size:22px}
+.two{margin-top:48px;transform:rotate(.5deg)}
+.two::before{background:rgba(242,199,90,.8)}.two::after{background:rgba(90,169,230,.55)}
+.two h1 span{background:var(--sun)}
+.steps{margin:0;padding-left:24px;display:grid;gap:8px;max-width:58ch}
+.steps b{font-family:var(--cut);font-weight:400;letter-spacing:.02em}
 footer{padding-block:20px 56px;text-align:center;font-size:14px}
 footer a{font-weight:700}
 .shh{font-family:var(--pen);font-size:20px;color:var(--slate);display:block;margin-bottom:8px}
@@ -101,7 +106,7 @@ footer a{font-weight:700}
 
 <main class="wrap">
   <article class="card" aria-labelledby="h-circle">
-    <div class="eyebrow">Va Va Voom Godalming · an invitation</div>
+    <div class="eyebrow">Va Va Voom Godalming · invitation one</div>
     <h1 id="h-circle">The <span>first circle</span></h1>
     <p class="invite">Come and sit in circle with us. We'll be asking:</p>
     <ul class="qs">
@@ -139,6 +144,30 @@ footer a{font-weight:700}
 
     <a class="cta" href="zing.html#join">Want in? Answer the questions →</a>
     <p class="sig">See you down there. Kev</p>
+  </article>
+
+  <article class="card two" aria-labelledby="h-pk">
+    <div class="eyebrow">Va Va Voom Godalming · invitation two</div>
+    <h1 id="h-pk">The <span>no-prep PechaKucha</span></h1>
+    <p class="invite">No slides. No preparation. Five minutes to tell us about something you're passionate about.</p>
+
+    <div class="facts">
+      <div class="fact"><h2>Where</h2><p>Trinkfluss, Godalming<br>with good independent wines</p></div>
+      <div class="fact"><h2>When</h2><p>A Wednesday in November<br>7pm to 9pm · <span class="tbc">Date TBC</span></p><span class="cal" aria-disabled="true">Calendar link once the date's set</span></div>
+      <div class="fact"><h2>Hosted by</h2><p>Kev Self</p></div>
+    </div>
+
+    <section class="block" aria-labelledby="h-pk-how">
+      <h2 id="h-pk-how">How it works</h2>
+      <ol class="steps">
+        <li><b>Three passions.</b> Three people, five minutes each, no notes, no prep. Whatever lights you up.</li>
+        <li><b>Small circles.</b> After each one, a short facilitated conversation about what we just heard.</li>
+        <li><b>One big circle.</b> To finish: what are we taking away, and who fancies doing one next time?</li>
+      </ol>
+      <span class="note">You don't have to speak. You might just want to.</span>
+    </section>
+
+    <a class="cta" href="zing.html#join">Want in? Answer the questions →</a>
   </article>
 </main>
 
