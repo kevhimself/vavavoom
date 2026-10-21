@@ -8,20 +8,24 @@
 <meta property="og:title" content="Va Va Voom Godalming">
 <meta property="og:description" content="What if Godalming had a bit more va va voom?">
 <meta property="og:image" content="logos/vvv-square-pink.png">
-<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Bungee&family=Courier+Prime:wght@400;700&family=Permanent+Marker&display=swap">
 <style>
 /* Layout: a photocopied zine, one long scroll of cut-and-stuck panels, slightly askew, with neon marker pops */
 :root{
-  --paper:#f4ede1;   /* photocopy paper */
-  --char:#17130f;    /* ink */
-  --ember:#ff5a1f;   /* flame orange */
-  --clay:#2438d6;    /* cobalt, for small text and labels */
-  --moss:#2438d6;    /* cobalt band */
-  --neon:#ff2e88;    /* hot pink, the logo colour */
-  --neon2:#d4ff3a;   /* lime, used sparingly */
+  --paper:#f3eee2;   /* clean oat paper */
+  --char:#221e19;   /* ink */
+  --ember:#df8350;   /* sunlit terracotta */
+  --clay:#3d5a8c;   /* bluebell slate, small text */
+  --moss:#46643b;   /* fresh moss band */
+  --neon:#ee8fa4;   /* rose, the logo colour */
+  --neon2:#f2c75a;   /* sunshine, used sparingly */
   --cut:'Bowlby One SC', Impact, 'Arial Black', sans-serif;
+  --zap:#e8337f;     /* neon pink spark: decoration and large type only */
+  --volt:#c9f24a;    /* electric lime spark: decoration only */
   --logo:'Bungee', Impact, 'Arial Black', sans-serif;
   --type:'Courier Prime', 'Courier New', monospace;
   --pen:'Permanent Marker', 'Comic Sans MS', cursive;
@@ -29,7 +33,7 @@
 }
 *{box-sizing:border-box}
 body{background:var(--paper);color:var(--char);font-family:var(--type);font-size:17px;line-height:1.55;overflow-x:hidden;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 section{padding-block:56px}
 h2{font-family:var(--cut);font-weight:400;font-size:clamp(30px,6vw,52px);line-height:1;margin:0 0 24px;text-wrap:balance}
@@ -41,16 +45,193 @@ a{color:inherit}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* LOGO — B2 stacked pink */
-.logo{display:inline-flex;flex-direction:column;align-items:flex-start;gap:4px;background:var(--neon);padding:28px 32px 22px;margin-top:18px;transform:rotate(-1deg);box-shadow:6px 6px 0 var(--char)}
+.logo{display:inline-flex;flex-direction:column;align-items:flex-start;gap:4px;background:var(--neon);padding:28px 32px 22px;margin-top:18px;transform:rotate(-1deg);box-shadow:4px 4px 0 rgba(38,34,28,.55)}
 .logo span{font-family:var(--logo);font-size:clamp(56px,14vw,112px);line-height:.9;color:var(--char)}
-.logo span.p{color:var(--paper)}
+.logo span.p{color:var(--paper);-webkit-text-stroke:2px var(--char)}
 .logo span.l{background:var(--neon2);padding:4px 12px}
 .logo small{font-family:var(--type);font-weight:700;font-size:15px;letter-spacing:.32em;margin-top:10px;color:var(--char)}
 /* WHAT IT IS */
 .what .oneline{font-family:var(--cut);font-size:clamp(24px,4.4vw,38px);line-height:1.15;margin:0 0 24px;max-width:24ch;text-wrap:balance}
 .what .context{display:grid;gap:6px;max-width:58ch;font-size:clamp(17px,2.2vw,20px)}
 .what .context p{margin:0}
-.what .context .kick{font-family:var(--pen);font-size:clamp(24px,3.8vw,32px);color:#c2005f;margin-top:14px;transform:rotate(-1deg);display:inline-block}
+.what .context .kick{font-family:var(--pen);font-size:clamp(24px,3.8vw,32px);color:#b8285f;margin-top:14px;transform:rotate(-1deg);display:inline-block}
+
+/* QUOTE */
+.quote{padding-block:8px 48px}
+.quote blockquote{margin:0;font-family:var(--pen);font-size:clamp(28px,5.2vw,46px);line-height:1.15;max-width:22ch;text-wrap:balance;transform:rotate(-1deg)}
+.quote blockquote::before{content:"\201C";font-family:var(--cut);color:var(--zap);font-size:1.4em;line-height:0;vertical-align:-.35em;margin-right:4px}
+.quote cite{display:block;margin-top:16px;font-style:normal;font-weight:700;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+/* RHYTHM */
+.rhythm{background:#ece3cf}
+.rhythm .wrap{padding-block:56px}
+.rhythm .copy{display:grid;gap:10px;max-width:58ch;font-size:clamp(17px,2.2vw,19px)}
+.rhythm .copy p{margin:0}
+.moons{display:flex;gap:14px;align-items:center;margin:4px 0 22px;flex-wrap:wrap}
+.moons svg{width:34px;height:34px}
+.cycle{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:20px;font-family:var(--pen);font-size:clamp(22px,3.4vw,28px)}
+.cycle span:not(:last-child)::after{content:" \2192";color:var(--ember);margin-left:14px}
+/* FOUR FORCES */
+.forces{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;position:relative;max-width:640px}
+.force{border:2px solid var(--char);background:#fbf8f1;padding:18px 18px 16px;min-width:0}
+.force:nth-child(1){transform:rotate(-1deg)}.force:nth-child(2){transform:rotate(.8deg)}.force:nth-child(3){transform:rotate(.6deg)}.force:nth-child(4){transform:rotate(-.8deg)}
+.force h3{font-family:var(--cut);font-weight:400;font-size:22px;margin:0;line-height:1.1}
+.force .word{font-family:var(--pen);font-size:22px;color:var(--clay)}
+.force p{margin:6px 0 0;font-size:15px}
+.credit{font-size:13px;color:var(--clay);margin-top:18px}
+/* COMPASS */
+.compass{position:relative;max-width:560px;aspect-ratio:1/1;margin:8px auto 0}
+.compass svg.ring{position:absolute;inset:0;width:100%;height:100%;max-width:100%}
+.compass .pt{position:absolute;transform:translate(-50%,-50%);text-align:center;font-family:var(--cut);font-size:clamp(15px,3.2vw,22px);line-height:1.05;background:var(--paper);padding:4px 8px;max-width:40%}
+.compass .pt small{display:block;font-family:var(--type);font-weight:700;font-size:12px;letter-spacing:.1em;color:var(--clay);margin-top:4px}
+.compass .n{left:50%;top:9%}.compass .s{left:50%;top:91%}.compass .w{left:13%;top:50%}.compass .e{left:87%;top:50%}
+.compass .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-4deg);width:32%;aspect-ratio:1/1;border-radius:50%;background:var(--neon);border:2px solid var(--char);display:grid;place-items:center;text-align:center}
+.compass .core b{font-family:var(--logo);font-size:clamp(22px,5vw,38px);font-weight:400;line-height:1}
+.compass .core small{display:block;font-family:var(--pen);font-size:clamp(14px,2.6vw,18px)}
+.kind{margin-top:26px;font-size:clamp(17px,2.3vw,20px);max-width:52ch}
+.kind b{font-family:var(--pen);font-weight:400;font-size:1.25em;color:var(--clay)}
+
+/* SPARKS */
+.logo{position:relative}
+.logo::after{content:"";position:absolute;right:-14px;top:-14px;width:30px;height:30px;background:var(--volt);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);transform:rotate(12deg)}
+h2::after{content:"";display:inline-block;width:.42em;height:.42em;margin-left:.22em;vertical-align:.5em;background:var(--zap);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}
+.band h2::after,.dark h2::after,.join h2::after{background:var(--volt)}
+.compass .core{box-shadow:0 0 0 6px var(--paper),0 0 0 8px var(--zap)}
+.things span:nth-child(7n){background:var(--zap);color:var(--char)}
+.force .word{color:#b8285f}
+@media (prefers-reduced-motion:no-preference){
+  .logo::after{animation:twinkle 3.2s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{transform:rotate(12deg) scale(1)}50%{transform:rotate(40deg) scale(.7)}}
+}
+/* RABBIT HOLE: a tiny, faded rabbit on the studio tag */
+.rabbit{position:absolute;right:8px;bottom:6px;width:30px;height:30px;opacity:.28;transition:opacity .3s,transform .3s;display:block}
+.rabbit svg{width:100%;height:100%;display:block}
+.rabbit:hover,.rabbit:focus-visible{opacity:1;transform:scale(1.5) rotate(-8deg)}
+/* MODEL: six-point compass up top, detailed ring near the bottom, colour-coded tag clusters */
+.model-fig svg{display:block;width:100%;height:auto;max-width:620px;margin:6px auto 0}
+.clusters{margin-top:34px;display:grid;gap:16px}
+.cluster{display:grid;grid-template-columns:minmax(150px,190px) 1fr;gap:8px 14px;align-items:start}
+.cl-name{font-family:var(--cut);font-size:16px;display:flex;align-items:center;gap:8px;padding-top:6px}
+.cl-name i{width:16px;height:16px;border:2px solid var(--char);flex:none}
+.cl-tags{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+.cl-tags span{border:2px solid var(--char);padding:5px 11px;font-weight:700;font-size:15px}
+.cluster:nth-child(odd) .cl-tags span:nth-child(odd){transform:rotate(-1deg)}
+.cluster:nth-child(even) .cl-tags span:nth-child(even){transform:rotate(1deg)}
+@media (max-width:560px){.cluster{grid-template-columns:1fr}.cl-name{padding-top:0}}
+.detail .why{max-width:56ch;margin:0 0 6px}
+/* FOUNDATION: what we believe, under the four forces */
+.foundation{max-width:640px;margin-top:18px;background:#ece5f3;border:2px solid #6b4fa0;padding:18px 20px 16px;transform:rotate(-.4deg);position:relative}
+.foundation::before{content:"";position:absolute;left:-2px;right:-2px;top:-10px;height:6px;background:repeating-linear-gradient(90deg,#6b4fa0 0 10px,transparent 10px 16px)}
+.foundation .lbl{font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#6b4fa0}
+.foundation h3{font-family:var(--cut);font-weight:400;font-size:24px;margin:2px 0 8px;line-height:1.1}
+.foundation ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.foundation li{border:2px solid #6b4fa0;background:#fbf8f1;padding:4px 10px;font-weight:700;font-size:15px;color:#3f2e66}
+.foundation p{margin:10px 0 0;font-size:15px;max-width:56ch}
+/* BOARD: tap a thread or a tag, leave a thought */
+.ask{font-family:var(--pen);font-size:clamp(22px,3.6vw,28px);line-height:1.2;margin:4px 0 2px;color:var(--char)}
+.ask + .clusters{margin-top:12px}
+.ask small{display:block;font-family:var(--type);font-size:14px;color:var(--clay);margin-top:2px}
+.thr{cursor:pointer;transition:opacity .25s}
+.thr:focus{outline:none}.thr:focus-visible rect,.thr:focus-visible circle{stroke:#e8337f;stroke-width:4}
+.model-fig.has-on .thr:not(.on){opacity:.28}
+.thr-say{min-height:5.4em;max-width:560px;margin:6px auto 0;text-align:center}
+.thr-say[hidden]{display:none!important}
+.thr-say p{margin:0 0 10px;font-size:17px}
+.thr-say b{font-family:var(--cut);font-weight:400}
+.btn-say{font-family:var(--cut);font-size:16px;border:3px solid var(--char);background:var(--neon);color:var(--char);padding:9px 16px;box-shadow:4px 4px 0 var(--char);cursor:pointer}
+.btn-say:hover{box-shadow:5px 5px 0 var(--zap)}
+.pick{font:inherit;font-weight:700;font-size:15px;border:2px solid var(--char);padding:5px 11px;cursor:pointer;transition:transform .15s}
+.pick:hover{transform:rotate(-3deg) scale(1.06)}
+.pick.on{box-shadow:0 0 0 3px var(--paper),0 0 0 6px var(--zap)}
+@media (prefers-reduced-motion:no-preference){.pick.on{animation:jiggle .45s ease-in-out 2}@keyframes jiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg) scale(1.08)}75%{transform:rotate(6deg) scale(1.08)}}}
+.sheet-wrap{position:fixed;inset:0;background:rgba(34,30,25,.55);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));z-index:50}
+.sheet-wrap[hidden]{display:none!important}
+.sheet{background:#fbf8f1;border:3px solid var(--char);box-shadow:8px 8px 0 var(--char);width:min(520px,100%);max-height:100%;overflow:auto;padding:22px 22px 18px;position:relative;transform:rotate(-.6deg)}
+.sheet .chip{display:inline-block;border:2px solid var(--char);padding:3px 10px;font-weight:700;font-size:14px;margin-bottom:8px}
+.sheet h2{font-family:var(--pen);font-weight:400;font-size:clamp(22px,4vw,28px);line-height:1.15;margin:0 0 12px}
+.sheet h2::after{display:none}
+.sheet label{display:grid;gap:4px;font-weight:700;font-size:14px;margin-bottom:12px}
+.sheet label span{font-weight:400;color:var(--clay)}
+.sheet textarea,.sheet input{width:100%;font:inherit;font-size:16px;color:var(--char);background:#fff;border:2px solid var(--char);padding:10px 12px;border-radius:0}
+.sheet textarea{min-height:110px;resize:vertical}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.sheet .row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:6px}
+.sheet .x{position:absolute;right:10px;top:8px;border:0;background:none;font-size:26px;line-height:1;cursor:pointer;color:var(--char);padding:4px 8px}
+.sheet .err2{color:#b8285f;font-weight:700;font-size:14px;min-height:1.3em}
+.sheet .fine{font-size:13px;color:var(--clay);margin:10px 0 0}
+/* PORTALS: a creature sitting on a glowing hole on each place card */
+.tag{display:flex;flex-direction:column}
+.portal{margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--char)}
+.portal svg{width:84px;height:auto;flex:none;transition:transform .25s}
+.portal span{font-family:var(--pen);font-size:19px;line-height:1.1;border-bottom:2px dashed var(--zap)}
+.portal:hover svg,.portal:focus-visible svg{transform:scale(1.12) rotate(-4deg)}
+.portal:hover span{color:#b8285f}
+@media (prefers-reduced-motion:no-preference){
+  .portal svg ellipse:first-child{animation:glow 2.6s ease-in-out infinite;transform-origin:60px 92px}
+  @keyframes glow{0%,100%{opacity:.25;transform:scale(1)}50%{opacity:.6;transform:scale(1.08)}}
+}
+/* PORTALS v2: no words, just a creature, a glow and a little arrow */
+.portal{justify-content:center;position:relative;padding-top:6px}
+.portal svg{width:96px}
+.portal .arw{position:absolute;right:calc(50% - 70px);bottom:24px;width:22px;height:22px;opacity:.55;transition:opacity .25s,transform .25s}
+.portal:hover .arw,.portal:focus-visible .arw{opacity:1;transform:translate(-4px,4px)}
+@media (prefers-reduced-motion:no-preference){.portal .arw{animation:nudge 2.4s ease-in-out infinite}@keyframes nudge{0%,100%{transform:translate(0,0)}50%{transform:translate(-4px,4px)}}}
+/* SIMPLE: curious, show, invite */
+.odd{padding-block:6px 40px}
+.odd-q{font-family:var(--pen);font-size:clamp(26px,5vw,42px);line-height:1.12;margin:0 0 6px;max-width:22ch}
+.odd-q:nth-child(2){transform:rotate(-1deg);margin-left:clamp(0px,4vw,40px)}
+.odd-a{margin:18px 0 0;font-size:clamp(18px,2.4vw,21px);font-weight:700}
+.odd-a a{color:var(--char);text-decoration:none;border-bottom:3px solid var(--zap);margin-left:6px;white-space:nowrap}
+.odd-a a:hover{color:#b8285f}
+.show{padding-top:28px}
+.fold{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 14px}
+.fold .pick{animation:none}
+@media (prefers-reduced-motion:no-preference){.fold .pick{animation:bloom .35s ease-out both}@keyframes bloom{from{opacity:0;transform:translateY(-6px) scale(.9)}to{opacity:1;transform:none}}}
+.go-deeper{padding-block:10px 40px;display:grid;gap:12px}
+.deeper{border:2px solid var(--char);background:#fbf8f1}
+.deeper summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;font-family:var(--cut);font-size:clamp(17px,2.6vw,21px)}
+.deeper summary::-webkit-details-marker{display:none}
+.deeper summary i{font-style:normal;font-family:var(--logo);font-size:24px;line-height:1;transition:transform .2s;color:#b8285f}
+.deeper[open] summary i{transform:rotate(45deg)}
+.deeper-in{padding:4px 18px 20px}
+.deeper-in .rhythm, .deeper-in section{background:none;padding:0}
+.deeper.nf{margin-top:22px;background:var(--char);color:var(--paper);border-color:var(--char)}
+.deeper.nf summary i{color:var(--neon)}
+.nf-h{font-family:var(--cut);font-size:22px;margin:0 0 12px}
+.nf-a{font-family:var(--pen);color:var(--neon2);font-size:20px;margin:16px 0 0}
+.caught{font-family:var(--pen);font-size:clamp(22px,3.6vw,28px);color:#ead7a0;margin:0 0 10px}
+.watching{font-size:13px;color:var(--clay);margin-top:14px}
+/* GLOSSARY: dotted words you can tap */
+.gl{font:inherit;color:inherit;text-align:inherit;background:none;border:0;padding:0;cursor:pointer;border-bottom:2px dotted #b8285f;line-height:inherit}
+.gl:hover,.gl:focus-visible{color:#b8285f}
+.gl-pop{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(440px,calc(100% - 32px));background:#fbf8f1;border:3px solid var(--char);box-shadow:6px 6px 0 var(--char);padding:16px 18px 14px;z-index:45}
+.gl-pop[hidden]{display:none!important}
+.gl-pop b{font-family:var(--cut);font-weight:400;font-size:20px;display:block;margin-bottom:4px}
+.gl-pop p{margin:0 0 8px;font-size:15px}
+.gl-pop .gq{font-family:var(--pen);font-size:19px;color:#b8285f;margin:6px 0 10px}
+.gl-pop .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.gl-pop .x{position:absolute;right:8px;top:6px;border:0;background:none;font-size:24px;cursor:pointer;padding:4px 8px;color:var(--char)}
+.words{display:grid;gap:12px}
+.words div{border-left:4px solid #b8285f;padding-left:12px}
+.words b{font-family:var(--cut);font-weight:400}
+.words p{margin:2px 0 0;font-size:15px}
+.words .q{font-family:var(--pen);color:#b8285f;font-size:17px}
+/* NEXT UP */
+.next{background:var(--char);color:var(--paper)}
+.next .wrap{padding-block:12px;display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center}
+.next .lbl{font-family:var(--cut);background:var(--volt);color:var(--char);padding:2px 10px;transform:rotate(-2deg);font-size:15px}
+.next .what{flex:1 1 260px;min-width:0;font-size:16px;line-height:1.4}
+.next .what strong{font-family:var(--cut);font-weight:400;font-size:19px;display:block;color:var(--paper)}
+.next .gl{border-bottom-color:var(--volt)}
+.next a.tix{font-family:var(--cut);font-size:16px;background:var(--neon);color:var(--char);border:3px solid var(--paper);padding:8px 14px;text-decoration:none;white-space:nowrap}
+.next a.more{color:var(--neon2);font-weight:700;white-space:nowrap}
+/* compass: big tap targets under the graphic */
+.thr-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0 4px}
+.thr-row button{font:inherit;font-weight:700;font-size:15px;min-height:44px;padding:8px 14px;border:2px solid var(--char);cursor:pointer}
+.thr-row button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--paper),0 0 0 6px var(--zap)}
+.whatwe{margin-top:16px;font-weight:700}
+.whatwe a{color:var(--char);border-bottom:3px solid var(--zap);text-decoration:none}
+@media (max-width:560px){.vs{flex-wrap:nowrap;gap:8px}.vs figure{width:min(118px,34vw)}.vs .or{font-size:20px}.moons{gap:8px}.moons svg{width:28px;height:28px}}
+.force{padding-right:24px}
 /* HERO */
 .hero{padding-block:48px 40px;position:relative}
 .kicker{font-family:var(--pen);color:var(--clay);font-size:20px;transform:rotate(-2deg);display:inline-block}
@@ -66,10 +247,10 @@ a{color:inherit}
 .place{font-family:var(--cut);font-size:clamp(26px,6vw,54px);letter-spacing:.02em;background:var(--char);color:var(--paper);display:inline-block;padding:4px 14px;transform:rotate(-1.5deg);margin-top:6px}
 .question{margin:42px 0 0;font-family:var(--pen);font-size:clamp(28px,5.6vw,48px);line-height:1.15;max-width:18ch;position:relative;text-wrap:balance}
 .question mark{background:none;color:inherit;position:relative;white-space:nowrap}
-.question mark::after{content:"";position:absolute;left:-4%;right:-4%;bottom:.05em;height:.42em;background:var(--neon);opacity:.75;z-index:-1;transform:rotate(-1.5deg);border-radius:3px}
+.question mark::after{content:"";position:absolute;left:-4%;right:-4%;bottom:.05em;height:.42em;background:var(--zap);opacity:.55;z-index:-1;transform:rotate(-1.5deg);border-radius:3px}
 .strap{margin-top:26px;max-width:46ch;font-size:16px}
 .cta{display:inline-block;margin-top:26px;font-family:var(--cut);font-size:20px;background:var(--neon);color:var(--char);padding:14px 22px;text-decoration:none;border:3px solid var(--char);box-shadow:5px 5px 0 var(--char);transform:rotate(-1deg);transition:transform .15s, box-shadow .15s}
-.cta:hover{transform:rotate(0) translate(-2px,-2px);box-shadow:7px 7px 0 var(--char)}
+.cta:hover{transform:rotate(0) translate(-2px,-2px);box-shadow:7px 7px 0 var(--zap)}
 .stamp{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:44px;width:118px;height:118px;border:3px solid var(--char);border-radius:50%;color:var(--char);font-family:var(--cut);font-size:12px;display:grid;place-items:center;text-align:center;line-height:1.15;transform:rotate(14deg);opacity:.85}
 @media (max-width:640px){.stamp{position:static;margin:24px 0 0 auto;width:96px;height:96px;font-size:11px}}
 
@@ -84,9 +265,9 @@ a{color:inherit}
 .hints li:nth-child(4){color:var(--paper);background:var(--char);padding:2px 8px;justify-self:start}
 
 /* THE FIVE — taped index card */
-.card{background:#fbf6ec;border:2px solid var(--char);padding:34px clamp(18px,4vw,40px) 28px;position:relative;transform:rotate(-.6deg);box-shadow:6px 7px 0 rgba(29,23,20,.85)}
-.tape{position:absolute;top:-14px;width:110px;height:28px;background:rgba(198,255,61,.55);border:1px solid rgba(29,23,20,.15)}
-.tape.l{left:24px;transform:rotate(-6deg)}.tape.r{right:24px;transform:rotate(5deg);background:rgba(255,46,136,.45)}
+.card{background:#fbf8f1;border:2px solid var(--char);padding:34px clamp(18px,4vw,40px) 28px;position:relative;transform:rotate(-.6deg);box-shadow:6px 7px 0 rgba(29,23,20,.85)}
+.tape{position:absolute;top:-14px;width:110px;height:28px;background:rgba(201,242,74,.7);border:1px solid rgba(29,23,20,.15)}
+.tape.l{left:24px;transform:rotate(-6deg)}.tape.r{right:24px;transform:rotate(5deg);background:rgba(232,51,127,.45)}
 .five{list-style:none;padding:0;margin:0;display:grid;gap:18px;counter-reset:f}
 .five li{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:baseline;counter-increment:f;font-size:clamp(19px,2.8vw,24px);font-weight:700;line-height:1.3}
 .five li::before{content:counter(f);font-family:var(--cut);font-size:30px;color:var(--ember);text-align:center;border:2px solid var(--ember);border-radius:50%;width:46px;height:46px;display:grid;place-items:center;transform:rotate(-8deg)}
@@ -103,7 +284,7 @@ a{color:inherit}
 
 /* NETWORK — three stuck-on polaroid-ish tags */
 .net{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
-.tag{border:2px solid var(--char);padding:20px 18px 18px;background:#fbf6ec;position:relative}
+.tag{border:2px solid var(--char);padding:20px 18px 18px;background:#fbf8f1;position:relative}
 .tag:nth-child(1){transform:rotate(-2deg)}.tag:nth-child(2){transform:rotate(1.5deg)}.tag:nth-child(3){transform:rotate(-.8deg)}
 .tag h3{font-family:var(--cut);font-weight:400;font-size:24px;margin:0 0 6px;line-height:1.05}
 .tag p{margin:0;font-size:15px}
@@ -116,20 +297,20 @@ a{color:inherit}
 
 /* JOIN — one question at a time */
 .join{background:var(--moss);color:var(--paper)}
-.join .eyebrow{color:var(--neon2)}
+.join .eyebrow{color:#ead7a0}
 .join p.intro{max-width:52ch;margin:0 0 28px}
-.form{background:var(--paper);color:var(--char);border:3px solid var(--char);box-shadow:8px 8px 0 var(--char);padding:clamp(20px,4vw,36px)}
-.bar{height:10px;border:2px solid var(--char);margin-bottom:22px;background:#fbf6ec}
+.form{background:var(--paper);color:var(--char);border:3px solid var(--char);box-shadow:5px 5px 0 rgba(38,34,28,.5);padding:clamp(20px,4vw,36px)}
+.bar{height:10px;border:2px solid var(--char);margin-bottom:22px;background:#fbf8f1}
 .bar i{display:block;height:100%;background:var(--ember);width:0;transition:width .3s}
 .count{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--clay);margin-bottom:8px}
 .step label.q{display:block;font-family:var(--pen);font-size:clamp(23px,4vw,32px);line-height:1.2;margin-bottom:6px;text-wrap:balance}
 .step .hint{font-size:15px;margin:0 0 16px;color:var(--clay)}
-textarea,input[type=text],input[type=tel],input[type=email]{width:100%;font:inherit;font-size:17px;color:var(--char);background:#fbf6ec;border:2px solid var(--char);padding:12px 14px;border-radius:0}
+textarea,input[type=text],input[type=tel],input[type=email]{width:100%;font:inherit;font-size:17px;color:var(--char);background:#fbf8f1;border:2px solid var(--char);padding:12px 14px;border-radius:0}
 textarea{min-height:130px;resize:vertical}
 .fields{display:grid;gap:14px}
 .fields label{font-weight:700;font-size:14px;display:grid;gap:6px;text-transform:uppercase;letter-spacing:.08em}
 .choices{display:grid;gap:12px}
-.choice{display:flex;gap:12px;align-items:center;border:2px solid var(--char);padding:14px 16px;cursor:pointer;font-weight:700;background:#fbf6ec}
+.choice{display:flex;gap:12px;align-items:center;border:2px solid var(--char);padding:14px 16px;cursor:pointer;font-weight:700;background:#fbf8f1}
 .choice input{accent-color:var(--ember);width:20px;height:20px}
 .choice:has(input:checked){background:var(--neon)}
 .nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:wrap}
@@ -138,10 +319,10 @@ button{font:inherit;cursor:pointer}
 .btn.ghost{background:transparent;color:var(--char);box-shadow:none}
 .btn:disabled{opacity:.4;cursor:not-allowed}
 .vs{display:flex;align-items:center;gap:14px;margin:4px 0 18px;flex-wrap:wrap}
-.vs figure{margin:0;background:#fbf6ec;border:2px solid var(--char);padding:10px 10px 6px;width:130px;box-shadow:4px 4px 0 var(--char);position:relative}
+.vs figure{margin:0;background:#fbf8f1;border:2px solid var(--char);padding:10px 10px 6px;width:130px;box-shadow:4px 4px 0 var(--char);position:relative}
 .vs figure:first-child{transform:rotate(-4deg)}.vs figure:last-child{transform:rotate(3deg)}
-.vs figure::before{content:"";position:absolute;top:-10px;left:50%;width:60px;height:18px;transform:translateX(-50%) rotate(-3deg);background:rgba(212,255,58,.7);border:1px solid rgba(23,19,15,.2)}
-.vs figure:last-child::before{background:rgba(255,46,136,.5)}
+.vs figure::before{content:"";position:absolute;top:-10px;left:50%;width:60px;height:18px;transform:translateX(-50%) rotate(-3deg);background:rgba(201,242,74,.75);border:1px solid rgba(23,19,15,.2)}
+.vs figure:last-child::before{background:rgba(232,51,127,.45)}
 .vs .ph{height:96px;border:2px dashed var(--char);display:grid;place-items:center;font-family:var(--pen);font-size:54px;line-height:1;color:var(--char)}
 .vs figcaption{font-family:var(--pen);font-size:22px;text-align:center;margin-top:4px}
 .vs .or{font-family:var(--cut);font-size:26px}
@@ -160,6 +341,15 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
 <body>
 
 
+<div class="next" aria-label="Next up">
+  <div class="wrap">
+    <span class="lbl">Next up</span>
+    <div class="what"><strong>Saturday 31 October, 10.30am · Shackleford</strong>A <button type="button" class="gl" data-gl="peb">People&#x27;s Emergency Briefing</button>, with Tim. Plain talk about where we're at, and what we can do about it.</div>
+    <a class="tix" href="https://www.tickettailor.com/events/jseverest/2441375" target="_blank" rel="noopener">Get tickets →</a>
+    <a class="more" href="happening.html">What's happening →</a>
+  </div>
+</div>
+
 <header class="hero wrap">
   <h1 class="sr">Va Va Voom Godalming</h1>
   <span class="kicker">psst. pass it on.</span>
@@ -170,8 +360,13 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
 
   <p class="question">What if Godalming had a bit more <mark>va va voom?</mark></p>
   <p class="strap">Times are changing. We can choose to hang on in there and keep talking about it. Or… move with it. Va va voom. Moving towards what is good, true and beautiful, and having fun doing it along the way.</p>
-  <a class="cta" href="#join">See if it's for you →</a>
 </header>
+
+<section class="wrap odd" aria-label="Is this for you?">
+  <p class="odd-q">See things a bit differently from everyone else?</p>
+  <p class="odd-q">Quietly the odd one out at the dinner party?</p>
+  <p class="odd-a">Maybe this is your place. <a href="#compass" id="poke">Have a poke around ↓</a></p>
+</section>
 
 <section class="wrap what" aria-labelledby="h-what">
   <div class="eyebrow" id="h-what">What it is</div>
@@ -181,21 +376,94 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
     <p>We keep being told it's an emergency, and most days it doesn't feel like one.</p>
     <p>So this is a quieter kind of change. We could moan about it, or we could get going. Doing it now costs less than doing it later.</p>
     <span class="kick">And doing it together is a lot more fun.</span>
+    <p class="whatwe">So what do we actually do? <a href="happening.html">See the projects and who's leading them →</a></p>
   </div>
 </section>
 
-<div class="band">
-  <div class="wrap">
-    <ul class="hints">
-      <li>Nobody's coming to do it for us.</li>
-      <li>So we thought we might.</li>
-      <li>A spark, not a committee.</li>
-      <li>Money, food, fire, land, each other.</li>
-      <li>Some nights deep. Some nights daft.</li>
-      <li>A drink, if you fancy one.</li>
-    </ul>
+<section class="wrap show" id="compass" aria-labelledby="h-compass">
+  <div class="eyebrow">Have a poke around</div>
+  <h2 id="h-compass">Our compass</h2>
+  <p style="margin:0 0 6px;max-width:56ch">Six threads of what we get stuck into, with play at the heart, <button type="button" class="gl" data-gl="solarpunk">solarpunk</button> tech running through it all, and <button type="button" class="gl" data-gl="bigger">something bigger</button> holding the lot.</p>
+  <p class="ask">Which one is speaking to you right now?<small>Tap a thread. Its little bits will fold out.</small></p><div class="model-fig" id="compass-fig"><svg viewBox="0 0 880 880" role="img" aria-label="A six-point compass: Home and around, Food, Land and nature, Being well, Work and money, and Love and connection around Play, ringed by solarpunk tech, all held inside a circle called Something bigger"><circle cx="440" cy="440" r="432" fill="#ece5f3" stroke="#6b4fa0" stroke-width="3"/><circle cx="440" cy="440" r="424" fill="none" stroke="#6b4fa0" stroke-width="1.2" stroke-dasharray="1 7" stroke-linecap="round"/><path id="bel1" d="M32,440 a408,408 0 1,1 816,0" fill="none"/><text font-family="Bowlby One SC, Impact, sans-serif" font-size="19" letter-spacing="4" fill="#6b4fa0"><textPath href="#bel1" startOffset="50%" text-anchor="middle">SOMETHING BIGGER</textPath></text><path id="bel1b" d="M22,440 a418,418 0 0,0 836,0" fill="none"/><text font-family="Courier Prime, monospace" font-weight="700" font-size="14" letter-spacing="3" fill="#6b4fa0"><textPath href="#bel1b" startOffset="50%" text-anchor="middle">BELIEF · WHAT WE HOLD IN COMMON</textPath></text><circle cx="440" cy="440" r="270" fill="none" stroke="#221e19" stroke-width="2.5" stroke-dasharray="9 7"/><circle cx="440" cy="440" r="296" fill="none" stroke="#c9f24a" stroke-width="10" opacity=".9"/><circle cx="440" cy="440" r="296" fill="none" stroke="#221e19" stroke-width="1.5" stroke-dasharray="2 8"/><text font-family="Courier Prime, monospace" font-weight="700" font-size="15" letter-spacing="3" fill="#221e19"><textPath href="#vvv-sp1" startOffset="50%" text-anchor="middle">SOLARPUNK TECH · ENERGY · SMART SYSTEMS · AI</textPath></text><path id="vvv-sp1" d="M126,440 a314,314 0 1,1 628,0" fill="none"/><circle cx="440" cy="440" r="167.4" fill="none" stroke="#df8350" stroke-width="2"/><line x1="440" y1="440" x2="440.0" y2="170.0" stroke="#221e19" stroke-width="2"/><path d="M440 210 l12 30 h-24z" fill="#df8350" stroke="#221e19" stroke-width="2"/><line x1="440" y1="440" x2="673.8" y2="305.0" stroke="#221e19" stroke-width="2"/><line x1="440" y1="440" x2="673.8" y2="575.0" stroke="#221e19" stroke-width="2"/><line x1="440" y1="440" x2="440.0" y2="710.0" stroke="#221e19" stroke-width="2"/><line x1="440" y1="440" x2="206.2" y2="575.0" stroke="#221e19" stroke-width="2"/><line x1="440" y1="440" x2="206.2" y2="305.0" stroke="#221e19" stroke-width="2"/><g class="thr" data-thread="Home &amp; around" tabindex="0" role="button" aria-label="Home &amp; around: show more and add a thought" transform="translate(440.0 170.0) rotate(3)"><rect x="-99.5" y="-24" width="199" height="48" fill="#df8350" stroke="#221e19" stroke-width="2.5"/><text y="8" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">Home &amp; around</text></g><g class="thr" data-thread="Food" tabindex="0" role="button" aria-label="Food: show more and add a thought" transform="translate(673.8 305.0) rotate(-3)"><rect x="-75.0" y="-24" width="150" height="48" fill="#f2c75a" stroke="#221e19" stroke-width="2.5"/><text y="8" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">Food</text></g><g class="thr" data-thread="Land &amp; nature" tabindex="0" role="button" aria-label="Land &amp; nature: show more and add a thought" transform="translate(673.8 575.0) rotate(3)"><rect x="-99.5" y="-24" width="199" height="48" fill="#6fa84e" stroke="#221e19" stroke-width="2.5"/><text y="8" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">Land &amp; nature</text></g><g class="thr" data-thread="Being well" tabindex="0" role="button" aria-label="Being well: show more and add a thought" transform="translate(440.0 710.0) rotate(-3)"><rect x="-80.0" y="-24" width="160" height="48" fill="#5aa9e6" stroke="#221e19" stroke-width="2.5"/><text y="8" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">Being well</text></g><g class="thr" data-thread="Work &amp; money" tabindex="0" role="button" aria-label="Work &amp; money: show more and add a thought" transform="translate(206.2 575.0) rotate(3)"><rect x="-93.0" y="-24" width="186" height="48" fill="#3d5a8c" stroke="#221e19" stroke-width="2.5"/><text y="8" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#fbf8f1">Work &amp; money</text></g><g class="thr" data-thread="Love &amp; connection" tabindex="0" role="button" aria-label="Love &amp; connection: show more and add a thought" transform="translate(206.2 305.0) rotate(-3)"><rect x="-125.5" y="-24" width="251" height="48" fill="#ee8fa4" stroke="#221e19" stroke-width="2.5"/><text y="8" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">Love &amp; connection</text></g><g class="thr" data-thread="Play" tabindex="0" role="button" aria-label="Play: show more and add a thought"><circle cx="440" cy="440" r="88" fill="#e8337f" stroke="#221e19" stroke-width="3"/><circle cx="440" cy="440" r="98" fill="none" stroke="#e8337f" stroke-width="2"/><text x="440" y="446" text-anchor="middle" font-family="Bungee, Impact, sans-serif" font-size="46" fill="#221e19">PLAY</text><text x="440" y="480" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="14" fill="#221e19">creativity · culture · voice</text></g></svg></div><div class="thr-row" id="thr-row"><button type="button" data-thread="Home &amp; around" aria-pressed="false" style="background:#df8350;color:#221e19">Home &amp; around</button><button type="button" data-thread="Food" aria-pressed="false" style="background:#f2c75a;color:#221e19">Food</button><button type="button" data-thread="Land &amp; nature" aria-pressed="false" style="background:#6fa84e;color:#221e19">Land &amp; nature</button><button type="button" data-thread="Being well" aria-pressed="false" style="background:#5aa9e6;color:#221e19">Being well</button><button type="button" data-thread="Work &amp; money" aria-pressed="false" style="background:#3d5a8c;color:#fbf8f1">Work &amp; money</button><button type="button" data-thread="Love &amp; connection" aria-pressed="false" style="background:#ee8fa4;color:#221e19">Love &amp; connection</button><button type="button" data-thread="Play" aria-pressed="false" style="background:#f06aa3;color:#221e19">Play</button></div><div class="thr-say" id="thr-say" aria-live="polite" hidden></div>
+</section>
+
+<section class="wrap go-deeper" aria-labelledby="h-deeper"><div class="eyebrow" id="h-deeper">Go deeper, if you like</div><details class="deeper" data-key="rhythm"><summary><span>Highs, lows and the bit in between</span><i aria-hidden="true">+</i></summary><div class="deeper-in">
+    
+    
+    <div class="moons" aria-hidden="true"><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="14" fill="none" stroke="#221e19" stroke-width="2"/></svg><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="14" fill="none" stroke="#221e19" stroke-width="2"/><path d="M17 3 A14 14 0 0 1 17 31 A8 14 0 0 0 17 3Z" fill="#221e19"/></svg><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="14" fill="none" stroke="#221e19" stroke-width="2"/><path d="M17 3 A14 14 0 0 1 17 31Z" fill="#221e19"/></svg><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="14" fill="none" stroke="#221e19" stroke-width="2"/><circle cx="17" cy="17" r="14" fill="#221e19"/></svg><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="14" fill="none" stroke="#221e19" stroke-width="2"/><path d="M17 3 A14 14 0 0 0 17 31Z" fill="#221e19"/></svg><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="14" fill="none" stroke="#221e19" stroke-width="2"/><path d="M17 3 A14 14 0 0 0 17 31 A8 14 0 0 1 17 3Z" fill="#221e19"/></svg><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="14" fill="none" stroke="#221e19" stroke-width="2"/></svg></div>
+    <div class="copy">
+      <p>We play with the highs. We sit with the lows.</p>
+      <p>This isn't about doing more and more. It's about knowing when to stop, breathe, regroup and come back down to earth.</p>
+      <p>We can only build far, and build well, from a good place. So we follow the seasons, the moon and our own energy. Some weeks we make things happen. Some weeks we rest and let things settle.</p>
+    </div>
+    <div class="cycle" aria-label="Plant, grow, harvest, rest"><span>Plant</span><span>Grow</span><span>Harvest</span><span>Rest</span></div>
+  </div></details><details class="deeper" data-key="forces"><summary><span>Four forces, and what we believe</span><i aria-hidden="true">+</i></summary><div class="deeper-in">
+  
+  
+  <div class="forces">
+    <div class="force"><h3>Purpose</h3><span class="word">meaning</span><p>Doing things that matter, and being part of something bigger.</p></div>
+    <div class="force"><h3>Connection</h3><span class="word">love</span><p>Loving, being loved and belonging somewhere.</p></div>
+    <div class="force"><h3>Growth</h3><span class="word">aliveness</span><p>Trying things at your edge and feeling properly alive.</p></div>
+    <div class="force"><h3>Expression</h3><span class="word">freedom</span><p>Being seen and heard as exactly who you are.</p></div>
   </div>
-</div>
+  <div class="foundation" aria-labelledby="h-found">
+    <div class="lbl">The foundation</div>
+    <h3 id="h-found">What we believe</h3>
+    <ul>
+      <li>Who we are</li>
+      <li>What we're capable of</li>
+      <li>How the world is</li>
+      <li>What is good, true and beautiful</li>
+      <li>What's possible, with all that</li>
+    </ul>
+    <p>The four forces stand on what we believe. And all of it sits inside something bigger than us.</p>
+  </div>
+  <p class="credit">After Trish Blain's Four Forces of Everything.</p>
+</div></details><details class="deeper" data-key="threads"><summary><span>The six threads in detail</span><i aria-hidden="true">+</i></summary><div class="deeper-in">
+  
+  
+  <p class="why">Six things we get stuck into, with play at the heart, solarpunk tech running through the lot, and something bigger holding it all.</p>
+  <div class="model-fig"><svg viewBox="0 0 900 940" role="img" aria-label="Six coloured circles in a ring around a central Play circle, linked by a solarpunk tech line, all held inside a circle called Something bigger"><circle cx="450" cy="450" r="446" fill="#ece5f3" stroke="#6b4fa0" stroke-width="3"/><circle cx="450" cy="450" r="438" fill="none" stroke="#6b4fa0" stroke-width="1.2" stroke-dasharray="1 7" stroke-linecap="round"/><path id="bel2" d="M28,450 a422,422 0 1,1 844,0" fill="none"/><text font-family="Bowlby One SC, Impact, sans-serif" font-size="19" letter-spacing="4" fill="#6b4fa0"><textPath href="#bel2" startOffset="50%" text-anchor="middle">SOMETHING BIGGER</textPath></text><path id="bel2b" d="M18,450 a432,432 0 0,0 864,0" fill="none"/><text font-family="Courier Prime, monospace" font-weight="700" font-size="14" letter-spacing="3" fill="#6b4fa0"><textPath href="#bel2b" startOffset="50%" text-anchor="middle">BELIEF · WHAT WE HOLD IN COMMON</textPath></text><circle cx="450" cy="450" r="255" fill="none" stroke="#c9f24a" stroke-width="12"/><circle cx="450" cy="450" r="255" fill="none" stroke="#221e19" stroke-width="1.6" stroke-dasharray="3 7"/><circle cx="450.0" cy="195.0" r="102" fill="#df8350" stroke="#221e19" stroke-width="2.5"/><text x="450.0" y="161.0" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">Home &amp;</text><text x="450.0" y="185.0" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">around</text><text x="450.0" y="215.0" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">energy &amp; solar</text><text x="450.0" y="234.0" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">warm homes</text><text x="450.0" y="253.0" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">water &amp; floods</text><circle cx="670.8" cy="322.5" r="102" fill="#f2c75a" stroke="#221e19" stroke-width="2.5"/><text x="670.8" y="300.5" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">Food</text><text x="670.8" y="330.5" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">growing</text><text x="670.8" y="349.5" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">cooking</text><text x="670.8" y="368.5" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">local supply</text><circle cx="670.8" cy="577.5" r="102" fill="#6fa84e" stroke="#221e19" stroke-width="2.5"/><text x="670.8" y="543.5" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">Land &amp;</text><text x="670.8" y="567.5" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">nature</text><text x="670.8" y="597.5" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">Lammas Lands</text><text x="670.8" y="616.5" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">heathlands</text><text x="670.8" y="635.5" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">rivers</text><circle cx="450.0" cy="705.0" r="102" fill="#5aa9e6" stroke="#221e19" stroke-width="2.5"/><text x="450.0" y="683.0" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">Being well</text><text x="450.0" y="713.0" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">health</text><text x="450.0" y="732.0" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">moving</text><text x="450.0" y="751.0" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">outdoors</text><circle cx="229.2" cy="577.5" r="102" fill="#3d5a8c" stroke="#221e19" stroke-width="2.5"/><text x="229.2" y="543.5" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#fbf8f1">Work &amp;</text><text x="229.2" y="567.5" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#fbf8f1">money</text><text x="229.2" y="597.5" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#fbf8f1">Money Moves</text><text x="229.2" y="616.5" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#fbf8f1">local economy</text><text x="229.2" y="635.5" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#fbf8f1">AI &amp; jobs</text><circle cx="229.2" cy="322.5" r="102" fill="#ee8fa4" stroke="#221e19" stroke-width="2.5"/><text x="229.2" y="288.5" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">Love &amp;</text><text x="229.2" y="312.5" text-anchor="middle" font-family="Bowlby One SC, Impact, sans-serif" font-size="21" fill="#221e19">connection</text><text x="229.2" y="342.5" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">belonging</text><text x="229.2" y="361.5" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">care</text><text x="229.2" y="380.5" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" fill="#221e19">sensuality</text><circle cx="450" cy="450" r="110" fill="#e8337f" stroke="#221e19" stroke-width="3"/><text x="450" y="454" text-anchor="middle" font-family="Bungee, Impact, sans-serif" font-size="42" fill="#221e19">PLAY</text><text x="450" y="484" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="14" fill="#221e19">creativity · culture · voice</text><g transform="translate(450 825) rotate(-2)"><rect x="-108" y="-17" width="216" height="34" fill="#c9f24a" stroke="#221e19" stroke-width="2"/><text y="6" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="15" letter-spacing="2" fill="#221e19">SOLARPUNK TECH</text></g></svg></div>
+</div></details><details class="deeper" data-key="circle"><summary><span>How we hold the space</span><i aria-hidden="true">+</i></summary><div class="deeper-in">
+  <p class="kind">Underneath it all, three things we carry from <button type="button" class="gl" data-gl="circle">circle</button>: <b>curiosity</b>, <b>presence</b> and <b>agency</b>. Listen for what's behind the words, speak with intention, and look after the whole group, yourself included.</p></div></details><details class="deeper" data-key="words"><summary><span>Words we use</span><i aria-hidden="true">+</i></summary><div class="deeper-in"><div class="words"><div><b>Solarpunk</b><p>A hopeful way of picturing the future: clean tech, green streets and people who know their neighbours. Less doom, more &#x27;what could we build?&#x27;</p><p class="q">What would a solarpunk Godalming look like to you?</p></div><div><b>Something bigger</b><p>Our phrase for the sense that there&#x27;s more going on than any one of us. Call it faith, nature, spirit, or just each other.</p><p class="q">What&#x27;s bigger than you, for you?</p></div><div><b>Circle</b><p>An old way of meeting. Everyone sits in a ring, one person speaks at a time, and everyone is heard. No top table.</p><p class="q">When did you last feel properly heard?</p></div><div><b>People&#x27;s Emergency Briefing</b><p>A talk that sets out, in plain words, where the climate and nature crisis has got to, and what local people can do about it.</p><p class="q">What do you wish someone would just explain plainly?</p></div><div><b>Transition Towns</b><p>A movement that started in Totnes in 2006: towns doing the practical things themselves, like food, energy, repair and local money.</p><p class="q">What should Godalming be doing for itself?</p></div><div><b>Money Moves</b><p>Our thread on money: making it, saving it, and spending it in ways that keep Godalming going.</p><p class="q">What&#x27;s one money move you&#x27;d like to make this year?</p></div></div></div></details></section>
+
+<section class="wrap" aria-labelledby="h-net">
+  <div class="eyebrow">Our little local network · some doors are hidden</div>
+  <h2 id="h-net">Where you'll find us</h2>
+  <div class="net">
+    <div class="tag"><span class="pin"></span><h3>Norney Farm</h3><p>Land, fire, muddy boots. Where things get made.</p><a class="portal" aria-label="A little portal at Norney Farm" href="roots.html"><svg viewBox="0 0 120 110" aria-hidden="true"><ellipse cx="60" cy="92" rx="44" ry="13" fill="#e8337f" opacity=".35"/><ellipse cx="60" cy="92" rx="38" ry="10.5" fill="none" stroke="#c9f24a" stroke-width="2.5" stroke-dasharray="5 4"/><ellipse cx="60" cy="92" rx="31" ry="8" fill="#221e19" stroke="#221e19" stroke-width="3"/><ellipse cx="60" cy="93" rx="20" ry="4.5" fill="#3b2d55"/><g>
+<path d="M60 90 C60 72 60 56 60 34" stroke="#221e19" stroke-width="4" stroke-linecap="round" fill="none"/>
+<path d="M60 70 C44 70 34 60 32 46 C46 46 58 54 60 70 Z" fill="#7cc04a" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M60 58 C76 58 88 48 90 34 C76 34 62 42 60 58 Z" fill="#c9f24a" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M60 40 C52 38 46 30 46 20 C56 20 62 28 60 40 Z" fill="#6fa84e" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M60 36 C66 30 74 28 80 30 C78 38 70 42 60 40" fill="#7cc04a" stroke="#221e19" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="60" cy="22" r="5" fill="#ee8fa4" stroke="#221e19" stroke-width="2.5"/>
+<path d="M60 90 C52 96 46 100 40 104 M60 90 C66 97 74 100 80 104 M60 92 L60 106" stroke="#9a6a45" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</g></svg><svg class="arw" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 3 C15 7 12 11 9 18 M9 18 l7 -1.5 M9 18 l-0.5 -7" fill="none" stroke="#e8337f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    <div class="tag"><span class="pin"></span><h3>The studio on the hill</h3><p>Circles, quiet thinking and the occasional loud idea.</p><a class="portal" aria-label="A little portal at the studio" href="circle.html"><svg viewBox="0 0 120 110" aria-hidden="true"><ellipse cx="60" cy="92" rx="44" ry="13" fill="#e8337f" opacity=".35"/><ellipse cx="60" cy="92" rx="38" ry="10.5" fill="none" stroke="#c9f24a" stroke-width="2.5" stroke-dasharray="5 4"/><ellipse cx="60" cy="92" rx="31" ry="8" fill="#221e19" stroke="#221e19" stroke-width="3"/><ellipse cx="60" cy="93" rx="20" ry="4.5" fill="#3b2d55"/><g transform="translate(28 18)">
+<path d="M22 30 C14 18 12 6 17 4 C22 2 27 14 28 26" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M19 9 C21 14 23 19 24 24" stroke="#ee8fa4" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+<path d="M34 26 C36 12 42 2 47 5 C52 8 46 20 39 30" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M44 9 C42 14 39 20 37 25" stroke="#ee8fa4" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+<path d="M14 62 C10 48 16 34 31 34 C46 34 52 48 48 62 Z" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/>
+<ellipse cx="31" cy="40" rx="15" ry="13" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5"/>
+<circle cx="25" cy="38" r="2.6" fill="#221e19"/><circle cx="37" cy="38" r="2.6" fill="#221e19"/>
+<path d="M29 44 l2 2 l2 -2" stroke="#221e19" stroke-width="2.5" fill="#e8337f" stroke-linejoin="round"/>
+<path d="M18 45 h-8 M44 45 h8" stroke="#221e19" stroke-width="2" stroke-linecap="round"/>
+</g></svg><svg class="arw" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 3 C15 7 12 11 9 18 M9 18 l7 -1.5 M9 18 l-0.5 -7" fill="none" stroke="#e8337f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    <div class="tag"><span class="pin"></span><h3>Trinkfluss</h3><p>The clubhouse. Bastian pours, we plot.</p><a class="portal" aria-label="A little portal at Trinkfluss" href="nest.html"><svg viewBox="0 0 120 110" aria-hidden="true"><ellipse cx="60" cy="92" rx="44" ry="13" fill="#e8337f" opacity=".35"/><ellipse cx="60" cy="92" rx="38" ry="10.5" fill="none" stroke="#c9f24a" stroke-width="2.5" stroke-dasharray="5 4"/><ellipse cx="60" cy="92" rx="31" ry="8" fill="#221e19" stroke="#221e19" stroke-width="3"/><ellipse cx="60" cy="93" rx="20" ry="4.5" fill="#3b2d55"/><g>
+<path d="M22 74 C24 96 96 96 98 74 Z" fill="#9a6a45" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M26 80 C44 86 76 86 94 80 M30 87 C48 92 72 92 90 87 M20 74 l10 -6 M100 74 l-10 -6 M40 76 l-6 -9 M84 76 l4 -10" stroke="#221e19" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="46" cy="70" rx="9" ry="11" fill="#bfe3f2" stroke="#221e19" stroke-width="3"/>
+<ellipse cx="62" cy="68" rx="9" ry="11" fill="#bfe3f2" stroke="#221e19" stroke-width="3"/>
+<circle cx="60" cy="64" r="1.6" fill="#221e19"/><circle cx="44" cy="67" r="1.4" fill="#221e19"/>
+<path d="M70 66 C66 52 74 40 86 42 C94 43 98 50 96 58 C102 58 106 62 104 66 C98 70 80 72 70 66 Z" fill="#df8350" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/>
+<circle cx="88" cy="49" r="2.6" fill="#221e19"/>
+<path d="M96 52 l9 3 l-9 3 z" fill="#f2c75a" stroke="#221e19" stroke-width="2.2" stroke-linejoin="round"/>
+<path d="M74 61 C80 66 89 65 93 59" stroke="#221e19" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+</g></svg><svg class="arw" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 3 C15 7 12 11 9 18 M9 18 l7 -1.5 M9 18 l-0.5 -7" fill="none" stroke="#e8337f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </div>
+</section>
 
 <section class="wrap" aria-labelledby="h-five">
   <div class="eyebrow">How we show up</div>
@@ -210,40 +478,20 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
       <li>If it's alive, we follow it.</li>
     </ol>
   </div>
-</section>
-
-<section class="dark" aria-labelledby="h-not">
-  <div class="wrap">
-    <div class="eyebrow">Straight up</div>
-    <h2 id="h-not" class="lead" style="margin-bottom:22px">This isn't for you if…</h2>
-    <ul class="notfor">
+<details class="deeper nf" data-key="notfor"><summary><span>Not for everyone</span><i aria-hidden="true">+</i></summary><div class="deeper-in"><p class="nf-h">This isn't for you if…</p><ul class="notfor">
       <li>You're here to make speeches.</li>
       <li>You'd rather talk about it than do it.</li>
-      <li>You're looking for a stage.</li>
+      <li>You want the mic all to yourself.</li>
       <li>You want somewhere to moan.</li>
       <li>You're not up for experimenting and playing.</li>
-    </ul>
-    <span class="aside">Still reading? Good sign.</span>
-  </div>
-</section>
-
-<section class="wrap" aria-labelledby="h-net">
-  <div class="eyebrow">Our little local network</div>
-  <h2 id="h-net">Where you'll find us</h2>
-  <div class="net">
-    <div class="tag"><span class="pin"></span><h3>Norney Farm</h3><p>Land, fire, muddy boots. Where things get made.</p></div>
-    <div class="tag"><span class="pin"></span><h3>The studio on the hill</h3><p>Circles, quiet thinking and the occasional loud idea.</p></div>
-    <div class="tag"><span class="pin"></span><h3>Trinkfluss</h3><p>The clubhouse. Bastian pours, we plot.</p></div>
-  </div>
-  <div class="things" aria-label="What happens">
-    <span>Walk</span><span>Go solar</span><span>Tell stories</span><span>Sit in circle</span><span>Cook</span><span>Get money smart</span><span>Belong</span><span>Human better</span><span>Plant trees</span><span>Make stuff</span><span>Laugh</span><span>Get to grips with AI</span><span>Run</span><span>Build community</span><span>Live lighter</span><span>Live cleaner</span><span>Teach</span><span>Eat</span><span>Get grounded</span><span>Invent</span><span>Share skills</span><span>Ride</span><span>Be of service</span><span>Follow the seasons</span><span>Drink</span><span>Learn</span><span>Get into nature</span><span>Create</span><span>Breathe</span><span>Communicate</span><span>Care</span><span>Smarten up your home</span><span>Learn resilience</span><span>Make it up</span><span>Sit still</span><span>Grow regeneratively</span><span>Live sustainably</span><span>Get healthy</span><span>Love</span><span>Spread to Shackleford</span>
-  </div>
+    </ul><p class="nf-a">Still reading? Good sign.</p></div></details>
 </section>
 
 <section class="join" id="join" aria-labelledby="h-join">
   <div class="wrap">
     <div class="eyebrow">Want in?</div>
     <h2 id="h-join">Put a little effort in</h2>
+    <p class="caught" id="caught" hidden></p>
     <p class="intro">A few questions, one at a time. No right answers. Take your time, it helps you work out whether this is for you. After that, we may be in touch.</p>
 
     <form class="form" id="vvv" novalidate>
@@ -320,9 +568,41 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
   </div>
 </section>
 
+<div class="sheet-wrap" id="say" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="say-h">
+    <button type="button" class="x" id="say-x" aria-label="Close">×</button>
+    <div id="say-form-wrap">
+      <span class="chip" id="say-chip"></span>
+      <h2 id="say-h"></h2>
+      <form id="say-form" novalidate>
+        <label for="say-post">Your idea, thought or feeling<textarea id="say-post" name="post" required></textarea></label>
+        <label for="say-name">Your name<input type="text" id="say-name" name="name" autocomplete="name" required></label>
+        <label for="say-email">Email <span>(optional, only if you'd like to hear more)</span><input type="email" id="say-email" name="email" autocomplete="email"></label>
+        <div class="hp" aria-hidden="true"><label for="say-web">Leave this empty<input type="text" id="say-web" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <div class="err2" id="say-err" role="alert"></div>
+        <div class="row"><button type="button" class="btn ghost" id="say-cancel">Not now</button><button type="submit" class="btn">Pin it up →</button></div>
+        <p class="fine">Posts are checked before they appear. Be kind, keep it real.</p>
+      </form>
+    </div>
+    <div id="say-done" hidden>
+      <span class="chip" id="say-chip2"></span>
+      <h2>Thanks. It's pinned up.</h2>
+      <p>We'll have a look, and if it's alive, it'll show up on the board. Fancy another?</p>
+      <div class="row"><button type="button" class="btn" id="say-close">Back to the page</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="gl-pop" id="glpop" role="dialog" aria-labelledby="gl-t" hidden>
+  <button type="button" class="x" id="gl-x" aria-label="Close">×</button>
+  <b id="gl-t"></b><p id="gl-d"></p><p class="gq" id="gl-q"></p>
+  <div class="row"><button type="button" class="btn-say" id="gl-a">Answer this →</button></div>
+</div>
 <footer class="wrap">
+  <p class="aside" style="color:var(--clay);font-family:var(--pen);font-size:clamp(24px,4vw,32px);margin:0 0 18px">How might we make tomorrow a little more beautiful?</p>
   <p class="big">Moving towards what is good, true and beautiful. Having fun doing it along the way.</p>
   <small>Va Va Voom Godalming · made by citizens, not committees</small>
+  <p class="watching">We notice which bits get tapped, so we know what to grow next. We never track who you are.</p>
 </footer>
 
 <script>
@@ -367,6 +647,130 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
   show(0);
 })();
 </script>
+<script>
+(function(){
+  // Where posts go. Paste the Google Apps Script web-app URL here once it's set up; until then posts stay in this browser.
+  var BOARD_URL = '';
+  var BLURB = {"Home & around": "Warmer homes, cheaper energy, and easier ways to get about.", "Food": "Growing it, cooking it, sharing it, and knowing where it's from.", "Land & nature": "The Lammas Lands, the heaths, the river, and the wild things in them.", "Being well": "Moving, resting, getting outside and feeling good in your body.", "Work & money": "Money Moves, the local economy, and work that is changing fast.", "Love & connection": "Belonging, care, talking well, sensuality and sexuality.", "Play": "Creativity, culture and voice. The heart of it all."};
+  var wrap=document.getElementById('say'), chip=document.getElementById('say-chip'), chip2=document.getElementById('say-chip2'),
+      h=document.getElementById('say-h'), form=document.getElementById('say-form'), err=document.getElementById('say-err'),
+      fw=document.getElementById('say-form-wrap'), done=document.getElementById('say-done'), opened=0, ctx={}, lastFocus=null;
+  var COL={"Home & around": ["#df8350", "#221e19"], "Food": ["#f2c75a", "#221e19"], "Land & nature": ["#6fa84e", "#221e19"], "Being well": ["#5aa9e6", "#221e19"], "Work & money": ["#3d5a8c", "#fbf8f1"], "Love & connection": ["#ee8fa4", "#221e19"], "Play": ["#f06aa3", "#221e19"]};
+  var TAGS={"Home & around": ["Go solar", "Smarten up your home", "Live lighter", "Live cleaner", "Live sustainably", "Learn resilience", "Ride", "Spread to Shackleford"], "Food": ["Cook", "Eat", "Drink"], "Land & nature": ["Plant trees", "Get into nature", "Grow regeneratively", "Follow the seasons", "Get grounded"], "Being well": ["Walk", "Run", "Breathe", "Sit still", "Get healthy"], "Work & money": ["Get money smart", "Get to grips with AI", "Invent", "Share skills", "Teach", "Learn", "Be of service"], "Love & connection": ["Belong", "Build community", "Human better", "Communicate", "Care", "Love", "Sit in circle", "Get sensual", "Celebrate sexuality"], "Play": ["Tell stories", "Make stuff", "Laugh", "Make it up", "Create"]};
+  var seen={};
+  function signal(ev,detail){
+    var key=ev+'|'+(detail||''); if(seen[key]) return; seen[key]=1;
+    if(!BOARD_URL) return;
+    try{ fetch(BOARD_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({type:'signal',event:ev,detail:detail||'',page:location.pathname,when:new Date().toISOString()})}) }catch(e){}
+  }
+  window.vvvSignal=signal;
+  window.vvvOpen=function(c){open(c)};
+  function open(c){
+    signal(c.tag?'open-tag':'open-thread', c.tag||c.thread);
+    ctx=c; lastFocus=document.activeElement; opened=Date.now();
+    var label=c.tag? c.tag : c.thread;
+    chip.textContent=label; chip2.textContent=label;
+    chip.style.background=chip2.style.background=COL[c.thread][0]; chip.style.color=chip2.style.color=COL[c.thread][1];
+    h.textContent=c.ask? c.ask : c.tag? 'What would you love to do with \u201c'+c.tag+'\u201d?' : 'What\u2019s stirring for you here? An idea, a thought, a feeling. What could we do with it?';
+    form.reset(); err.textContent=''; fw.hidden=false; done.hidden=true; wrap.hidden=false;
+    setTimeout(function(){document.getElementById('say-post').focus()},30);
+  }
+  function close(){ wrap.hidden=true; if(lastFocus&&lastFocus.focus) lastFocus.focus(); }
+  ['say-x','say-cancel','say-close'].forEach(function(id){document.getElementById(id).addEventListener('click',close)});
+  wrap.addEventListener('click',function(ev){ if(ev.target===wrap) close(); });
+  document.addEventListener('keydown',function(ev){ if(ev.key==='Escape'&&!wrap.hidden) close(); });
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var F=form.elements, post=F['post'].value.trim(), name=F['name'].value.trim(), email=F['email'].value.trim();
+    if(!post){err.textContent='Add a line or two first.';F['post'].focus();return}
+    if(!name){err.textContent='Just a first name is fine.';F['name'].focus();return}
+    var bot = F['website'].value!=='' || (Date.now()-opened)<2500;
+    var data={type:'board',level:ctx.tag?'Tag':'Thread',thread:ctx.thread,tag:ctx.tag||'',post:post,name:name,email:email,page:location.pathname,when:new Date().toISOString()};
+    if(!bot){
+      if(BOARD_URL){ try{ fetch(BOARD_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}) }catch(e){} }
+      else { try{ var a=JSON.parse(localStorage.getItem('vvv-board')||'[]'); a.push(data); localStorage.setItem('vvv-board',JSON.stringify(a)) }catch(e){} }
+    }
+    signal('post', ctx.tag||ctx.thread); fw.hidden=true; done.hidden=false; document.getElementById('say-close').focus();
+  });
+
+  // compass: which one is speaking to you right now?
+  var fig=document.querySelector('#compass-fig'), say=document.getElementById('thr-say');
+  if(fig){
+    fig.querySelectorAll('.thr').forEach(function(g){
+      function pick(){
+        var on=g.classList.contains('on');
+        fig.querySelectorAll('.thr').forEach(function(x){x.classList.remove('on')});
+        if(on){ fig.classList.remove('has-on'); say.hidden=true; return }
+        g.classList.add('on'); fig.classList.add('has-on');
+        var t=g.getAttribute('data-thread');
+        say.innerHTML='';
+        var p=document.createElement('p'); var b=document.createElement('b'); b.textContent=t+'. '; p.appendChild(b); p.appendChild(document.createTextNode(BLURB[t]||''));
+        var btn=document.createElement('button'); btn.type='button'; btn.className='btn-say'; btn.textContent='Add a thought on '+t+' \u2192';
+        btn.addEventListener('click',function(){open({thread:t})});
+        var fold=document.createElement('div'); fold.className='fold';
+        (TAGS[t]||[]).forEach(function(tag,i){
+          var tb=document.createElement('button'); tb.type='button'; tb.className='pick'; tb.textContent=tag;
+          tb.style.background=COL[t][0]; tb.style.color=COL[t][1]; tb.style.animationDelay=(i*40)+'ms';
+          tb.addEventListener('click',function(){ fold.querySelectorAll('.pick.on').forEach(function(x){x.classList.remove('on')}); tb.classList.add('on'); setTimeout(function(){open({thread:t,tag:tag})},380); });
+          fold.appendChild(tb);
+        });
+        btn.textContent='Or add a thought on '+t+' \u2192';
+        say.appendChild(p); say.appendChild(fold); say.appendChild(btn); say.hidden=false;
+        signal('thread', t);
+        var cg=document.getElementById('caught'); if(cg){ cg.textContent='Looks like '+t+' caught your eye.'; cg.hidden=false; }
+      }
+      g.addEventListener('click',pick);
+      g.addEventListener('keydown',function(ev){ if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();pick()} });
+    });
+  }
+  // pick me tags
+  document.querySelectorAll('.pick').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.pick.on').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on');
+      var c={thread:b.getAttribute('data-thread'),tag:b.getAttribute('data-tag')};
+      setTimeout(function(){open(c)},380);
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var sig=function(e,d){ if(window.vvvSignal) window.vvvSignal(e,d); };
+  document.querySelectorAll('details.deeper').forEach(function(d){ d.addEventListener('toggle',function(){ if(d.open) sig('open-section', d.getAttribute('data-key')); }); });
+  document.querySelectorAll('a.portal').forEach(function(a){ a.addEventListener('click',function(){ sig('portal', a.getAttribute('aria-label')); }); });
+  var poke=document.getElementById('poke'); if(poke) poke.addEventListener('click',function(){ sig('poke',''); });
+  var f=document.getElementById('vvv'); if(f) f.addEventListener('submit',function(){ sig('signup-step',''); });
+})();
+</script>
+<script>
+(function(){
+  var fig=document.getElementById('compass-fig');
+  document.querySelectorAll('#thr-row button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var g=fig.querySelector('.thr[data-thread="'+b.getAttribute('data-thread')+'"]'); if(g) g.dispatchEvent(new MouseEvent('click',{bubbles:true}));
+      var on=g&&g.classList.contains('on');
+      document.querySelectorAll('#thr-row button').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      if(on) b.setAttribute('aria-pressed','true');
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var G={"solarpunk": ["Solarpunk", "A hopeful way of picturing the future: clean tech, green streets and people who know their neighbours. Less doom, more 'what could we build?'", "What would a solarpunk Godalming look like to you?"], "bigger": ["Something bigger", "Our phrase for the sense that there's more going on than any one of us. Call it faith, nature, spirit, or just each other.", "What's bigger than you, for you?"], "circle": ["Circle", "An old way of meeting. Everyone sits in a ring, one person speaks at a time, and everyone is heard. No top table.", "When did you last feel properly heard?"], "peb": ["People's Emergency Briefing", "A talk that sets out, in plain words, where the climate and nature crisis has got to, and what local people can do about it.", "What do you wish someone would just explain plainly?"], "transition": ["Transition Towns", "A movement that started in Totnes in 2006: towns doing the practical things themselves, like food, energy, repair and local money.", "What should Godalming be doing for itself?"], "moneymoves": ["Money Moves", "Our thread on money: making it, saving it, and spending it in ways that keep Godalming going.", "What's one money move you'd like to make this year?"]}, pop=document.getElementById('glpop'), cur=null, last=null;
+  function show(k,el){ cur=k; last=el; document.getElementById('gl-t').textContent=G[k][0]; document.getElementById('gl-d').textContent=G[k][1]; document.getElementById('gl-q').textContent=G[k][2]; pop.hidden=false; document.getElementById('gl-a').focus(); if(window.vvvSignal) window.vvvSignal('word',k); }
+  function hide(){ pop.hidden=true; if(last&&last.focus) last.focus(); }
+  document.querySelectorAll('.gl').forEach(function(b){ b.addEventListener('click',function(ev){ ev.stopPropagation(); show(b.getAttribute('data-gl'),b); }); });
+  document.getElementById('gl-x').addEventListener('click',hide);
+  document.addEventListener('keydown',function(ev){ if(ev.key==='Escape'&&!pop.hidden) hide(); });
+  document.getElementById('gl-a').addEventListener('click',function(){ var k=cur; pop.hidden=true; if(window.vvvOpen) window.vvvOpen({thread:'Play',tag:'Word: '+G[k][0],ask:G[k][2]}); });
+})();
+</script>
+
+
+
+
 
 </body>
 </html>

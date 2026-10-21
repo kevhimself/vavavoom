@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Va Va Voom Godalming</title>
+<meta name="description" content="What if Godalming had a bit more va va voom? Citizens of Godalming making the changes we need now, together.">
+<meta property="og:title" content="Va Va Voom Godalming">
+<meta property="og:description" content="What if Godalming had a bit more va va voom?">
+<meta property="og:image" content="logos/vvv-square-pink.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Bungee&family=Courier+Prime:wght@400;700&family=Permanent+Marker&display=swap">
+<style>
+/* Layout: a photocopied zine, one long scroll of cut-and-stuck panels, slightly askew, with neon marker pops */
+:root{
+  --paper:#f4ede1;   /* photocopy paper */
+  --char:#17130f;    /* ink */
+  --ember:#ff5a1f;   /* flame orange */
+  --clay:#2438d6;    /* cobalt, for small text and labels */
+  --moss:#2438d6;    /* cobalt band */
+  --neon:#ff2e88;    /* hot pink, the logo colour */
+  --neon2:#d4ff3a;   /* lime, used sparingly */
+  --cut:'Bowlby One SC', Impact, 'Arial Black', sans-serif;
+  --logo:'Bungee', Impact, 'Arial Black', sans-serif;
+  --type:'Courier Prime', 'Courier New', monospace;
+  --pen:'Permanent Marker', 'Comic Sans MS', cursive;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--char);font-family:var(--type);font-size:17px;line-height:1.55;overflow-x:hidden;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:56px}
+h2{font-family:var(--cut);font-weight:400;font-size:clamp(30px,6vw,52px);line-height:1;margin:0 0 24px;text-wrap:balance}
+.pen{font-family:var(--pen)}
+a{color:inherit}
+:focus-visible{outline:3px dashed var(--neon);outline-offset:3px}
+.join :focus-visible{outline-color:var(--neon2)}
+.join .form :focus-visible{outline-color:var(--char)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* LOGO — B2 stacked pink */
+.logo{display:inline-flex;flex-direction:column;align-items:flex-start;gap:4px;background:var(--neon);padding:28px 32px 22px;margin-top:18px;transform:rotate(-1deg);box-shadow:6px 6px 0 var(--char)}
+.logo span{font-family:var(--logo);font-size:clamp(56px,14vw,112px);line-height:.9;color:var(--char)}
+.logo span.p{color:var(--paper)}
+.logo span.l{background:var(--neon2);padding:4px 12px}
+.logo small{font-family:var(--type);font-weight:700;font-size:15px;letter-spacing:.32em;margin-top:10px;color:var(--char)}
+/* WHAT IT IS */
+.what .oneline{font-family:var(--cut);font-size:clamp(24px,4.4vw,38px);line-height:1.15;margin:0 0 24px;max-width:24ch;text-wrap:balance}
+.what .context{display:grid;gap:6px;max-width:58ch;font-size:clamp(17px,2.2vw,20px)}
+.what .context p{margin:0}
+.what .context .kick{font-family:var(--pen);font-size:clamp(24px,3.8vw,32px);color:#c2005f;margin-top:14px;transform:rotate(-1deg);display:inline-block}
+/* HERO */
+.hero{padding-block:48px 40px;position:relative}
+.kicker{font-family:var(--pen);color:var(--clay);font-size:20px;transform:rotate(-2deg);display:inline-block}
+.ransom{display:flex;flex-wrap:wrap;gap:6px 4px;margin:18px 0 8px;font-family:var(--cut);font-size:clamp(40px,11vw,104px);line-height:1}
+.ransom .w{display:flex;gap:3px;margin-right:clamp(10px,2.5vw,22px)}
+.ransom span{display:inline-block;padding:.04em .12em .02em;box-shadow:2px 3px 0 rgba(29,23,20,.35)}
+.r1{background:var(--ember);color:var(--paper);transform:rotate(-4deg)}
+.r2{background:var(--char);color:var(--paper);transform:rotate(3deg)}
+.r3{background:var(--paper);color:var(--char);border:2px solid var(--char);transform:rotate(-2deg)}
+.r4{background:var(--neon);color:var(--char);transform:rotate(5deg)}
+.r5{background:var(--moss);color:var(--paper);transform:rotate(-1deg)}
+.r6{background:var(--clay);color:var(--paper);transform:rotate(2deg)}
+.place{font-family:var(--cut);font-size:clamp(26px,6vw,54px);letter-spacing:.02em;background:var(--char);color:var(--paper);display:inline-block;padding:4px 14px;transform:rotate(-1.5deg);margin-top:6px}
+.question{margin:42px 0 0;font-family:var(--pen);font-size:clamp(28px,5.6vw,48px);line-height:1.15;max-width:18ch;position:relative;text-wrap:balance}
+.question mark{background:none;color:inherit;position:relative;white-space:nowrap}
+.question mark::after{content:"";position:absolute;left:-4%;right:-4%;bottom:.05em;height:.42em;background:var(--neon);opacity:.75;z-index:-1;transform:rotate(-1.5deg);border-radius:3px}
+.strap{margin-top:26px;max-width:46ch;font-size:16px}
+.cta{display:inline-block;margin-top:26px;font-family:var(--cut);font-size:20px;background:var(--neon);color:var(--char);padding:14px 22px;text-decoration:none;border:3px solid var(--char);box-shadow:5px 5px 0 var(--char);transform:rotate(-1deg);transition:transform .15s, box-shadow .15s}
+.cta:hover{transform:rotate(0) translate(-2px,-2px);box-shadow:7px 7px 0 var(--char)}
+.stamp{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:44px;width:118px;height:118px;border:3px solid var(--char);border-radius:50%;color:var(--char);font-family:var(--cut);font-size:12px;display:grid;place-items:center;text-align:center;line-height:1.15;transform:rotate(14deg);opacity:.85}
+@media (max-width:640px){.stamp{position:static;margin:24px 0 0 auto;width:96px;height:96px;font-size:11px}}
+
+/* HINTS — orange torn band */
+.band{background:var(--ember);color:var(--char);position:relative;
+  clip-path:polygon(0 3%,6% 0,14% 2.5%,23% .5%,33% 3%,44% 0,56% 2.5%,67% .5%,78% 3%,89% .5%,100% 2.5%,100% 97%,92% 100%,81% 97.5%,70% 99.5%,59% 97%,47% 100%,36% 97.5%,25% 99.5%,13% 97%,4% 99.5%,0 97%)}
+.band .wrap{padding-block:64px}
+.hints{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px 28px}
+.hints li{font-family:var(--pen);font-size:clamp(22px,3.6vw,30px);line-height:1.15}
+.hints li:nth-child(odd){transform:rotate(-1.5deg)}
+.hints li:nth-child(even){transform:rotate(1.2deg)}
+.hints li:nth-child(4){color:var(--paper);background:var(--char);padding:2px 8px;justify-self:start}
+
+/* THE FIVE — taped index card */
+.card{background:#fbf6ec;border:2px solid var(--char);padding:34px clamp(18px,4vw,40px) 28px;position:relative;transform:rotate(-.6deg);box-shadow:6px 7px 0 rgba(29,23,20,.85)}
+.tape{position:absolute;top:-14px;width:110px;height:28px;background:rgba(198,255,61,.55);border:1px solid rgba(29,23,20,.15)}
+.tape.l{left:24px;transform:rotate(-6deg)}.tape.r{right:24px;transform:rotate(5deg);background:rgba(255,46,136,.45)}
+.five{list-style:none;padding:0;margin:0;display:grid;gap:18px;counter-reset:f}
+.five li{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:baseline;counter-increment:f;font-size:clamp(19px,2.8vw,24px);font-weight:700;line-height:1.3}
+.five li::before{content:counter(f);font-family:var(--cut);font-size:30px;color:var(--ember);text-align:center;border:2px solid var(--ember);border-radius:50%;width:46px;height:46px;display:grid;place-items:center;transform:rotate(-8deg)}
+.eyebrow{font-family:var(--type);text-transform:uppercase;letter-spacing:.18em;font-size:13px;font-weight:700;color:var(--clay);margin-bottom:10px}
+
+/* NOT FOR YOU — crossed-out list on charcoal */
+.dark{background:var(--char);color:var(--paper)}
+.dark .eyebrow{color:var(--neon)}
+.notfor{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.notfor li{font-size:clamp(18px,2.6vw,22px);padding-left:40px;position:relative}
+.notfor li::before{content:"✕";position:absolute;left:0;top:-2px;font-family:var(--pen);color:var(--neon);font-size:26px}
+.notfor .lead{font-family:var(--cut);font-size:clamp(26px,5vw,40px);margin-bottom:22px;display:block}
+.aside{margin-top:30px;font-family:var(--pen);color:var(--neon2);font-size:22px;transform:rotate(-1deg);display:inline-block}
+
+/* NETWORK — three stuck-on polaroid-ish tags */
+.net{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.tag{border:2px solid var(--char);padding:20px 18px 18px;background:#fbf6ec;position:relative}
+.tag:nth-child(1){transform:rotate(-2deg)}.tag:nth-child(2){transform:rotate(1.5deg)}.tag:nth-child(3){transform:rotate(-.8deg)}
+.tag h3{font-family:var(--cut);font-weight:400;font-size:24px;margin:0 0 6px;line-height:1.05}
+.tag p{margin:0;font-size:15px}
+.tag .pin{position:absolute;top:-10px;left:50%;width:18px;height:18px;border-radius:50%;background:var(--ember);border:2px solid var(--char);transform:translateX(-50%)}
+.tag:nth-child(2) .pin{background:var(--neon)}.tag:nth-child(3) .pin{background:var(--moss)}
+.things{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+.things span{border:2px solid var(--char);padding:6px 12px;font-weight:700;font-size:15px;background:var(--paper)}
+.things span:nth-child(3n){background:var(--clay);color:var(--paper)}
+.things span:nth-child(4n){background:var(--neon2);color:var(--char)}
+
+/* JOIN — one question at a time */
+.join{background:var(--moss);color:var(--paper)}
+.join .eyebrow{color:var(--neon2)}
+.join p.intro{max-width:52ch;margin:0 0 28px}
+.form{background:var(--paper);color:var(--char);border:3px solid var(--char);box-shadow:8px 8px 0 var(--char);padding:clamp(20px,4vw,36px)}
+.bar{height:10px;border:2px solid var(--char);margin-bottom:22px;background:#fbf6ec}
+.bar i{display:block;height:100%;background:var(--ember);width:0;transition:width .3s}
+.count{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--clay);margin-bottom:8px}
+.step label.q{display:block;font-family:var(--pen);font-size:clamp(23px,4vw,32px);line-height:1.2;margin-bottom:6px;text-wrap:balance}
+.step .hint{font-size:15px;margin:0 0 16px;color:var(--clay)}
+textarea,input[type=text],input[type=tel],input[type=email]{width:100%;font:inherit;font-size:17px;color:var(--char);background:#fbf6ec;border:2px solid var(--char);padding:12px 14px;border-radius:0}
+textarea{min-height:130px;resize:vertical}
+.fields{display:grid;gap:14px}
+.fields label{font-weight:700;font-size:14px;display:grid;gap:6px;text-transform:uppercase;letter-spacing:.08em}
+.choices{display:grid;gap:12px}
+.choice{display:flex;gap:12px;align-items:center;border:2px solid var(--char);padding:14px 16px;cursor:pointer;font-weight:700;background:#fbf6ec}
+.choice input{accent-color:var(--ember);width:20px;height:20px}
+.choice:has(input:checked){background:var(--neon)}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer}
+.btn{font-family:var(--cut);font-size:17px;border:3px solid var(--char);padding:12px 20px;background:var(--neon);color:var(--char);box-shadow:4px 4px 0 var(--char)}
+.btn.ghost{background:transparent;color:var(--char);box-shadow:none}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.vs{display:flex;align-items:center;gap:14px;margin:4px 0 18px;flex-wrap:wrap}
+.vs figure{margin:0;background:#fbf6ec;border:2px solid var(--char);padding:10px 10px 6px;width:130px;box-shadow:4px 4px 0 var(--char);position:relative}
+.vs figure:first-child{transform:rotate(-4deg)}.vs figure:last-child{transform:rotate(3deg)}
+.vs figure::before{content:"";position:absolute;top:-10px;left:50%;width:60px;height:18px;transform:translateX(-50%) rotate(-3deg);background:rgba(212,255,58,.7);border:1px solid rgba(23,19,15,.2)}
+.vs figure:last-child::before{background:rgba(255,46,136,.5)}
+.vs .ph{height:96px;border:2px dashed var(--char);display:grid;place-items:center;font-family:var(--pen);font-size:54px;line-height:1;color:var(--char)}
+.vs figcaption{font-family:var(--pen);font-size:22px;text-align:center;margin-top:4px}
+.vs .or{font-family:var(--cut);font-size:26px}
+.err{color:var(--clay);font-weight:700;font-size:15px;min-height:1.4em;margin-top:8px}
+.done{text-align:left}
+.done h3{font-family:var(--cut);font-weight:400;font-size:clamp(32px,6vw,52px);margin:0 0 10px;line-height:1}
+.done .pen{font-size:24px;color:var(--clay)}
+
+footer{padding-block:48px 64px}
+footer .big{font-family:var(--pen);font-size:clamp(24px,4.4vw,38px);line-height:1.2;max-width:24ch;text-wrap:balance}
+footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<header class="hero wrap">
+  <h1 class="sr">Va Va Voom Godalming</h1>
+  <span class="kicker">psst. pass it on.</span>
+  <div><div class="logo" role="img" aria-label="Va Va Voom Godalming">
+    <span>VA</span><span class="p">VA</span><span class="l">VOOM</span><small>GODALMING</small>
+  </div></div>
+  <div class="stamp" aria-hidden="true">THE GOOD<br>THE TRUE<br>&amp; THE<br>BEAUTIFUL</div>
+
+  <p class="question">What if Godalming had a bit more <mark>va va voom?</mark></p>
+  <p class="strap">Times are changing. We can choose to hang on in there and keep talking about it. Or… move with it. Va va voom. Moving towards what is good, true and beautiful, and having fun doing it along the way.</p>
+  <a class="cta" href="#join">See if it's for you →</a>
+</header>
+
+<section class="wrap what" aria-labelledby="h-what">
+  <div class="eyebrow" id="h-what">What it is</div>
+  <p class="oneline">A bunch of Godalming people getting stuck into projects that make our town more creative, more resilient and more ours.</p>
+  <div class="context">
+    <p>Empty shop windows. Fields eyed up for houses. Bills that only go one way. Rivers full of cr@p.</p>
+    <p>We keep being told it's an emergency, and most days it doesn't feel like one.</p>
+    <p>So this is a quieter kind of change. We could moan about it, or we could get going. Doing it now costs less than doing it later.</p>
+    <span class="kick">And doing it together is a lot more fun.</span>
+  </div>
+</section>
+
+<div class="band">
+  <div class="wrap">
+    <ul class="hints">
+      <li>Nobody's coming to do it for us.</li>
+      <li>So we thought we might.</li>
+      <li>A spark, not a committee.</li>
+      <li>Money, food, fire, land, each other.</li>
+      <li>Some nights deep. Some nights daft.</li>
+      <li>A drink, if you fancy one.</li>
+    </ul>
+  </div>
+</div>
+
+<section class="wrap" aria-labelledby="h-five">
+  <div class="eyebrow">How we show up</div>
+  <h2 id="h-five">The five</h2>
+  <div class="card">
+    <span class="tape l"></span><span class="tape r"></span>
+    <ol class="five">
+      <li>Come as you are.</li>
+      <li>Talk less, do more.</li>
+      <li>We're all leaders here. It's our space, and we all look after it.</li>
+      <li>Deep chats and silliness, in equal measure.</li>
+      <li>If it's alive, we follow it.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="dark" aria-labelledby="h-not">
+  <div class="wrap">
+    <div class="eyebrow">Straight up</div>
+    <h2 id="h-not" class="lead" style="margin-bottom:22px">This isn't for you if…</h2>
+    <ul class="notfor">
+      <li>You're here to make speeches.</li>
+      <li>You'd rather talk about it than do it.</li>
+      <li>You're looking for a stage.</li>
+      <li>You want somewhere to moan.</li>
+      <li>You're not up for experimenting and playing.</li>
+    </ul>
+    <span class="aside">Still reading? Good sign.</span>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="h-net">
+  <div class="eyebrow">Our little local network</div>
+  <h2 id="h-net">Where you'll find us</h2>
+  <div class="net">
+    <div class="tag"><span class="pin"></span><h3>Norney Farm</h3><p>Land, fire, muddy boots. Where things get made.</p></div>
+    <div class="tag"><span class="pin"></span><h3>The studio on the hill</h3><p>Circles, quiet thinking and the occasional loud idea.</p></div>
+    <div class="tag"><span class="pin"></span><h3>Trinkfluss</h3><p>The clubhouse. Bastian pours, we plot.</p></div>
+  </div>
+  <div class="things" aria-label="What happens">
+    <span>Walk</span><span>Go solar</span><span>Tell stories</span><span>Sit in circle</span><span>Cook</span><span>Get money smart</span><span>Belong</span><span>Human better</span><span>Plant trees</span><span>Make stuff</span><span>Laugh</span><span>Get to grips with AI</span><span>Run</span><span>Build community</span><span>Live lighter</span><span>Live cleaner</span><span>Teach</span><span>Eat</span><span>Get grounded</span><span>Invent</span><span>Share skills</span><span>Ride</span><span>Be of service</span><span>Follow the seasons</span><span>Drink</span><span>Learn</span><span>Get into nature</span><span>Create</span><span>Breathe</span><span>Communicate</span><span>Care</span><span>Smarten up your home</span><span>Learn resilience</span><span>Make it up</span><span>Sit still</span><span>Grow regeneratively</span><span>Live sustainably</span><span>Get healthy</span><span>Love</span><span>Spread to Shackleford</span>
+  </div>
+</section>
+
+<section class="join" id="join" aria-labelledby="h-join">
+  <div class="wrap">
+    <div class="eyebrow">Want in?</div>
+    <h2 id="h-join">Put a little effort in</h2>
+    <p class="intro">A few questions, one at a time. No right answers. Take your time, it helps you work out whether this is for you. After that, we may be in touch.</p>
+
+    <form class="form" id="vvv" novalidate>
+      <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
+      <div class="count" id="count" aria-live="polite"></div>
+
+      <div class="step" data-step>
+        <label class="q" for="q1">What would bring more va va voom to your life here?</label>
+        <p class="hint">In this town, this week, this year. Whatever comes up.</p>
+        <textarea id="q1" name="voom" required></textarea>
+      </div>
+      <div class="step" data-step hidden>
+        <label class="q" for="q2">Which of the five comes easiest to you?</label>
+        <p class="hint">Come as you are · Talk less, do more · We're all leaders here · Deep chats and silliness · If it's alive, we follow it</p>
+        <textarea id="q2" name="five_easy" required></textarea>
+      </div>
+      <div class="step" data-step hidden>
+        <label class="q" for="q3">What could you bring?</label>
+        <p class="hint">A skill, a field, a van, a recipe, a terrible joke. All useful.</p>
+        <textarea id="q3" name="bring" required></textarea>
+      </div>
+      <div class="step" data-step hidden>
+        <label class="q" for="q4">When did you last try something just to see what happened?</label>
+        <p class="hint">Tell us what happened.</p>
+        <textarea id="q4" name="experiment" required></textarea>
+      </div>
+      <div class="step" data-step hidden>
+        <label class="q" for="q5">Which of the five would you struggle with most?</label>
+        <p class="hint">That's where you get to grow. Come as you are · Talk less, do more · We're all leaders here · Deep chats and silliness · If it's alive, we follow it</p>
+        <textarea id="q5" name="five_grow" required></textarea>
+      </div>
+      <div class="step" data-step hidden>
+        <label class="q" for="q7">Shrek or Stitch: who's cooler, and why?</label>
+        <div class="vs" aria-hidden="true"><figure><div class="ph">?</div><figcaption>the ogre</figcaption></figure><span class="or">OR</span><figure><div class="ph">?</div><figcaption>the alien</figcaption></figure></div>
+        <p class="hint">Round here, cool means being exactly who you are.</p>
+        <textarea id="q7" name="cool" required></textarea>
+      </div>
+
+      <div class="step" data-step hidden>
+        <p class="q pen" style="font-size:clamp(23px,4vw,32px);margin:0 0 16px" id="q6l">Honestly: is this for you?</p>
+        <div class="choices" role="radiogroup" aria-labelledby="q6l">
+          <label class="choice"><input type="radio" id="q6a" name="fit" value="in" required> I'm in.</label>
+          <label class="choice"><input type="radio" id="q6b" name="fit" value="out"> Not for me, and that's fine.</label>
+        </div>
+      </div>
+
+      <div class="step" data-step hidden>
+        <p class="q pen" style="font-size:clamp(23px,4vw,32px);margin:0 0 16px">Who are you, and where do we find you?</p>
+        <div class="fields">
+          <label for="nm">Your name<input type="text" id="nm" name="name" autocomplete="name" required></label>
+          <label for="ph">Phone<input type="tel" id="ph" name="phone" autocomplete="tel" required></label>
+          <label for="em">Email (optional)<input type="email" id="em" name="email" autocomplete="email"></label>
+          <label for="wh">Where you live<input type="text" id="wh" name="where" placeholder="Godalming, Shackleford, Busbridge…"></label>
+        </div>
+      </div>
+
+      <div class="err" id="err" role="alert"></div>
+      <div class="nav">
+        <button type="button" class="btn ghost" id="back">← Back</button>
+        <button type="submit" class="btn" id="next">Next →</button>
+      </div>
+    </form>
+
+    <div class="form done" id="thanks" hidden>
+      <h3>Noted.</h3>
+      <p>We read every one of these properly. If it feels alive, we may be in touch.</p>
+      <p class="pen">Until then, go do something just to see what happens.</p>
+    </div>
+
+    <div class="form done" id="bye" hidden>
+      <h3>Fair enough.</h3>
+      <p>Thanks for being honest. That's very much in the spirit of the thing. If it ever starts to feel alive for you, the door's still here.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p class="big">Moving towards what is good, true and beautiful. Having fun doing it along the way.</p>
+  <small>Va Va Voom Godalming · made by citizens, not committees</small>
+</footer>
+
+<script>
+(function(){
+  // TODO: send each submission to the Va Va Voom Google Sheet (to be connected). For now answers stay in this browser only.
+  var form=document.getElementById('vvv'), steps=[].slice.call(form.querySelectorAll('[data-step]'));
+  var i=0, back=document.getElementById('back'), next=document.getElementById('next'), err=document.getElementById('err');
+  var fill=document.getElementById('barfill'), count=document.getElementById('count');
+  var FIT=6, LAST=steps.length-1;
+  function show(n){
+    steps.forEach(function(s,k){s.hidden=k!==n});
+    i=n; back.style.visibility=n===0?'hidden':'visible';
+    next.textContent=n===LAST?'Send it →':'Next →';
+    fill.style.width=Math.round(n/LAST*100)+'%';
+    count.textContent='Question '+(n+1)+' of '+steps.length;
+    err.textContent='';
+    var f=steps[n].querySelector('textarea,input'); if(f&&n>0) f.focus({preventScroll:true});
+  }
+  function valid(){
+    var s=steps[i];
+    if(i===FIT){ if(!form.querySelector('input[name=fit]:checked')){err.textContent='Pick one. Either answer is a good answer.';return false} return true }
+    var req=[].slice.call(s.querySelectorAll('[required]'));
+    for(var k=0;k<req.length;k++){
+      if(!req[k].value.trim()){err.textContent=i===LAST?'We need a name and a number, just in case.':'Give it a go. A sentence is plenty.';req[k].focus();return false}
+    }
+    return true;
+  }
+  back.addEventListener('click',function(){ if(i>0) show(i-1) });
+  form.addEventListener('submit',function(e){
+    e.preventDefault(); if(!valid()) return;
+    if(i===FIT && form.querySelector('input[name=fit]:checked').value==='out'){ finish('bye'); return }
+    if(i<LAST){ show(i+1); return }
+    finish('thanks');
+  });
+  function finish(id){
+    var data={when:new Date().toISOString()};
+    new FormData(form).forEach(function(v,k){data[k]=v});
+    try{var all=JSON.parse(localStorage.getItem('vvv-answers')||'[]');all.push(data);localStorage.setItem('vvv-answers',JSON.stringify(all))}catch(e){}
+    form.hidden=true; document.getElementById(id).hidden=false;
+    document.getElementById(id).scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  show(0);
+})();
+</script>
+
+</body>
+</html>
