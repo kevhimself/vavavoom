@@ -37,6 +37,13 @@ function doPost(e) {
       ]);
     } else if (d.type === 'signal') {
       ss.getSheetByName('Signals').appendRow([now, clean(d.event), clean(d.detail), clean(d.page)]);
+    } else if (d.type === 'access') {
+      ss.getSheetByName('Access').appendRow([now, clean(d.email), clean(d.page), clean(d.version)]);
+    } else if (d.type === 'feedback') {
+      ss.getSheetByName('Feedback').appendRow([
+        now, clean(d.version), clean(d.felt), clean(d.drawn), clean(d.turnoff), clean(d.onething),
+        clean(d.other), clean(d.name), clean(d.email), clean(d.page)
+      ]);
     }
   } catch (err) {
     console.error(err);
@@ -48,7 +55,7 @@ function doPost(e) {
 
 // The first line of defence. The Watcher does the thoughtful checking later.
 function reasonToHold(d) {
-  if (!d || ['signup', 'board', 'signal'].indexOf(d.type) === -1) return 'Not a Va Va Voom form';
+  if (!d || ['signup', 'board', 'signal', 'access', 'feedback'].indexOf(d.type) === -1) return 'Not a Va Va Voom form';
   if (d.website) return 'Hidden trap field was filled in (likely a bot)';
 
   const cache = CacheService.getScriptCache();
@@ -60,10 +67,14 @@ function reasonToHold(d) {
     return '';
   }
 
-  const text = [d.post, d.voom, d.bring, d.experiment, d.cool, d.name].join(' ');
-  if (/https?:\/\/|www\./i.test(text)) return 'Contains a web link';
-  if (/[Ѐ-ӿ]/.test(text)) return 'Cyrillic text';
-  if (!String(d.name || '').trim()) return 'No name given';
+  if (d.type === 'access') {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(d.email || '').trim())) return 'Email does not look right';
+  }
+  const text = [d.post, d.voom, d.bring, d.experiment, d.cool, d.name, d.felt, d.drawn, d.turnoff, d.onething, d.other, d.email].join(' ');
+  if (d.type !== 'access' && /https?:\/\/|www\./i.test(text)) return 'Contains a web link';
+  if (/[\u0400-\u04FF]/.test(text)) return 'Cyrillic text';
+  if ((d.type === 'signup' || d.type === 'board') && !String(d.name || '').trim()) return 'No name given';
+  if (d.type === 'feedback' && !String([d.felt, d.drawn, d.turnoff, d.onething, d.other].join('')).trim()) return 'Empty feedback';
 
   const digest = Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, d.type + '|' + text);
   const dupKey = 'dup' + Utilities.base64EncodeWebSafe(digest);
