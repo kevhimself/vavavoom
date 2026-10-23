@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Va Va Voom Earth</title>
+<script>/* Where the site sends sign-ups, posts and taps: the Google Apps Script web-app address. */ window.VVV_URL='';</script>
 <meta name="description" content="What if Godalming had a bit more va va voom? Citizens of Godalming making the changes we need now, together.">
 <meta property="og:title" content="Va Va Voom Godalming">
 <meta property="og:description" content="What if Godalming had a bit more va va voom?">
@@ -595,6 +596,9 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
   function finish(id){
     var data={when:new Date().toISOString()};
     new FormData(form).forEach(function(v,k){data[k]=v});
+    var cg=document.getElementById('caught'); data.thread=(cg&&!cg.hidden)?cg.textContent.replace('Looks like ','').replace(' caught your eye.',''):'';
+    data.type='signup'; data.page=location.pathname;
+    if(window.VVV_URL){ try{ fetch(window.VVV_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}) }catch(e){} }
     try{var all=JSON.parse(localStorage.getItem('vvv-answers')||'[]');all.push(data);localStorage.setItem('vvv-answers',JSON.stringify(all))}catch(e){}
     form.hidden=true; document.getElementById(id).hidden=false;
     document.getElementById(id).scrollIntoView({behavior:'smooth',block:'center'});
@@ -605,7 +609,7 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
 <script>
 (function(){
   // Where posts go. Paste the Google Apps Script web-app URL here once it's set up; until then posts stay in this browser.
-  var BOARD_URL = '';
+  var BOARD_URL = window.VVV_URL || '';
   var BLURB = {"Home & around": "Warmer homes, cheaper energy, and easier ways to get about.", "Food": "Growing it, cooking it, sharing it, and knowing where it's from.", "Land & nature": "The Lammas Lands, the heaths, the river, and the wild things in them.", "Being well": "Moving, resting, getting outside and feeling good in your body.", "Work & money": "Money Moves, the local economy, and work that is changing fast.", "Love & connection": "Belonging, care, talking well, sensuality and sexuality.", "Play": "Creativity, culture and voice. The heart of it all."};
   var wrap=document.getElementById('say'), chip=document.getElementById('say-chip'), chip2=document.getElementById('say-chip2'),
       h=document.getElementById('say-h'), form=document.getElementById('say-form'), err=document.getElementById('say-err'),

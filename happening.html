@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>What's happening · Va Va Voom</title>
+<script>/* Where the site sends sign-ups, posts and taps: the Google Apps Script web-app address. */ window.VVV_URL='';</script>
 <meta name="description" content="What if Godalming had a bit more va va voom? Citizens of Godalming making the changes we need now, together.">
 <meta property="og:title" content="Va Va Voom Godalming">
 <meta property="og:description" content="What if Godalming had a bit more va va voom?">
@@ -430,7 +431,7 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
 <script>
 (function(){
   // Where posts go. Paste the Google Apps Script web-app URL here once it's set up; until then posts stay in this browser.
-  var BOARD_URL = '';
+  var BOARD_URL = window.VVV_URL || '';
   var BLURB = {"Home & around": "Warmer homes, cheaper energy, and easier ways to get about.", "Food": "Growing it, cooking it, sharing it, and knowing where it's from.", "Land & nature": "The Lammas Lands, the heaths, the river, and the wild things in them.", "Being well": "Moving, resting, getting outside and feeling good in your body.", "Work & money": "Money Moves, the local economy, and work that is changing fast.", "Love & connection": "Belonging, care, talking well, sensuality and sexuality.", "Play": "Creativity, culture and voice. The heart of it all."};
   var wrap=document.getElementById('say'), chip=document.getElementById('say-chip'), chip2=document.getElementById('say-chip2'),
       h=document.getElementById('say-h'), form=document.getElementById('say-form'), err=document.getElementById('say-err'),
