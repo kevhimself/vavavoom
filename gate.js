@@ -3,7 +3,7 @@
 (function () {
   var KEY = 'vvv-in';
   var WORD = '1tk61rf'; // hash of the secret word, "rabbit hole" (lower case, letters only)
-  var VERSION = window.VVV_VERSION = '0.4.3 (23 October 2026)'; // bump this whenever the site changes
+  var VERSION = window.VVV_VERSION = '0.4.4 (23 October 2026)'; // bump this whenever the site changes
   function hash(s) { var x = 2166136261; for (var i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 16777619) >>> 0; } return x.toString(36); }
   function send(data) {
     data.page = location.pathname; data.when = new Date().toISOString(); data.version = VERSION;
