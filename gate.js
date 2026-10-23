@@ -3,7 +3,7 @@
 (function () {
   var KEY = 'vvv-in';
   var WORD = '1tk61rf'; // hash of the secret word, "rabbit hole" (lower case, letters only)
-  var VERSION = window.VVV_VERSION = '0.4.2 (23 October 2026)'; // bump this whenever the site changes
+  var VERSION = window.VVV_VERSION = '0.4.3 (23 October 2026)'; // bump this whenever the site changes
   function hash(s) { var x = 2166136261; for (var i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 16777619) >>> 0; } return x.toString(36); }
   function send(data) {
     data.page = location.pathname; data.when = new Date().toISOString(); data.version = VERSION;
@@ -94,7 +94,7 @@
     '<p>This is about two and a half hours\' work, made after a People\'s Emergency Briefing action session, as an experiment in getting people into action. It\'s also a nudge to show what we can build ourselves, as citizens, with the tools we have today.</p>' +
     '<p>We\'re letting you in early. Nothing in here has been reviewed in detail yet, so please view it with those eyes.</p>' +
     '<p>Any feedback, or any poking, tapping and posting, would be lovely. The Feedback button sits in the corner whenever you want it.</p>' +
-    '<p><a class="vg-link" href="https://www.notion.so/40293f7bf11a81739a98c6cbfceb97e3" target="_blank" rel="noopener">A bit more about the project →</a></p>' +
+    '<p><a class="vg-link" href="https://sky-wave-139.notion.site/Va-Va-Voom-Godalming-about-this-prototype-40293f7bf11a81739a98c6cbfceb97e3" target="_blank" rel="noopener">A bit more about the project →</a></p>' +
     '<p class="vg-pen">Thanks for being one of the first.</p>' +
     '<button type="button" class="vg-btn">Got it, let me in →</button></div></div>');
   note.querySelector('.vg-btn').addEventListener('click', function () { note.hidden = true; fbBtn.hidden = false; });
