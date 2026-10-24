@@ -217,14 +217,15 @@ h2::after{content:"";display:inline-block;width:.42em;height:.42em;margin-left:.
 .words p{margin:2px 0 0;font-size:15px}
 .words .q{font-family:var(--pen);color:#b8285f;font-size:17px}
 /* NEXT UP */
-.next{background:var(--char);color:var(--paper)}
-.next .wrap{padding-block:12px;display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center}
-.next .lbl{font-family:var(--cut);background:var(--volt);color:var(--char);padding:2px 10px;transform:rotate(-2deg);font-size:15px}
-.next .what{flex:1 1 260px;min-width:0;font-size:16px;line-height:1.4}
-.next .what strong{font-family:var(--cut);font-weight:400;font-size:19px;display:block;color:var(--paper)}
-.next .gl{border-bottom-color:var(--volt)}
-.next a.tix{font-family:var(--cut);font-size:16px;background:var(--neon);color:var(--char);border:3px solid var(--paper);padding:8px 14px;text-decoration:none;white-space:nowrap}
-.next a.more{color:var(--neon2);font-weight:700;white-space:nowrap}
+.next{background:#fbf8f1;color:var(--char);border-bottom:1px dashed #c9c0ae}
+.next .wrap{padding-block:9px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.next .lbl{font-family:var(--type);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--volt);color:var(--char);padding:2px 8px}
+.next .what{flex:1 1 240px;min-width:0;font-size:14px;line-height:1.4;margin:0}
+.next .what strong{font-weight:700}
+.next .gl{border-bottom-color:#b8285f}
+.next .links{display:flex;gap:14px;align-items:center;font-size:14px;font-weight:700;white-space:nowrap}
+.next a.tix{color:var(--char);border-bottom:2px solid var(--zap);text-decoration:none}
+.next a.more{color:var(--clay)}
 /* compass: big tap targets under the graphic */
 .thr-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0 4px}
 .thr-row button{font:inherit;font-weight:700;font-size:15px;min-height:44px;padding:8px 14px;border:2px solid var(--char);cursor:pointer}
@@ -341,14 +342,14 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
 </head>
 <body>
 <script src="gate.js"></script>
+<script src="nav.js"></script>
 
 
 <div class="next" aria-label="Next up">
   <div class="wrap">
     <span class="lbl">Next up</span>
-    <div class="what"><strong>Saturday 31 October, 10.30am · Shackleford</strong>A <button type="button" class="gl" data-gl="peb">People&#x27;s Emergency Briefing</button> hosted by Tim and Sue, then a visit to Norney Farm to see solar, water harvesting and regenerative growing in action, with a wilderness walk across the land.</div>
-    <a class="tix" href="https://www.tickettailor.com/events/jseverest/2441375" target="_blank" rel="noopener">Get tickets →</a>
-    <a class="more" href="happening.html">What's happening →</a>
+    <p class="what"><strong>Sat 31 Oct, 10.30am</strong> · A <button type="button" class="gl" data-gl="peb">People&#x27;s Emergency Briefing</button> with Tim and Sue, then a wander round Norney Farm.</p>
+    <span class="links"><a class="tix" href="https://www.tickettailor.com/events/jseverest/2441375" target="_blank" rel="noopener">Tickets →</a><a class="more" href="happening.html">More</a></span>
   </div>
 </div>
 
