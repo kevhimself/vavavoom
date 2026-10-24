@@ -6,7 +6,7 @@
   var VERSION = window.VVV_VERSION = '0.4.5 (24 October 2026)'; // bump this whenever the site changes
   // PostHog (EU cloud). Paste the project key from PostHog > Settings > Project (it starts phc_).
   // Left blank, PostHog stays off and the consent bar never shows.
-  var PH_KEY = '';
+  var PH_KEY = 'phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6';
   var PH_CHOICE = 'vvv-ph'; // remembers yes or no to recording
   function hash(s) { var x = 2166136261; for (var i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 16777619) >>> 0; } return x.toString(36); }
   function send(data) {
