@@ -3,7 +3,11 @@
 (function () {
   var KEY = 'vvv-in';
   var WORD = '1tk61rf'; // hash of the secret word, "rabbit hole" (lower case, letters only)
-  var VERSION = window.VVV_VERSION = '0.4.4 (23 October 2026)'; // bump this whenever the site changes
+  var VERSION = window.VVV_VERSION = '0.4.5 (24 October 2026)'; // bump this whenever the site changes
+  // PostHog (EU cloud). Paste the project key from PostHog > Settings > Project (it starts phc_).
+  // Left blank, PostHog stays off and the consent bar never shows.
+  var PH_KEY = '';
+  var PH_CHOICE = 'vvv-ph'; // remembers yes or no to recording
   function hash(s) { var x = 2166136261; for (var i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 16777619) >>> 0; } return x.toString(36); }
   function send(data) {
     data.page = location.pathname; data.when = new Date().toISOString(); data.version = VERSION;
@@ -11,6 +15,23 @@
     try { fetch(window.VVV_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(data) }); } catch (e) {}
   }
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+
+  // ---- PostHog: visits are counted without cookies until someone says yes; replay only after a yes.
+  // Every input (email, secret word, feedback) is masked in replays. No email or name is sent to PostHog.
+  function track(name, props) { try { if (PH_KEY && window.posthog) window.posthog.capture(name, props || {}); } catch (e) {} }
+  if (PH_KEY) {
+    /* official PostHog loader */
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister identify reset get_distinct_id set_config startSessionRecording stopSessionRecording opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing get_explicit_consent_status debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    window.posthog.init(PH_KEY, {
+      api_host: 'https://eu.i.posthog.com',
+      defaults: '2025-05-24',
+      cookieless_mode: 'on_reject',
+      person_profiles: 'identified_only',
+      respect_dnt: true,
+      session_recording: { maskAllInputs: true }
+    });
+    window.posthog.register({ site_version: VERSION });
+  }
 
   var css = '\
 .vg-wrap{position:fixed;inset:0;z-index:100;display:grid;place-items:center;overflow:auto;background:#221e19;color:#f3eee2;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));font-family:"Courier Prime","Courier New",monospace}\
@@ -50,7 +71,12 @@
 .vg-fb textarea{min-height:72px;resize:vertical}\
 .vg-x{position:absolute;right:8px;top:6px;border:0;background:none;font-size:26px;cursor:pointer;color:#221e19;padding:4px 8px}\
 .vg-row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}\
-.vg-ghost{font:inherit;font-weight:700;background:none;border:0;text-decoration:underline;cursor:pointer;color:#221e19}';
+.vg-ghost{font:inherit;font-weight:700;background:none;border:0;text-decoration:underline;cursor:pointer;color:#221e19}\
+.vg-ok{position:fixed;left:max(14px,env(safe-area-inset-left,0px));bottom:max(14px,env(safe-area-inset-bottom,0px));z-index:45;width:min(380px,calc(100% - 28px));background:#fbf8f1;color:#221e19;border:3px solid #221e19;box-shadow:5px 5px 0 #221e19;padding:14px 16px;font-family:"Courier Prime","Courier New",monospace;font-size:14px;line-height:1.45}\
+.vg-ok[hidden]{display:none!important}\
+@media (max-width:560px){.vg-ok{bottom:calc(max(14px,env(safe-area-inset-bottom,0px)) + 62px)}}\
+.vg-ok p{margin:0 0 10px}\
+.vg-ok .vg-btn{font-size:15px;padding:8px 14px;box-shadow:3px 3px 0 #221e19;border-color:#221e19;margin:0}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   var RABBIT = '<path d="M22 30 C14 18 12 6 17 4 C22 2 27 14 28 26" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/><path d="M19 9 C21 14 23 19 24 24" stroke="#ee8fa4" stroke-width="3.5" stroke-linecap="round" fill="none"/><path d="M34 26 C36 12 42 2 47 5 C52 8 46 20 39 30" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/><path d="M44 9 C42 14 39 20 37 25" stroke="#ee8fa4" stroke-width="3.5" stroke-linecap="round" fill="none"/><ellipse cx="31" cy="40" rx="17" ry="15" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5"/><circle cx="25" cy="38" r="2.6" fill="#221e19"/><circle cx="37" cy="38" r="2.6" fill="#221e19"/><path d="M29 45 l2 2 l2 -2" stroke="#221e19" stroke-width="2.5" fill="#e8337f" stroke-linejoin="round"/>';
@@ -85,6 +111,7 @@
     var d = { type: 'feedback', felt: f.felt.value.trim(), drawn: f.drawn.value.trim(), turnoff: f.turnoff.value.trim(), onething: f.onething.value.trim(), other: f.other.value.trim(), name: f.name.value.trim(), email: f.email.value.trim() };
     if (!(d.felt || d.drawn || d.turnoff || d.onething || d.other)) { fb.querySelector('.vg-err').textContent = 'Pop a word or two in one of the boxes first.'; return; }
     send(d);
+    track('feedback sent');
     fb.querySelector('.vg-fbform').hidden = true; fb.querySelector('.vg-fbdone').hidden = false;
   });
 
@@ -97,7 +124,24 @@
     '<p><a class="vg-link" href="https://sky-wave-139.notion.site/Va-Va-Voom-Godalming-about-this-prototype-40293f7bf11a81739a98c6cbfceb97e3" target="_blank" rel="noopener">A bit more about the project →</a></p>' +
     '<p class="vg-pen">Thanks for being one of the first.</p>' +
     '<button type="button" class="vg-btn">Got it, let me in →</button></div></div>');
-  note.querySelector('.vg-btn').addEventListener('click', function () { note.hidden = true; fbBtn.hidden = false; });
+  note.querySelector('.vg-btn').addEventListener('click', function () { note.hidden = true; fbBtn.hidden = false; askOk(); });
+
+  // ---- the "OK to record?" bar (only when PostHog is switched on)
+  var ok = el('<div class="vg-ok" hidden role="region" aria-label="Recording your visit">' +
+    '<p>Can we record how you use the site? It shows us where things confuse people. Anything you type is hidden, and the data stays in the EU (PostHog).</p>' +
+    '<div class="vg-row"><button type="button" class="vg-ghost">No thanks</button><button type="button" class="vg-btn">Yes, fine</button></div></div>');
+  function choose(yes) {
+    store(PH_CHOICE, yes ? 'yes' : 'no'); ok.hidden = true;
+    try { if (yes) window.posthog.opt_in_capturing(); else window.posthog.opt_out_capturing(); } catch (e) {}
+  }
+  ok.querySelector('.vg-btn').addEventListener('click', function () { choose(true); });
+  ok.querySelector('.vg-ghost').addEventListener('click', function () { choose(false); });
+  function askOk() {
+    if (!PH_KEY) return;
+    var c = store(PH_CHOICE);
+    if (c === 'yes' || c === 'no') { choose(c === 'yes'); return; }
+    ok.hidden = false;
+  }
 
   // ---- the gate
   var gate = el('<div class="vg-wrap" role="dialog" aria-modal="true" aria-labelledby="vg-gh"><div class="vg-box">' +
@@ -119,14 +163,15 @@
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = 'That email doesn\'t look quite right.'; f.email.focus(); return; }
     if (hash(f.word.value.toLowerCase().replace(/[^a-z]/g, '')) !== WORD) { err.textContent = 'Not quite. Whoever gave you the card knows the word.'; f.word.focus(); return; }
     send({ type: 'access', email: email });
+    track('gate passed');
     store(KEY, '1');
     gate.hidden = true; document.documentElement.style.overflow = '';
     note.hidden = false; note.querySelector('.vg-btn').focus();
   });
 
   function start() {
-    document.body.appendChild(fbBtn); document.body.appendChild(fb); document.body.appendChild(note);
-    if (store(KEY) === '1') { fbBtn.hidden = false; return; }
+    document.body.appendChild(fbBtn); document.body.appendChild(fb); document.body.appendChild(note); document.body.appendChild(ok);
+    if (store(KEY) === '1') { fbBtn.hidden = false; askOk(); return; }
     document.body.appendChild(gate); document.documentElement.style.overflow = 'hidden';
     setTimeout(function () { var i = gate.querySelector('#vg-e'); if (i) i.focus(); }, 50);
   }
