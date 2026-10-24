@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Va Va Voom style sheet</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Bungee&family=Courier+Prime:wght@400;700&family=Permanent+Marker&family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+:root{
+  --paper:#f3eee2;--char:#221e19;--ember:#df8350;--clay:#3d5a8c;--moss:#46643b;
+  --neon:#ee8fa4;--neon2:#f2c75a;--zap:#e8337f;--volt:#c9f24a;--card:#fbf8f1;--deep:#b8285f;
+  --cut:'Bowlby One SC',Impact,'Arial Black',sans-serif;--logo:'Bungee',Impact,'Arial Black',sans-serif;
+  --type:'Courier Prime','Courier New',monospace;--pen:'Permanent Marker','Comic Sans MS',cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--char);font-family:var(--type);font-size:17px;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:900px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:44px;border-bottom:2px dashed #c9c0ae}
+h1{font-family:var(--cut);font-weight:400;font-size:clamp(34px,7vw,60px);line-height:1;margin:28px 0 10px}
+h2{font-family:var(--cut);font-weight:400;font-size:clamp(26px,5vw,40px);line-height:1.05;margin:0 0 16px}
+h3{font-family:var(--cut);font-weight:400;font-size:20px;margin:28px 0 10px}
+p{max-width:62ch}
+.lede{font-size:19px}
+.meta{font-size:14px;color:var(--clay);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.note{font-family:var(--pen);color:var(--deep);font-size:22px;transform:rotate(-1deg);display:inline-block}
+:focus-visible{outline:3px dashed var(--zap);outline-offset:3px}
+
+/* Swatches */
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.s{border:2px solid var(--char);background:var(--card);min-width:0}
+.s .chip{height:74px;border-bottom:2px solid var(--char);display:flex;align-items:flex-end;padding:6px 8px;font-weight:700;font-size:14px}
+.s .info{padding:8px 10px 10px;font-size:14px;line-height:1.4}
+.s b{font-family:var(--cut);font-weight:400;font-size:16px;display:block}
+.s code{font-size:13px}
+.ok{color:var(--moss);font-weight:700}.warn{color:var(--deep);font-weight:700}
+
+/* Type */
+.spec{border:2px solid var(--char);background:var(--card);padding:14px 16px;margin-bottom:12px}
+.spec .lbl{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--clay);display:block;margin-bottom:4px}
+
+/* Components */
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{font-family:var(--cut);font-size:17px;border:3px solid var(--char);padding:12px 20px;background:var(--neon);color:var(--char);box-shadow:4px 4px 0 var(--char);cursor:pointer}
+.btn.q{background:var(--card)}
+.tag{border:2px solid var(--char);padding:5px 11px;font-weight:700;font-size:15px;display:inline-block}
+.nextc{background:var(--card);border:2px solid var(--char);padding:10px 14px;font-size:14px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+.nextc .l{font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--volt);padding:1px 6px}
+.cardc{border:2px solid var(--char);background:var(--card);padding:16px;max-width:300px;transform:rotate(-1deg)}
+.cardc h4{font-family:var(--cut);font-weight:400;font-size:20px;margin:0 0 4px}
+.logoc{display:inline-flex;gap:5px;font-family:var(--logo);font-size:20px}
+.logoc b{font-weight:400;background:var(--neon2);padding:2px 6px}.logoc i{font-style:normal;background:var(--neon);padding:2px 6px}
+
+/* Explorer */
+.picker{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 18px}
+.picker button{font-family:var(--cut);font-size:15px;border:2px solid var(--char);background:var(--card);padding:8px 12px;cursor:pointer;min-height:44px}
+.picker button[aria-pressed="true"]{background:var(--char);color:var(--paper)}
+.why{border-left:4px solid var(--zap);padding:4px 0 4px 14px;margin:0 0 18px}
+.why p{margin:4px 0}
+
+.demo{--d-bg:var(--paper);--d-ink:var(--char);--d-card:var(--card);--d-a:var(--neon);--d-b:var(--neon2);--d-spark:var(--zap);--d-line:var(--char);
+  --d-head:var(--cut);--d-body:var(--type);--d-hand:var(--pen);--d-logo:var(--logo);--d-r:0px;--d-shadow:4px 4px 0 var(--char);--d-tilt:-1deg;--d-border:2px;
+  background:var(--d-bg);color:var(--d-ink);font-family:var(--d-body);border:2px solid var(--char);overflow:hidden;transition:background .25s,color .25s}
+.demo .bar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:var(--d-border) solid var(--d-line)}
+.demo .lg{font-family:var(--d-logo);font-size:17px;display:inline-flex;gap:4px}
+.demo .lg i{font-style:normal;background:var(--d-a);color:var(--d-ink-on-a,#221e19);padding:2px 6px;border-radius:var(--d-r)}
+.demo .burg{width:38px;height:38px;border:var(--d-border) solid var(--d-line);border-radius:var(--d-r);display:grid;place-items:center}
+.demo .burg span,.demo .burg span::before,.demo .burg span::after{display:block;width:18px;height:2.5px;background:var(--d-ink);position:relative}
+.demo .burg span::before,.demo .burg span::after{content:"";position:absolute;left:0}.demo .burg span::before{top:-6px}.demo .burg span::after{top:6px}
+.demo .nx{padding:8px 14px;font-size:14px;border-bottom:1px dashed var(--d-line);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.demo .nx .l{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--d-spark);color:var(--d-on-spark,#221e19);padding:1px 6px;border-radius:var(--d-r)}
+.demo .nx a{color:inherit;border-bottom:2px solid var(--d-spark);text-decoration:none;font-weight:700}
+.demo .hero{padding:26px 18px 30px}
+.demo .stamp{display:inline-block;background:var(--d-a);color:#221e19;font-family:var(--d-logo);font-size:clamp(34px,9vw,62px);line-height:.92;padding:16px 18px 12px;transform:rotate(var(--d-tilt));box-shadow:var(--d-shadow);border-radius:var(--d-r)}
+.demo .stamp span{display:block}.demo .stamp .y{background:var(--d-b);padding:0 8px;display:inline-block}
+.demo h5{font-family:var(--d-head);font-weight:400;font-size:clamp(24px,5vw,38px);line-height:1.08;margin:22px 0 10px;max-width:20ch}
+.demo.dir-day h5,.demo.dir-day .cd h6{font-weight:800}
+.demo p{margin:0 0 10px;max-width:46ch}
+.demo .hand{font-family:var(--d-hand);color:var(--d-hand-c,#b8285f);font-size:24px;transform:rotate(-1deg);display:inline-block;margin:6px 0 14px}
+.demo .tg{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
+.demo .tg span{border:var(--d-border) solid var(--d-line);padding:5px 11px;font-weight:700;font-size:14px;border-radius:var(--d-r);color:#221e19}
+.demo .cta{font-family:var(--d-head);font-size:17px;border:3px solid var(--d-line);padding:11px 18px;background:var(--d-a);color:#221e19;box-shadow:var(--d-shadow);border-radius:var(--d-r);display:inline-block}
+.demo .cd{margin-top:22px;border:var(--d-border) solid var(--d-line);background:var(--d-card);padding:14px 16px;border-radius:var(--d-r);max-width:340px;transform:rotate(calc(var(--d-tilt) * -0.6))}
+.demo .cd h6{font-family:var(--d-head);font-weight:400;font-size:19px;margin:0 0 4px}
+.demo .cd p{font-size:15px;margin:0}
+
+/* A: Rose riot (now) is the default above */
+/* B: Zine on oat */
+.demo.dir-zine{--d-a:#f3eee2;--d-b:#f3eee2;--d-spark:#ee8fa4;--d-shadow:none;--d-tilt:0deg;--d-hand-c:#221e19}
+.demo.dir-zine .stamp{border:3px solid #221e19;background:transparent}
+.demo.dir-zine .stamp .y{background:#ee8fa4}
+.demo.dir-zine .tg span{background:transparent!important}
+.demo.dir-zine .cta{background:#221e19;color:#f3eee2}
+/* C: Solarpunk daylight */
+.demo.dir-day{--d-bg:#f4f1e6;--d-card:#ffffff;--d-a:#9fd27a;--d-b:#ffd66b;--d-spark:#7cc8f0;--d-line:#2b3a2a;--d-ink:#22301f;
+  --d-head:'Fraunces',Georgia,serif;--d-body:'Atkinson Hyperlegible',Verdana,sans-serif;--d-r:14px;--d-shadow:0 6px 0 #2b3a2a;--d-tilt:0deg;--d-hand-c:#3f7a2e}
+/* D: After dark */
+.demo.dir-dark{--d-bg:#1b1815;--d-ink:#f3eee2;--d-card:#2a2521;--d-a:#e8337f;--d-b:#c9f24a;--d-spark:#c9f24a;--d-line:#f3eee2;
+  --d-shadow:4px 4px 0 #c9f24a;--d-hand-c:#c9f24a;--d-ink-on-a:#1b1815}
+.demo.dir-dark .stamp{color:#1b1815}
+.demo.dir-dark .cta{color:#1b1815}
+
+.table{width:100%;border-collapse:collapse;font-size:15px;margin-top:8px}
+.table th,.table td{border:1px solid #c9c0ae;padding:8px;text-align:left;vertical-align:top}
+.table th{font-family:var(--cut);font-weight:400;background:var(--card)}
+.tw{overflow-x:auto}
+ul.rules{padding-left:20px}ul.rules li{margin:6px 0;max-width:62ch}
+footer{padding:30px 0 60px;font-size:14px;color:var(--clay)}
+</style>
+</head>
+<body>
+<script src="gate.js"></script>
+<script src="nav.js"></script>
+
+<header class="wrap">
+  <p class="meta" style="margin-top:28px">Kept by Grain, Keeper of the Grain · v0.1 · 24 October 2026</p>
+  <h1>The Va Va Voom style sheet</h1>
+  <p class="lede">Everything the site is made of, in one place: colours, type and the bits we reuse. Then four directions to play with, so we can choose where the look goes next.</p>
+  <p class="note">Kev directs the style. Grain keeps it tidy and makes suggestions.</p>
+</header>
+
+<section class="wrap" aria-labelledby="h-col">
+  <h2 id="h-col">Colour, as it is now</h2>
+  <p>Ink on oat paper does the reading. Rose is the logo and the main button. Pink and lime sparks are for decoration only, never for words.</p>
+  <div class="sw">
+    <div class="s"><div class="chip" style="background:#f3eee2">Aa</div><div class="info"><b>Paper</b><code>#f3eee2</code><br>The background.</div></div>
+    <div class="s"><div class="chip" style="background:#221e19;color:#f3eee2">Aa</div><div class="info"><b>Ink</b><code>#221e19</code><br>Text, lines, shadows. <span class="ok">14.3 : 1 on paper</span></div></div>
+    <div class="s"><div class="chip" style="background:#ee8fa4">Aa</div><div class="info"><b>Rose</b><code>#ee8fa4</code><br>Logo, main buttons. Ink on rose <span class="ok">7.2 : 1</span>. Rose text on paper <span class="warn">2.0, no</span></div></div>
+    <div class="s"><div class="chip" style="background:#f2c75a">Aa</div><div class="info"><b>Sunshine</b><code>#f2c75a</code><br>Logo stripe, Food. Ink on it <span class="ok">10.3 : 1</span>. Never as text.</div></div>
+    <div class="s"><div class="chip" style="background:#e8337f">Aa</div><div class="info"><b>Zap pink</b><code>#e8337f</code><br>Sparks and underlines only. <span class="warn">3.5 on paper</span></div></div>
+    <div class="s"><div class="chip" style="background:#c9f24a">Aa</div><div class="info"><b>Volt lime</b><code>#c9f24a</code><br>Sparks, the Next up label. Ink on it <span class="ok">12.8 : 1</span></div></div>
+    <div class="s"><div class="chip" style="background:#b8285f;color:#f3eee2">Aa</div><div class="info"><b>Deep pink</b><code>#b8285f</code><br>Handwritten lines, hovers. <span class="ok">5.2 : 1 on paper</span></div></div>
+    <div class="s"><div class="chip" style="background:#3d5a8c;color:#f3eee2">Aa</div><div class="info"><b>Bluebell slate</b><code>#3d5a8c</code><br>Small labels, credits, Work &amp; money. <span class="ok">6.0 : 1</span></div></div>
+    <div class="s"><div class="chip" style="background:#df8350">Aa</div><div class="info"><b>Terracotta</b><code>#df8350</code><br>Home &amp; around, arrows. <span class="warn">2.4 as text, no</span></div></div>
+    <div class="s"><div class="chip" style="background:#fbf8f1">Aa</div><div class="info"><b>Card</b><code>#fbf8f1</code><br>Cards, forms, the menu.</div></div>
+  </div>
+
+  <h3>The six threads, plus Play</h3>
+  <div class="row">
+    <span class="tag" style="background:#df8350">Home &amp; around</span>
+    <span class="tag" style="background:#f2c75a">Food</span>
+    <span class="tag" style="background:#6fa84e">Land &amp; nature</span>
+    <span class="tag" style="background:#5aa9e6">Being well</span>
+    <span class="tag" style="background:#3d5a8c;color:#f3eee2">Work &amp; money</span>
+    <span class="tag" style="background:#ee8fa4">Love &amp; connection</span>
+    <span class="tag" style="background:#f06aa3">Play</span>
+  </div>
+  <p style="font-size:15px;margin-top:12px">Grain's note: Love &amp; connection (rose) and Play (hot pink) sit very close, and rose is also the logo. If we keep the threads, Play could move to purple (<code>#6b4fa0</code>, already used on the portals) so each thread reads on its own.</p>
+</section>
+
+<section class="wrap" aria-labelledby="h-type">
+  <h2 id="h-type">Type</h2>
+  <div class="spec"><span class="lbl">Headlines · Bowlby One SC</span><span style="font-family:var(--cut);font-size:32px;line-height:1.05">Have a poke around</span></div>
+  <div class="spec"><span class="lbl">Logo only · Bungee</span><span style="font-family:var(--logo);font-size:32px">VA VA VOOM</span></div>
+  <div class="spec"><span class="lbl">Reading · Courier Prime, 17px</span>A bunch of Godalming people getting stuck into projects that make our town more creative, more resilient and more ours.</div>
+  <div class="spec"><span class="lbl">The human voice · Permanent Marker, one line at a time</span><span style="font-family:var(--pen);font-size:26px;color:var(--deep)">And doing it together is a lot more fun.</span></div>
+  <p style="font-size:15px">Four typefaces is the limit. Courier gives the zine feel, but long paragraphs of it tire the eye on a phone. That is the main reason Direction C tries a friendlier reading face.</p>
+</section>
+
+<section class="wrap" aria-labelledby="h-bits">
+  <h2 id="h-bits">The bits we reuse</h2>
+  <h3>Buttons</h3>
+  <div class="row"><button class="btn" type="button">Want in?</button><button class="btn q" type="button">Add a thought</button></div>
+  <h3>Next up strip</h3>
+  <div class="nextc"><span class="l">Next up</span><span><b>Sat 31 Oct, 10.30am</b> · People's Emergency Briefing, then a wander round Norney Farm.</span><a href="#" style="font-weight:700;border-bottom:2px solid var(--zap);text-decoration:none">Tickets →</a></div>
+  <h3>Header</h3>
+  <div class="nextc" style="justify-content:space-between"><span class="logoc">VA VA <i>VOOM</i></span><span style="width:40px;height:40px;border:2px solid #221e19;display:grid;place-items:center;font-size:20px">☰</span></div>
+  <h3>Card</h3>
+  <div class="cardc"><h4>Norney Farm</h4><p style="margin:0;font-size:15px">Land, fire, muddy boots. Where things get made.</p></div>
+  <h3>House habits</h3>
+  <ul class="rules">
+    <li>Hard ink borders (2 to 3px), square corners, a solid offset shadow on things you press.</li>
+    <li>A slight tilt (about 1 degree) on stamps and cards. Never on text you have to read.</li>
+    <li>Sparks (the four-point stars) after big headings, one per heading.</li>
+    <li>Tap targets at least 44px. Pink dashed outline when you tab to something.</li>
+    <li>UK English, no long dashes, warm and plain.</li>
+  </ul>
+</section>
+
+<section class="wrap" aria-labelledby="h-explore">
+  <h2 id="h-explore">Explore: four directions</h2>
+  <p>Same content, four looks. Tap one to try it. None of these is decided; they are here to react to.</p>
+  <div class="picker" role="group" aria-label="Pick a direction">
+    <button type="button" data-dir="" aria-pressed="true">A · Rose riot (now)</button>
+    <button type="button" data-dir="dir-zine" aria-pressed="false">B · Zine on oat</button>
+    <button type="button" data-dir="dir-day" aria-pressed="false">C · Solarpunk daylight</button>
+    <button type="button" data-dir="dir-dark" aria-pressed="false">D · After dark</button>
+  </div>
+  <div class="why" id="why" aria-live="polite"></div>
+  <div class="demo" id="demo">
+    <div class="bar"><span class="lg">VA VA <i>VOOM</i></span><span class="burg" aria-hidden="true"><span></span></span></div>
+    <div class="nx"><span class="l">Next up</span><span><b>Sat 31 Oct</b> · People's Emergency Briefing</span><a href="#" onclick="return false">Tickets →</a></div>
+    <div class="hero">
+      <div class="stamp"><span>VA VA</span><span class="y">VOOM</span></div>
+      <h5>What if Godalming had a bit more va va voom?</h5>
+      <p>A bunch of Godalming people getting stuck into projects that make our town more creative, more resilient and more ours.</p>
+      <span class="hand">And doing it together is a lot more fun.</span>
+      <div class="tg"><span style="background:#df8350">energy &amp; solar</span><span style="background:#6fa84e">rivers</span><span style="background:#f2c75a">growing</span><span style="background:#ee8fa4">belonging</span></div>
+      <span class="cta">Want in?</span>
+      <div class="cd"><h6>The studio on the hill</h6><p>Circles, quiet thinking and the occasional loud idea.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="h-compare">
+  <h2 id="h-compare">How they compare</h2>
+  <div class="tw"><table class="table">
+    <tr><th>Direction</th><th>Feels like</th><th>Good for</th><th>Watch out for</th></tr>
+    <tr><td>A · Rose riot</td><td>A gig poster on a café wall</td><td>Standing out, the playful edge, "not another worthy group"</td><td>Can read young (Gill). Lots competing for attention.</td></tr>
+    <tr><td>B · Zine on oat</td><td>A hand-folded pamphlet passed between friends</td><td>Calm, grown-up, lets the words lead. Easiest to keep consistent.</td><td>Loses some of the voom. Needs strong photos or drawings later.</td></tr>
+    <tr><td>C · Solarpunk daylight</td><td>A sunny allotment with good wifi</td><td>Hopeful, welcoming, easy reading for everyone. Fits the solarpunk story.</td><td>Closer to every other green group. Rounded corners soften the edge.</td></tr>
+    <tr><td>D · After dark</td><td>Trinkfluss at 10pm</td><td>Event pages, the hidden portals, invitations, social posts.</td><td>Too much for the main page in daylight. Best as an accent world.</td></tr>
+  </table></div>
+  <h3>Grain's suggestion</h3>
+  <p>Keep A's attitude, borrow B's calm. That means one spark colour per screen, ink and paper for most of the page, and rose kept for the logo and the one button we want pressed. Use D for the secret portals and event invitations, so going "down the rabbit hole" changes the lights. Try C's reading face on the main page to see if it helps on phones.</p>
+  <h3>Questions for Kev</h3>
+  <ul class="rules">
+    <li>Which direction, or which mix?</li>
+    <li>Do we keep seven colours for the threads, or let them be one colour and use names?</li>
+    <li>Is Courier the voice, or just the costume?</li>
+    <li>Should events and portals get their own look (After dark)?</li>
+    <li>If the name changes (Margot is looking at this), the logo goes back on the table too.</li>
+  </ul>
+</section>
+
+<footer class="wrap">Style sheet for the Va Va Voom prototype. The design spec lives in Notion, under Va Va Voom Godalming.</footer>
+
+<script>
+(function(){
+  var WHY={
+    '':'<p><b>A · Rose riot.</b> What is live today. Rose stamp, sunshine stripe, pink and lime sparks, tilted cards, Courier for reading.</p>',
+    'dir-zine':'<p><b>B · Zine on oat.</b> Ink and paper do almost everything. Rose shrinks to one highlight, no tilts or shadows, the button goes black. Quieter and more grown-up.</p>',
+    'dir-day':'<p><b>C · Solarpunk daylight.</b> Leaf green, sun yellow and sky blue, rounded corners, a softer serif headline and Atkinson Hyperlegible for reading (made for people with low vision). Hopeful, open, easy on phones.</p>',
+    'dir-dark':'<p><b>D · After dark.</b> Night background, hot pink and lime. The club-night version. Strong for events, invitations and the secret portals.</p>'
+  };
+  var demo=document.getElementById('demo'),why=document.getElementById('why');
+  var btns=document.querySelectorAll('.picker button');
+  function pick(d){demo.className='demo'+(d?' '+d:'');why.innerHTML=WHY[d];
+    btns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.dir===d?'true':'false');});}
+  btns.forEach(function(b){b.addEventListener('click',function(){pick(b.dataset.dir);});});
+  pick('');
+})();
+</script>
+</body>
+</html>
