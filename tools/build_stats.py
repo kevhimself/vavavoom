@@ -26,8 +26,8 @@ def d(s):
     return datetime.date.fromisoformat(s).strftime('%-d %B')
 
 stats = [
-    (f'{hours:g}', 'hours of Kev\'s time (estimated)'),
-    (str(days), 'days of making'),
+    (f'{hours:g}', 'hours of Kev\'s time'),
+    (str((datetime.date.today()-datetime.date.fromisoformat(first)).days+1), 'days since it started'),
     (str(releases), 'releases'),
     (str(len(pv)), 'versions of the page'),
     (str(pp['let_in']), 'people let in so far'),
@@ -83,7 +83,7 @@ footer{{padding:30px 0 80px}}
 <p>{E(', '.join(P['team']))}.</p>
 
 <h2>Where the hours went</h2>
-<table>{rows}</table>
+<p class="small">Kev's time is measured from when he was actually in the chat, plus ten minutes a sitting. Claude does the building in between, so the making took longer than this.</p><table>{rows}</table>
 
 <h2>Every version of the page</h2>
 <ul class="v">{vers}</ul>

@@ -1,11 +1,21 @@
 {
-  "_how": "Update on every release: add a sitting to 'sittings' (hours are Kev's time, estimated), refresh 'people' from the Access tab, then run python3 tools/build_stats.py. Releases, versions and dates come from git and gate.js automatically.",
+  "_how": "Update on every release: add Kev's time for the sitting (measured from his message times in the chat, plus 10 minutes per sitting), refresh 'people' from the sheet, then run python3 tools/build_stats.py. Releases, versions and dates come from git and gate.js.",
   "sittings": [
-    {"date": "2026-10-20", "hours": 2.0, "what": "First invitation page and logos, the questions form, tags, quiet version"},
-    {"date": "2026-10-21", "hours": 3.0, "what": "Earth, Zing and Pop versions, the compass and tags, portals and secret pages, Simple and Simple2, What's happening, Sam's persona panel; Simple2 goes live"},
-    {"date": "2026-10-23", "hours": 3.0, "what": "Google Sheet catcher, the Watcher, the Notion board, the Rabbit Hole gate, prototype note, feedback button and version numbers"},
-    {"date": "2026-10-24", "hours": 1.5, "what": "PostHog analytics, floating header and menu, lighter Next up, Grain's style sheet, Margot, James and Sam's proposals"},
-    {"date": "2026-10-25", "hours": 4.0, "what": "Trimmed the main page, Carl's user test write-up, three style branches, Tongham with map and web, Share a project, contact consent, The Human Bit, login polish, two-step welcome, this build log"}
+    {
+      "date": "2026-10-20",
+      "hours": 2.5,
+      "what": "20 to 23 October, Kev's own figure: first invitation page and logos, the other versions, compass, portals, Simple2 live, What's happening, the catcher, the Watcher, the gate and feedback"
+    },
+    {
+      "date": "2026-10-24",
+      "hours": 0.25,
+      "what": "PostHog, floating header and menu, lighter Next up, Grain's style sheet, Margot, James and Sam's proposals"
+    },
+    {
+      "date": "2026-10-25",
+      "hours": 1.9,
+      "what": "Trimmed the main page, Carl's write-up, three style branches, Tongham, Share a project, contact consent, The Human Bit, login polish, two-step welcome, this build log"
+    }
   ],
   "people": {
     "as_of": "2026-10-25",
@@ -19,18 +29,70 @@
     "personas": 5,
     "personas_note": "Nikki & James, Gill, Imogen & Dominic (test personas, not real visitors)"
   },
-  "team": ["Kev", "Claude", "Sam (testing)", "Grain (style)", "Margot (shaping)", "James (build)", "the Watcher (board)"],
+  "team": [
+    "Kev",
+    "Claude",
+    "Sam (testing)",
+    "Grain (style)",
+    "Margot (shaping)",
+    "James (build)",
+    "the Watcher (board)"
+  ],
   "page_versions": [
-    ["original.html", "First version, punky", "2026-10-20"],
-    ["quiet.html", "Quiet, one colour", "2026-10-20"],
-    ["earth.html", "Earthier sister", "2026-10-21"],
-    ["zing.html", "Lifted earth, compass and portals", "2026-10-21"],
-    ["pop.html", "Zing plus stickers", "2026-10-21"],
-    ["simple.html", "Curious, show, invite", "2026-10-21"],
-    ["index.html", "Simple2, the live main page", "2026-10-21"],
-    ["v-buzz.html", "Buzzy (Rabbit Hole guide)", "2026-10-25"],
-    ["v-pink.html", "Pink (soft pink guide)", "2026-10-25"],
-    ["v-grounded.html", "Grounded (after Carl)", "2026-10-25"],
-    ["tongham.html", "Tongham, made local", "2026-10-25"]
+    [
+      "original.html",
+      "First version, punky",
+      "2026-10-20"
+    ],
+    [
+      "quiet.html",
+      "Quiet, one colour",
+      "2026-10-20"
+    ],
+    [
+      "earth.html",
+      "Earthier sister",
+      "2026-10-21"
+    ],
+    [
+      "zing.html",
+      "Lifted earth, compass and portals",
+      "2026-10-21"
+    ],
+    [
+      "pop.html",
+      "Zing plus stickers",
+      "2026-10-21"
+    ],
+    [
+      "simple.html",
+      "Curious, show, invite",
+      "2026-10-21"
+    ],
+    [
+      "index.html",
+      "Simple2, the live main page",
+      "2026-10-21"
+    ],
+    [
+      "v-buzz.html",
+      "Buzzy (Rabbit Hole guide)",
+      "2026-10-25"
+    ],
+    [
+      "v-pink.html",
+      "Pink (soft pink guide)",
+      "2026-10-25"
+    ],
+    [
+      "v-grounded.html",
+      "Grounded (after Carl)",
+      "2026-10-25"
+    ],
+    [
+      "tongham.html",
+      "Tongham, made local",
+      "2026-10-25"
+    ]
   ]
 }
