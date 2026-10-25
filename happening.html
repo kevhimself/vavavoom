@@ -212,6 +212,23 @@ h2::after{content:"";display:inline-block;width:.42em;height:.42em;margin-left:.
 .evt h2{font-family:var(--cut);font-weight:400;font-size:clamp(24px,4.4vw,32px);margin:10px 0 4px}
 .evt h2::after{display:none}
 .evt .when{font-weight:700;margin:0 0 8px}
+.evt.hb{transform:rotate(.3deg);margin-top:30px}
+.hb-top{display:flex;gap:14px;align-items:center;margin-top:10px}
+.hb-top img{width:88px;height:88px;object-fit:cover;border:3px solid var(--char);border-radius:50%;flex:none;background:#e6dfd1}
+.hb-top h2{margin:0}
+.hb-sub{font-family:var(--pen);color:#b8285f;font-size:19px;margin:2px 0 0;line-height:1.2}
+.hb-shape{font-size:15px}
+.hb-go,.hb-send{font-family:var(--cut);font-size:16px;background:var(--neon);color:var(--char);border:3px solid var(--char);padding:9px 16px;box-shadow:4px 4px 0 var(--char);cursor:pointer}
+.hb-note{font-size:14px;color:var(--clay)}
+.hb-form{display:grid;gap:10px;margin-top:16px;border-top:2px dashed #c9c0ae;padding-top:14px}
+.hb-form label{display:grid;gap:4px;font-weight:700;font-size:14px}
+.hb-form label span{font-weight:400;color:var(--clay)}
+.hb-form input,.hb-form textarea{font:inherit;font-size:16px;padding:9px 11px;border:2px solid var(--char);background:#fff;border-radius:0}
+.hb-form textarea{min-height:70px}
+.hb-hp{position:absolute;left:-9999px}
+.hb-promise{font-size:13px;color:var(--clay);margin:0}
+.hb-err{min-height:1.2em;color:#b8285f;font-weight:700;margin:0}
+.hb-send{justify-self:start}
 .evt .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:12px}
 .evt a.tix{font-family:var(--cut);font-size:16px;background:var(--neon);color:var(--char);border:3px solid var(--char);padding:9px 16px;text-decoration:none;box-shadow:4px 4px 0 var(--char)}
 .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:20px}
@@ -383,6 +400,30 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
     <div class="row"><a class="tix" href="https://www.tickettailor.com/events/jseverest/2441375" target="_blank" rel="noopener">Get tickets →</a></div>
   </section>
 
+  <section class="evt hb" id="human-bit" aria-labelledby="ev2">
+    <span class="lbl">Then</span>
+    <div class="hb-top"><img src="people/kev.jpg" alt="Kev Self" width="88" height="88" loading="lazy"><div>
+    <h2 id="ev2">The Human Bit</h2>
+    <p class="hb-sub">A circle on being analogue humans in a digital world</p></div></div>
+    <p class="when">Thursday 12 November 2026 · 7pm to 9pm · The studio on the hill, Catteshall Lane · Free</p>
+    <p>AI has crept into our work, our homes and our heads faster than any of us expected. Some of it's brilliant. Some of it's unsettling. Most of us haven't had time to stop and ask what we actually want from it.</p>
+    <p>So let's. One evening, in a circle, sharing real stories: where it's helped, where it's taken over, and where we want to stay properly human. We'll leave with one intentional change each, and maybe a project or two to do together.</p>
+    <p><strong>Hosted by Kev Self.</strong> Kev brings a few weeks of living with an AI team that runs his home, his diary and his business: the good, the weird, and what he's learning about staying embodied.</p>
+    <p class="hb-shape"><b>How it'll go:</b> a grounded check-in (one breath, one word) · a story round · open conversation · one change each to close.</p>
+    <p><b>Bring:</b> a story, an open mind, and a bottle if you fancy one.</p>
+    <div class="row"><button type="button" class="hb-go" aria-expanded="false" aria-controls="hb-form">I'm interested →</button><span class="hb-note">Booking link coming soon. Say you're interested and we'll send it.</span></div>
+    <form id="hb-form" class="hb-form" hidden novalidate>
+      <label>Your first name<input name="name" type="text" autocomplete="given-name"></label>
+      <label>Email or phone, so we can send the booking link<input name="contact" type="text" autocomplete="email"></label>
+      <label>A story or question you might bring <span>(optional)</span><textarea name="story"></textarea></label>
+      <label class="hb-hp" aria-hidden="true">Leave this empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+      <p class="hb-promise">We'll only use this to send you the booking link and the details for this evening.</p>
+      <p class="hb-err" role="alert"></p>
+      <button type="submit" class="hb-send">Count me in →</button>
+    </form>
+    <p class="hb-done" hidden><b>Lovely, you're on the list.</b> We'll send the booking link as soon as it's ready.</p>
+  </section>
+
   <section aria-labelledby="h-proj" style="padding-block:40px 10px">
     <div class="eyebrow">Projects</div>
     <h2 id="h-proj">Learn from a neighbour</h2>
@@ -549,5 +590,23 @@ footer small{display:block;margin-top:20px;font-size:13px;color:var(--clay)}
 
 
 
+<script>
+(function(){
+  var go=document.querySelector('.hb-go'), f=document.getElementById('hb-form'), done=document.querySelector('.hb-done'), opened=0;
+  if(!go||!f) return;
+  var URL=window.VVV_URL||'';
+  go.addEventListener('click',function(){ var o=f.hidden; f.hidden=!o; go.setAttribute('aria-expanded',o?'true':'false'); if(o){opened=Date.now(); f.elements.name.focus(); if(window.vvvSignal) window.vvvSignal('event interest opened','The Human Bit');} });
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var F=f.elements, name=F.name.value.trim(), c=F.contact.value.trim(), err=f.querySelector('.hb-err');
+    if(!name){err.textContent='Just a first name is fine.';F.name.focus();return}
+    if(!c){err.textContent='An email or phone number, so we can send the link.';F.contact.focus();return}
+    var bot=F.website.value!==''||(Date.now()-opened)<2500, mail=c.indexOf('@')>-1;
+    var d={type:'signup',name:name,phone:mail?'':c,email:mail?c:'',fit:'in',bring:F.story.value.trim(),thread:'Event: The Human Bit, Thu 12 Nov',page:location.pathname,when:new Date().toISOString()};
+    if(!bot&&URL){ try{ fetch(URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)}).catch(function(){}) }catch(x){} }
+    f.hidden=true; go.hidden=true; document.querySelector('.hb-note').hidden=true; done.hidden=false;
+  });
+})();
+</script>
 </body>
 </html>

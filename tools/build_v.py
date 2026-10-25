@@ -75,6 +75,7 @@ GODALMING = {
  'next': {'label': 'Next up', 'title': "People's Emergency Briefing", 'when': 'Saturday 31 October, 10.30am · Shackleford',
           'what': 'Tim and Sue explain plainly where things have got to and what we can do here. Then a wander round Norney Farm.',
           'proof': '40-odd of us are going. Room for about 100.', 'url': 'https://www.tickettailor.com/events/jseverest/2441375', 'cta': 'Get tickets →'},
+ 'then': ('Then', 'The Human Bit', 'Thursday 12 November, 7 to 9pm · the studio on the hill · free', 'A circle on being analogue humans in a digital world. Real stories about AI: where it helps, where it takes over, where we stay human. Hosted by Kev.', 'happening.html#human-bit', 'people/kev.jpg'),
  'easy': ('Or start easy:', 'a walk and a pint.', "I'd come for a walk →", 'A walk and a pint', 'Where would you walk? Any day or time that suits you?'),
  'projects': [
    ('Home & around', 'Choosing solar', 'Tim', 'Norney', 'How Tim chose his solar, battery and rain tanks, what they really save, and what he\'d do differently.'),
@@ -87,6 +88,7 @@ GODALMING = {
    ('The briefing', 'Forty-odd tickets gone for 31 October. Not bad for a Saturday morning about the state of the world.'),
  ],
  'odd': ['See things a bit differently from everyone else?', 'Quietly the odd one out at the dinner party?', 'Maybe this is your place.'],
+ 'faces': {'Kev': 'people/kev.jpg', 'Tim': 'people/tim.jpg', 'Carl': 'people/carl.jpg', 'Reiks': 'people/reiks.jpg', 'Ruth': 'people/ruth.jpg'},
  'people': [('Kev', 'Started it. Runs his home on sunshine and small computers.'), ('Tim', 'Norney Farm. Solar, rain, cider, 3D models.'), ('Sue', 'Hosts the briefings. Has the time and the questions.'),
             ('Carl', 'Builds small, clever things. Will tell you if it\'s too silly.'), ('Reiks', 'Milford. Bug houses and walls that grow.'), ('Ruth', 'Coaching for when life shifts under your feet.')],
  'places': [('Norney Farm', 'Land, fire, muddy boots. Where things get made.', 'roots.html'), ('The studio on the hill', 'Circles, quiet thinking, the occasional loud idea.', 'circle.html'), ('Trinkfluss', 'The clubhouse. Bastian pours, we plot.', 'nest.html')],
@@ -200,6 +202,13 @@ a{color:inherit}
 .nextcard h3{font-size:clamp(22px,4vw,30px);margin-bottom:6px}
 .nextcard .when{font-weight:700;margin-bottom:8px}
 .nextcard .proof{font-weight:700;color:var(--muted)}
+.thencard{display:flex;gap:14px;align-items:flex-start;text-decoration:none;color:inherit;margin:0 0 18px}
+.thencard img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;border:var(--bw) solid var(--line)}
+.thencard .lbl{display:inline-block;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:var(--spark);color:var(--spark-ink);padding:1px 7px;border-radius:var(--r);margin-bottom:4px}
+.thencard b{display:block;font-family:var(--head);font-weight:400;font-size:21px;line-height:1.1}
+.thencard .tw{display:block;font-weight:700;font-size:14px;margin:4px 0}.thencard .td{display:block;font-size:15px}.thencard .tm{display:block;font-weight:700;margin-top:6px;text-decoration:underline;text-underline-offset:3px}
+.pp{display:flex;gap:12px;align-items:flex-start}.pp img,.pp .ph{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;border:var(--bw) solid var(--line)}
+.pp .ph{display:grid;place-items:center;font-style:normal;font-family:var(--head);font-size:22px;background:var(--card)}
 .easy{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
 .easy b{font-family:var(--head);font-weight:400;font-size:20px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
@@ -399,6 +408,9 @@ def build(theme, D, fname, title, tongham=False):
         w('<button type="button" class="btn" data-act="board" data-thread="Meet-ups" data-tag="' + E(n['title']) + '" data-title="' + E(n['title']) + '" data-prompt="Which weekend works? Anyone you\'d bring?" data-label="When could you come?">I\'d come →</button>')
         w('<button type="button" class="btn q" data-act="quick" data-thread="Tell me about the next one" data-title="Tell me what\'s on" data-prompt="No feeds, no spam. Just a nudge when something good is on nearby.">Tell me what\'s on</button>')
     w('</div></div>')
+    if D.get('then'):
+        tl, tt, tw, td, tu, ti = D['then']
+        w('<a class="card thencard" href="' + tu + '" data-sig="then event"><img src="' + ti + '" alt="" width="56" height="56" loading="lazy"><span><span class="lbl">' + E(tl) + '</span><b>' + E(tt) + '</b><span class="tw">' + E(tw) + '</span><span class="td">' + E(td) + '</span><span class="tm">More and I\'m interested →</span></span></a>')
     e = D['easy']
     w('<div class="easy"><b>' + E(e[0]) + '</b><span>' + E(e[1]) + '</span><button type="button" class="btn q" data-act="board" data-thread="Meet-ups" data-tag="' + E(e[3]) + '" data-title="' + E(e[3]) + '" data-prompt="' + E(e[4]) + '">' + E(e[2]) + '</button></div>')
     w('</div></section>')
@@ -455,7 +467,8 @@ def build(theme, D, fname, title, tongham=False):
         w('</div></section>')
     else:
         w('<section id="who"><div class="wrap"><h2>' + h2('Who we are', theme, 'we are') + '</h2><p>A few Godalming people who got tired of talking about it.</p><div class="people">')
-        w(''.join('<div><b>' + E(a) + '</b><span>' + E(b) + '</span></div>' for a, b in D['people']) + '</div>')
+        F = D.get('faces', {})
+        w(''.join('<div class="pp">' + ('<img src="' + F[a] + '" alt="" width="52" height="52" loading="lazy">' if a in F else '<i class="ph">' + E(a[0]) + '</i>') + '<div><b>' + E(a) + '</b><span>' + E(b) + '</span></div></div>' for a, b in D['people']) + '</div>')
         w('<h3 style="margin-bottom:12px">Where you\'ll find us</h3><div class="grid places">' + ''.join('<div class="card"><h3>' + E(a) + '</h3><p style="margin-top:6px">' + E(b) + '</p><a class="door" href="' + u + '" data-sig="portal ' + E(a) + '">Peek inside →</a></div>' for a, b, u in D['places']) + '</div>')
         w('</div></section>')
 
