@@ -3,7 +3,7 @@
 (function () {
   var KEY = 'vvv-in';
   var WORD = '1tk61rf'; // hash of the secret word, "rabbit hole" (lower case, letters only)
-  var VERSION = window.VVV_VERSION = '0.6.4 (25 October 2026)'; // bump this whenever the site changes
+  var VERSION = window.VVV_VERSION = '0.6.5 (25 October 2026)'; // bump this whenever the site changes
   // PostHog (EU cloud). Paste the project key from PostHog > Settings > Project (it starts phc_).
   // Left blank, PostHog stays off and the consent bar never shows.
   var PH_KEY = 'phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6';
@@ -66,9 +66,15 @@
 .vg-bad input{border-color:#ff8fab!important;box-shadow:0 0 0 2px #ff8fab}\
 .vg-err{min-height:1.4em;color:#ee8fa4;font-weight:700;font-size:14px;margin:0}\
 .vg-small{font-size:13px!important;color:#b8b0a2!important;margin-top:14px!important}\
-.vg-note{position:fixed;inset:0;z-index:101;display:grid;place-items:center;background:rgba(34,30,25,.6);padding:16px;font-family:"Courier Prime","Courier New",monospace}\
+.vg-note{position:fixed;inset:0;z-index:101;display:grid;place-items:center;background:rgba(20,18,15,.78);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);padding:16px;font-family:"Courier Prime","Courier New",monospace}\
 .vg-card{width:min(460px,100%);background:#fbf8f1;color:#221e19;border:3px solid #221e19;box-shadow:8px 8px 0 #221e19;padding:22px 22px 18px;transform:rotate(-.6deg);position:relative}\
 .vg-card::before{content:"";position:absolute;top:-13px;left:24px;width:110px;height:26px;background:rgba(201,242,74,.8);transform:rotate(-4deg);border:1px solid rgba(34,30,25,.2)}\
+.vg-steps{width:min(400px,100%);padding:20px 20px 16px}\
+.vg-steps p{font-size:15px!important;margin:0 0 10px!important}\
+.vg-steps .vg-btn{width:100%;margin-top:6px}\
+.vg-steps .vg-ghost{display:block;margin:12px auto 0;min-height:40px}\
+.vg-dots{display:flex;gap:6px;margin:0 0 6px!important}.vg-dots i{width:22px;height:5px;background:#e6dfd1;display:block}.vg-dots i.on{background:#e8337f}\
+.vg-ticks{margin:0 0 12px;padding:0;list-style:none;font-size:14px}.vg-ticks li{padding-left:22px;position:relative;margin:4px 0}.vg-ticks li::before{content:"\\2713";position:absolute;left:0;color:#46643b;font-weight:700}\
 .vg-card h2{font-family:"Bowlby One SC",Impact,"Arial Black",sans-serif;font-weight:400;font-size:24px;margin:4px 0 10px;line-height:1.1}\
 .vg-card p{margin:0 0 10px;font-size:16px;line-height:1.5}\
 .vg-link{color:#221e19;font-weight:700;text-decoration:none;border-bottom:3px solid #e8337f}\
@@ -130,32 +136,35 @@
     fb.querySelector('.vg-fbform').hidden = true; fb.querySelector('.vg-fbdone').hidden = false;
   });
 
-  // ---- the "early prototype" note
-  var note = el('<div class="vg-note" hidden role="dialog" aria-modal="true" aria-labelledby="vg-nh"><div class="vg-card">' +
-    '<h2 id="vg-nh">A very early prototype</h2>' +
-    '<p>This is about two and a half hours\' work, made after a People\'s Emergency Briefing action session, as an experiment in getting people into action. It\'s also a nudge to show what we can build ourselves, as citizens, with the tools we have today.</p>' +
-    '<p>We\'re letting you in early. Nothing in here has been reviewed in detail yet, so please view it with those eyes.</p>' +
-    '<p>Any feedback, or any poking, tapping and posting, would be lovely. The Feedback button sits in the corner whenever you want it.</p>' +
-    '<p class="vg-pen">Thanks for being one of the first.</p>' +
-    '<button type="button" class="vg-btn">Got it, let me in →</button></div></div>');
-  note.querySelector('.vg-btn').addEventListener('click', function () { note.hidden = true; fbBtn.hidden = false; askOk(); });
-
-  // ---- the "OK to record?" bar (only when PostHog is switched on)
-  var ok = el('<div class="vg-ok" hidden role="region" aria-label="Recording your visit">' +
-    '<p>Can we record how you use the site? It shows us where things confuse people. Anything you type is hidden, and the data stays in the EU (PostHog).</p>' +
-    '<div class="vg-row"><button type="button" class="vg-ghost">No thanks</button><button type="button" class="vg-btn">Yes, fine</button></div></div>');
-  function choose(yes) {
-    store(PH_CHOICE, yes ? 'yes' : 'no'); ok.hidden = true;
+  // ---- after the gate: a short two-step card (welcome, then the analytics choice)
+  var note = el('<div class="vg-note" hidden role="dialog" aria-modal="true" aria-labelledby="vg-nh"><div class="vg-card vg-steps">' +
+    '<div class="vg-s1"><p class="vg-dots" aria-hidden="true"><i class="on"></i><i></i></p>' +
+    '<h2 id="vg-nh">You\'re in. Welcome.</h2>' +
+    '<p>This is a very early prototype, made in an afternoon. Poke it, tap things, post a thought. It\'s meant to be rough.</p>' +
+    '<p class="vg-pen">Tell us what you think: the Feedback button lives in the corner.</p>' +
+    '<button type="button" class="vg-btn vg-next">Yes, I\'m in →</button></div>' +
+    '<div class="vg-s2" hidden><p class="vg-dots" aria-hidden="true"><i class="on"></i><i class="on"></i></p>' +
+    '<h2 id="vg-oh" tabindex="-1">Help us make it better?</h2>' +
+    '<p>Let us see how people move around the page, not who you are. It shows us what Godalming actually taps on, so we grow the right things.</p>' +
+    '<ul class="vg-ticks"><li>Anything you type stays hidden</li><li>No names, no selling, data stays in the EU</li><li>Change your mind any time</li></ul>' +
+    '<button type="button" class="vg-btn vg-yes">Yes, count me in →</button>' +
+    '<button type="button" class="vg-ghost vg-no">Just count my visit</button></div>' +
+    '</div></div>');
+  var s1 = note.querySelector('.vg-s1'), s2 = note.querySelector('.vg-s2');
+  function finish() { note.hidden = true; fbBtn.hidden = false; document.documentElement.style.overflow = ''; }
+  function needAsk() { if (!PH_KEY) return false; var c = store(PH_CHOICE); if (c === 'yes' || c === 'no') { choose(c === 'yes', true); return false; } return true; }
+  function showStep2() { s1.hidden = true; s2.hidden = false; note.hidden = false; document.documentElement.style.overflow = 'hidden'; setTimeout(function () { note.querySelector('.vg-yes').focus(); }, 30); }
+  note.querySelector('.vg-next').addEventListener('click', function () { if (needAsk()) showStep2(); else finish(); });
+  function choose(yes, silent) {
+    store(PH_CHOICE, yes ? 'yes' : 'no');
     try { if (yes) window.posthog.opt_in_capturing(); else window.posthog.opt_out_capturing(); } catch (e) {}
+    if (!silent) finish();
   }
-  ok.querySelector('.vg-btn').addEventListener('click', function () { choose(true); });
-  ok.querySelector('.vg-ghost').addEventListener('click', function () { choose(false); });
-  function askOk() {
-    if (!PH_KEY) return;
-    var c = store(PH_CHOICE);
-    if (c === 'yes' || c === 'no') { choose(c === 'yes'); return; }
-    ok.hidden = false;
-  }
+  note.querySelector('.vg-yes').addEventListener('click', function () { choose(true); });
+  note.querySelector('.vg-no').addEventListener('click', function () { choose(false); });
+  // returning visitors who never answered see just step 2
+  function askOk() { if (needAsk()) showStep2(); }
+  var ok = document.createElement('span'); // kept so start() can append it harmlessly
 
   // ---- the gate
   var gate = el('<div class="vg-wrap" role="dialog" aria-modal="true" aria-labelledby="vg-gh"><div class="vg-box">' +
@@ -206,8 +215,8 @@
     send({ type: 'access', email: email, contact: c ? c.value : 'No' });
     track('gate passed');
     store(KEY, '1');
-    gate.hidden = true; document.documentElement.style.overflow = '';
-    note.hidden = false; note.querySelector('.vg-btn').focus();
+    gate.hidden = true;
+    s1.hidden = false; s2.hidden = true; note.hidden = false; note.querySelector('.vg-next').focus();
   });
 
   function start() {
