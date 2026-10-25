@@ -8,7 +8,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Bungee&family=Courier+Prime:wght@400;700&family=Permanent+Marker&display=swap">
-<script>window.VVV_URL="https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec";window.VVV_PLACE="Godalming";window.VVV_NAV=[["Next up", "#door"], ["What's happening", "#happening"], ["Good news", "#goodnews"], ["Is this you?", "#you"], ["Find your thread", "#threads"], ["Who we are", "#who"], ["Want in?", "#in"]];</script>
+<script>window.VVV_URL="https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec";window.VVV_PLACE="Godalming";window.VVV_NAV=[["Next up", "#door"], ["What's happening", "#happening"], ["Share a project", "#share"], ["Good news", "#goodnews"], ["Is this you?", "#you"], ["Find your thread", "#threads"], ["Who we are", "#who"], ["Want in?", "#in"]];</script>
 <style>
 *{box-sizing:border-box}
 html{scroll-padding-top:70px}
@@ -84,6 +84,13 @@ footer{padding:36px 0 90px;font-size:14px;color:var(--muted)}
 .vf-row{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
 .vf-ghost{font:inherit;font-weight:700;background:none;border:0;text-decoration:underline;cursor:pointer;color:inherit}
 .vf-note{font-size:13px;opacity:.75;margin-top:10px}
+.share h2{font-size:clamp(24px,4.6vw,36px)}
+.asks{margin:6px 0 18px;padding-left:20px}.asks li{margin:4px 0}
+.vf-card select{font:inherit;font-size:16px;padding:10px 11px;border:var(--bw) solid var(--card-ink);background:#fff;color:#221e19;border-radius:var(--r);width:100%}
+.vp-who{border:0;padding:0;margin:0 0 10px}.vp-who legend{font-weight:700;font-size:14px;margin-bottom:6px}
+.vp-who label{display:flex;gap:8px;align-items:center;font-weight:400;margin:4px 0}.vp-who input{width:auto}
+.vp-step{font-family:var(--head);font-size:17px;margin:16px 0 8px;padding-top:12px;border-top:1px dashed currentColor}
+.vf-card label.chk{display:flex;gap:10px;align-items:flex-start;font-weight:400}.vf-card label.chk input{width:auto;margin-top:4px}
 
 :root{--bg:#f3eee2;--ink:#221e19;--muted:#3d5a8c;--card:#fbf8f1;--card-solid:#fbf8f1;--card-ink:#221e19;--line:#221e19;--a:#ee8fa4;--a-ink:#221e19;--spark:#e8337f;--spark-ink:#fbf8f1;
 --head:'Bowlby One SC',Impact,'Arial Black',sans-serif;--body:'Courier Prime','Courier New',monospace;--r:0px;--shadow:4px 4px 0 #221e19;--bw:2px;color-scheme:light}
@@ -125,6 +132,10 @@ h2::after{content:"";display:inline-block;width:.42em;height:.42em;margin-left:.
 </div>
 <a class="more" href="happening.html" data-sig="all projects">All six projects →</a>
 </div></section>
+<section id="share"><div class="wrap"><div class="card share"><h2>Know a project we should all know about?</h2>
+<p>Something brilliant happening near Godalming? Yours, a friend's, or one you just love. Tell us who's behind it, what you love about it, and the little secrets for getting the best from it. We check it, ask the person if they're happy, then add it here.</p>
+<ul class="asks"><li>What it is, and who's doing it</li><li>What you love about it</li><li>Tips and little secrets</li><li>How to get involved, key dates, a link</li></ul>
+<button type="button" class="btn" id="vp-open">Share a project →</button></div></div></section>
 <section id="goodnews"><div class="wrap"><h2>Good news from round here</h2>
 <p>Small wins, out loud. This is what it looks like when things move.</p><div class="grid">
 <article class="card"><h3>Norney Farm</h3><p style="margin-top:6px">Tim gave Claude a floor plan and got back a 3D model of the bungalow that works out how much rain each roof catches. Numbers people, this one&#x27;s for you.</p></article>
@@ -158,6 +169,31 @@ h2::after{content:"";display:inline-block;width:.42em;height:.42em;margin-left:.
 <p class="vf-err" role="alert"></p><div class="vf-row"><button type="button" class="vf-ghost" data-close>Not now</button><button type="submit" class="btn">Send it →</button></div></form>
 <p class="vf-note">Read by a human before anything goes anywhere. Be kind, keep it real.</p></div>
 <div class="vf-done" hidden><h2>Lovely. Got it.</h2><p>We'll be in touch if it's alive. Fancy another?</p><button type="button" class="btn" data-close>Back to the page</button></div></div></div>
+<div class="vf" id="vp" hidden role="dialog" aria-modal="true" aria-labelledby="vp-h"><div class="vf-card"><button type="button" class="vf-x" data-pclose aria-label="Close">×</button>
+<div class="vf-body"><h2 id="vp-h">Share a project</h2><p>A few lines each is plenty. Only the first two are a must.</p><form novalidate>
+<label>What's the project called? *<input name="title" type="text"></label>
+<label>What is it? *<span>What happens, where, who it's for</span><textarea name="what"></textarea></label>
+<fieldset class="vp-who"><legend>Is it yours?</legend><label><input type="radio" name="rel" value="I run it"> I run it</label><label><input type="radio" name="rel" value="I'm part of it"> I'm part of it</label><label><input type="radio" name="rel" value="I just love it" checked> I just love it</label></fieldset>
+<p class="vp-step">The person behind it</p>
+<label>Who's doing it?<input name="lead" type="text"></label>
+<label>A little about them<span>What they're like, why they started it</span><textarea name="about"></textarea></label>
+<p class="vp-step">Why it's good</p>
+<label>What do you love about it?<textarea name="love"></textarea></label>
+<label>Tips and little secrets<span>How to get the best from it. The corner seat, the cheaper pass, the day to go.</span><textarea name="tips"></textarea></label>
+<p class="vp-step">Getting involved</p>
+<label>How best to get involved<textarea name="engage"></textarea></label>
+<label>Key dates or times<input name="dates" type="text"></label>
+<label>A link<span>Website, booking page or Instagram</span><input name="url" type="url" inputmode="url" placeholder="https://"></label>
+<label>Which thread is it closest to?<select name="thread"><option value="">Not sure</option><option>Home &amp; around</option><option>Food</option><option>Land &amp; nature</option><option>Being well</option><option>Work &amp; money</option><option>Love &amp; connection</option><option>Play &amp; sport</option></select></label>
+<label>Where is it?<input name="where" type="text"></label>
+<p class="vp-step">You</p>
+<label>Your first name *<input name="name" type="text" autocomplete="given-name"></label>
+<label>Email <span>(optional, so we can check details with you)</span><input name="email" type="email" autocomplete="email"></label>
+<label class="chk"><input type="checkbox" name="ok"> If it's not yours, I think they'd be happy to be on here. (We'll ask them before it goes up.)</label>
+<label class="vf-hp" aria-hidden="true">Leave this empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+<p class="vf-err" role="alert"></p><div class="vf-row"><button type="button" class="vf-ghost" data-pclose>Not now</button><button type="submit" class="btn">Send it →</button></div></form>
+<p class="vf-note">Read by a human, and checked with the person behind it, before anything goes on the site.</p></div>
+<div class="vf-done" hidden><h2>Brilliant, thank you.</h2><p>We'll take a look, check with the person behind it, and add it when it's ready. Know another?</p><button type="button" class="btn" data-pclose>Back to the page</button></div></div></div>
 <script>window.VVV_THREADS=[{"n": "Home & around", "i": "home", "c": "#df8350", "line": "Warm homes, cheaper energy, getting around without the car.", "tags": ["energy & solar", "warm homes", "water & floods", "getting around"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 11 12 4l9 7\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/></svg>"}, {"n": "Food", "i": "food", "c": "#f2c75a", "line": "Growing it, cooking it, sharing it, knowing where it came from.", "tags": ["growing", "cooking together", "local supply", "cider & preserving"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21V11\"/><path d=\"M12 13c0-4 3-6 7-6 0 4-3 6-7 6Z\"/><path d=\"M12 15c0-3-2-5-6-5 0 3 2 5 6 5Z\"/></svg>"}, {"n": "Land & nature", "i": "land", "c": "#6fa84e", "line": "The Lammas Lands, the heaths, the rivers, and the scruffy corners.", "tags": ["Lammas Lands", "heathlands", "rivers", "guerrilla gardening"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21v-5\"/><path d=\"M12 3 6 13h12Z\"/><path d=\"M3 21h18\"/></svg>"}, {"n": "Being well", "i": "well", "c": "#5aa9e6", "line": "Moving, resting, getting outside, feeling properly alive.", "tags": ["sauna & cold water", "walks", "outdoors", "rest"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10Z\"/></svg>"}, {"n": "Work & money", "i": "money", "c": "#3d5a8c", "ink": "#fbf8f1", "line": "Making a living, saving, and spending it where it keeps the town going.", "tags": ["Money Moves", "local economy", "skills swap", "AI & jobs"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.5 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5\"/></svg>"}, {"n": "Love & connection", "i": "love", "c": "#ee8fa4", "line": "Neighbours, belonging, looking after each other.", "tags": ["meeting neighbours", "care", "belonging", "life off the feed"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"8\" r=\"3\"/><circle cx=\"16\" cy=\"8\" r=\"3\"/><path d=\"M3 20c0-3 2.5-5 5-5s5 2 5 5\"/><path d=\"M11 20c0-3 2.5-5 5-5s5 2 5 5\"/></svg>"}, {"n": "Play & sport", "i": "play", "c": "#6b4fa0", "ink": "#fbf8f1", "line": "Making, music, and sport for the fun of it, not the league table.", "q": "What kind of play gets you out of the house?", "tags": ["ceilidh", "ultimate frisbee", "social trail running", "beer bike", "making & music"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M4.5 9.5c3 1 5 3.5 5.5 10M19.5 9.5c-3 1-5 3.5-5.5 10M8 4.8c1.5 2 6.5 2 8 0\"/></svg>"}];</script>
 <script src="v.js"></script>
 <script>document.getElementById("ver").textContent=(window.VVV_VERSION||"").split(" ")[0];</script>

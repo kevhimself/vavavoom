@@ -136,6 +136,32 @@
     web.appendChild(svg);
   }
 
+
+  /* ---------- share a project ---------- */
+  var vp = document.getElementById('vp'), vpOpen = document.getElementById('vp-open');
+  if (vp && vpOpen) {
+    var pf = vp.querySelector('form'), perr = vp.querySelector('.vf-err'), pbody = vp.querySelector('.vf-body'), pdone = vp.querySelector('.vf-done'), popened = 0, plast = null;
+    function popen() { plast = document.activeElement; popened = Date.now(); pf.reset(); perr.textContent = ''; pbody.hidden = false; pdone.hidden = true; vp.hidden = false; document.body.style.overflow = 'hidden'; setTimeout(function () { pf.title.focus(); }, 40); signal('project form opened'); }
+    function pclose() { vp.hidden = true; document.body.style.overflow = ''; if (plast) try { plast.focus(); } catch (e) {} }
+    vpOpen.addEventListener('click', popen);
+    vp.querySelectorAll('[data-pclose]').forEach(function (b) { b.addEventListener('click', pclose); });
+    vp.addEventListener('click', function (e) { if (e.target === vp) pclose(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !vp.hidden) pclose(); });
+    pf.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = pf.elements, v = function (n) { return (f[n] && f[n].value || '').trim(); };
+      if (!v('title')) { perr.textContent = 'What\'s it called?'; f.title.focus(); return; }
+      if (!v('what')) { perr.textContent = 'A line on what it is, please.'; f.what.focus(); return; }
+      if (!v('name')) { perr.textContent = 'Pop your first name in, so we know who to thank.'; f.name.focus(); return; }
+      var url = v('url'); if (url && !/^https?:\/\//i.test(url)) url = 'https://' + url;
+      var bot = v('website') || (Date.now() - popened < 4000);
+      var rel = (pf.querySelector('input[name="rel"]:checked') || {}).value || '';
+      if (!bot) send({ type: 'project', title: v('title'), what: v('what'), rel: rel, lead: v('lead'), about: v('about'), love: v('love'), tips: v('tips'),
+        engage: v('engage'), dates: v('dates'), url: url, thread: v('thread'), where: v('where') || (window.VVV_PLACE || ''), name: v('name'), email: v('email'), ok: f.ok.checked ? 'Yes' : '' });
+      pbody.hidden = true; pdone.hidden = false; pdone.querySelector('button').focus();
+    });
+  }
+
   /* anonymous section signals */
   document.querySelectorAll('a[data-sig]').forEach(function (a) { a.addEventListener('click', function () { signal('link', a.dataset.sig); }); });
 })();

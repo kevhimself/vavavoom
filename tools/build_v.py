@@ -250,6 +250,13 @@ footer{padding:36px 0 90px;font-size:14px;color:var(--muted)}
 .vf-row{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
 .vf-ghost{font:inherit;font-weight:700;background:none;border:0;text-decoration:underline;cursor:pointer;color:inherit}
 .vf-note{font-size:13px;opacity:.75;margin-top:10px}
+.share h2{font-size:clamp(24px,4.6vw,36px)}
+.asks{margin:6px 0 18px;padding-left:20px}.asks li{margin:4px 0}
+.vf-card select{font:inherit;font-size:16px;padding:10px 11px;border:var(--bw) solid var(--card-ink);background:#fff;color:#221e19;border-radius:var(--r);width:100%}
+.vp-who{border:0;padding:0;margin:0 0 10px}.vp-who legend{font-weight:700;font-size:14px;margin-bottom:6px}
+.vp-who label{display:flex;gap:8px;align-items:center;font-weight:400;margin:4px 0}.vp-who input{width:auto}
+.vp-step{font-family:var(--head);font-size:17px;margin:16px 0 8px;padding-top:12px;border-top:1px dashed currentColor}
+.vf-card label.chk{display:flex;gap:10px;align-items:flex-start;font-weight:400}.vf-card label.chk input{width:auto;margin-top:4px}
 '''
 
 THEME = {
@@ -355,7 +362,7 @@ def build(theme, D, fname, title, tongham=False):
     css_theme = THEME['grounded' if tongham else theme]
     fonts = FONTS['grounded' if tongham else theme]
     look = 'grounded' if tongham else theme
-    nav = [['Next up', '#door'], ["What's happening", '#happening'], ['Good news', '#goodnews'], ['Is this you?', '#you'], ['Find your thread', '#threads']]
+    nav = [['Next up', '#door'], ["What's happening", '#happening'], ['Share a project', '#share'], ['Good news', '#goodnews'], ['Is this you?', '#you'], ['Find your thread', '#threads']]
     nav += [['The map', '#map-s']] if tongham else [['Who we are', '#who']]
     nav += [['Want in?', '#in']]
     out = []
@@ -407,6 +414,12 @@ def build(theme, D, fname, title, tongham=False):
     if D['more_url']:
         w('<a class="more" href="' + D['more_url'] + '" data-sig="all projects">All six projects →</a>')
     w('</div></section>')
+
+    # share a project
+    w('<section id="share"><div class="wrap"><div class="card share"><h2>' + h2('Know a project we should all know about?', theme, 'project') + '</h2>')
+    w('<p>Something brilliant happening near ' + E(D['place']) + '? Yours, a friend\'s, or one you just love. Tell us who\'s behind it, what you love about it, and the little secrets for getting the best from it. We check it, ask the person if they\'re happy, then add it here.</p>')
+    w('<ul class="asks"><li>What it is, and who\'s doing it</li><li>What you love about it</li><li>Tips and little secrets</li><li>How to get involved, key dates, a link</li></ul>')
+    w('<button type="button" class="btn" id="vp-open">Share a project →</button></div></div></section>')
 
     # good news
     w('<section id="goodnews"><div class="wrap"><h2>' + h2('Good news from round here', theme, 'Good news') + '</h2>')
@@ -469,6 +482,31 @@ def build(theme, D, fname, title, tongham=False):
 <p class="vf-err" role="alert"></p><div class="vf-row"><button type="button" class="vf-ghost" data-close>Not now</button><button type="submit" class="btn">Send it →</button></div></form>
 <p class="vf-note">Read by a human before anything goes anywhere. Be kind, keep it real.</p></div>
 <div class="vf-done" hidden><h2>Lovely. Got it.</h2><p>We'll be in touch if it's alive. Fancy another?</p><button type="button" class="btn" data-close>Back to the page</button></div></div></div>''')
+    w('''<div class="vf" id="vp" hidden role="dialog" aria-modal="true" aria-labelledby="vp-h"><div class="vf-card"><button type="button" class="vf-x" data-pclose aria-label="Close">×</button>
+<div class="vf-body"><h2 id="vp-h">Share a project</h2><p>A few lines each is plenty. Only the first two are a must.</p><form novalidate>
+<label>What's the project called? *<input name="title" type="text"></label>
+<label>What is it? *<span>What happens, where, who it's for</span><textarea name="what"></textarea></label>
+<fieldset class="vp-who"><legend>Is it yours?</legend><label><input type="radio" name="rel" value="I run it"> I run it</label><label><input type="radio" name="rel" value="I'm part of it"> I'm part of it</label><label><input type="radio" name="rel" value="I just love it" checked> I just love it</label></fieldset>
+<p class="vp-step">The person behind it</p>
+<label>Who's doing it?<input name="lead" type="text"></label>
+<label>A little about them<span>What they're like, why they started it</span><textarea name="about"></textarea></label>
+<p class="vp-step">Why it's good</p>
+<label>What do you love about it?<textarea name="love"></textarea></label>
+<label>Tips and little secrets<span>How to get the best from it. The corner seat, the cheaper pass, the day to go.</span><textarea name="tips"></textarea></label>
+<p class="vp-step">Getting involved</p>
+<label>How best to get involved<textarea name="engage"></textarea></label>
+<label>Key dates or times<input name="dates" type="text"></label>
+<label>A link<span>Website, booking page or Instagram</span><input name="url" type="url" inputmode="url" placeholder="https://"></label>
+<label>Which thread is it closest to?<select name="thread"><option value="">Not sure</option>''' + ''.join('<option>' + E(t['n']) + '</option>' for t in T) + '''</select></label>
+<label>Where is it?<input name="where" type="text"></label>
+<p class="vp-step">You</p>
+<label>Your first name *<input name="name" type="text" autocomplete="given-name"></label>
+<label>Email <span>(optional, so we can check details with you)</span><input name="email" type="email" autocomplete="email"></label>
+<label class="chk"><input type="checkbox" name="ok"> If it's not yours, I think they'd be happy to be on here. (We'll ask them before it goes up.)</label>
+<label class="vf-hp" aria-hidden="true">Leave this empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+<p class="vf-err" role="alert"></p><div class="vf-row"><button type="button" class="vf-ghost" data-pclose>Not now</button><button type="submit" class="btn">Send it →</button></div></form>
+<p class="vf-note">Read by a human, and checked with the person behind it, before anything goes on the site.</p></div>
+<div class="vf-done" hidden><h2>Brilliant, thank you.</h2><p>We'll take a look, check with the person behind it, and add it when it's ready. Know another?</p><button type="button" class="btn" data-pclose>Back to the page</button></div></div></div>''')
     w('<script>window.VVV_THREADS=' + json.dumps(T) + ';</script>')
     if tongham:
         w('<script>window.VVV_PLACES=' + json.dumps(TONG_PLACES) + ';window.VVV_CENTRE=[51.2285,-0.7240];window.VVV_WEB=' + json.dumps(TONG_WEB) + ';</script>')
