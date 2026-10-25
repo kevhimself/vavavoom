@@ -38,7 +38,7 @@ function doPost(e) {
     } else if (d.type === 'signal') {
       ss.getSheetByName('Signals').appendRow([now, clean(d.event), clean(d.detail), clean(d.page)]);
     } else if (d.type === 'access') {
-      ss.getSheetByName('Access').appendRow([now, clean(d.email), clean(d.page), clean(d.version)]);
+      ss.getSheetByName('Access').appendRow([now, clean(d.email), clean(d.page), clean(d.version), clean(d.contact || 'No')]);
     } else if (d.type === 'project') {
       // Tab "Projects": Received, Project, What it is, Their link to it, Who's doing it, About them, What they love,
       // Tips and secrets, How to get involved, Key dates, Link, Thread, Where, Shared by, Email, Happy to be named, Page, Status

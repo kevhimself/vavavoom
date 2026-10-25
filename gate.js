@@ -3,7 +3,7 @@
 (function () {
   var KEY = 'vvv-in';
   var WORD = '1tk61rf'; // hash of the secret word, "rabbit hole" (lower case, letters only)
-  var VERSION = window.VVV_VERSION = '0.6.1 (25 October 2026)'; // bump this whenever the site changes
+  var VERSION = window.VVV_VERSION = '0.6.2 (25 October 2026)'; // bump this whenever the site changes
   // PostHog (EU cloud). Paste the project key from PostHog > Settings > Project (it starts phc_).
   // Left blank, PostHog stays off and the consent bar never shows.
   var PH_KEY = 'phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6';
@@ -50,6 +50,11 @@
 .vg-box input{font:inherit;font-size:16px;padding:11px 12px;border:2px solid #f3eee2;background:#2e2822;color:#f3eee2;border-radius:0}\
 .vg-box input:focus-visible{outline:3px dashed #e8337f;outline-offset:2px}\
 .vg-btn{font-family:"Bowlby One SC",Impact,"Arial Black",sans-serif;font-size:18px;border:3px solid #f3eee2;background:#e8337f;color:#221e19;padding:12px 18px;cursor:pointer;box-shadow:5px 5px 0 #c9f24a;margin-top:4px}\
+.vg-ask{border:2px dashed #4a4238;padding:10px 12px 8px;margin:2px 0 0}\
+.vg-ask legend{font-weight:700;font-size:14px;color:#c9f24a;padding:0 6px}\
+.vg-opt{display:flex!important;gap:10px;align-items:center;font-weight:400!important;color:#f3eee2!important;font-size:15px!important;min-height:40px}\
+.vg-opt input{width:20px;height:20px;accent-color:#e8337f;margin:0}\
+.vg-promise{font-size:14px!important;color:#e6dfd1!important;margin:0!important;border-left:3px solid #e8337f;padding-left:10px}\
 .vg-err{min-height:1.4em;color:#ee8fa4;font-weight:700;font-size:14px;margin:0}\
 .vg-small{font-size:13px!important;color:#b8b0a2!important;margin-top:14px!important}\
 .vg-note{position:fixed;inset:0;z-index:101;display:grid;place-items:center;background:rgba(34,30,25,.6);padding:16px;font-family:"Courier Prime","Courier New",monospace}\
@@ -152,6 +157,10 @@
     '<form novalidate>' +
     '<label for="vg-e">Your email<input id="vg-e" name="email" type="email" autocomplete="email" required></label>' +
     '<label for="vg-p">The secret word<input id="vg-p" name="word" type="password" autocomplete="off" required></label>' +
+    '<fieldset class="vg-ask"><legend>Can we let you know when something good is on?</legend>' +
+    '<label class="vg-opt"><input type="radio" name="contact" value="Yes"> Yes, now and then</label>' +
+    '<label class="vg-opt"><input type="radio" name="contact" value="No" checked> No thanks, I\'ll just look</label></fieldset>' +
+    '<p class="vg-promise">Our promise: we won\'t contact you unless you say yes. And if you do, we\'ll never flood your inbox. Change your mind any time.</p>' +
     '<p class="vg-err" role="alert"></p>' +
     '<button type="submit" class="vg-btn">Jump in ↓</button></form>' +
     '<p class="vg-small">No word? Whoever handed you the card will know it.</p>' +
@@ -162,7 +171,8 @@
     var email = f.email.value.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = 'That email doesn\'t look quite right.'; f.email.focus(); return; }
     if (hash(f.word.value.toLowerCase().replace(/[^a-z]/g, '')) !== WORD) { err.textContent = 'Not quite. Whoever gave you the card knows the word.'; f.word.focus(); return; }
-    send({ type: 'access', email: email });
+    var c = gate.querySelector('input[name="contact"]:checked');
+    send({ type: 'access', email: email, contact: c ? c.value : 'No' });
     track('gate passed');
     store(KEY, '1');
     gate.hidden = true; document.documentElement.style.overflow = '';
