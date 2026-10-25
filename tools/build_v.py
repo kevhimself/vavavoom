@@ -373,7 +373,7 @@ def build(theme, D, fname, title, tongham=False):
     look = 'grounded' if tongham else theme
     nav = [['Next up', '#door'], ["What's happening", '#happening'], ['Share a project', '#share'], ['Good news', '#goodnews'], ['Is this you?', '#you'], ['Find your thread', '#threads']]
     nav += [['The map', '#map-s']] if tongham else [['Who we are', '#who']]
-    nav += [['Want in?', '#in']]
+    nav += [['Want in?', '#in'], ['How we built this', 'built.html']]
     out = []
     w = out.append
     w('<!doctype html>\n<html lang="en-GB">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n<meta name="robots" content="noindex,nofollow">')
@@ -482,7 +482,7 @@ def build(theme, D, fname, title, tongham=False):
           '<button type="button" class="btn" data-act="quick" data-thread="Want in: quick" data-title="Count me in" data-prompt="We\'ll tell you when something good is on. No spam.">Count me in →</button>'
           '<a class="btn q" href="index.html#join" data-sig="full questions">The five-minute questions</a></div>')
     w('</div></section>\n</main>')
-    w('<footer><div class="wrap">Va Va Voom ' + E(D['place']) + ' · made by neighbours, not committees · a prototype, version <span id="ver"></span>. We count which bits get tapped so we know what to grow next.</div></footer>')
+    w('<footer><div class="wrap">Va Va Voom ' + E(D['place']) + ' · made by neighbours, not committees · a prototype, version <span id="ver"></span>. We count which bits get tapped so we know what to grow next. <a href="built.html">How we built this</a></div></footer>')
 
     # form
     w('''<div class="vf" id="vf" hidden role="dialog" aria-modal="true" aria-labelledby="vf-h"><div class="vf-card"><button type="button" class="vf-x" data-close aria-label="Close">×</button>

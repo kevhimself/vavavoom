@@ -3,7 +3,7 @@
 (function () {
   var KEY = 'vvv-in';
   var WORD = '1tk61rf'; // hash of the secret word, "rabbit hole" (lower case, letters only)
-  var VERSION = window.VVV_VERSION = '0.6.5 (25 October 2026)'; // bump this whenever the site changes
+  var VERSION = window.VVV_VERSION = '0.6.6 (25 October 2026)'; // bump this whenever the site changes
   // PostHog (EU cloud). Paste the project key from PostHog > Settings > Project (it starts phc_).
   // Left blank, PostHog stays off and the consent bar never shows.
   var PH_KEY = 'phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6';

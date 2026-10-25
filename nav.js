@@ -10,7 +10,8 @@
     ['Where you\'ll find us', home + '#h-net'],
     ['How we show up', home + '#h-five'],
     ['Want in?', home + '#join'],
-    ['What\'s happening', 'happening.html']
+    ['What\'s happening', 'happening.html'],
+    ['How we built this', 'built.html']
   ];
   var css = '\
 html{scroll-padding-top:70px}\
