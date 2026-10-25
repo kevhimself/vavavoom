@@ -3,7 +3,7 @@
 (function () {
   var KEY = 'vvv-in';
   var WORD = '1tk61rf'; // hash of the secret word, "rabbit hole" (lower case, letters only)
-  var VERSION = window.VVV_VERSION = '0.6.3 (25 October 2026)'; // bump this whenever the site changes
+  var VERSION = window.VVV_VERSION = '0.6.4 (25 October 2026)'; // bump this whenever the site changes
   // PostHog (EU cloud). Paste the project key from PostHog > Settings > Project (it starts phc_).
   // Left blank, PostHog stays off and the consent bar never shows.
   var PH_KEY = 'phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6';
@@ -12,7 +12,7 @@
   function send(data) {
     data.page = location.pathname; data.when = new Date().toISOString(); data.version = VERSION;
     if (!window.VVV_URL) return;
-    try { fetch(window.VVV_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(data) }); } catch (e) {}
+    try { fetch(window.VVV_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(data) }).catch(function () {}); } catch (e) {}
   }
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
 
@@ -55,6 +55,15 @@
 .vg-opt{display:flex!important;gap:10px;align-items:center;font-weight:400!important;color:#f3eee2!important;font-size:15px!important;min-height:40px}\
 .vg-opt input{width:20px;height:20px;accent-color:#e8337f;margin:0}\
 .vg-promise{font-size:14px!important;color:#e6dfd1!important;margin:0!important;border-left:3px solid #e8337f;padding-left:10px}\
+.vg-field{display:grid;gap:4px}\
+.vg-field>label{font-weight:700;font-size:14px;color:#c9f24a}\
+.vg-pw{position:relative;display:flex}\
+.vg-pw input{flex:1;min-width:0;padding-right:76px!important}\
+.vg-eye{position:absolute;right:4px;top:50%;transform:translateY(-50%);font:inherit;font-weight:700;font-size:14px;background:transparent;color:#f3eee2;border:0;text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:40px;min-width:60px;padding:0 10px}\
+.vg-eye:focus-visible{outline:3px dashed #e8337f;outline-offset:0}\
+.vg-ferr{margin:0!important;min-height:0;font-weight:700;font-size:14px!important;color:#ffb3c4!important;line-height:1.35!important}\
+.vg-ferr:not(:empty)::before{content:"! ";}\
+.vg-bad input{border-color:#ff8fab!important;box-shadow:0 0 0 2px #ff8fab}\
 .vg-err{min-height:1.4em;color:#ee8fa4;font-weight:700;font-size:14px;margin:0}\
 .vg-small{font-size:13px!important;color:#b8b0a2!important;margin-top:14px!important}\
 .vg-note{position:fixed;inset:0;z-index:101;display:grid;place-items:center;background:rgba(34,30,25,.6);padding:16px;font-family:"Courier Prime","Courier New",monospace}\
@@ -155,22 +164,44 @@
     '<h1 id="vg-gh">Down the <span>rabbit hole</span></h1>' +
     '<p>This corner of Godalming is invite-only for now. Got the secret word? Pop it in with your email, and down you go.</p>' +
     '<form novalidate>' +
-    '<label for="vg-e">Your email<input id="vg-e" name="email" type="email" autocomplete="email" required></label>' +
-    '<label for="vg-p">The secret word<input id="vg-p" name="word" type="password" autocomplete="off" required></label>' +
+    '<div class="vg-field"><label for="vg-e">Your email</label><input id="vg-e" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="vg-e-err">' +
+    '<p class="vg-ferr" id="vg-e-err" role="alert"></p></div>' +
+    '<div class="vg-field"><label for="vg-p">The secret word</label><div class="vg-pw"><input id="vg-p" name="word" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" required aria-describedby="vg-p-err">' +
+    '<button type="button" class="vg-eye" aria-controls="vg-p" aria-pressed="false" aria-label="Show the secret word">Show</button></div>' +
+    '<p class="vg-ferr" id="vg-p-err" role="alert"></p></div>' +
     '<fieldset class="vg-ask"><legend>Can we let you know when something good is on?</legend>' +
     '<label class="vg-opt"><input type="radio" name="contact" value="Yes"> Yes, now and then</label>' +
     '<label class="vg-opt"><input type="radio" name="contact" value="No" checked> No thanks, I\'ll just look</label></fieldset>' +
     '<p class="vg-promise">Our promise: we won\'t contact you unless you say yes. And if you do, we\'ll never flood your inbox. Change your mind any time.</p>' +
-    '<p class="vg-err" role="alert"></p>' +
     '<button type="submit" class="vg-btn">Jump in ↓</button></form>' +
     '<p class="vg-small">No word? Whoever handed you the card will know it.</p>' +
     '</div></div>');
+  function setErr(input, msg) {
+    var p = document.getElementById(input.id + '-err');
+    if (p) p.textContent = msg;
+    input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    input.closest('.vg-field').classList.toggle('vg-bad', !!msg);
+  }
+  gate.querySelectorAll('#vg-e,#vg-p').forEach(function (i) { i.addEventListener('input', function () { if (i.getAttribute('aria-invalid') === 'true') setErr(i, ''); }); });
+  var eye = gate.querySelector('.vg-eye'), pw = gate.querySelector('#vg-p');
+  eye.addEventListener('click', function () {
+    var show = pw.type === 'password';
+    pw.type = show ? 'text' : 'password';
+    eye.textContent = show ? 'Hide' : 'Show';
+    eye.setAttribute('aria-pressed', show ? 'true' : 'false');
+    eye.setAttribute('aria-label', show ? 'Hide the secret word' : 'Show the secret word');
+    pw.focus();
+  });
   gate.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
-    var f = e.target.elements, err = gate.querySelector('.vg-err');
-    var email = f.email.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = 'That email doesn\'t look quite right.'; f.email.focus(); return; }
-    if (hash(f.word.value.toLowerCase().replace(/[^a-z]/g, '')) !== WORD) { err.textContent = 'Not quite. Whoever gave you the card knows the word.'; f.word.focus(); return; }
+    var f = e.target.elements;
+    var email = f.email.value.trim(), bad = null;
+    setErr(f.email, ''); setErr(f.word, '');
+    if (!email) { setErr(f.email, 'Pop your email in here.'); bad = bad || f.email; }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr(f.email, 'That doesn\'t look quite right. Check for a typo, like name@example.com'); bad = bad || f.email; }
+    if (!f.word.value.trim()) { setErr(f.word, 'You\'ll need the secret word. Whoever gave you the card knows it.'); bad = bad || f.word; }
+    else if (hash(f.word.value.toLowerCase().replace(/[^a-z]/g, '')) !== WORD) { setErr(f.word, 'Not quite. Check the spelling. Whoever gave you the card knows the word.'); bad = bad || f.word; }
+    if (bad) { bad.focus(); bad.scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
     var c = gate.querySelector('input[name="contact"]:checked');
     send({ type: 'access', email: email, contact: c ? c.value : 'No' });
     track('gate passed');
