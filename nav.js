@@ -2,7 +2,7 @@
 (function () {
   var onHome = /\/(index\.html)?$/.test(location.pathname) || /vavavoom\/?$/.test(location.pathname);
   var home = onHome ? '' : './';
-  var LINKS = [
+  var LINKS = window.VVV_NAV || [
     ['Next up', home + '#top'],
     ['What it is', home + '#h-what'],
     ['Have a poke around', home + '#compass'],
@@ -38,7 +38,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
   var hdr = document.createElement('header');
   hdr.className = 'vn';
-  hdr.innerHTML = '<div class="vn-in"><a class="vn-logo" href="' + (home || '#top') + '" aria-label="Va Va Voom, back to the top">VA VA <i>VOOM</i></a>' +
+  hdr.innerHTML = '<div class="vn-in"><a class="vn-logo" href="' + (window.VVV_NAV ? '#top' : (home || '#top')) + '" aria-label="Va Va Voom, back to the top">' + (window.VVV_NAV_LOGO || 'VA VA <i>VOOM</i>') + '</a>' +
     '<button type="button" class="vn-burger" aria-expanded="false" aria-controls="vn-menu" aria-label="Menu"><span></span></button></div>' +
     '<nav class="vn-menu" id="vn-menu" hidden aria-label="Site"><ul>' +
     LINKS.map(function (l) { return '<li><a href="' + l[1] + '">' + l[0] + '</a></li>'; }).join('') +

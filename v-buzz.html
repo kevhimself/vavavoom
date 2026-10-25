@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Va Va Voom · Buzzy</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Courier+Prime:wght@400;700&display=swap">
+<script>window.VVV_URL="https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec";window.VVV_PLACE="Godalming";window.VVV_NAV=[["Next up", "#door"], ["What's happening", "#happening"], ["Good news", "#goodnews"], ["Is this you?", "#you"], ["Find your thread", "#threads"], ["Who we are", "#who"], ["Want in?", "#in"]];</script>
+<style>
+*{box-sizing:border-box}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:52px}
+h1,h2,h3{font-family:var(--head);font-weight:400;margin:0}
+h2{font-size:clamp(28px,5.6vw,46px);line-height:1.05;margin-bottom:18px;text-wrap:balance}
+h3{font-size:20px;line-height:1.15}
+p{margin:0 0 12px;max-width:60ch}
+a{color:inherit}
+:focus-visible{outline:3px dashed var(--spark);outline-offset:3px}
+.eyebrow{font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.big{font-size:clamp(32px,7vw,58px);line-height:1.04;max-width:16ch;text-wrap:balance;margin:6px 0 16px}
+.sub{font-size:clamp(17px,2.3vw,20px)}
+.serious{font-weight:700;border-left:4px solid var(--spark);padding-left:12px;margin:18px 0 24px}
+.btn{display:inline-block;font-family:var(--head);font-size:17px;text-decoration:none;border:var(--bw) solid var(--line);background:var(--a);color:var(--a-ink);padding:12px 18px;box-shadow:var(--shadow);border-radius:var(--r);cursor:pointer;min-height:44px}
+.btn.q{background:transparent;color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.card{background:var(--card);border:var(--bw) solid var(--line);border-radius:var(--r);padding:18px}
+.nextcard{margin:8px 0 18px}
+.nextcard .lbl{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--spark);color:var(--spark-ink);padding:2px 8px;border-radius:var(--r);margin-bottom:10px}
+.nextcard h3{font-size:clamp(22px,4vw,30px);margin-bottom:6px}
+.nextcard .when{font-weight:700;margin-bottom:8px}
+.nextcard .proof{font-weight:700;color:var(--muted)}
+.easy{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.easy b{font-family:var(--head);font-weight:400;font-size:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.pj .th{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pj h3{margin:6px 0 4px}
+.pj .lead{font-weight:700;font-size:15px;margin-bottom:8px}
+.pj p{font-size:15px}
+.more{display:inline-block;margin-top:16px;font-weight:700}
+.feature{margin-top:18px}
+.feature ul{margin:10px 0 12px;padding-left:20px}
+.feature li{margin:6px 0;max-width:62ch}
+.credit{font-size:14px;color:var(--muted)}
+.odd p{font-family:var(--head);font-size:clamp(20px,3.6vw,28px);line-height:1.2;margin:0 0 6px}
+.ways{margin:26px 0}
+.ways h3{margin-bottom:6px}
+.five{list-style:none;padding:0;margin:20px 0;display:grid;gap:8px}
+.five li{font-family:var(--head);font-size:clamp(18px,3vw,24px);line-height:1.2}
+details.nf{margin-top:12px}
+details.nf summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 16px}
+.chip{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:700;font-size:16px;border:var(--bw) solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;border-radius:var(--r);cursor:pointer;min-height:44px}
+.chip svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.chip[aria-pressed="true"]{background:var(--c);color:var(--ci,#221e19)}
+.tags{border-left:6px solid var(--c);padding:6px 0 6px 16px}
+.tags .tline{font-size:18px}
+.tags .tq{font-weight:700}
+.tlist{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.tag{font:inherit;font-weight:700;font-size:15px;border:var(--bw) solid var(--line);background:transparent;color:var(--ink);padding:7px 12px;border-radius:var(--r);cursor:pointer;min-height:40px}
+.tag:hover{background:var(--c);color:var(--ci,#221e19)}
+.tadd{font:inherit;font-weight:700;background:none;border:0;color:var(--ink);text-decoration:underline;text-underline-offset:4px;cursor:pointer;padding:6px 0;min-height:44px}
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 18px;margin:8px 0 26px}
+.people b{font-family:var(--head);font-weight:400;font-size:20px;display:block}
+.people span{font-size:15px}
+.places .card{position:relative}
+.places a.door{display:inline-block;margin-top:8px;font-weight:700}
+footer{padding:36px 0 90px;font-size:14px;color:var(--muted)}
+.vf{position:fixed;inset:0;z-index:70;background:rgba(20,18,15,.6);display:grid;place-items:center;padding:16px}
+.vf[hidden]{display:none!important}
+.vf-card{width:min(460px,100%);max-height:100%;overflow:auto;background:var(--card-solid);color:var(--card-ink);border:var(--bw) solid var(--line);border-radius:var(--r);padding:22px;position:relative;box-shadow:var(--shadow)}
+.vf-card h2{font-size:26px;margin:0 0 6px}
+.vf-card label{display:grid;gap:4px;font-weight:700;font-size:14px;margin-bottom:10px}
+.vf-card label span{font-weight:400;opacity:.75}
+.vf-card input,.vf-card textarea{font:inherit;font-size:16px;padding:10px 11px;border:var(--bw) solid var(--card-ink);background:#fff;color:#221e19;border-radius:var(--r);width:100%}
+.vf-card textarea{min-height:90px;resize:vertical}
+.vf-x{position:absolute;right:8px;top:6px;border:0;background:none;font-size:28px;cursor:pointer;color:inherit;padding:4px 10px}
+.vf-err{min-height:1.3em;font-weight:700;color:#b8285f;margin:0 0 8px}
+.vf-hp{position:absolute;left:-9999px}
+.vf-row{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.vf-ghost{font:inherit;font-weight:700;background:none;border:0;text-decoration:underline;cursor:pointer;color:inherit}
+.vf-note{font-size:13px;opacity:.75;margin-top:10px}
+
+:root{--bg:#221e19;--ink:#f3eee2;--muted:#cfc6b6;--card:#2e2822;--card-solid:#fbf8f1;--card-ink:#221e19;--line:#f3eee2;--a:#e8337f;--a-ink:#221e19;--spark:#c9f24a;--spark-ink:#221e19;
+--head:'Bowlby One SC',Impact,'Arial Black',sans-serif;--body:'Courier Prime','Courier New',monospace;--r:0px;--shadow:5px 5px 0 #c9f24a;--bw:2px;color-scheme:dark}
+.logo{display:flex;align-items:center;gap:16px;margin-top:20px}
+.tun{position:relative;width:min(150px,38vw);flex:none}
+.tun .rings{width:100%;height:auto;display:block}.tun .rings circle{fill:none;stroke-width:2}
+.tun .rab{position:absolute;left:50%;top:50%;width:46%;transform:translate(-50%,-58%)}
+@media (prefers-reduced-motion:no-preference){.tun .rings{animation:spin 26s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}}
+.wm{display:flex;flex-direction:column;font-family:var(--head);font-size:clamp(34px,9vw,60px);line-height:.95}
+.wm .hl{background:#ee8fa4;color:#221e19;padding:0 8px;transform:rotate(-2deg);display:inline-block;width:max-content}
+.wm small{font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.3em;color:#c9f24a;margin-top:8px}
+h2 span,.big span{background:#ee8fa4;color:#221e19;padding:0 8px;display:inline-block;transform:rotate(-1.5deg)}
+.eyebrow{color:#c9f24a}
+.card{box-shadow:4px 4px 0 rgba(201,242,74,.35)}
+.pj:nth-child(2){transform:rotate(.6deg)}.pj:nth-child(1){transform:rotate(-.5deg)}
+.btn.q{border-color:#f3eee2}
+section+section{border-top:2px dashed #4a4238}
+.serious{border-color:#e8337f}
+.vn{background:rgba(34,30,25,.94)!important;border-bottom-color:#c9f24a!important}
+.vn-logo{color:#f3eee2!important}.vn-logo i{background:#e8337f!important;color:#221e19}
+.vn-burger{background:#2e2822!important;border-color:#f3eee2!important}.vn-burger span,.vn-burger span::before,.vn-burger span::after{background:#f3eee2!important}
+.vn-burger[aria-expanded="true"] span{background:transparent!important}
+.vn-menu{background:#2e2822!important;border-top-color:#c9f24a!important}.vn-menu a,.vn-menu button{color:#f3eee2!important;border-bottom-color:#4a4238!important}
+body::before{background:#221e19!important}
+</style>
+</head>
+<body class="t-buzz">
+<script src="gate.js"></script>
+<script src="nav.js"></script>
+<!-- Built by tools/build_v.py. Edit the words there, not here. -->
+<main>
+<section id="door"><div class="wrap">
+<div class="logo"><div class="tun"><svg class="rings" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" stroke="#e8337f"/><circle cx="102" cy="98" r="80" stroke="#c9f24a" stroke-dasharray="6 6"/><circle cx="99" cy="101" r="64" stroke="#ee8fa4"/><circle cx="101" cy="99" r="49" stroke="#f2c75a" stroke-dasharray="4 5"/><circle cx="100" cy="100" r="35" stroke="#5aa9e6"/><circle cx="100" cy="100" r="22" stroke="#e8337f" stroke-dasharray="3 4"/></svg><svg class="rab" viewBox="0 0 64 64" aria-hidden="true"><path d="M22 30 C14 18 12 6 17 4 C22 2 27 14 28 26" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/><path d="M19 9 C21 14 23 19 24 24" stroke="#ee8fa4" stroke-width="3.5" stroke-linecap="round" fill="none"/><path d="M34 26 C36 12 42 2 47 5 C52 8 46 20 39 30" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5" stroke-linejoin="round"/><path d="M44 9 C42 14 39 20 37 25" stroke="#ee8fa4" stroke-width="3.5" stroke-linecap="round" fill="none"/><ellipse cx="31" cy="40" rx="17" ry="15" fill="#fbf8f1" stroke="#221e19" stroke-width="3.5"/><circle cx="25" cy="38" r="2.6" fill="#221e19"/><circle cx="37" cy="38" r="2.6" fill="#221e19"/><path d="M29 45 l2 2 l2 -2" stroke="#221e19" stroke-width="2.5" fill="#e8337f" stroke-linejoin="round"/></svg></div><div class="wm"><span>VA VA</span><span class="hl">VOOM</span><small>GODALMING</small></div></div>
+<p class="eyebrow">Godalming · psst, pass it on</p>
+<h1 class="big">Let&#x27;s make Godalming <span>awesome</span>. Together, for real.</h1>
+<p class="sub">Godalming people getting unstuck. We learn things, with our hands and with good tech, make things, and do small brave things together. With a lot of laughs.</p>
+<p class="serious">Playful, yes. But we mean it: real projects, real people, change you can see from your front door.</p>
+<div class="card nextcard"><span class="lbl">Next up</span><h3>People&#x27;s Emergency Briefing</h3><p class="when">Saturday 31 October, 10.30am · Shackleford</p><p>Tim and Sue explain plainly where things have got to and what we can do here. Then a wander round Norney Farm.</p><p class="proof">40-odd of us are going. Room for about 100.</p><div class="row">
+<a class="btn" href="https://www.tickettailor.com/events/jseverest/2441375" target="_blank" rel="noopener" data-sig="tickets">Get tickets →</a>
+<button type="button" class="btn q" data-act="quick" data-thread="Tell me about the next one" data-title="Tell me about the next one" data-prompt="No feeds, no spam. Just a nudge when something good is on.">Tell me about the next one</button>
+</div></div>
+<div class="easy"><b>Or start easy:</b><span>a walk and a pint.</span><button type="button" class="btn q" data-act="board" data-thread="Meet-ups" data-tag="A walk and a pint" data-title="A walk and a pint" data-prompt="Where would you walk? Any day or time that suits you?">I&#x27;d come for a walk →</button></div>
+</div></section>
+<section id="happening"><div class="wrap"><h2>What's <span>happening</span></h2>
+<p>Real projects, led by real people round here. Say you're in and it helps them happen.</p><div class="grid">
+<article class="card pj" style="--c:#df8350"><div class="th">Home &amp; around</div><h3>Choosing solar</h3><div class="lead">with Tim · Norney</div><p>How Tim chose his solar, battery and rain tanks, what they really save, and what he&#x27;d do differently.</p><button type="button" class="btn q" data-act="board" data-thread="Projects" data-tag="Choosing solar" data-title="Choosing solar" data-prompt="What draws you to this? Even a line helps." data-label="What draws you to it?">I'm in →</button></article>
+<article class="card pj" style="--c:#5aa9e6"><div class="th">Being well</div><h3>Micro homes, off-grid loos and a community sauna</h3><div class="lead">with Carl · Green Spaces</div><p>Small, clever buildings, loos that need no mains, and a sauna to share. Learn by building.</p><button type="button" class="btn q" data-act="board" data-thread="Projects" data-tag="Micro homes, off-grid loos and a community sauna" data-title="Micro homes, off-grid loos and a community sauna" data-prompt="What draws you to this? Even a line helps." data-label="What draws you to it?">I'm in →</button></article>
+<article class="card pj" style="--c:#6fa84e"><div class="th">Land &amp; nature</div><h3>Bug houses and vertical gardens</h3><div class="lead">with Reiks · Milford</div><p>Homes for the small wild things, and how to grow up a wall when you have no room to grow out.</p><button type="button" class="btn q" data-act="board" data-thread="Projects" data-tag="Bug houses and vertical gardens" data-title="Bug houses and vertical gardens" data-prompt="What draws you to this? Even a line helps." data-label="What draws you to it?">I'm in →</button></article>
+</div>
+<a class="more" href="happening.html" data-sig="all projects">All six projects →</a>
+</div></section>
+<section id="goodnews"><div class="wrap"><h2><span>Good news</span> from round here</h2>
+<p>Small wins, out loud. This is what it looks like when things move.</p><div class="grid">
+<article class="card"><h3>Norney Farm</h3><p style="margin-top:6px">Tim gave Claude a floor plan and got back a 3D model of the bungalow that works out how much rain each roof catches. Numbers people, this one&#x27;s for you.</p></article>
+<article class="card"><h3>The briefing</h3><p style="margin-top:6px">Forty-odd tickets gone for 31 October. Not bad for a Saturday morning about the state of the world.</p></article>
+</div>
+<article class="card feature"><h3>Treat yourself this winter: the Waggon Sauna</h3><p style="margin-top:8px">Hosted by Elenid Coleman at the Hampton Estate, Seale. A wood-fired sauna in a waggon, on a woodland walk, with bucket and woodland showers to cool off.</p><ul><li><b>Open:</b> Thursday 4 to 8pm, Friday 7 to 11am (the early commuter dip), Saturday 4 to 8pm, Sunday 8am to noon. Check the booking page, as times change with the seasons.</li><li><b>Top tip:</b> get the Trailblazer pass. It works out at about £16 a session instead of £20, and you can book friends in on it.</li><li><b>Go with:</b> a friend or three. Take the corner seat if you like it hot.</li></ul><div class="row"><a class="btn" href="https://www.thewaggonsauna.co.uk/" target="_blank" rel="noopener" data-sig="waggon sauna">Book the Waggon →</a><button type="button" class="btn q" data-act="board" data-thread="Being well" data-tag="Sauna buddies" data-title="Sauna buddies" data-prompt="Fancy sharing a Trailblazer pass, or going together? Which day suits?">Find a sauna buddy</button></div><p class="credit" style="margin-top:12px">Good news from Jules, after a Sunday morning visit.</p></article>
+</div></section>
+<section id="you"><div class="wrap"><h2>Is this <span>you?</span></h2><div class="odd"><p>See things a bit differently from everyone else?</p><p>Quietly the odd one out at the dinner party?</p><p>Maybe this is your place.</p></div>
+<div class="ways grid"><div class="card"><h3>Come and do</h3><p style="margin-top:6px">Turn up, get your hands dirty, make something. Learn a skill from a neighbour.</p></div><div class="card"><h3>See the numbers</h3><p style="margin-top:6px">What the solar actually saved. How much rain a roof catches. What the town taps on most.</p></div><div class="card"><h3>Read the stories</h3><p style="margin-top:6px">Good news from round here, long and short. The people, the places, the why.</p></div></div>
+<h3>How we show up</h3><ul class="five"><li>Come as you are.</li><li>Talk less, do more.</li><li>We&#x27;re all leaders here. It&#x27;s our space, and we all look after it.</li><li>Deep chats and silliness, in equal measure.</li><li>If it&#x27;s alive, we follow it.</li></ul>
+<details class="nf"><summary>Not for everyone +</summary><p>This isn't for you if…</p><ul><li>You&#x27;re here to make speeches.</li><li>You&#x27;d rather talk about it than do it.</li><li>You want the mic all to yourself.</li><li>You want somewhere to moan.</li><li>You want to look green more than do green.</li></ul><p><b>Still reading? Good sign.</b></p></details>
+</div></section>
+<section id="threads"><div class="wrap"><h2>Find your <span>thread</span></h2><p>Which one is speaking to you right now? Tap it. Pick one, not seven.</p>
+<div class="chips" id="chips" role="group" aria-label="Threads"></div><div class="tags" id="tags" hidden aria-live="polite"></div></div></section>
+<section id="who"><div class="wrap"><h2>Who <span>we are</span></h2><p>A few Godalming people who got tired of talking about it.</p><div class="people">
+<div><b>Kev</b><span>Started it. Runs his home on sunshine and small computers.</span></div><div><b>Tim</b><span>Norney Farm. Solar, rain, cider, 3D models.</span></div><div><b>Sue</b><span>Hosts the briefings. Has the time and the questions.</span></div><div><b>Carl</b><span>Builds small, clever things. Will tell you if it&#x27;s too silly.</span></div><div><b>Reiks</b><span>Milford. Bug houses and walls that grow.</span></div><div><b>Ruth</b><span>Coaching for when life shifts under your feet.</span></div></div>
+<h3 style="margin-bottom:12px">Where you'll find us</h3><div class="grid places"><div class="card"><h3>Norney Farm</h3><p style="margin-top:6px">Land, fire, muddy boots. Where things get made.</p><a class="door" href="roots.html" data-sig="portal Norney Farm">Peek inside →</a></div><div class="card"><h3>The studio on the hill</h3><p style="margin-top:6px">Circles, quiet thinking, the occasional loud idea.</p><a class="door" href="circle.html" data-sig="portal The studio on the hill">Peek inside →</a></div><div class="card"><h3>Trinkfluss</h3><p style="margin-top:6px">The clubhouse. Bastian pours, we plot.</p><a class="door" href="nest.html" data-sig="portal Trinkfluss">Peek inside →</a></div></div>
+</div></section>
+<section id="in"><div class="wrap"><h2>Want <span>in?</span></h2>
+<p>Two ways. Quick: leave a name and a number and we'll tell you when something's on. Or take five minutes with a few questions, one at a time, to see if this is really for you.</p><div class="row"><button type="button" class="btn" data-act="quick" data-thread="Want in: quick" data-title="Count me in" data-prompt="We'll tell you when something good is on. No spam.">Count me in →</button><a class="btn q" href="index.html#join" data-sig="full questions">The five-minute questions</a></div>
+</div></section>
+</main>
+<footer><div class="wrap">Va Va Voom Godalming · made by neighbours, not committees · a prototype, version <span id="ver"></span>. We count which bits get tapped so we know what to grow next.</div></footer>
+<div class="vf" id="vf" hidden role="dialog" aria-modal="true" aria-labelledby="vf-h"><div class="vf-card"><button type="button" class="vf-x" data-close aria-label="Close">×</button>
+<div class="vf-body"><h2 id="vf-h">Add a thought</h2><p id="vf-p"></p><form novalidate>
+<label><span id="vf-bigl" style="opacity:1;font-weight:700">Your idea, thought or feeling</span><textarea id="vf-big" name="post"></textarea></label>
+<label hidden>Phone or email<input id="vf-contact" name="contact" type="text" autocomplete="tel"></label>
+<label>Your first name<input id="vf-name" name="name" type="text" autocomplete="given-name"></label>
+<label>Email <span>(optional, only if you'd like to hear back)</span><input name="email" type="email" autocomplete="email"></label>
+<label class="vf-hp" aria-hidden="true">Leave this empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+<p class="vf-err" role="alert"></p><div class="vf-row"><button type="button" class="vf-ghost" data-close>Not now</button><button type="submit" class="btn">Send it →</button></div></form>
+<p class="vf-note">Read by a human before anything goes anywhere. Be kind, keep it real.</p></div>
+<div class="vf-done" hidden><h2>Lovely. Got it.</h2><p>We'll be in touch if it's alive. Fancy another?</p><button type="button" class="btn" data-close>Back to the page</button></div></div></div>
+<script>window.VVV_THREADS=[{"n": "Home & around", "i": "home", "c": "#df8350", "line": "Warm homes, cheaper energy, getting around without the car.", "tags": ["energy & solar", "warm homes", "water & floods", "getting around"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 11 12 4l9 7\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/></svg>"}, {"n": "Food", "i": "food", "c": "#f2c75a", "line": "Growing it, cooking it, sharing it, knowing where it came from.", "tags": ["growing", "cooking together", "local supply", "cider & preserving"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21V11\"/><path d=\"M12 13c0-4 3-6 7-6 0 4-3 6-7 6Z\"/><path d=\"M12 15c0-3-2-5-6-5 0 3 2 5 6 5Z\"/></svg>"}, {"n": "Land & nature", "i": "land", "c": "#6fa84e", "line": "The Lammas Lands, the heaths, the rivers, and the scruffy corners.", "tags": ["Lammas Lands", "heathlands", "rivers", "guerrilla gardening"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21v-5\"/><path d=\"M12 3 6 13h12Z\"/><path d=\"M3 21h18\"/></svg>"}, {"n": "Being well", "i": "well", "c": "#5aa9e6", "line": "Moving, resting, getting outside, feeling properly alive.", "tags": ["sauna & cold water", "walks", "outdoors", "rest"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10Z\"/></svg>"}, {"n": "Work & money", "i": "money", "c": "#3d5a8c", "ink": "#fbf8f1", "line": "Making a living, saving, and spending it where it keeps the town going.", "tags": ["Money Moves", "local economy", "skills swap", "AI & jobs"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.5 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5\"/></svg>"}, {"n": "Love & connection", "i": "love", "c": "#ee8fa4", "line": "Neighbours, belonging, looking after each other.", "tags": ["meeting neighbours", "care", "belonging", "life off the feed"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"8\" r=\"3\"/><circle cx=\"16\" cy=\"8\" r=\"3\"/><path d=\"M3 20c0-3 2.5-5 5-5s5 2 5 5\"/><path d=\"M11 20c0-3 2.5-5 5-5s5 2 5 5\"/></svg>"}, {"n": "Play & sport", "i": "play", "c": "#6b4fa0", "ink": "#fbf8f1", "line": "Making, music, and sport for the fun of it, not the league table.", "q": "What kind of play gets you out of the house?", "tags": ["ceilidh", "ultimate frisbee", "social trail running", "beer bike", "making & music"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M4.5 9.5c3 1 5 3.5 5.5 10M19.5 9.5c-3 1-5 3.5-5.5 10M8 4.8c1.5 2 6.5 2 8 0\"/></svg>"}];</script>
+<script src="v.js"></script>
+<script>document.getElementById("ver").textContent=(window.VVV_VERSION||"").split(" ")[0];</script>
+</body>
+</html>

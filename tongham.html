@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Va Va Voom Tongham</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script>window.VVV_URL="https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec";window.VVV_PLACE="Tongham";window.VVV_NAV=[["Next up", "#door"], ["What's happening", "#happening"], ["Good news", "#goodnews"], ["Is this you?", "#you"], ["Find your thread", "#threads"], ["The map", "#map-s"], ["Want in?", "#in"]];</script>
+<script>window.VVV_NAV_LOGO="Va Va <i>Voom</i>";</script>
+<style>
+*{box-sizing:border-box}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:52px}
+h1,h2,h3{font-family:var(--head);font-weight:400;margin:0}
+h2{font-size:clamp(28px,5.6vw,46px);line-height:1.05;margin-bottom:18px;text-wrap:balance}
+h3{font-size:20px;line-height:1.15}
+p{margin:0 0 12px;max-width:60ch}
+a{color:inherit}
+:focus-visible{outline:3px dashed var(--spark);outline-offset:3px}
+.eyebrow{font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.big{font-size:clamp(32px,7vw,58px);line-height:1.04;max-width:16ch;text-wrap:balance;margin:6px 0 16px}
+.sub{font-size:clamp(17px,2.3vw,20px)}
+.serious{font-weight:700;border-left:4px solid var(--spark);padding-left:12px;margin:18px 0 24px}
+.btn{display:inline-block;font-family:var(--head);font-size:17px;text-decoration:none;border:var(--bw) solid var(--line);background:var(--a);color:var(--a-ink);padding:12px 18px;box-shadow:var(--shadow);border-radius:var(--r);cursor:pointer;min-height:44px}
+.btn.q{background:transparent;color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.card{background:var(--card);border:var(--bw) solid var(--line);border-radius:var(--r);padding:18px}
+.nextcard{margin:8px 0 18px}
+.nextcard .lbl{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--spark);color:var(--spark-ink);padding:2px 8px;border-radius:var(--r);margin-bottom:10px}
+.nextcard h3{font-size:clamp(22px,4vw,30px);margin-bottom:6px}
+.nextcard .when{font-weight:700;margin-bottom:8px}
+.nextcard .proof{font-weight:700;color:var(--muted)}
+.easy{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.easy b{font-family:var(--head);font-weight:400;font-size:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.pj .th{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pj h3{margin:6px 0 4px}
+.pj .lead{font-weight:700;font-size:15px;margin-bottom:8px}
+.pj p{font-size:15px}
+.more{display:inline-block;margin-top:16px;font-weight:700}
+.feature{margin-top:18px}
+.feature ul{margin:10px 0 12px;padding-left:20px}
+.feature li{margin:6px 0;max-width:62ch}
+.credit{font-size:14px;color:var(--muted)}
+.odd p{font-family:var(--head);font-size:clamp(20px,3.6vw,28px);line-height:1.2;margin:0 0 6px}
+.ways{margin:26px 0}
+.ways h3{margin-bottom:6px}
+.five{list-style:none;padding:0;margin:20px 0;display:grid;gap:8px}
+.five li{font-family:var(--head);font-size:clamp(18px,3vw,24px);line-height:1.2}
+details.nf{margin-top:12px}
+details.nf summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 16px}
+.chip{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:700;font-size:16px;border:var(--bw) solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;border-radius:var(--r);cursor:pointer;min-height:44px}
+.chip svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.chip[aria-pressed="true"]{background:var(--c);color:var(--ci,#221e19)}
+.tags{border-left:6px solid var(--c);padding:6px 0 6px 16px}
+.tags .tline{font-size:18px}
+.tags .tq{font-weight:700}
+.tlist{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.tag{font:inherit;font-weight:700;font-size:15px;border:var(--bw) solid var(--line);background:transparent;color:var(--ink);padding:7px 12px;border-radius:var(--r);cursor:pointer;min-height:40px}
+.tag:hover{background:var(--c);color:var(--ci,#221e19)}
+.tadd{font:inherit;font-weight:700;background:none;border:0;color:var(--ink);text-decoration:underline;text-underline-offset:4px;cursor:pointer;padding:6px 0;min-height:44px}
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 18px;margin:8px 0 26px}
+.people b{font-family:var(--head);font-weight:400;font-size:20px;display:block}
+.people span{font-size:15px}
+.places .card{position:relative}
+.places a.door{display:inline-block;margin-top:8px;font-weight:700}
+footer{padding:36px 0 90px;font-size:14px;color:var(--muted)}
+.vf{position:fixed;inset:0;z-index:70;background:rgba(20,18,15,.6);display:grid;place-items:center;padding:16px}
+.vf[hidden]{display:none!important}
+.vf-card{width:min(460px,100%);max-height:100%;overflow:auto;background:var(--card-solid);color:var(--card-ink);border:var(--bw) solid var(--line);border-radius:var(--r);padding:22px;position:relative;box-shadow:var(--shadow)}
+.vf-card h2{font-size:26px;margin:0 0 6px}
+.vf-card label{display:grid;gap:4px;font-weight:700;font-size:14px;margin-bottom:10px}
+.vf-card label span{font-weight:400;opacity:.75}
+.vf-card input,.vf-card textarea{font:inherit;font-size:16px;padding:10px 11px;border:var(--bw) solid var(--card-ink);background:#fff;color:#221e19;border-radius:var(--r);width:100%}
+.vf-card textarea{min-height:90px;resize:vertical}
+.vf-x{position:absolute;right:8px;top:6px;border:0;background:none;font-size:28px;cursor:pointer;color:inherit;padding:4px 10px}
+.vf-err{min-height:1.3em;font-weight:700;color:#b8285f;margin:0 0 8px}
+.vf-hp{position:absolute;left:-9999px}
+.vf-row{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.vf-ghost{font:inherit;font-weight:700;background:none;border:0;text-decoration:underline;cursor:pointer;color:inherit}
+.vf-note{font-size:13px;opacity:.75;margin-top:10px}
+
+:root{--bg:#faf8f3;--ink:#23211d;--muted:#5b5a55;--card:#ffffff;--card-solid:#ffffff;--card-ink:#23211d;--line:#d9d4c7;--a:#23211d;--a-ink:#faf8f3;--spark:#e8806a;--spark-ink:#23211d;
+--head:'Fraunces',Georgia,serif;--body:'Atkinson Hyperlegible',Verdana,sans-serif;--r:12px;--shadow:none;--bw:1px;color-scheme:light}
+h1,h2,h3,.btn,.wm{font-weight:600}
+.big{font-weight:700;letter-spacing:-.01em}
+.logo{display:flex;align-items:flex-end;gap:12px;margin-top:22px}
+.ridge{width:110px;height:auto;fill:none;stroke:#23211d;stroke-width:1.6;stroke-linecap:round}
+.ridge .sun{fill:#f2c75a;stroke:#23211d}
+.wm{font-family:var(--head);font-size:30px;line-height:1;font-style:italic}
+.wm small{display:block;font-style:normal;font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+h2::before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--dot,#e8337f);margin-right:12px;vertical-align:.2em}
+#happening{--dot:#6fa84e}#goodnews{--dot:#f2c75a}#you{--dot:#5a9bd6}#threads{--dot:#e8806a}#who,#map-s{--dot:#6b4fa0}#in{--dot:#e8337f}
+.btn{font-family:var(--body);font-weight:700}
+.btn.q{border:1px solid #23211d}
+.chip,.tag{border-radius:999px}
+.card{box-shadow:0 1px 0 rgba(35,33,29,.04)}
+.nextcard{border-left:6px solid #e8806a}
+.pj{border-top:4px solid var(--c,#6fa84e)}
+.odd p,.five li{font-weight:600}
+section+section{border-top:1px solid #e8e3d6}
+.serious{border-color:#6fa84e;font-weight:400;font-style:italic}
+.vn{background:rgba(250,248,243,.95)!important;border-bottom:1px solid #d9d4c7!important}
+.vn-logo{font-family:'Fraunces',Georgia,serif!important;font-style:italic;font-size:21px!important;font-weight:600}
+.vn-logo i{background:none!important;color:#e8806a;padding:0!important}
+.vn-burger{border:1px solid #23211d!important;border-radius:12px;background:#fff!important}
+.vn-menu{background:#fff!important;border-top:1px solid #d9d4c7!important}.vn-menu a,.vn-menu button{font-family:'Fraunces',Georgia,serif!important;font-weight:600;border-bottom:1px solid #eee8db!important}
+body::before{background:#faf8f3!important}
+.emblem{width:min(150px,34vw);height:auto;display:block;flex:none}
+.e-o{fill:#fff;stroke:#23211d;stroke-width:2}.e-i{fill:#faf8f3;stroke:#23211d;stroke-width:1.2}
+.e-t{font-family:'Atkinson Hyperlegible',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:2px;fill:#23211d}
+.e-l,.e-l path{fill:none;stroke:#23211d;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.e-hop path{fill:none;stroke:#3f7a2e;stroke-width:2;stroke-linecap:round}.e-hop path:first-child{fill:#cfe5b0}
+.e-dot{fill:#e8806a}
+.door-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.door-top .ridge{width:84px}.door-top .wm{font-size:26px}
+#map{height:360px;border-radius:12px;border:1px solid #d9d4c7;margin:12px 0}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:14px;margin:6px 0 4px}.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px;border:1.5px solid #23211d}
+#web svg{width:100%;max-width:520px;height:auto;display:block;margin:6px auto}
+.wl{stroke:#cfc8b8;stroke-width:1.2}.wl.on{stroke:#23211d;stroke-width:2}
+.wn{cursor:pointer;outline:none}.wn circle{stroke:#23211d;stroke-width:1.5}.wn.on circle{stroke-width:3}
+.wt{font-family:'Atkinson Hyperlegible',sans-serif;font-size:13px;font-weight:700;fill:#23211d}.wt.wc{fill:#faf8f3;font-size:12px}
+.wn:focus-visible{outline:none}.wn:focus-visible circle{stroke:#e8337f;stroke-width:3}
+#web-note{min-height:3em;text-align:center;max-width:46ch;margin:4px auto 0}
+</style>
+</head>
+<body class="t-grounded">
+<script src="gate.js"></script>
+<script src="nav.js"></script>
+<!-- Built by tools/build_v.py. Edit the words there, not here. -->
+<main>
+<section id="door"><div class="wrap">
+<div class="door-top"><div class="logo"><svg class="ridge" viewBox="0 0 120 60" aria-hidden="true"><circle cx="78" cy="24" r="11" class="sun"/><path d="M4 50 C22 34 34 30 48 38 S78 30 92 36 S110 44 116 50"/><path d="M4 56h112"/><path d="M78 7v-4M93 12l3-3M63 12l-3-3M97 24h4M55 24h4"/></svg><div class="wm">Va Va Voom<small>Tongham</small></div></div><svg class="emblem" viewBox="0 0 200 200" role="img" aria-label="A Tongham emblem: a hop cone and a belfry under the Hog's Back ridge"><defs><path id="ring" d="M100 100 m-78 0 a78 78 0 1 1 156 0 a78 78 0 1 1 -156 0"/></defs><circle cx="100" cy="100" r="94" class="e-o"/><circle cx="100" cy="100" r="64" class="e-i"/><text class="e-t"><textPath href="#ring" startOffset="2%">TONGHAM · UNDER THE HOG'S BACK · TOGETHER ·</textPath></text><path class="e-l" d="M40 118 C58 100 74 96 90 104 S120 96 136 102 S154 110 160 118"/><g class="e-l"><path d="M62 118v-26l8-8 8 8v26"/><path d="M66 92h8"/><path d="M70 84v-8"/></g><g class="e-hop"><path d="M128 66c-10 6-14 18-10 30 8 10 22 10 28 0 4-12 0-24-10-30"/><path d="M118 80c6 3 14 3 20 0M117 90c7 4 16 4 23 0"/><path d="M132 66c0-6 4-10 10-12"/></g><circle cx="100" cy="146" r="4" class="e-dot"/></svg></div>
+<p class="eyebrow">Tongham · under the Hog&#x27;s Back · psst, pass it on</p>
+<h1 class="big">Let&#x27;s make Tongham awesome. Together, for real.</h1>
+<p class="sub">New here or been here forever, off the feed or on it: this is where you find out what&#x27;s on, meet the neighbours, and do something worthwhile together, even if you won&#x27;t be here forever.</p>
+<p class="serious">Not another village hall evening. Real things, nearby, with people you&#x27;ll want to see again.</p>
+<div class="card nextcard"><span class="lbl">Next up · an idea, not a date yet</span><h3>A walk up the ridge and a pint</h3><p class="when">A weekend afternoon in November, if enough of you fancy it</p><p>Up the Hampton Estate&#x27;s permissive path to the viewpoint over the Surrey Hills (about 2km there and back), then down to the Hogs Back Brewery for a pint.</p><p class="proof">Ten &quot;I&#x27;d come&quot;s and we pick a date.</p><div class="row">
+<button type="button" class="btn" data-act="board" data-thread="Meet-ups" data-tag="A walk up the ridge and a pint" data-title="A walk up the ridge and a pint" data-prompt="Which weekend works? Anyone you'd bring?" data-label="When could you come?">I'd come →</button>
+<button type="button" class="btn q" data-act="quick" data-thread="Tell me about the next one" data-title="Tell me what's on" data-prompt="No feeds, no spam. Just a nudge when something good is on nearby.">Tell me what's on</button>
+</div></div>
+<div class="easy"><b>Or tell us:</b><span>what would get you out of the house?</span><button type="button" class="btn q" data-act="board" data-thread="Meet-ups" data-tag="Ideas for Tongham" data-title="Ideas for Tongham" data-prompt="What would you love to do round here? A ceilidh, a run, a garden, a fix-it café?">Suggest something →</button></div>
+</div></section>
+<section id="happening"><div class="wrap"><h2>What's happening</h2>
+<p>Some of it is already happening. Some of it needs you. Say you're in and it helps it happen.</p><div class="grid">
+<article class="card pj" style="--c:#6fa84e"><div class="th">Land &amp; nature</div><h3>A garden on a forgotten corner</h3><div class="lead">with a neighbour · one of the new estates</div><p>Someone&#x27;s quietly started growing on a scrap of the estate nobody uses. Want to help it spread, even if you&#x27;re only here a couple of years?</p><button type="button" class="btn q" data-act="board" data-thread="Projects" data-tag="A garden on a forgotten corner" data-title="A garden on a forgotten corner" data-prompt="What draws you to this? Even a line helps." data-label="What draws you to it?">I'm in →</button></article>
+<article class="card pj" style="--c:#6fa84e"><div class="th">Land &amp; nature</div><h3>Volunteer days on the chalk downland</h3><div class="lead">with the Hampton Estate · Seale</div><p>Hedge planting and scrub clearing on the Hog&#x27;s Back slopes, usually in winter. Good company, fresh air, cake if you&#x27;re lucky.</p><button type="button" class="btn q" data-act="board" data-thread="Projects" data-tag="Volunteer days on the chalk downland" data-title="Volunteer days on the chalk downland" data-prompt="What draws you to this? Even a line helps." data-label="What draws you to it?">I'm in →</button></article>
+<article class="card pj" style="--c:#6b4fa0"><div class="th">Play &amp; sport</div><h3>Sport for the fun of it</h3><div class="lead">with you? · the Rec</div><p>Ultimate frisbee on the Rec, a social run on the Blackwater Valley Path, a ceilidh in a barn. Tell us which and we&#x27;ll find a host.</p><button type="button" class="btn q" data-act="board" data-thread="Projects" data-tag="Sport for the fun of it" data-title="Sport for the fun of it" data-prompt="What draws you to this? Even a line helps." data-label="What draws you to it?">I'm in →</button></article>
+</div>
+</div></section>
+<section id="goodnews"><div class="wrap"><h2>Good news from round here</h2>
+<p>Things worth knowing about, right on the doorstep.</p><div class="grid">
+<article class="card"><h3>Hogs Back Brewery</h3><p style="margin-top:6px">Surrey&#x27;s biggest independent brewer is right here, brewing with hops grown at Hampton in Seale. Tours run Fridays to Sundays, £23 with tastings.</p></article>
+<article class="card"><h3>Tice&#x27;s Meadow</h3><p style="margin-top:6px">An old quarry between Tongham and Badshot Lea turned into a nature reserve. Bring binoculars.</p></article>
+<article class="card"><h3>The Rec</h3><p style="margin-top:6px">A free tennis court (no booking), a basketball court and an outdoor gym, behind the Community Centre.</p></article>
+</div>
+<article class="card feature"><h3>Treat yourself this winter: the Waggon Sauna</h3><p style="margin-top:8px">Hosted by Elenid Coleman at the Hampton Estate, Seale. A wood-fired sauna in a waggon, on a woodland walk, with bucket and woodland showers to cool off.</p><ul><li><b>Open:</b> Thursday 4 to 8pm, Friday 7 to 11am (the early commuter dip), Saturday 4 to 8pm, Sunday 8am to noon. Check the booking page, as times change with the seasons.</li><li><b>Top tip:</b> get the Trailblazer pass. It works out at about £16 a session instead of £20, and you can book friends in on it.</li><li><b>Go with:</b> a friend or three. Take the corner seat if you like it hot.</li></ul><div class="row"><a class="btn" href="https://www.thewaggonsauna.co.uk/" target="_blank" rel="noopener" data-sig="waggon sauna">Book the Waggon →</a><button type="button" class="btn q" data-act="board" data-thread="Being well" data-tag="Sauna buddies" data-title="Sauna buddies" data-prompt="Fancy sharing a Trailblazer pass, or going together? Which day suits?">Find a sauna buddy</button></div><p class="credit" style="margin-top:12px">Good news from Jules, after a Sunday morning visit.</p></article>
+</div></section>
+<section id="you"><div class="wrap"><h2>Is this you?</h2><div class="odd"><p>New in Tongham and can&#x27;t work out what&#x27;s going on?</p><p>Off Instagram and missing the gossip?</p><p>Maybe this is your place.</p></div>
+<div class="ways grid"><div class="card"><h3>Come and do</h3><p style="margin-top:6px">Turn up, get your hands dirty, make something. Learn a skill from a neighbour.</p></div><div class="card"><h3>See the numbers</h3><p style="margin-top:6px">What the solar actually saved. How much rain a roof catches. What the town taps on most.</p></div><div class="card"><h3>Read the stories</h3><p style="margin-top:6px">Good news from round here, long and short. The people, the places, the why.</p></div></div>
+<h3>How we show up</h3><ul class="five"><li>Come as you are.</li><li>Talk less, do more.</li><li>We&#x27;re all leaders here. It&#x27;s our space, and we all look after it.</li><li>Deep chats and silliness, in equal measure.</li><li>If it&#x27;s alive, we follow it.</li></ul>
+<details class="nf"><summary>Not for everyone +</summary><p>This isn't for you if…</p><ul><li>You&#x27;re here to make speeches.</li><li>You&#x27;d rather talk about it than do it.</li><li>You want the mic all to yourself.</li><li>You want somewhere to moan.</li><li>You want to look green more than do green.</li></ul><p><b>Still reading? Good sign.</b></p></details>
+</div></section>
+<section id="threads"><div class="wrap"><h2>Find your thread</h2><p>Which one is speaking to you right now? Tap it. Pick one, not seven.</p>
+<div class="chips" id="chips" role="group" aria-label="Threads"></div><div class="tags" id="tags" hidden aria-live="polite"></div></div></section>
+<section id="map-s"><div class="wrap"><h2>Tongham, mapped</h2><p>The people, places and businesses that could make this place hum. Tap a pin.</p>
+<div class="legend"><span><i style="background:#3f7a2e"></i>Places</span><span><i style="background:#d9822b"></i>Businesses</span><span><i style="background:#e8337f"></i>People doing things</span><span><i style="background:#5a7fd6"></i>Ideas</span></div>
+<div id="map" role="region" aria-label="Map of Tongham"></div><p class="credit">Pins are roughly placed. Missing something? Tell us.</p>
+<h3 style="margin-top:28px">The web</h3><p>After the Transition Towns idea of a local web: who and what is here, and how it all connects. Tap a circle.</p>
+<div id="web"></div><p id="web-note">Tap a circle to see what it connects to.</p>
+<div class="row" style="justify-content:center;margin-top:10px"><button type="button" class="btn q" data-act="board" data-thread="The web" data-title="Add to the web" data-prompt="A person, a business, a place or a group we've missed? Tell us what they do.">Add someone to the web →</button></div>
+</div></section>
+<section id="in"><div class="wrap"><h2>Want in?</h2>
+<p>Leave a name and a number or email. We'll tell you when the first thing in Tongham is happening, and ask what you'd like to host.</p><div class="row"><button type="button" class="btn" data-act="quick" data-thread="Tongham: count me in" data-title="Count me in" data-prompt="We'll tell you when something's happening in Tongham. No spam.">Count me in →</button></div>
+</div></section>
+</main>
+<footer><div class="wrap">Va Va Voom Tongham · made by neighbours, not committees · a prototype, version <span id="ver"></span>. We count which bits get tapped so we know what to grow next.</div></footer>
+<div class="vf" id="vf" hidden role="dialog" aria-modal="true" aria-labelledby="vf-h"><div class="vf-card"><button type="button" class="vf-x" data-close aria-label="Close">×</button>
+<div class="vf-body"><h2 id="vf-h">Add a thought</h2><p id="vf-p"></p><form novalidate>
+<label><span id="vf-bigl" style="opacity:1;font-weight:700">Your idea, thought or feeling</span><textarea id="vf-big" name="post"></textarea></label>
+<label hidden>Phone or email<input id="vf-contact" name="contact" type="text" autocomplete="tel"></label>
+<label>Your first name<input id="vf-name" name="name" type="text" autocomplete="given-name"></label>
+<label>Email <span>(optional, only if you'd like to hear back)</span><input name="email" type="email" autocomplete="email"></label>
+<label class="vf-hp" aria-hidden="true">Leave this empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+<p class="vf-err" role="alert"></p><div class="vf-row"><button type="button" class="vf-ghost" data-close>Not now</button><button type="submit" class="btn">Send it →</button></div></form>
+<p class="vf-note">Read by a human before anything goes anywhere. Be kind, keep it real.</p></div>
+<div class="vf-done" hidden><h2>Lovely. Got it.</h2><p>We'll be in touch if it's alive. Fancy another?</p><button type="button" class="btn" data-close>Back to the page</button></div></div></div>
+<script>window.VVV_THREADS=[{"n": "Home & around", "i": "home", "c": "#df8350", "line": "New homes and old ones, cheaper energy, getting around.", "tags": ["new estates", "energy & solar", "getting around", "water & floods"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 11 12 4l9 7\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/></svg>"}, {"n": "Food", "i": "food", "c": "#f2c75a", "line": "Hops on the hill, the caf\u00e9-bar, and growing your own.", "tags": ["growing on the estate", "hops & brewing", "cooking together", "local supply"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21V11\"/><path d=\"M12 13c0-4 3-6 7-6 0 4-3 6-7 6Z\"/><path d=\"M12 15c0-3-2-5-6-5 0 3 2 5 6 5Z\"/></svg>"}, {"n": "Land & nature", "i": "land", "c": "#6fa84e", "line": "Tice's Meadow, the Hog's Back, the Blackwater Valley, the forgotten corners.", "tags": ["Tice's Meadow", "chalk downland", "Blackwater Valley", "guerrilla gardening"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21v-5\"/><path d=\"M12 3 6 13h12Z\"/><path d=\"M3 21h18\"/></svg>"}, {"n": "Being well", "i": "well", "c": "#5aa9e6", "line": "A sauna in the woods, a walk up the ridge, a proper rest.", "tags": ["sauna & cold showers", "walks", "outdoors", "rest"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10Z\"/></svg>"}, {"n": "Work & money", "i": "money", "c": "#3d5a8c", "ink": "#fbf8f1", "line": "Working from home, spending local, swapping skills.", "tags": ["local economy", "skills swap", "working from home", "AI & jobs"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.5 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5\"/></svg>"}, {"n": "Love & connection", "i": "love", "c": "#ee8fa4", "line": "Finding out what's on without the feed. Knowing your neighbours.", "tags": ["meeting neighbours", "life off the feed", "new here", "been here forever"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"8\" r=\"3\"/><circle cx=\"16\" cy=\"8\" r=\"3\"/><path d=\"M3 20c0-3 2.5-5 5-5s5 2 5 5\"/><path d=\"M11 20c0-3 2.5-5 5-5s5 2 5 5\"/></svg>"}, {"n": "Play & sport", "i": "play", "c": "#6b4fa0", "ink": "#fbf8f1", "line": "Sport for the fun of it, music, making.", "q": "What kind of play gets you out of the house? Not the league, the fun kind.", "tags": ["ceilidh", "ultimate frisbee on the Rec", "social running", "beer bike", "making & music"], "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M4.5 9.5c3 1 5 3.5 5.5 10M19.5 9.5c-3 1-5 3.5-5.5 10M8 4.8c1.5 2 6.5 2 8 0\"/></svg>"}];</script>
+<script>window.VVV_PLACES=[{"n": "Hogs Back Brewery", "k": "business", "ll": [51.2289, -0.7319], "d": "Manor Farm, The Street. Shop, tap room and tours (Fri to Sun)."}, {"n": "St Paul's Church", "k": "place", "ll": [51.2318, -0.7314], "d": "Built 1865, and the only church in Surrey with a separate belfry."}, {"n": "The Rec and Community Centre", "k": "place", "ll": [51.2343, -0.7385], "d": "Free tennis court, basketball, outdoor gym. Ultimate frisbee, anyone?"}, {"n": "Tice's Meadow", "k": "place", "ll": [51.2282, -0.7505], "d": "Old quarry, now a nature reserve."}, {"n": "Blackwater Valley Path", "k": "place", "ll": [51.238, -0.748], "d": "A long path along the river valley. A social run?"}, {"n": "Hampton Estate", "k": "business", "ll": [51.2185, -0.702], "d": "Farm, woods and chalk downland. Volunteer days, a viewpoint path, the hops for the brewery."}, {"n": "The Waggon Sauna", "k": "business", "ll": [51.2215, -0.695], "d": "Wood-fired sauna in the woods at Hampton. Hosted by Elenid."}, {"n": "A garden on a forgotten corner", "k": "people", "ll": [51.236, -0.735], "d": "Somewhere on a new estate (pin is a guess). Neighbours growing on a scrap nobody used."}, {"n": "Idea: a barn ceilidh", "k": "idea", "ll": [51.23, -0.727], "d": "Where? Tell us."}];window.VVV_CENTRE=[51.2285,-0.7240];window.VVV_WEB={"nodes": [{"id": "you", "k": "centre", "n": "Tongham people", "s": "Us", "d": "New and old, on the feed and off it. Everything else connects through people."}, {"id": "brew", "k": "business", "n": "Hogs Back Brewery", "s": "Brewery", "d": "Brews with Hampton's hops. Tours, a tap room, and a volunteers group, the Hogs Back Hoppers."}, {"id": "hamp", "k": "business", "n": "Hampton Estate", "s": "Hampton", "d": "Grows the hops, grew the sauna's timber, runs volunteer days on the downland."}, {"id": "sauna", "k": "business", "n": "The Waggon Sauna", "s": "Sauna", "d": "Built by Surrey Wood Products from Hampton timber. Hosted by Elenid."}, {"id": "rec", "k": "place", "n": "The Rec", "s": "The Rec", "d": "Free courts and an outdoor gym. Home of Tongham FC at Poyle Road."}, {"id": "tice", "k": "place", "n": "Tice's Meadow", "s": "Tice's", "d": "Quarry turned nature reserve."}, {"id": "church", "k": "place", "n": "St Paul's", "s": "St Paul's", "d": "The church with the separate belfry, and its hall."}, {"id": "cafe", "k": "business", "n": "The caf\u00e9-bar and bakery", "s": "Caf\u00e9-bar", "d": "Coffee shop by day, bar and restaurant by night. The place everyone actually goes."}, {"id": "garden", "k": "people", "n": "The estate garden", "s": "Garden", "d": "Neighbours growing on a forgotten corner of a new estate."}, {"id": "vols", "k": "people", "n": "Downland volunteers", "s": "Volunteers", "d": "Hedge planting and scrub clearing with Hampton."}, {"id": "frisbee", "k": "idea", "n": "Idea: frisbee on the Rec", "s": "Frisbee?", "d": "Sport for the fun of it. Would you come?"}, {"id": "ceilidh", "k": "idea", "n": "Idea: a barn ceilidh", "s": "Ceilidh?", "d": "Music, dancing badly, a pint from up the road."}, {"id": "walk", "k": "idea", "n": "Idea: ridge walk and a pint", "s": "Walk?", "d": "Up the viewpoint path, down to the brewery."}], "links": [["you", "brew"], ["you", "hamp"], ["you", "sauna"], ["you", "rec"], ["you", "tice"], ["you", "church"], ["you", "cafe"], ["you", "garden"], ["you", "vols"], ["you", "frisbee"], ["you", "ceilidh"], ["you", "walk"], ["hamp", "brew"], ["hamp", "sauna"], ["hamp", "vols"], ["walk", "hamp"], ["walk", "brew"], ["frisbee", "rec"], ["ceilidh", "brew"], ["garden", "vols"], ["tice", "vols"], ["cafe", "ceilidh"]]};</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="v.js"></script>
+<script>document.getElementById("ver").textContent=(window.VVV_VERSION||"").split(" ")[0];</script>
+</body>
+</html>
