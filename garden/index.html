@@ -121,20 +121,40 @@ button{font:inherit;color:inherit;cursor:pointer}
 .small{font-size:14px;color:var(--muted)}
 footer{border-top:3px solid var(--char);padding-top:14px;display:flex;flex-direction:column;gap:8px;font-size:14px}
 footer a{color:var(--clay)}
+.consent{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:0 max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));pointer-events:none}
+.consent .box{pointer-events:auto;max-width:620px;margin:0 auto;background:var(--card);border:3px solid var(--char);box-shadow:7px 7px 0 var(--zap);padding:16px;display:flex;flex-direction:column;gap:10px}
+.consent h2{font-size:22px}
+.consent ul{margin:0;padding-left:1.1em;font-size:15px;display:flex;flex-direction:column;gap:2px}
+.consent li::marker{color:var(--moss)}
+.consent .btns .btn{font-size:16px;padding:10px 14px}
+.linkish{background:none;border:none;padding:0;text-decoration:underline;text-underline-offset:3px;color:var(--clay);font-size:14px}
 @media (max-width:420px){.four{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
 <script>
-/* PostHog (EU), cookieless: counts visits and lesson progress, no cookies, no session replay, nothing typed is sent. Same project as the Va Va Voom site. */
+/* PostHog (EU). Asks first. Yes: lesson progress, clicks and a screen replay with every typed field hidden. No: anonymous counts only, no cookies, no replay. Same project and same choice as the main Va Va Voom site (localStorage 'vvv-ph'). */
 !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister identify reset get_distinct_id set_config startSessionRecording stopSessionRecording opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing get_explicit_consent_status debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-posthog.init('phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6',{api_host:'https://eu.i.posthog.com',defaults:'2025-05-24',cookieless_mode:'always',person_profiles:'identified_only',respect_dnt:true,disable_session_recording:true,autocapture:false});
+posthog.init('phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6',{
+  api_host:'https://eu.i.posthog.com', defaults:'2025-05-24',
+  cookieless_mode:'on_reject',          /* nothing is stored until a choice; "no" = anonymous counting only */
+  person_profiles:'identified_only', respect_dnt:true,
+  capture_pageview:false,               /* we send our own page views per lesson */
+  mask_all_text:false,
+  session_recording:{maskAllInputs:true, maskTextSelector:'.ph-mask'}
+});
 posthog.register({app:'safe-in-the-garden',app_version:'1.0'});
 </script>
 <style>body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 </head>
 <body>
 <div class="wrap" id="app" aria-live="polite"></div>
+<div class="consent" id="consent" hidden><div class="box" role="region" aria-labelledby="ch">
+  <h2 id="ch">Help us make this better?</h2>
+  <p>Let us see which lessons people finish and where they get stuck, so we can fix the confusing bits for the garden.</p>
+  <ul><li>Anything you type stays hidden</li><li>No names, no selling, data stays in the EU</li><li>Change your mind any time, at the bottom of the page</li></ul>
+  <div class="btns"><button class="btn go" id="c-yes">Yes, that’s fine</button><button class="btn ghost" id="c-no">Just count my visit</button></div>
+</div></div>
 
 <script>
 const LOGO = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Va Va Voom Godalming"><rect width="512" height="512" fill="#ff2e88"/><rect x="110.5" y="118" width="291" height="276" fill="#d4ff3a"/><path d="M295 364H217Q211.3 364 207.7 361.9Q204.1 359.8 201.7 354.1L172.3 280.6Q168.7 271.6 166.6 265.6Q164.5 259.6 163.6 253.45Q162.7 247.3 162.7 238V158.8Q162.7 148 173.5 148H221.2Q232.9 148 232.9 158.8V241.6Q232.9 244.6 233.5 247.6Q234.1 250.6 235.3 253.9L249.4 295.9Q250.9 301 255.1 301H258.4Q262.6 301 264.1 295.9L278.2 253.6Q279.4 250.3 280 247.3Q280.6 244.3 280.6 241.3V158.8Q280.6 148 291.4 148H338.5Q349.3 148 349.3 158.8V238Q349.3 247.3 348.4 253.45Q347.5 259.6 345.4 265.6Q343.3 271.6 339.7 280.6L310.3 354.1Q308.2 359.8 304.6 361.9Q301 364 295 364Z" fill="#17130f"/></svg>`;
@@ -286,6 +306,29 @@ const KEY='safe-in-garden-v1';
 let S = {done:{}, lead:''};
 try{ const s=JSON.parse(localStorage.getItem(KEY)); if(s&&s.done) S=s; }catch(e){}
 const track=(n,p)=>{try{window.posthog&&posthog.capture(n,p||{})}catch(e){}};
+/* consent, shared with the main site */
+const PH_CHOICE='vvv-ph';
+const getChoice=()=>{try{return localStorage.getItem(PH_CHOICE)}catch(e){return null}};
+const consentLine=()=>{const c=getChoice(); return c==='yes'?'you said yes to helping us improve it (typed fields hidden).':c==='no'?'we only count visits, anonymously, with no cookies.':'nothing recorded until you choose.'};
+const cBox=document.getElementById('consent');
+function choose(yes){
+  try{localStorage.setItem(PH_CHOICE,yes?'yes':'no')}catch(e){}
+  try{ yes?posthog.opt_in_capturing():posthog.opt_out_capturing(); }catch(e){}
+  cBox.hidden=true; track('privacy choice',{choice:yes?'yes':'no'});
+  const pl=document.querySelector('[data-consent]'); if(pl) pl.parentNode.firstChild.textContent='Privacy: '+consentLine()+' ';
+}
+document.getElementById('c-yes').onclick=()=>choose(true);
+document.getElementById('c-no').onclick=()=>choose(false);
+(function(){const c=getChoice(); if(c==='yes'||c==='no'){try{c==='yes'?posthog.opt_in_capturing():posthog.opt_out_capturing()}catch(e){}} else cBox.hidden=false;})();
+
+/* what we learn: which lessons, which cards, which answers trip people up, how long it takes, where they stop */
+const T={lesson:null,start:0,attempts:0,cardStart:0};
+const secs=t=>Math.round((Date.now()-t)/1000);
+const base=location.href.split('#')[0];
+function view(name){ track('$pageview',{$current_url:base+(name?'#'+name:''), view:name||'home', progress:doneCount()}); }
+function leaveLesson(why){ if(T.lesson===null) return; const l=L[T.lesson]; if(!S.done[l.id]||why!=='finished') track('lesson left',{lesson:l.id,step:+app.dataset.step,of:l.cards.length+1,seconds:secs(T.start),why}); T.lesson=null; }
+try{ posthog.register({progress:doneCount(), returning:!!Object.keys(S.done).length, has_lead_name:!!S.lead}); }catch(e){}
+addEventListener('pagehide',()=>{ if(T.lesson!==null) leaveLesson('closed page'); });
 const save=()=>{ try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){} };
 const app=document.getElementById('app');
 const doneCount=()=>L.filter(l=>S.done[l.id]).length;
@@ -305,7 +348,7 @@ function pocket(){
       <div><b>Refer</b><span>To the Safeguarding Lead, same day.</span></div>
     </div>
     <div class="lead"><label class="label" for="lead">The garden’s Safeguarding Lead is</label>
-      <input id="lead" placeholder="Ask the office, then write their name here" value="${(S.lead||'').replace(/"/g,'&quot;')}"></div>
+      <input id="lead" class="ph-no-capture ph-mask" autocomplete="off" placeholder="Ask the office, then write their name here" value="${(S.lead||'').replace(/"/g,'&quot;')}"></div>
     <div class="nums">${numbersHTML()}</div>
     <p class="small">Screenshot this card and keep it on your phone.</p>
   </section>`;
@@ -328,12 +371,13 @@ function home(){
   <section class="gravity">
     <p class="label plum">What this is</p>
     <p>A short refresher written for volunteers, set in the real garden. It doesn’t replace The Therapy Garden’s own safeguarding policy or the training they ask you to do. If anything here differs from their policy, follow theirs and tell them.</p>
-    <p class="small">We count visits and which lessons get finished, without cookies, to make it better. Nothing you type is sent.</p>
+    <p class="small">Privacy: ${consentLine()} <button class="linkish" data-consent>Change</button></p>
     <p class="small">Surrey numbers checked on 26 October 2026 at surreycc.gov.uk; garden office number from Normandy Parish Council’s site. People in the scenes are made up.</p>
   </section>
   <footer><p>Made in Godalming by Va Va Voom. Have a better scenario from your own garden? Tell us and we’ll add it.</p>
   <p><a href="https://www.surreycc.gov.uk/children/contact-childrens-services">Surrey children’s services</a> · <a href="https://www.surreycc.gov.uk/adults/getting-support/concerns">Surrey: worried about an adult</a></p></footer>`;
-  window.scrollTo(0,0);
+  window.scrollTo(0,0); view('');
+  try{ const pk=document.getElementById('pk'); new IntersectionObserver((es,o)=>{ if(es[0].isIntersecting){ track('pocket card seen',{progress:doneCount()}); o.disconnect(); } },{threshold:.6}).observe(pk.closest('.pocket')); }catch(e){}
 }
 
 function lesson(i, step=0, picked=null){
@@ -354,22 +398,25 @@ function lesson(i, step=0, picked=null){
   }
   app.innerHTML=`<div class="crumbs"><button class="back" data-home>← All lessons</button><div class="dots" aria-label="Step ${step+1} of ${total}">${Array.from({length:total},(_,k)=>`<i class="${k<=step?'on':''}"></i>`).join('')}</div></div>
    <p class="label">Lesson ${i+1} of ${L.length} · ${l.title}</p>${body}`;
-  app.dataset.lesson=i; app.dataset.step=step;
+  const fresh=T.lesson!==i; app.dataset.lesson=i; app.dataset.step=step;
+  if(fresh){ T.lesson=i; T.start=Date.now(); T.attempts=0; track('lesson started',{lesson:l.id,n:i+1,already_done:!!S.done[l.id]}); }
+  if(picked===null){ view(l.id+'-'+(step<l.cards.length?'card'+(step+1):'check')); track('card viewed',{lesson:l.id,step:step+1,of:total,kind:step<l.cards.length?'card':'check'}); }
   window.scrollTo(0,0);
 }
 
 app.addEventListener('click',e=>{
   const t=e.target.closest('button'); if(!t) return;
   const i=+app.dataset.lesson;
-  if(t.dataset.go!==undefined){ track('lesson started',{lesson:L[+t.dataset.go].id}); lesson(+t.dataset.go); }
-  else if(t.dataset.home!==undefined) home();
-  else if(t.dataset.step!==undefined) lesson(i,+t.dataset.step);
-  else if(t.dataset.pick!==undefined){ const k=+t.dataset.pick; track('check answered',{lesson:L[i].id,option:k,correct:k===L[i].q.right}); lesson(i,L[i].cards.length,k); }
-  else if(t.dataset.finish!==undefined){ S.done[L[i].id]=true; save(); track('lesson completed',{lesson:L[i].id,done:doneCount()}); if(doneCount()===L.length) track('course completed'); (i+1<L.length)?lesson(i+1):home(); if(i+1>=L.length) setTimeout(()=>document.getElementById('pk')?.scrollIntoView(),50); }
+  if(t.dataset.consent!==undefined){ cBox.hidden=false; document.getElementById('c-yes').focus(); return; }
+  if(t.dataset.go!==undefined){ lesson(+t.dataset.go); }
+  else if(t.dataset.home!==undefined){ leaveLesson('back to list'); home(); }
+  else if(t.dataset.step!==undefined){ if(+t.dataset.step<+app.dataset.step) track('went back',{lesson:L[i].id,from:+app.dataset.step+1}); lesson(i,+t.dataset.step); }
+  else if(t.dataset.pick!==undefined){ const k=+t.dataset.pick; T.attempts++; track('check answered',{lesson:L[i].id,option:k,answer:L[i].q.opts[k],correct:k===L[i].q.right,attempt:T.attempts,first_try:T.attempts===1&&k===L[i].q.right}); lesson(i,L[i].cards.length,k); }
+  else if(t.dataset.finish!==undefined){ const was=!!S.done[L[i].id]; S.done[L[i].id]=true; save(); track('lesson completed',{lesson:L[i].id,seconds:secs(T.start),attempts:T.attempts,repeat:was,done:doneCount()}); try{posthog.register({progress:doneCount()})}catch(e){} if(doneCount()===L.length&&!was) track('course completed'); T.lesson=null; (i+1<L.length)?lesson(i+1):home(); if(i+1>=L.length) setTimeout(()=>document.getElementById('pk')?.scrollIntoView(),50); }
   else if(t.dataset.copy){ track('number copied',{number:t.dataset.copy}); const v=t.dataset.copy; navigator.clipboard?.writeText(v).then(()=>{t.textContent='Copied'},()=>{t.textContent='Select it'}); }
 });
 app.addEventListener('click',e=>{const a=e.target.closest('a.tel'); if(a) track('number tapped',{number:a.textContent});});
-app.addEventListener('input',e=>{ if(e.target.id==='lead'){ S.lead=e.target.value; save(); } });
+app.addEventListener('input',e=>{ if(e.target.id==='lead'){ const had=!!S.lead; S.lead=e.target.value; save(); if(!had&&S.lead) track('lead name added'); } });
 home();
 </script>
 

@@ -20,6 +20,11 @@
    "date": "2026-10-26",
    "hours": 0.1,
    "what": "Safe in the Garden: a 15-minute safeguarding micro-course for Therapy Garden volunteers, shaped for Reiks (garden/)"
+  },
+  {
+   "date": "2026-10-26",
+   "hours": 0.1,
+   "what": "Safe in the Garden: asks before recording (shared choice with the main site), lesson-by-lesson PostHog events and replay with typed fields hidden"
   }
  ],
  "people": {

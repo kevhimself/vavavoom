@@ -10,6 +10,7 @@ One-page invitation site. Served with GitHub Pages from the main branch.
 - `gate.js` loads PostHog (EU cloud) on every page that uses the gate. It is off until `PH_KEY` in `gate.js` holds the project key (starts `phc_`).
 - Visits are counted without cookies until a visitor says yes on the "Can we record?" bar; session replay only runs after a yes. All inputs are masked. No email or name is sent to PostHog.
 - Events: `gate passed`, `feedback sent`, plus automatic page views and clicks.
+- `garden/` (Safe in the Garden, no gate) asks the same question with its own bar and shares the choice (`vvv-ph`). Its events, filtered by `app = safe-in-the-garden`: page views per card (`#lesson-card1`, `#lesson-check`), `lesson started`, `card viewed`, `went back`, `check answered` (answer, right or wrong, attempt), `lesson completed` (seconds, attempts), `lesson left` (where they stopped), `course completed`, `pocket card seen`, `lead name added` (never the name), `number tapped`, `number copied`, `privacy choice`.
 - PostHog project settings to switch on: Discard client IP data, Cookieless server hash mode (Web analytics), Session replay with Mask all inputs.
 
 ## On every release
