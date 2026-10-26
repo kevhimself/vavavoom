@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A 15-minute safeguarding refresher for volunteers at The Therapy Garden, Normandy, Surrey.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<title>Safe in the Garden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Courier+Prime:wght@400;700&family=Permanent+Marker&display=swap">
+<style>
+/* Layout: one narrow zine column on a paper ground; a home list of six bite-size lessons, each opening as a short stack of cards ending in one check. Single paper theme by choice (Va Va Voom). */
+:root{
+  --paper:#f3eee2; --card:#fbf8f1; --char:#221e19; --zap:#e8337f; --zap-deep:#b8285f;
+  --neon:#ee8fa4; --neon2:#f2c75a; --volt:#c9f24a; --moss:#46643b; --clay:#3d5a8c; --plum:#6b4fa0;
+  --muted:#5b5248;
+  --display:'Bowlby One SC', Impact, 'Arial Black', sans-serif;
+  --hand:'Permanent Marker', 'Comic Sans MS', cursive;
+  --body:'Courier Prime', 'Courier New', monospace;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html,body{background:var(--paper);color:var(--char)}
+body{font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:20px 56px}
+.wrap{max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;line-height:1.05}
+h1{font-size:clamp(34px,9vw,52px)}
+h2{font-size:clamp(26px,6.5vw,34px)}
+h3{font-size:21px;line-height:1.15}
+p{margin:0}
+.label{font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--clay)}
+.label.plum{color:var(--plum)}
+.hand{font-family:var(--hand);color:var(--zap-deep);transform:rotate(-1deg);display:inline-block;font-size:22px;line-height:1.25}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--zap);outline-offset:3px}
+
+/* masthead */
+.mast{display:flex;align-items:center;gap:12px}
+.mast svg{width:44px;height:44px;flex:none;border:2px solid var(--char)}
+.mast .label{color:var(--char)}
+.hero{display:flex;flex-direction:column;gap:14px}
+.hero p.lede{max-width:34em}
+.gravity{background:var(--card);border:3px solid var(--char);padding:16px;display:flex;flex-direction:column;gap:6px}
+.gravity p{font-size:15px}
+
+/* progress */
+.prog{display:flex;flex-direction:column;gap:8px}
+.bar{height:14px;border:2px solid var(--char);background:var(--card)}
+.bar i{display:block;height:100%;background:var(--volt);border-right:2px solid var(--char);width:0;transition:width .4s}
+.prog .row{display:flex;justify-content:space-between;font-size:14px;font-variant-numeric:tabular-nums}
+
+/* lesson list */
+.lessons{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.lesson-btn{width:100%;text-align:left;background:var(--card);border:2px solid var(--char);padding:14px 16px;display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center}
+.lesson-btn:hover{box-shadow:4px 4px 0 var(--char);transform:translate(-2px,-2px)}
+.lesson-btn .n{font-family:var(--display);font-size:24px;width:44px;height:44px;display:grid;place-items:center;border:2px solid var(--char);background:var(--neon2)}
+.lesson-btn .t{min-width:0;display:flex;flex-direction:column;gap:2px}
+.lesson-btn .t b{font-family:var(--display);font-weight:400;font-size:19px;line-height:1.15}
+.lesson-btn .t span{font-size:14px;color:var(--muted)}
+.lesson-btn .st{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border:2px solid var(--char);white-space:nowrap}
+.done .lesson-btn .n{background:var(--volt)}
+.done .lesson-btn .st{background:var(--volt)}
+
+/* buttons */
+.btn{background:var(--neon);border:3px solid var(--char);box-shadow:4px 4px 0 var(--char);padding:12px 18px;font-family:var(--display);font-size:18px;line-height:1.1;text-align:center}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--char)}
+.btn.ghost{background:var(--card)}
+.btn.go{background:var(--volt)}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btns .btn{flex:1 1 140px}
+
+/* lesson view */
+.crumbs{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.back{background:none;border:none;padding:6px 0;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.dots{display:flex;gap:6px}
+.dots i{width:12px;height:12px;border:2px solid var(--char);background:var(--card)}
+.dots i.on{background:var(--zap)}
+.cardx{background:var(--card);border:2px solid var(--char);padding:20px 18px;display:flex;flex-direction:column;gap:14px;min-height:300px}
+.cardx.big{border-width:3px;box-shadow:7px 7px 0 var(--zap)}
+.cardx ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:8px}
+.cardx li::marker{color:var(--zap-deep)}
+.scene{background:var(--paper);border:2px dashed var(--char);padding:14px;display:flex;flex-direction:column;gap:6px}
+.scene .label{color:var(--moss)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{background:var(--neon2);border:2px solid var(--char);padding:2px 8px;font-size:14px;font-weight:700}
+.tag.v{background:var(--volt)} .tag.e{background:#df8350}
+.why{border-left:0;background:var(--plum);color:#fff;padding:14px;display:flex;flex-direction:column;gap:4px}
+.why .label{color:#e9e1f7}
+
+/* quiz */
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;background:var(--paper);border:2px solid var(--char);padding:12px 14px;font-size:16px;line-height:1.4}
+.opt[aria-pressed="true"]{background:var(--neon2)}
+.opt.right{background:var(--volt)}
+.opt.wrong{background:var(--card);text-decoration:line-through;text-decoration-color:var(--zap-deep)}
+.fb{border:3px solid var(--char);padding:14px;background:var(--paper);display:flex;flex-direction:column;gap:6px}
+.fb.ok{background:#eef8d2}
+.fb b{font-family:var(--display);font-weight:400;font-size:19px}
+
+/* pocket card */
+.pocket{background:var(--card);border:3px solid var(--char);box-shadow:8px 8px 0 var(--char);padding:18px;display:flex;flex-direction:column;gap:16px}
+.four{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.four div{border:2px solid var(--char);padding:10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.four b{font-family:var(--display);font-weight:400;font-size:18px}
+.four span{font-size:14px;line-height:1.35}
+.four div:nth-child(1){background:var(--neon2)} .four div:nth-child(2){background:var(--neon)}
+.four div:nth-child(3){background:var(--volt)} .four div:nth-child(4){background:#df8350}
+.nums{display:flex;flex-direction:column;gap:10px}
+.num{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;border-top:2px solid var(--char);padding-top:10px}
+.num .who{font-size:14px;min-width:0}
+.num .who b{display:block;font-size:15px}
+.num .tel{color:var(--char);text-decoration:none;font-weight:700;font-size:19px;font-variant-numeric:tabular-nums;user-select:all;white-space:nowrap}
+.copy{grid-column:2;justify-self:end;background:var(--paper);border:2px solid var(--char);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px}
+.num.e999 .tel{color:var(--zap-deep);font-size:26px}
+.lead{display:flex;flex-direction:column;gap:6px}
+.lead input{font:inherit;background:var(--paper);border:2px solid var(--char);padding:10px 12px;width:100%}
+.small{font-size:14px;color:var(--muted)}
+footer{border-top:3px solid var(--char);padding-top:14px;display:flex;flex-direction:column;gap:8px;font-size:14px}
+footer a{color:var(--clay)}
+@media (max-width:420px){.four{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<script>
+/* PostHog (EU), cookieless: counts visits and lesson progress, no cookies, no session replay, nothing typed is sent. Same project as the Va Va Voom site. */
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister identify reset get_distinct_id set_config startSessionRecording stopSessionRecording opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing get_explicit_consent_status debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6',{api_host:'https://eu.i.posthog.com',defaults:'2025-05-24',cookieless_mode:'always',person_profiles:'identified_only',respect_dnt:true,disable_session_recording:true,autocapture:false});
+posthog.register({app:'safe-in-the-garden',app_version:'1.0'});
+</script>
+<style>body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+<div class="wrap" id="app" aria-live="polite"></div>
+
+<script>
+const LOGO = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Va Va Voom Godalming"><rect width="512" height="512" fill="#ff2e88"/><rect x="110.5" y="118" width="291" height="276" fill="#d4ff3a"/><path d="M295 364H217Q211.3 364 207.7 361.9Q204.1 359.8 201.7 354.1L172.3 280.6Q168.7 271.6 166.6 265.6Q164.5 259.6 163.6 253.45Q162.7 247.3 162.7 238V158.8Q162.7 148 173.5 148H221.2Q232.9 148 232.9 158.8V241.6Q232.9 244.6 233.5 247.6Q234.1 250.6 235.3 253.9L249.4 295.9Q250.9 301 255.1 301H258.4Q262.6 301 264.1 295.9L278.2 253.6Q279.4 250.3 280 247.3Q280.6 244.3 280.6 241.3V158.8Q280.6 148 291.4 148H338.5Q349.3 148 349.3 158.8V238Q349.3 247.3 348.4 253.45Q347.5 259.6 345.4 265.6Q343.3 271.6 339.7 280.6L310.3 354.1Q308.2 359.8 304.6 361.9Q301 364 295 364Z" fill="#17130f"/></svg>`;
+
+const NUMBERS = [
+  {cls:'e999', who:'Someone is in danger right now', sub:'Police or ambulance', tel:'999'},
+  {who:'Worried about a child (under 18)', sub:'Surrey C-SPA, Mon–Fri 9am–5pm', tel:'0300 470 9100'},
+  {who:'Worried about an adult', sub:'Surrey Adult Social Care', tel:'0300 200 1005'},
+  {who:'Evenings, weekends, bank holidays', sub:'Surrey emergency duty team, child or adult', tel:'01483 517 898'},
+  {who:'The garden office', sub:'To reach the Safeguarding Lead or manager', tel:'01483 813846'}
+];
+
+const L = [
+ {id:'why', title:'Why it matters here', mins:2, sum:'Who comes to the garden, and what your job is (and isn’t).',
+  cards:[
+   `<p class="label">Lesson 1 · The people</p>
+    <h2>Every gardener here is somebody’s someone</h2>
+    <p>The Therapy Garden welcomes young people aged 14 to 19 at the Green School, and adults living with learning disabilities, mental ill health, physical disability, brain injury, stroke or dementia.</p>
+    <p>Some find it hard to say what’s wrong. Some rely on other people for money, lifts or care. That is what makes them more open to harm, and why you matter.</p>`,
+   `<p class="label">Your job in one line</p>
+    <h2>Notice. Listen. Pass it on.</h2>
+    <p>You are not a detective. You don’t investigate, gather proof or decide what happened. You notice, you listen, and you tell the Safeguarding Lead the same day.</p>
+    <div class="why"><p class="label">Why it’s the law, briefly</p><p>Adults: the Care Act 2014. Children: the Children Acts and the government’s <i>Working Together to Safeguard Children</i> (2026 edition). Both say the same thing to volunteers: safeguarding is everyone’s business.</p></div>`
+  ],
+  q:{ask:'Bea, a Green School student, seems withdrawn today. Whose job is it to notice?',
+     opts:['The tutor who came with her','The Safeguarding Lead','Mine, and everyone’s here'],
+     right:2, yes:'Right. Anyone can be the one who notices. Then the Lead takes it from there.',
+     no:['The tutor helps, but they might not be there next week. Anyone here can be the one who notices.','The Lead acts on worries, but can’t see everything. Anyone here can be the one who notices.']}},
+
+ {id:'signs', title:'Spotting the signs', mins:3, sum:'What harm looks like, through a gardener’s eyes.',
+  cards:[
+   `<p class="label">Lesson 2 · Kinds of harm</p>
+    <h2>Harm comes in more shapes than bruises</h2>
+    <div class="tags"><span class="tag">Physical</span><span class="tag">Emotional</span><span class="tag">Sexual</span><span class="tag">Neglect</span><span class="tag">Financial</span><span class="tag">Domestic</span><span class="tag">Exploitation</span><span class="tag">Online</span><span class="tag">Self-neglect</span><span class="tag">Discriminatory</span><span class="tag">Organisational</span><span class="tag">Modern slavery</span><span class="tag">Radicalisation</span></div>
+    <p class="small">You don’t need to label it. That’s the Lead’s job. You just need to see that something is off.</p>`,
+   `<p class="label">What it looks like in the garden</p>
+    <h2>Sleeves up, guard down</h2>
+    <ul>
+     <li>Marks you see when sleeves get rolled up for potting.</li>
+     <li>No coat on a frosty morning, week after week.</li>
+     <li>Really hungry at tea break, or no packed lunch again.</li>
+     <li>Suddenly no money, or a “new friend” who handles it.</li>
+     <li>Scared when a certain person collects them.</li>
+     <li>A big change: quiet, jumpy, or no longer coming.</li>
+    </ul>
+    <p><span class="hand">One sign is a clue, not a verdict.</span></p>`
+  ],
+  q:{ask:'Dave, who comes on Tuesdays, says his new mate “looks after” his benefits now, and he skipped lunch again. What do you do?',
+     opts:['Nothing. It’s his money and his choice','Ask Dave for his mate’s name and phone him','Tell the Safeguarding Lead today what Dave said'],
+     right:2, yes:'Yes. This could be financial abuse. Don’t confront anyone; pass on Dave’s words to the Lead today.',
+     no:['It is his money, and that’s why it matters if someone else now controls it. Tell the Lead today, in Dave’s words.','Don’t investigate or confront. That could put Dave at more risk. Tell the Lead today, in Dave’s words.']}},
+
+ {id:'tell', title:'When someone tells you', mins:3, sum:'What to say, and what never to promise.',
+  cards:[
+   `<p class="label">Lesson 3 · A disclosure</p>
+    <h2>It often happens side by side, weeding</h2>
+    <p>People tell things when they don’t have to look at you. Keep your hands busy, stay calm and keep listening.</p>
+    <div class="scene"><p class="label">Say</p><p>“Thank you for telling me.” “You’ve done the right thing.” “I’m going to tell someone whose job is to help.”</p></div>
+    <div class="scene"><p class="label">Don’t</p><p>Promise to keep it secret. Look shocked. Ask leading questions like “Did he hit you?” Talk to the person they mention.</p></div>`,
+   `<p class="label">If you need to ask, use TED</p>
+    <h2>Tell me. Explain. Describe.</h2>
+    <p>“Tell me more about that.” “Explain what you mean.” “Describe what happened.”</p>
+    <p>Open questions let them use their words, not yours. Ask only enough to know you need to pass it on. Then stop.</p>
+    <p><span class="hand">Their words. Not yours.</span></p>`
+  ],
+  q:{ask:'Kai, 15, says: “I’ll tell you something, but you have to promise not to tell anyone.” What do you say?',
+     opts:['“I promise, you can trust me.”','“I can’t promise that. If you might be at risk, I’ll need to tell someone who can help. You can still talk to me.”','“Then don’t tell me, it’s safer.”'],
+     right:1, yes:'Spot on. Be honest up front, and keep the door open.',
+     no:['If you promise and then have to tell, Kai learns adults can’t be trusted. Be honest first.','That shuts the door on someone who may need help. Be honest and keep listening.']}},
+
+ {id:'record', title:'Write it, pass it on', mins:3, sum:'What to write down, and who to tell, when.',
+  cards:[
+   `<p class="label">Lesson 4 · Record</p>
+    <h2>Write it down before you go home</h2>
+    <ul>
+     <li>Date, time and where in the garden.</li>
+     <li>Their exact words, in quote marks.</li>
+     <li>What you saw yourself: marks, mood, who was there.</li>
+     <li>What you said back.</li>
+     <li>Your name and signature.</li>
+    </ul>
+    <p>Use the garden’s concern form (ask the office where it’s kept). None to hand? Any paper, signed and dated. Facts, not opinions. Hand it in today and keep no copy at home.</p>`,
+   `<p class="label">Refer</p>
+    <h2>Same day, every time</h2>
+    <ul>
+     <li><b>Danger now?</b> Call 999 first, then tell the Lead.</li>
+     <li><b>Otherwise:</b> tell the Safeguarding Lead the same day. If they’re out, the manager.</li>
+     <li><b>Still worried</b> nothing’s happening? You can call Surrey yourself. The numbers are on your pocket card.</li>
+    </ul>
+    <div class="why"><p class="label">Privacy doesn’t block safety</p><p>Data protection law never stops you sharing a worry to keep someone safe. Share with the right person, not the whole tea hut.</p></div>`
+  ],
+  q:{ask:'Which line belongs in your note?',
+     opts:['“Mum’s new partner is obviously a bully.”','“At 11.20 by the polytunnel Amy said ‘he shouts and throws things at night’. She was crying.”','“Amy seemed a bit off, think something’s going on at home.”'],
+     right:1, yes:'That’s the one. Time, place, her exact words, what you saw.',
+     no:['That’s a judgement about someone you’ve never met. Write the time, place, her exact words and what you saw.','Too vague to act on. Write the time, place, her exact words and what you saw.']}},
+
+ {id:'bounds', title:'Safe ways of working', mins:3, sum:'Boundaries that protect them, and you.',
+  cards:[
+   `<p class="label">Lesson 5 · Boundaries</p>
+    <h2>Stay in sight, stay professional</h2>
+    <ul>
+     <li>Never alone with a young person out of sight. Keep shed and polytunnel doors open.</li>
+     <li>No swapping numbers, no social media friends or follows.</li>
+     <li>No photos on your own phone.</li>
+     <li>No lifts, gifts or money, either way.</li>
+     <li>Personal care is for staff, by the person’s plan.</li>
+     <li>Need to guide a hand on a tool? Ask first.</li>
+    </ul>`,
+   `<p class="label">Adults have a say</p>
+    <h2>Their life, their choices</h2>
+    <p>Adults with capacity can make choices you wouldn’t. Ask what they want to happen. Involve them in what happens next where you can.</p>
+    <p>That doesn’t mean doing nothing. You still tell the Lead. If someone else is at risk, or a crime may have happened, it goes further, even if they’d rather it didn’t.</p>
+    <p class="small">This idea is called <i>Making Safeguarding Personal</i>. Capacity is set out in the Mental Capacity Act 2005.</p>`
+  ],
+  q:{ask:'Jess, 16, asks to follow you on Instagram so she can show you her veg patch at home. What do you do?',
+     opts:['Accept. It’s only veg photos','Say no kindly, and suggest she brings photos to show everyone at the garden','Accept, but set your account to private'],
+     right:1, yes:'Kind and clear. You keep the warmth and lose the risk.',
+     no:['Private messages blur the line, however innocent. Say no kindly and suggest she brings photos in.','Private settings don’t change who you’re in contact with. Say no kindly and suggest she brings photos in.']}},
+
+ {id:'speak', title:'Speaking up', mins:2, sum:'When the worry is about a colleague.',
+  cards:[
+   `<p class="label">Lesson 6 · Whistleblowing</p>
+    <h2>It’s hardest when it’s someone you like</h2>
+    <p>Most people who work here are lovely. That is exactly why it’s hard to raise a worry about one of them.</p>
+    <ul>
+     <li>Worried about a volunteer or staff member? Tell the Safeguarding Lead.</li>
+     <li>Worried about the Lead? Tell the manager or the chair of trustees.</li>
+     <li>Worried no one is listening? Call Surrey. The numbers are on your card.</li>
+    </ul>
+    <p class="small">Worries about any adult who works with under-18s also go to Surrey’s LADO (Local Authority Designated Officer). The Lead makes that call. If it doesn’t happen, ring the C-SPA and say it’s about someone who works with children.</p>
+    <p><span class="hand">You don’t need to be sure. You need to say.</span></p>`,
+   `<p class="label">And if it’s about you</p>
+    <h2>Someone says you did something</h2>
+    <p>It happens, and it’s frightening. The safe steps are the same as for anyone else.</p>
+    <ul>
+     <li>Tell the Safeguarding Lead yourself, today.</li>
+     <li>Write down what happened, with times and who was there.</li>
+     <li>Don’t contact the person, or their family, to put it right.</li>
+     <li>Expect a fair process. Following these steps protects you too.</li>
+    </ul>`
+  ],
+  q:{ask:'A fellow volunteer keeps taking the same student off alone to “the far beds”, and gives her sweets. What do you do?',
+     opts:['Have a quiet word with him first','Tell the Safeguarding Lead today what you’ve seen','Wait to see if it keeps happening'],
+     right:1, yes:'Yes. Say what you saw, not what you suspect. The Lead looks at the bigger picture.',
+     no:['A quiet word can tip him off and put the student at risk. Tell the Lead today what you’ve seen.','Waiting leaves her exposed. You don’t need proof. Tell the Lead today what you’ve seen.']}}
+];
+
+const KEY='safe-in-garden-v1';
+let S = {done:{}, lead:''};
+try{ const s=JSON.parse(localStorage.getItem(KEY)); if(s&&s.done) S=s; }catch(e){}
+const track=(n,p)=>{try{window.posthog&&posthog.capture(n,p||{})}catch(e){}};
+const save=()=>{ try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){} };
+const app=document.getElementById('app');
+const doneCount=()=>L.filter(l=>S.done[l.id]).length;
+
+function numbersHTML(){
+  return NUMBERS.map((n,i)=>`<div class="num ${n.cls||''}"><div class="who"><b>${n.who}</b>${n.sub}</div><a class="tel" id="tel${i}" href="tel:${n.tel.replace(/ /g,'')}">${n.tel}</a><button class="copy" data-copy="${n.tel}" aria-label="Copy ${n.tel}">Copy</button></div>`).join('');
+}
+
+function pocket(){
+  return `<section class="pocket" aria-labelledby="pk">
+    <p class="label plum">Your pocket card</p>
+    <h2 id="pk">The four Rs</h2>
+    <div class="four">
+      <div><b>Recognise</b><span>Something feels off. Trust it.</span></div>
+      <div><b>Respond</b><span>Listen, stay calm, no secrets.</span></div>
+      <div><b>Record</b><span>Their words, the facts, today.</span></div>
+      <div><b>Refer</b><span>To the Safeguarding Lead, same day.</span></div>
+    </div>
+    <div class="lead"><label class="label" for="lead">The garden’s Safeguarding Lead is</label>
+      <input id="lead" placeholder="Ask the office, then write their name here" value="${(S.lead||'').replace(/"/g,'&quot;')}"></div>
+    <div class="nums">${numbersHTML()}</div>
+    <p class="small">Screenshot this card and keep it on your phone.</p>
+  </section>`;
+}
+
+function home(){
+  const n=doneCount();
+  app.innerHTML = `
+  <header class="mast">${LOGO}<span class="label">Va Va Voom · Learn in 15</span></header>
+  <section class="hero">
+    <p class="label">For volunteers at The Therapy Garden, Normandy</p>
+    <h1>Safe in the Garden</h1>
+    <p class="lede">Safeguarding in six short lessons, about 15 minutes all told. Do one with your morning coffee.</p>
+    <p><span class="hand">Real scenes. No jargon. No 90-slide deck.</span></p>
+  </section>
+  <div class="prog"><div class="row"><span class="label" style="color:var(--char)">Your progress</span><span>${n} of ${L.length} done</span></div><div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${L.length}" aria-valuenow="${n}"><i style="width:${n/L.length*100}%"></i></div></div>
+  <ol class="lessons">${L.map((l,i)=>`<li class="${S.done[l.id]?'done':''}"><button class="lesson-btn" data-go="${i}"><span class="n">${i+1}</span><span class="t"><b>${l.title}</b><span>${l.sum}</span></span><span class="st">${S.done[l.id]?'Done':l.mins+' min'}</span></button></li>`).join('')}</ol>
+  ${n===L.length?`<p class="hand" style="font-size:28px">All six done. Nice work.</p>`:''}
+  ${pocket()}
+  <section class="gravity">
+    <p class="label plum">What this is</p>
+    <p>A short refresher written for volunteers, set in the real garden. It doesn’t replace The Therapy Garden’s own safeguarding policy or the training they ask you to do. If anything here differs from their policy, follow theirs and tell them.</p>
+    <p class="small">We count visits and which lessons get finished, without cookies, to make it better. Nothing you type is sent.</p>
+    <p class="small">Surrey numbers checked on 26 October 2026 at surreycc.gov.uk; garden office number from Normandy Parish Council’s site. People in the scenes are made up.</p>
+  </section>
+  <footer><p>Made in Godalming by Va Va Voom. Have a better scenario from your own garden? Tell us and we’ll add it.</p>
+  <p><a href="https://www.surreycc.gov.uk/children/contact-childrens-services">Surrey children’s services</a> · <a href="https://www.surreycc.gov.uk/adults/getting-support/concerns">Surrey: worried about an adult</a></p></footer>`;
+  window.scrollTo(0,0);
+}
+
+function lesson(i, step=0, picked=null){
+  const l=L[i]; const total=l.cards.length+1;
+  let body;
+  if(step<l.cards.length){
+    body=`<article class="cardx">${l.cards[step]}</article>
+    <div class="btns">${step>0?`<button class="btn ghost" data-step="${step-1}">Back</button>`:''}<button class="btn" data-step="${step+1}">${step+1<l.cards.length?'Next':'Try a real one'}</button></div>`;
+  } else {
+    const q=l.q; const answered=picked!==null; const ok=picked===q.right;
+    body=`<article class="cardx big"><p class="label">Your turn</p><h3>${q.ask}</h3>
+      <div class="opts" role="group" aria-label="Choose an answer">${q.opts.map((o,k)=>{
+        let cls='opt'; if(answered){ if(k===q.right) cls+=' right'; else if(k===picked) cls+=' wrong'; }
+        return `<button class="${cls}" data-pick="${k}" aria-pressed="${k===picked}" ${answered&&ok?'disabled':''}>${o}</button>`}).join('')}</div>
+      ${answered?`<div class="fb ${ok?'ok':''}"><b>${ok?'That’s it':'Have another go'}</b><p>${ok?q.yes:(Array.isArray(q.no)?q.no[picked<q.right?picked:picked-1]:q.no)}</p></div>`:''}
+    </article>
+    <div class="btns"><button class="btn ghost" data-step="${step-1}">Back</button>${answered&&ok?`<button class="btn go" data-finish="${i}">${i+1<L.length?'Done. Next lesson':'Done. See my card'}</button>`:''}</div>`;
+  }
+  app.innerHTML=`<div class="crumbs"><button class="back" data-home>← All lessons</button><div class="dots" aria-label="Step ${step+1} of ${total}">${Array.from({length:total},(_,k)=>`<i class="${k<=step?'on':''}"></i>`).join('')}</div></div>
+   <p class="label">Lesson ${i+1} of ${L.length} · ${l.title}</p>${body}`;
+  app.dataset.lesson=i; app.dataset.step=step;
+  window.scrollTo(0,0);
+}
+
+app.addEventListener('click',e=>{
+  const t=e.target.closest('button'); if(!t) return;
+  const i=+app.dataset.lesson;
+  if(t.dataset.go!==undefined){ track('lesson started',{lesson:L[+t.dataset.go].id}); lesson(+t.dataset.go); }
+  else if(t.dataset.home!==undefined) home();
+  else if(t.dataset.step!==undefined) lesson(i,+t.dataset.step);
+  else if(t.dataset.pick!==undefined){ const k=+t.dataset.pick; track('check answered',{lesson:L[i].id,option:k,correct:k===L[i].q.right}); lesson(i,L[i].cards.length,k); }
+  else if(t.dataset.finish!==undefined){ S.done[L[i].id]=true; save(); track('lesson completed',{lesson:L[i].id,done:doneCount()}); if(doneCount()===L.length) track('course completed'); (i+1<L.length)?lesson(i+1):home(); if(i+1>=L.length) setTimeout(()=>document.getElementById('pk')?.scrollIntoView(),50); }
+  else if(t.dataset.copy){ track('number copied',{number:t.dataset.copy}); const v=t.dataset.copy; navigator.clipboard?.writeText(v).then(()=>{t.textContent='Copied'},()=>{t.textContent='Select it'}); }
+});
+app.addEventListener('click',e=>{const a=e.target.closest('a.tel'); if(a) track('number tapped',{number:a.textContent});});
+app.addEventListener('input',e=>{ if(e.target.id==='lead'){ S.lead=e.target.value; save(); } });
+home();
+</script>
+
+</body>
+</html>

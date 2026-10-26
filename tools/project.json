@@ -1,98 +1,103 @@
 {
-  "_how": "Update on every release: add Kev's time for the sitting (measured from his message times in the chat, plus 10 minutes per sitting), refresh 'people' from the sheet, then run python3 tools/build_stats.py. Releases, versions and dates come from git and gate.js.",
-  "sittings": [
-    {
-      "date": "2026-10-20",
-      "hours": 2.5,
-      "what": "20 to 23 October, Kev's own figure: first invitation page and logos, the other versions, compass, portals, Simple2 live, What's happening, the catcher, the Watcher, the gate and feedback"
-    },
-    {
-      "date": "2026-10-24",
-      "hours": 0.25,
-      "what": "PostHog, floating header and menu, lighter Next up, Grain's style sheet, Margot, James and Sam's proposals"
-    },
-    {
-      "date": "2026-10-25",
-      "hours": 1.9,
-      "what": "Trimmed the main page, Carl's write-up, three style branches, Tongham, Share a project, contact consent, The Human Bit, login polish, two-step welcome, this build log"
-    }
-  ],
-  "people": {
-    "as_of": "2026-10-25",
-    "let_in": 5,
-    "let_in_note": "Unique emails through the gate (Access tab), including Kev",
-    "in_person_tests": 1,
-    "in_person_note": "Carl, at Better Men, 24 October",
-    "feedback_forms": 0,
-    "signups": 0,
-    "board_posts": 1,
-    "personas": 8,
-    "personas_note": "Nikki & James, Gill, Imogen & Dominic, plus Carl, Sue and Tim as personas (simulated panels, not real visitors)"
+ "_how": "Update on every release: add Kev's time for the sitting (measured from his message times in the chat, plus 10 minutes per sitting), refresh 'people' from the sheet, then run python3 tools/build_stats.py. Releases, versions and dates come from git and gate.js.",
+ "sittings": [
+  {
+   "date": "2026-10-20",
+   "hours": 2.5,
+   "what": "20 to 23 October, Kev's own figure: first invitation page and logos, the other versions, compass, portals, Simple2 live, What's happening, the catcher, the Watcher, the gate and feedback"
   },
-  "team": [
-    "Kev",
-    "Claude",
-    "Sam (testing)",
-    "Grain (style)",
-    "Margot (shaping)",
-    "James (build)",
-    "the Watcher (board)"
+  {
+   "date": "2026-10-24",
+   "hours": 0.25,
+   "what": "PostHog, floating header and menu, lighter Next up, Grain's style sheet, Margot, James and Sam's proposals"
+  },
+  {
+   "date": "2026-10-25",
+   "hours": 1.9,
+   "what": "Trimmed the main page, Carl's write-up, three style branches, Tongham, Share a project, contact consent, The Human Bit, login polish, two-step welcome, this build log"
+  },
+  {
+   "date": "2026-10-26",
+   "hours": 0.1,
+   "what": "Safe in the Garden: a 15-minute safeguarding micro-course for Therapy Garden volunteers, shaped for Reiks (garden/)"
+  }
+ ],
+ "people": {
+  "as_of": "2026-10-25",
+  "let_in": 5,
+  "let_in_note": "Unique emails through the gate (Access tab), including Kev",
+  "in_person_tests": 1,
+  "in_person_note": "Carl, at Better Men, 24 October",
+  "feedback_forms": 0,
+  "signups": 0,
+  "board_posts": 1,
+  "personas": 8,
+  "personas_note": "Nikki & James, Gill, Imogen & Dominic, plus Carl, Sue and Tim as personas (simulated panels, not real visitors)"
+ },
+ "team": [
+  "Kev",
+  "Claude",
+  "Sam (testing)",
+  "Grain (style)",
+  "Margot (shaping)",
+  "James (build)",
+  "the Watcher (board)"
+ ],
+ "page_versions": [
+  [
+   "original.html",
+   "First version, punky",
+   "2026-10-20"
   ],
-  "page_versions": [
-    [
-      "original.html",
-      "First version, punky",
-      "2026-10-20"
-    ],
-    [
-      "quiet.html",
-      "Quiet, one colour",
-      "2026-10-20"
-    ],
-    [
-      "earth.html",
-      "Earthier sister",
-      "2026-10-21"
-    ],
-    [
-      "zing.html",
-      "Lifted earth, compass and portals",
-      "2026-10-21"
-    ],
-    [
-      "pop.html",
-      "Zing plus stickers",
-      "2026-10-21"
-    ],
-    [
-      "simple.html",
-      "Curious, show, invite",
-      "2026-10-21"
-    ],
-    [
-      "index.html",
-      "Simple2, the live main page",
-      "2026-10-21"
-    ],
-    [
-      "v-buzz.html",
-      "Buzzy (Rabbit Hole guide)",
-      "2026-10-25"
-    ],
-    [
-      "v-pink.html",
-      "Pink (soft pink guide)",
-      "2026-10-25"
-    ],
-    [
-      "v-grounded.html",
-      "Grounded (after Carl)",
-      "2026-10-25"
-    ],
-    [
-      "tongham.html",
-      "Tongham, made local",
-      "2026-10-25"
-    ]
+  [
+   "quiet.html",
+   "Quiet, one colour",
+   "2026-10-20"
+  ],
+  [
+   "earth.html",
+   "Earthier sister",
+   "2026-10-21"
+  ],
+  [
+   "zing.html",
+   "Lifted earth, compass and portals",
+   "2026-10-21"
+  ],
+  [
+   "pop.html",
+   "Zing plus stickers",
+   "2026-10-21"
+  ],
+  [
+   "simple.html",
+   "Curious, show, invite",
+   "2026-10-21"
+  ],
+  [
+   "index.html",
+   "Simple2, the live main page",
+   "2026-10-21"
+  ],
+  [
+   "v-buzz.html",
+   "Buzzy (Rabbit Hole guide)",
+   "2026-10-25"
+  ],
+  [
+   "v-pink.html",
+   "Pink (soft pink guide)",
+   "2026-10-25"
+  ],
+  [
+   "v-grounded.html",
+   "Grounded (after Carl)",
+   "2026-10-25"
+  ],
+  [
+   "tongham.html",
+   "Tongham, made local",
+   "2026-10-25"
   ]
+ ]
 }
