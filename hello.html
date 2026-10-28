@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&display=swap">
 <style>
-/* Release Busbridge. One column, phone first. Paper, ink and rose. The walk leads; everything else gathers interest. */
+/* Release Coldharbour. One column, phone first. Paper, ink and rose. The walk leads; everything else gathers interest. */
 :root{
   --paper:#fbf7f2; --ink:#1c1a2b; --rose:#e8337f; --rose-dk:#c41f66; --sun:#f2c75a; --lime:#c9f24a;
   --moss:#2f6b4f; --mist:#ece5dc; --muted:#4c4858;
@@ -97,6 +97,41 @@ section.sec{padding-block:20px 4px}
 .host{color:var(--moss);font-weight:700}
 
 .chips{display:flex;flex-wrap:wrap;gap:8px}
+.ev.onnow{background:var(--sun);margin-inline:-12px;padding-inline:12px;border-radius:12px;border-top:0}
+.ev.onnow .date{background:var(--ink)}
+.ev.onnow .badge{color:var(--ink)}
+.ev.onnow .meta{color:var(--ink)}
+a.btn{display:inline-flex;align-items:center;text-decoration:none}
+.nb{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;padding-block:14px;border-top:1px solid var(--mist)}
+.nb:first-child{border-top:0;padding-top:4px}
+.nb img{width:56px;height:56px;border-radius:50%;object-fit:cover;background:var(--mist)}
+.nb h3{margin:0;font-size:18px;line-height:1.25}
+.nb h3 button{all:unset;cursor:pointer;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.nb .meta{margin:2px 0 6px}
+.nb p{margin:0 0 10px;font-size:15px}
+.seeall{margin-top:6px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{all:unset;box-sizing:border-box;cursor:pointer;border-radius:14px;padding:14px;min-height:108px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;border:2px solid var(--ink)}
+.tile:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.tile b{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:22px;line-height:1}
+.tile span{font-size:13px;font-weight:700}
+.tile.t0{background:var(--rose);color:var(--paper);border-color:var(--rose)}
+.tile.t1{background:var(--sun);color:var(--ink);border-color:var(--sun)}
+.tile.t2{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+.tile.t3{background:var(--ink);color:var(--paper)}
+.tile.t4{background:var(--moss);color:var(--paper);border-color:var(--moss)}
+.tile.t5{background:var(--paper);color:var(--ink)}
+.tile.on{box-shadow:inset 0 0 0 3px var(--paper),0 0 0 3px var(--ink)}
+.share{background:var(--ink);color:var(--paper);border-radius:16px;padding:20px 18px;margin-top:16px;display:grid;gap:10px}
+.share h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:30px;line-height:1;margin:0;color:var(--lime)}
+.share p{margin:0;font-size:16px}
+.share .btn{background:var(--lime);color:var(--ink);justify-self:start}
+.mini{display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;align-items:center;padding-block:8px;border-top:1px solid var(--mist)}
+.mini img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.mini b{display:block;font-size:16px}
+.mini span{font-size:14px;color:var(--muted)}
+.mini button{all:unset;cursor:pointer}
+form.f select{width:100%;border:2px solid var(--ink);border-radius:8px;padding:10px;font-size:16px;background:#fff;color:var(--ink)}
 .chip{font-weight:700;font-size:15px;border:2px solid var(--ink);background:var(--paper);border-radius:999px;padding:7px 14px;min-height:40px;cursor:pointer}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 
@@ -198,16 +233,29 @@ footer a{color:var(--ink)}
     </div>
   </section>
 
+
+  <section class="sec" aria-labelledby="h-nb" id="neighbours">
+    <h2 id="h-nb">Learn from a neighbour</h2>
+    <p class="sub">Real people round here, happy to share what they know. Tap "I'm interested" and we'll set a date once enough of you are keen.</p>
+    <div id="nbList"></div>
+    <button class="ghost seeall" type="button" id="nbAll" hidden></button>
+  </section>
+
+  <section class="sec" aria-labelledby="h-more" id="themes">
+    <h2 id="h-more">What pulls you?</h2>
+    <p class="sub">Tap a theme to see who's sharing what round here.</p>
+    <div class="tiles" id="threads"></div>
+    <div class="share">
+      <h3>Know something? Share it.</h3>
+      <p>A walk you love, a skill, a special place, a thing you've fixed. You don't have to lead anything. Tell us, and we'll help you share it.</p>
+      <button class="btn" type="button" id="shareBtn">Share what you know</button>
+    </div>
+  </section>
+
   <section class="sec" aria-labelledby="h-want">
     <h2 id="h-want">Coming if you want it</h2>
     <p class="sub">No dates yet. Tap "I'd come" and once enough of you are keen, it's happening.</p>
     <div class="interest" id="interest"></div>
-  </section>
-
-  <section class="sec" aria-labelledby="h-more">
-    <h2 id="h-more">Show me more of…</h2>
-    <p class="sub">Tap whatever makes you go "ooh". It tells us what to cook up next.</p>
-    <div class="chips" id="threads"></div>
   </section>
 
   <section class="sec" aria-labelledby="h-who">
@@ -241,7 +289,7 @@ footer a{color:var(--ink)}
       <input class="trap" id="fbTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="err" id="fbErr" role="alert"></p>
       <button class="btn" type="submit">Send</button>
-      <p class="fine">No links please; they get held back. Release Busbridge.</p>
+      <p class="fine">No links please; they get held back. Release Coldharbour.</p>
     </form>
     <div class="thanks" id="fbThanks" hidden>Thank you, good human. You've just shaped what comes next.</div>
   </div>
@@ -249,7 +297,7 @@ footer a{color:var(--ink)}
 
 <footer class="wrap">
   <div>Your details stay with us. Promise. <a href="privacy.html">Privacy and our data promise</a></div>
-  <div>Release Busbridge · a Better Men experiment, Godalming</div>
+  <div>Release Coldharbour · a Better Men experiment, Godalming</div>
 </footer>
 
 <div class="consent" id="consent" hidden>
@@ -266,8 +314,17 @@ footer a{color:var(--ink)}
 
 <script>
 /* ---------- EDIT HERE: what's on, interest list, threads ---------- */
-var RELEASE = 'Busbridge';
+var RELEASE = 'Coldharbour';
 var EVENTS = [
+  { id:'briefing', onnow:true, badge:'On now · this Saturday', title:"People's Emergency Briefing", day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
+    time:'10:30am', length:'', where:'Shackleford', host:'Tim and Sue', thread:'nature', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
+    about:[
+      'A plain-talking briefing on where the climate and nature crisis has got to, and what we can actually do about it here.',
+      'Then a visit to Norney Farm to see how they\'re putting solar, water harvesting and regenerative agriculture to work, finishing with a wilderness walk across the land.',
+      'We\'ll be there too. If it leaves you wanting to do something, Va Va Voom is a friendly place to start: come on the walk next Saturday.'
+    ],
+    bring:'Good shoes for the walk across the land.',
+    going:[] },
   { id:'walk', lead:true, badge:'Every first Saturday', title:'The walk with a question',
     day:'Sat', d:'7', mon:'Nov', start:'2026-11-07T09:30', end:'2026-11-07T11:30',
     time:'9:30am', length:'About 2 hours', where:'Godalming station', host:'Tim and Kev', thread:'move',
@@ -294,6 +351,26 @@ var INTEREST = [
   { id:'make', title:'Make something', what:'Get your hands dirty, learn from a neighbour', host:'Tim hosting' },
   { id:'pub', title:'Pub night', what:'A pint, a chat, and one good question on the table', host:'' },
   { id:'sauna', title:'Waggon sauna sing-along', what:'Sweat, sing badly, feel brilliant', host:'' }
+];
+var NEIGHBOURS = [
+  { id:'solar', theme:'homes', title:'Choosing solar', who:'Tim', where:'Norney', img:'people/tim.jpg',
+    line:'Solar, a battery and rain tanks: how he chose them and what they actually save.',
+    about:'Tim has solar, a battery and rain tanks at Norney. Find out how he chose them, what they actually save, and what he\'d do differently.' },
+  { id:'automate', theme:'homes', title:'Automating your home', who:'Kev', where:'Godalming', img:'people/kev.jpg',
+    line:'The simple automations that save the most money and fuss.',
+    about:'Kev runs his solar, hot water and heating with a small home computer. Learn the simple automations that save the most money and fuss.' },
+  { id:'micro', theme:'make', title:'Micro homes, off-grid loos and a community sauna', who:'Carl', where:'Green Spaces', img:'people/carl.jpg',
+    line:'Small, clever buildings, loos that need no mains, and a sauna to share.',
+    about:'Small, clever buildings, loos that need no mains, and a sauna to share. Come and see how they go together, and how to build them.' },
+  { id:'cider', theme:'grow', title:'Rain, gardens and cider', who:'Tim', where:'Norney', img:'people/tim.jpg',
+    line:'Catch the rain, grow a regenerative veg patch, turn the apple glut into cider.',
+    about:'Catch your rainwater, grow a regenerative veg patch, and turn the apple glut into cider. Tim is writing up how he does all three.' },
+  { id:'bugs', theme:'nature', title:'Bug houses and vertical gardens', who:'Reiks', where:'Milford', img:'people/reiks.jpg',
+    line:'Homes for the small wild things, and growing up a wall when there\'s no room to grow out.',
+    about:'Make homes for the small wild things, and grow up a wall when you have no room to grow out.' },
+  { id:'change', theme:'talk', title:'Navigate change', who:'Ruth', where:'Coaching', img:'people/ruth.jpg',
+    line:'Coaching for when life is shifting under your feet.',
+    about:'Coaching for when life is shifting under your feet, and a kind ear if you\'re worried about where things are heading.' }
 ];
 var THREADS = [
   { id:'grow', t:'Growing and food' }, { id:'make', t:'Making and mending' }, { id:'nature', t:'Nature and the Wey' },
@@ -376,7 +453,9 @@ setWelcome();
 $('#homeBtn').addEventListener('click',function(){ openWelcome(true); });
 
 /* ---------- events ---------- */
+function isCurrent(ev){ var d=(ev.until||ev.start||'').slice(0,10); if(!d) return true; var t=new Date(); var today=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0'); return d>=today; }
 function facesHTML(ev){
+  if(!ev.going.length) return '';
   var g=ev.going.slice(), mine=getJSON('vvv-in',{});
   var names=g.map(function(x){return x.n});
   if(mine[ev.id] && me.show && me.name) names=names.concat(['you']);
@@ -386,16 +465,21 @@ function facesHTML(ev){
                          : (names.length>2? names.slice(0,-1).join(', ')+' and '+names.slice(-1)+' are in' : names.join(' and ')+(names.length>1?' are in':' is in'));
   return html+'<span>'+esc(line)+'</span>';
 }
+function inButton(ev,done,attr){
+  if(ev.tickets) return '<a class="btn" href="'+esc(ev.tickets)+'" target="_blank" rel="noopener" data-tix="'+ev.id+'">Get tickets ↗</a>';
+  return '<button class="btn'+(done?' done':'')+'" type="button" '+attr+'="'+ev.id+'">'+(done?"You're in ✓":"I'm in")+'</button>';
+}
+document.addEventListener('click',function(e){ var t=e.target.closest('[data-tix]'); if(t){ signal('tickets',t.getAttribute('data-tix')); track('tickets clicked',{event:t.getAttribute('data-tix')}); } });
 function renderEvents(){
   var mine=getJSON('vvv-in',{});
-  $('#events').innerHTML = EVENTS.map(function(ev){
+  $('#events').innerHTML = EVENTS.filter(isCurrent).map(function(ev){
     var done=!!mine[ev.id];
-    return '<article class="ev'+(ev.lead?' lead':'')+'" id="ev-'+ev.id+'">'+
+    return '<article class="ev'+(ev.lead?' lead':'')+(ev.onnow?' onnow':'')+'" id="ev-'+ev.id+'">'+
       '<div class="date" aria-hidden="true"><small>'+ev.day+'</small><b>'+ev.d+'</b><small>'+ev.mon+'</small></div>'+
       '<div style="min-width:0">'+(ev.badge?'<span class="badge">'+esc(ev.badge)+'</span>':'')+
       '<h3><button type="button" data-open="'+ev.id+'">'+esc(ev.title)+'</button></h3>'+
       '<div class="meta">'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.time)+' · '+esc(ev.where)+' · with '+esc(ev.host)+'</div>'+
-      '<div class="row"><button class="btn'+(done?' done':'')+'" type="button" data-in="'+ev.id+'">'+(done?"You're in ✓":"I'm in")+'</button>'+
+      '<div class="row">'+inButton(ev,done,'data-in')+
       '<span class="faces">'+facesHTML(ev)+'</span></div></div></article>';
   }).join('');
 }
@@ -426,9 +510,9 @@ function openEvent(id){
     (ev.length?'<li><b>How long</b> '+esc(ev.length)+'</li>':'')+
     '<li><b>Where</b> '+esc(ev.where)+'</li><li><b>With</b> '+esc(ev.host)+'</li><li><b>Bring</b> '+esc(ev.bring)+'</li></ul>'+
     ev.about.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+
-    '<div class="row"><button class="btn'+(done?' done':'')+'" type="button" data-sin="'+id+'">'+(done?"You're in ✓":"I'm in")+'</button>'+
+    '<div class="row">'+inButton(ev,done,'data-sin')+
     (ev.start?'<button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button>':'')+'</div>'+
-    '<div class="qr"><img src="qr/'+id+'.svg" alt="QR code for this event" width="84" height="84"><span>Scan to share this event. It opens straight here.</span></div>');
+    (ev.tickets?'':'<div class="qr"><img src="qr/'+id+'.svg" alt="QR code for this event" width="84" height="84"><span>Scan to share this event. It opens straight here.</span></div>'));
   track('event opened',{event:id});
   sheet.onclick=function(e){
     var b=e.target.closest('[data-sin]'), c=e.target.closest('[data-cal]');
@@ -505,19 +589,126 @@ $('#interest').addEventListener('click',function(e){
   signal(on?'interest':'interest removed', id+' | '+(getHome())); track(on?'interest':'interest removed',{item:id});
 });
 
-/* ---------- threads ---------- */
+/* ---------- neighbours ---------- */
+var nbMine=getJSON('vvv-nb',{}), nbShowAll=false;
+function nbById(id){ for(var i=0;i<NEIGHBOURS.length;i++) if(NEIGHBOURS[i].id===id) return NEIGHBOURS[i]; }
+function nbBtn(n){ var d=!!nbMine[n.id]; return '<button class="'+(d?'ghost done':'ghost')+'" type="button" data-nbin="'+n.id+'">'+(d?'Interested ✓':"I'm interested")+'</button>'; }
+function renderNeighbours(){
+  var list=nbShowAll?NEIGHBOURS:NEIGHBOURS.slice(0,3);
+  $('#nbList').innerHTML=list.map(function(n){
+    return '<article class="nb"><img src="'+esc(n.img)+'" alt="" width="56" height="56"><div style="min-width:0">'+
+      '<h3><button type="button" data-nb="'+n.id+'">'+esc(n.title)+'</button></h3>'+
+      '<div class="meta">with '+esc(n.who)+' · '+esc(n.where)+'</div><p>'+esc(n.line)+'</p>'+nbBtn(n)+'</div></article>';
+  }).join('');
+  var all=$('#nbAll'); all.hidden=NEIGHBOURS.length<=3; all.textContent=nbShowAll?'Show fewer':'See all '+NEIGHBOURS.length;
+}
+renderNeighbours();
+$('#nbAll').addEventListener('click',function(){ nbShowAll=!nbShowAll; renderNeighbours(); if(!nbShowAll) $('#neighbours').scrollIntoView({block:'start'}); });
+$('#nbList').addEventListener('click',function(e){
+  var o=e.target.closest('[data-nb]'), i=e.target.closest('[data-nbin]');
+  if(o) openNeighbour(o.getAttribute('data-nb'));
+  if(i) nbInterested(i.getAttribute('data-nbin'));
+});
+function openNeighbour(id){
+  var n=nbById(id); if(!n) return;
+  openSheet('<span class="badge">Learn from a neighbour</span><h2 id="sheetTitle">'+esc(n.title)+'</h2>'+
+    '<div class="mini" style="border-top:0"><img src="'+esc(n.img)+'" alt=""><div><b>With '+esc(n.who)+'</b><span>'+esc(n.where)+'</span></div></div>'+
+    '<p>'+esc(n.about)+'</p><p class="fine">No date yet. Say you\'re interested and we\'ll set one once enough of you are keen.</p>'+
+    '<div class="row">'+nbBtn(n)+'</div>');
+  track('neighbour opened',{neighbour:id});
+  sheet.onclick=function(e){ var i=e.target.closest('[data-nbin]'); if(i) nbInterested(i.getAttribute('data-nbin')); };
+}
+function withContact(title, intro, done){
+  if(me.name && me.contact){ done(''); return; }
+  openSheet('<h2 id="sheetTitle">'+title+'</h2><p>'+intro+'</p>'+
+    '<form class="f" id="ctForm" novalidate>'+
+    '<label for="ctName">Your first name<input id="ctName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="ctContact">Mobile or email<input id="ctContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    '<input class="trap" id="ctTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="ctErr" role="alert"></p><button class="btn" type="submit">Count me in</button>'+
+    '<p class="fine">Only Kev and the person sharing see your details. <a href="privacy.html">Privacy</a></p></form>');
+  $('#ctForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#ctName').value.trim(), c=$('#ctContact').value.trim(), err=$('#ctErr');
+    if(!n){ err.textContent='Please add your first name.'; return; }
+    if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address.'; return; }
+    me={name:n,contact:c,show:!!me.show}; store('vvv-me',JSON.stringify(me)); done($('#ctTrap').value);
+  });
+}
+function nbInterested(id){
+  var n=nbById(id); if(!n || nbMine[id]) return;
+  withContact('Ooh, good choice.', esc(n.title)+' with '+esc(n.who)+'. Tell us how to reach you when there\'s a date.', function(trap){
+    var isEmail=me.contact.indexOf('@')>-1;
+    send({type:'signup',name:me.name,email:isEmail?me.contact:'',phone:isEmail?'':me.contact,where:getHome(),fit:'Interested',thread:'neighbour: '+id,website:trap||''});
+    nbMine[id]=Date.now(); store('vvv-nb',JSON.stringify(nbMine)); track('neighbour interested',{neighbour:id});
+    renderNeighbours(); renderTiles();
+    openSheet('<h2 id="sheetTitle">Lovely, '+esc(me.name)+'.</h2><p class="done-msg">We\'ll tell you when there\'s a date.</p><button class="ghost" type="button" data-close>Done</button>');
+    sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
+  });
+}
+
+/* ---------- themes ---------- */
 var pulls=getJSON('vvv-pulls',{});
 var themeFromQR=(arrivedVia.indexOf('t-')===0)?arrivedVia.slice(2):'';
-if(themeFromQR && !pulls[themeFromQR]){ pulls[themeFromQR]=1; store('vvv-pulls',JSON.stringify(pulls)); signal('thread',themeFromQR+' (from QR)'); }
-$('#threads').innerHTML=THREADS.map(function(t){
-  return '<button class="chip" type="button" data-thread="'+t.id+'" aria-pressed="'+(!!pulls[t.id])+'">'+esc(t.t)+'</button>';
-}).join('');
-$('#threads').addEventListener('click',function(e){
-  var b=e.target.closest('[data-thread]'); if(!b) return;
-  var id=b.getAttribute('data-thread'), on=!pulls[id];
-  if(on) pulls[id]=1; else delete pulls[id]; store('vvv-pulls',JSON.stringify(pulls));
-  b.setAttribute('aria-pressed',on); if(on){ signal('thread',id); track('thread tapped',{thread:id}); }
-});
+function themeById(id){ for(var i=0;i<THREADS.length;i++) if(THREADS[i].id===id) return THREADS[i]; }
+function themeItems(id){
+  return { nb:NEIGHBOURS.filter(function(n){return n.theme===id}), ev:EVENTS.filter(function(e){return e.thread===id && isCurrent(e)}) };
+}
+function renderTiles(){
+  $('#threads').innerHTML=THREADS.map(function(t,i){
+    var it=themeItems(t.id), n=it.nb.length+it.ev.length;
+    var line=n? (n+(n===1?' thing':' things')+' to get into') : 'Nothing yet. Know something?';
+    return '<button class="tile t'+i+(pulls[t.id]?' on':'')+'" type="button" data-theme="'+t.id+'"><b>'+esc(t.t)+'</b><span>'+line+'</span></button>';
+  }).join('');
+}
+renderTiles();
+$('#threads').addEventListener('click',function(e){ var b=e.target.closest('[data-theme]'); if(b) openTheme(b.getAttribute('data-theme')); });
+function openTheme(id){
+  var t=themeById(id); if(!t) return;
+  if(!pulls[id]){ pulls[id]=1; store('vvv-pulls',JSON.stringify(pulls)); renderTiles(); }
+  signal('thread',id); track('theme opened',{thread:id});
+  var it=themeItems(id), rows='';
+  it.ev.forEach(function(e){ rows+='<div class="mini"><img src="'+esc((e.going[0]||{}).img||'people/kev.jpg')+'" alt=""><button type="button" data-tev="'+e.id+'"><b>'+esc(e.title)+'</b><span>'+esc(e.day+' '+e.d+' '+e.mon+' · '+e.where)+'</span></button></div>'; });
+  it.nb.forEach(function(n){ rows+='<div class="mini"><img src="'+esc(n.img)+'" alt=""><button type="button" data-tnb="'+n.id+'"><b>'+esc(n.title)+'</b><span>with '+esc(n.who)+' · '+esc(n.where)+'</span></button></div>'; });
+  var lower=t.t.charAt(0).toLowerCase()+t.t.slice(1);
+  openSheet('<span class="badge">What pulls you?</span><h2 id="sheetTitle">'+esc(t.t)+'</h2>'+
+    (rows? rows : '<p>Nothing here yet. If you know a thing or two about '+esc(lower)+', share it and you could be the first.</p>')+
+    '<div class="row" style="margin-top:14px"><button class="btn" type="button" data-tshare="'+id+'">Know something? Share it</button></div>');
+  sheet.onclick=function(e){
+    var a=e.target.closest('[data-tev]'), b=e.target.closest('[data-tnb]'), c=e.target.closest('[data-tshare]');
+    if(a) openEvent(a.getAttribute('data-tev')); if(b) openNeighbour(b.getAttribute('data-tnb')); if(c) openShare(c.getAttribute('data-tshare'));
+  };
+}
+
+/* ---------- know something? share it ---------- */
+function openShare(theme){
+  var opts='<option value="">Not sure</option>'+THREADS.map(function(t){return '<option value="'+t.id+'"'+(t.id===theme?' selected':'')+'>'+esc(t.t)+'</option>'}).join('');
+  openSheet('<h2 id="sheetTitle">Know something? Share it.</h2>'+
+    '<p>You don\'t have to lead anything. Tell us what you know or love, and we\'ll help you share it.</p>'+
+    '<form class="f" id="shForm" novalidate>'+
+    '<label for="shTitle">What do you know or love?<input id="shTitle" type="text" maxlength="120" placeholder="A walk, a skill, a special place…"></label>'+
+    '<label for="shWhat">Tell us a bit more<textarea id="shWhat" maxlength="1000"></textarea></label>'+
+    '<label for="shTheme">Which theme fits best?<select id="shTheme">'+opts+'</select></label>'+
+    '<label for="shName">Your first name<input id="shName" type="text" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="shContact">Mobile or email<input id="shContact" type="text" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    '<label class="tick" for="shOk"><input id="shOk" type="checkbox"><span>Happy for us to put your first name with it on the site</span></label>'+
+    '<input class="trap" id="shTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="shErr" role="alert"></p><button class="btn" type="submit">Share it</button>'+
+    '<p class="fine">We check everything before it goes up. No web links please. <a href="privacy.html">Privacy</a></p></form>');
+  $('#shForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){return $('#'+id).value.trim()}, err=$('#shErr');
+    if(!v('shTitle')||!v('shWhat')){ err.textContent='Tell us what it is and a little more about it.'; return; }
+    if(!v('shName')||!v('shContact')){ err.textContent='We need your first name and a way to reach you.'; return; }
+    if(/https?:\/\/|www\./i.test(v('shTitle')+' '+v('shWhat'))){ err.textContent='Please take out any web links, then send.'; return; }
+    me={name:v('shName'),contact:v('shContact'),show:!!me.show}; store('vvv-me',JSON.stringify(me));
+    send({type:'project',title:v('shTitle'),what:v('shWhat'),lead:v('shName'),thread:v('shTheme'),where:getHome(),name:v('shName'),email:v('shContact'),ok:$('#shOk').checked?'Yes':'No',website:v('shTrap')});
+    track('shared something',{thread:v('shTheme')});
+    openSheet('<h2 id="sheetTitle">Brilliant. Proper good human, you.</h2><p class="done-msg">We\'ll be in touch soon.</p><button class="ghost" type="button" data-close>Done</button>');
+    sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
+  });
+}
+$('#shareBtn').addEventListener('click',function(){ openShare(''); });
 
 /* ---------- start something near me ---------- */
 $('#startBtn').addEventListener('click',function(){
@@ -564,9 +755,9 @@ $('#fbForm').addEventListener('submit',function(e){
 (function(){
   var welcomed=store('vvv-welcomed');
   if(evById(arrivedVia)){ showConsent(); setTimeout(function(){ openEvent(arrivedVia); },250); return; }
+  if(themeFromQR && themeById(themeFromQR)){ showConsent(); setTimeout(function(){ openTheme(themeFromQR); },250); return; }
   if(!welcomed && !getHome()){ setTimeout(function(){ openWelcome(false); },700); } else showConsent();
-  if(themeFromQR){ var c=$('#threads'); if(c) c.scrollIntoView({block:'center'}); }
-  else if(arrivedVia==='feedback'){ $('#feedback').scrollIntoView(); }
+  if(arrivedVia==='feedback'){ $('#feedback').scrollIntoView(); }
 })();
 </script>
 </body>
