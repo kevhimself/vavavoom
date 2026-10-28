@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&display=swap">
 <style>
-/* Release Coldharbour. One column, phone first. Paper, ink and rose. The walk leads; everything else gathers interest. */
+/* Release Eashing. One column, phone first. Paper, ink and rose. The walk leads; everything else gathers interest. */
 :root{
   --paper:#fbf7f2; --ink:#1c1a2b; --rose:#e8337f; --rose-dk:#c41f66; --sun:#f2c75a; --lime:#c9f24a;
   --moss:#2f6b4f; --mist:#ece5dc; --muted:#4c4858;
@@ -37,13 +37,17 @@ header.top{padding-top:max(14px,env(safe-area-inset-top,0px))}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .wordmark{font-family:var(--display);font-weight:900;font-size:30px;letter-spacing:.02em;text-transform:uppercase;line-height:1;text-decoration:none}
 .wordmark span{color:var(--rose)}
-.places{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--moss);font-weight:700;margin:4px 0 12px}
+.whatpill{font-weight:700;font-size:15px;background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:8px 16px;min-height:40px;cursor:pointer;white-space:nowrap}
+.whatpill:hover{background:var(--rose-dk)}
+header.top{padding-bottom:12px}
 
 .hero{background:var(--rose);color:var(--paper);position:relative;overflow:hidden}
 .hero .wrap{position:relative;padding-block:20px 24px}
 .birches{position:absolute;right:0;top:0;height:100%;width:120px;pointer-events:none}
 .welcome{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:15px;margin-bottom:12px;position:relative;max-width:calc(100% - 70px)}
-.homebtn{font-weight:700;font-size:15px;background:var(--paper);color:var(--ink);border:0;border-radius:999px;padding:6px 14px;cursor:pointer}
+.homebtn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;background:var(--paper);color:var(--ink);border:0;border-radius:999px;padding:8px 8px 8px 12px;min-height:44px;cursor:pointer;box-shadow:0 2px 0 var(--ink)}
+.homebtn svg{color:var(--rose)}
+.homebtn .chg{font-size:13px;background:var(--ink);color:var(--paper);border-radius:999px;padding:4px 10px}
 .hello-faces{display:flex;margin:4px 0 12px}
 .hello-faces img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:3px solid var(--paper);margin-left:-12px;background:var(--mist)}
 .hello-faces img:first-child{margin-left:0}
@@ -109,6 +113,7 @@ section.sec{padding-block:20px 4px}
 .int:first-child{border-top:0;padding-top:0}
 .int b{display:block;font-size:17px}
 .int span{font-size:14px;color:var(--muted)}
+.int .when{display:inline-block;font-style:normal;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--rose-dk);margin-bottom:2px}
 .host{color:var(--moss);font-weight:700}
 
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -126,17 +131,25 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none}
 .nb p{margin:0 0 10px;font-size:15px}
 .seeall{margin-top:6px}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tile{all:unset;box-sizing:border-box;cursor:pointer;border-radius:14px;padding:14px;min-height:108px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;border:2px solid var(--ink)}
+.tile{all:unset;box-sizing:border-box;cursor:pointer;border-radius:14px;padding:12px 14px;min-height:68px;display:flex;flex-direction:column;justify-content:space-between;gap:6px;border:2px solid var(--ink);position:relative}
 .tile:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
-.tile b{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:22px;line-height:1}
+.tile b{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:17px;line-height:1.05;padding-right:26px}
 .tile span{font-size:13px;font-weight:700}
 /* Theme colours: one colour per topic, used on tiles, theme pages and anything tagged with a theme */
 :root{--th-move:#e8337f;--th-grow:#c4622d;--th-make:#2438d6;--th-homes:#9e1f2b;--th-talk:#f2c75a;--th-nature:#2f6b4f}
 .th-move{--th:var(--th-move);--th-ink:var(--paper)} .th-grow{--th:var(--th-grow);--th-ink:var(--paper)} .th-make{--th:var(--th-make);--th-ink:var(--paper)}
 .th-homes{--th:var(--th-homes);--th-ink:var(--paper)} .th-talk{--th:var(--th-talk);--th-ink:var(--ink)} .th-nature{--th:var(--th-nature);--th-ink:var(--paper)}
-.tile[class*="th-"]{background:var(--th);color:var(--th-ink);border-color:var(--th)}
+.tile[class*="th-"]{background:var(--paper);color:var(--ink);border-color:var(--th)}
+.tile[class*="th-"].on{background:var(--th);color:var(--th-ink)}
+.tile .tick{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;border:2px solid var(--th);display:grid;place-items:center;font-size:13px;font-weight:900;line-height:1}
+.tile.on .tick{background:var(--th-ink);color:var(--th);border-color:var(--th-ink)}
 .themebar{height:10px;border-radius:5px;margin:0 0 12px;background:var(--th)}
-.tile.on{box-shadow:inset 0 0 0 3px var(--paper),0 0 0 3px var(--ink)}
+.nudge{background:var(--mist);border-radius:14px;padding:14px 16px;margin-top:12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+.nudge b{display:block;font-size:16px}
+.nudge span{font-size:14px;color:var(--muted)}
+.nudge.saved{grid-template-columns:1fr}
+.picked{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+.picked i{font-style:normal;font-size:13px;font-weight:700;border-radius:999px;padding:4px 10px;background:var(--th);color:var(--th-ink)}
 .share{background:var(--ink);color:var(--paper);border-radius:16px;padding:20px 18px;margin-top:16px;display:grid;gap:10px}
 .share h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:30px;line-height:1;margin:0;color:var(--lime)}
 .share p{margin:0;font-size:16px}
@@ -211,8 +224,8 @@ footer a{color:var(--ink)}
 <header class="top wrap">
   <div class="bar">
     <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
+    <button class="whatpill" type="button" id="whatBtn">What is it?</button>
   </div>
-  <div class="places">Godalming · Farncombe · Milford · Busbridge · and the bits in between</div>
 </header>
 
 <div class="hero">
@@ -222,8 +235,7 @@ footer a{color:var(--ink)}
   </svg>
   <div class="wrap">
     <div class="welcome">
-      <span id="homeLabel">Welcome, good human</span>
-      <button type="button" class="homebtn" id="homeBtn">Where's home?</button>
+      <button type="button" class="homebtn" id="homeBtn"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span id="homeTxt">Where's home?</span><span class="chg" id="homeChg">Tell us</span></button>
     </div>
     <h1>How might we make tomorrow a little more beautiful?</h1>
     <p class="strap">Less scrolling, more doing. Get out, meet good people, make stuff happen, have fun.</p>
@@ -234,13 +246,20 @@ footer a{color:var(--ink)}
 <main class="wrap">
   <div class="why row">
     <span class="exp" style="margin:0">An experiment. You're one of the first brave ones.</span>
-    <button class="whatbtn" type="button" id="whatBtn">What is it?</button>
   </div>
+
+  <section class="sec picks" aria-labelledby="h-more" id="themes">
+    <h2 id="h-more">What pulls you?</h2>
+    <p class="sub">Tap all that apply. We'll put those first.</p>
+    <div class="tiles" id="threads"></div>
+    <div class="nudge" id="nudge" hidden></div>
+  </section>
 
   <section class="sec" aria-labelledby="h-on">
     <h2 id="h-on">What's on</h2>
-    <p class="sub">First Saturday of every month, we walk. Rain, shine or mild drizzle.</p>
+    <p class="sub">To start: a pub night and a walk. Come to one, bring a friend.</p>
     <div id="events"></div>
+    <button class="ghost seeall" type="button" id="evAll" hidden></button>
     <div class="near" id="near" hidden>
       <b id="nearTitle">Nothing near you yet.</b>
       <p>Fancy being the first? Tell us what you'd start and we'll bring the know-how (and probably biscuits).</p>
@@ -254,12 +273,6 @@ footer a{color:var(--ink)}
     <p class="sub">Real people round here, happy to share what they know. Tap "I'm in" and we'll set a date once enough of you are keen.</p>
     <div id="nbList"></div>
     <button class="ghost seeall" type="button" id="nbAll" hidden></button>
-  </section>
-
-  <section class="sec" aria-labelledby="h-more" id="themes">
-    <h2 id="h-more">What pulls you?</h2>
-    <p class="sub">Tap a theme to see who's sharing what round here.</p>
-    <div class="tiles" id="threads"></div>
     <div class="share">
       <h3>Know something? Share it.</h3>
       <p>A walk you love, a skill, a special place, a thing you've fixed. You don't have to lead anything. Tell us, and we'll help you share it.</p>
@@ -269,14 +282,14 @@ footer a{color:var(--ink)}
 
   <section class="sec" aria-labelledby="h-want">
     <h2 id="h-want">Coming if you want it</h2>
-    <p class="sub">No dates yet. Tap "I'm in" and once enough of you are keen, it's happening.</p>
+    <p class="sub">Roughly when, not dates yet. Tap "I'm in" and once enough of you are keen, it's happening.</p>
     <div class="interest" id="interest"></div>
   </section>
 
   <section class="sec" aria-labelledby="h-who">
     <h2 id="h-who">Who's behind it</h2>
     <div class="who">
-      <div class="person"><img src="people/tim.jpg" alt="" width="56" height="56"><div><b>Tim</b><span>Startup founder, built on regenerative principles. Works in tech, cables and pipes. Hosts the walk.</span><em class="ask">Ask him about the farm</em></div></div>
+      <div class="person"><img src="people/tim.jpg" alt="" width="56" height="56"><div><b>Tim</b><span>Innovating for a better future. As happy building a rainwater system as vibe-coding software. Hosts the walk.</span><em class="ask">Ask him about the farm</em></div></div>
       <div class="person"><img src="people/carl.jpg" alt="" width="56" height="56"><div><b>Carl</b><span>Maker and builder of things, and cook for the group.</span><em class="ask">Want to know how to build it? Ask him</em></div></div>
       <div class="person"><img src="people/kev.jpg" alt="" width="56" height="56"><div><b>Kev</b><span>Navigator of spaces. One foot in AI, one in humans, and a toe in the underworld. Hosts the circle.</span><em class="ask">Ask him about good wood</em></div></div>
     </div>
@@ -329,43 +342,51 @@ footer a{color:var(--ink)}
 
 <script>
 /* ---------- EDIT HERE: what's on, interest list, threads ---------- */
-var RELEASE = 'Coldharbour';
+var RELEASE = 'Eashing';
 var EVENTS = [
-  { id:'briefing', onnow:true, badge:'On now · this Saturday', title:"People's Emergency Briefing", day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
-    time:'10:30am', length:'', where:'Shackleford', host:'Tim and Sue', thread:'nature', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
+  { id:'briefing', onnow:true, badge:'This Saturday · part 1', title:"People's Emergency Briefing", day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
+    time:'10:15am (doors 10am)', length:'About 1½ hours', where:'Shackleford Village Hall', host:'Tim and Sue', thread:'nature', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
     about:[
-      'A plain-talking briefing on where the climate and nature crisis has got to, and what we can actually do about it here.',
-      'Then a visit to Norney Farm to see how they\'re putting solar, water harvesting and regenerative agriculture to work, finishing with a wilderness walk across the land.',
-      'We\'ll be there too. If it leaves you wanting to do something, Va Va Voom is a friendly place to start: come on the walk next Saturday.'
+      'A short welcome, then the 45-minute film. Here\'s where things are, plainly told. No lectures.',
+      'Then we talk. First, where you\'re at with it all: say it out loud and be heard. Then something real that\'s going on round here, and a small, doable thing you\'ve done or could do next. Kev hosts the conversations.',
+      'Finishes about 11:45, then a short walk down to Norney Farm for part 2.'
     ],
-    bring:'Good shoes for the walk across the land.',
+    bring:'Good shoes if you\'re coming on to the farm.',
     going:[] },
-  { id:'walk', lead:true, badge:'Every first Saturday', title:'The walk with a question',
-    day:'Sat', d:'7', mon:'Nov', start:'2026-11-07T09:30', end:'2026-11-07T11:30',
-    time:'9:30am', length:'About 2 hours', where:'Godalming station', host:'Tim and Kev', thread:'move',
+  { id:'farm', onnow:true, badge:'This Saturday · part 2', title:'Norney Farm Bungalow visit', day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
+    time:'12pm to about 1pm', length:'About an hour', where:'Norney Farm, Shackleford', host:'Tim', thread:'homes', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
     about:[
-      'A walk with a difference. Every stretch comes with a question to talk about, you swap walking partners at each stop, and we finish with a short circle.',
-      'Nobody gets stuck with the same person, you\'ll meet exactly the people you want to meet, and all paces are welcome.'
+      'A welcome at the bungalow, then a guided tour of how it all fits together: solar, water harvesting and regenerative growing, and where it\'s going next.',
+      'Then a short workshop: what would you love to learn or get stuck into here? Grafting, propagating, making, mending. Sticky notes welcome.',
+      'Come for the briefing, the farm or both. Leave when you need to.'
+    ],
+    bring:'Good shoes for the land.',
+    going:[] },
+  { id:'pub', badge:'Pub night', title:'Va Va Voom at the pub', day:'Tue', d:'10', mon:'Nov', start:'2026-11-10T19:00', end:'2026-11-10T21:00',
+    time:'7pm', length:'A couple of hours', where:'The Inn on the Lake, Godalming', host:'Tim and Kev', thread:'talk',
+    about:[
+      'Dark evenings are pub evenings. Come and have a drink, meet some good people, and help shape what Va Va Voom becomes.',
+      'Eat first if you like, we\'ll start at 7. Even if there are five of us, it\'ll be a good night.',
+      'Don\'t know anyone? Say so when you tap "I\'m in" and we\'ll make sure you\'re introduced.'
+    ],
+    bring:'Yourself, and a friend if you like.',
+    going:[{n:'Tim',img:'people/tim.jpg'},{n:'Kev',img:'people/kev.jpg'}] },
+  { id:'walk', lead:true, badge:'Our first walk', title:'Va Va Voom goes walking', day:'Sat', d:'21', mon:'Nov', start:'2026-11-21T10:30', end:'2026-11-21T12:45',
+    time:'10:30am to 12:45pm', length:'About 2¼ hours', where:'Puttenham Common, top car park', host:'Tim and Kev', thread:'move',
+    about:[
+      'A walk with a difference. We open with a short circle so you\'ve met people before we set off.',
+      'Every stretch comes with a question to talk about, and you swap walking partners at each gate, so nobody gets stuck. We finish with a closing circle.',
+      'Coming on your own? Brilliant. Tell us and we\'ll look out for you. Or bring someone you think would love it. Grab a coffee at the café first. All paces welcome.'
     ],
     bring:'Good shoes, a drink, and your curiosity.',
-    going:[{n:'Tim',img:'people/tim.jpg'},{n:'Kev',img:'people/kev.jpg'},{n:'Carl',img:'people/carl.jpg'}] },
-  { id:'humanbit', badge:'A circle', title:'Analogue Humans in a Digital World', day:'Thu', d:'12', mon:'Nov', start:'2026-11-12T19:00', end:'2026-11-12T21:00',
-    time:'7pm to 9pm', length:'2 hours', where:'The studio on the hill, Catteshall Lane', host:'Kev', thread:'talk',
-    about:[
-      'AI has crept into our work, our homes and our heads faster than any of us expected. Some of it\'s brilliant. Some of it\'s unsettling. Most of us haven\'t had time to stop and ask what we actually want from it. So let\'s.',
-      'One evening in a circle, sharing real stories: where it\'s helped, where it\'s taken over, and where we want to stay properly human. We\'ll leave with one intentional change each, and maybe a project or two to do together.',
-      'Kev brings a few weeks of living with an AI team that runs his home, his diary and his business: the good, the weird, and what he\'s learning about staying embodied.',
-      'How it goes: a grounded check-in (one breath, one word), a story round, open conversation, and one change each to close. Free.'
-    ],
-    bring:'A story, an open mind, and a bottle if you fancy one.',
-    going:[{n:'Kev',img:'people/kev.jpg'}] }
+    going:[{n:'Tim',img:'people/tim.jpg'},{n:'Kev',img:'people/kev.jpg'}] }
 ];
 var INTEREST = [
-  { id:'run', title:'Social run', what:'Chatty pace, nobody left behind', host:'Kev hosting' },
-  { id:'circle', title:'Circle round the fire', what:'Fire, stories, proper conversation', host:'Kev hosting' },
-  { id:'make', title:'Make something', what:'Get your hands dirty, learn from a neighbour', host:'Tim hosting' },
-  { id:'pub', title:'Pub night', what:'A pint, a chat, and one good question on the table', host:'' },
-  { id:'sauna', title:'Waggon sauna sing-along', what:'Sweat, sing badly, feel brilliant', host:'' }
+  { id:'sauna', title:'Waggon sauna sing-along', what:'Sweat, sing badly, feel brilliant', host:'', when:'January 2027' },
+  { id:'circle', title:'Circle round the fire', what:'Fire, stories, proper conversation', host:'Kev hosting', when:'Early 2027' },
+  { id:'run', title:'Social run', what:'Chatty pace, nobody left behind', host:'Kev hosting', when:'Spring 2027' },
+  { id:'make', title:'Make something', what:'Get your hands dirty, learn from a neighbour', host:'Tim hosting', when:'Spring 2027' },
+  { id:'humanbit', title:'Analogue Humans in a Digital World', what:'A circle on staying properly human with AI around', host:'Kev hosting', when:'Winter 2027' }
 ];
 var NEIGHBOURS = [
   { id:'solar', theme:'homes', title:'Choosing solar', who:'Tim', where:'Norney', img:'people/tim.jpg',
@@ -432,8 +453,8 @@ function showConsent(){ if(window.__askConsent){ window.__askConsent=false; $('#
 function getHome(){ return (store('vvv-home')||'').trim(); }
 function setWelcome(){
   var h=getHome();
-  $('#homeLabel').textContent = h ? 'Welcome, good human from' : 'Welcome, good human';
-  $('#homeBtn').textContent = h ? h+' ✎' : "Where's home?";
+  $('#homeTxt').innerHTML = h ? 'Near <b>'+esc(h)+'</b>' : "Where's home?";
+  $('#homeChg').textContent = h ? 'Change' : 'Tell us';
   $('#homeBtn').setAttribute('aria-label', h ? 'Home: '+h+'. Change' : "Tell us where home is");
   var near=$('#near');
   if(h && NEAR_THINGS.map(function(x){return x.toLowerCase()}).indexOf(h.toLowerCase())===-1){
@@ -485,9 +506,13 @@ function inButton(ev,done,attr){
   return '<button class="btn'+(done?' done':'')+'" type="button" '+attr+'="'+ev.id+'">'+(done?"You're in ✓":"I'm in")+'</button>';
 }
 document.addEventListener('click',function(e){ var t=e.target.closest('[data-tix]'); if(t){ signal('tickets',t.getAttribute('data-tix')); track('tickets clicked',{event:t.getAttribute('data-tix')}); } });
+var evShowAll=false;
+function evMatch(ev){ return ev.onnow || typeof picked!=='function' || picked(ev.thread); }
 function renderEvents(){
-  var mine=getJSON('vvv-going',{});
-  $('#events').innerHTML = EVENTS.filter(isCurrent).map(function(ev){
+  var mine=getJSON('vvv-going',{}), cur=EVENTS.filter(isCurrent);
+  var list=evShowAll?cur:cur.filter(evMatch), hidden=cur.length-cur.filter(evMatch).length;
+  var all=$('#evAll'); all.hidden=!hidden; all.textContent=evShowAll?'Just my picks':'+ '+hidden+' more on';
+  $('#events').innerHTML = list.map(function(ev){
     var done=!!mine[ev.id];
     return '<article class="ev'+(ev.lead?' lead':'')+(ev.onnow?' onnow':'')+'" id="ev-'+ev.id+'">'+
       '<div class="date" aria-hidden="true"><small>'+ev.day+'</small><b>'+ev.d+'</b><small>'+ev.mon+'</small></div>'+
@@ -498,6 +523,7 @@ function renderEvents(){
   }).join('');
 }
 renderEvents();
+$('#evAll').addEventListener('click',function(){ evShowAll=!evShowAll; renderEvents(); });
 $('#events').addEventListener('click',function(e){
   var o=e.target.closest('[data-open]'), i=e.target.closest('[data-in]');
   if(o) openEvent(o.getAttribute('data-open'));
@@ -592,7 +618,7 @@ function addCal(id){
 /* ---------- interest ---------- */
 var keen=getJSON('vvv-keen',{});
 $('#interest').innerHTML=INTEREST.map(function(x){
-  return '<div class="int"><div><b>'+esc(x.title)+'</b><span>'+esc(x.what)+(x.host?' · <span class="host">'+esc(x.host)+'</span>':'')+'</span></div>'+
+  return '<div class="int"><div>'+(x.when?'<em class="when">'+esc(x.when)+'</em>':'')+'<b>'+esc(x.title)+'</b><span>'+esc(x.what)+(x.host?' · <span class="host">'+esc(x.host)+'</span>':'')+'</span></div>'+
     '<button class="btn'+(keen[x.id]?' done':'')+'" type="button" data-keen="'+x.id+'" aria-pressed="'+(!!keen[x.id])+'">'+(keen[x.id]?'You\'re in ✓':"I'm in")+'</button></div>';
 }).join('');
 $('#interest').addEventListener('click',function(e){
@@ -608,13 +634,16 @@ var nbMine=getJSON('vvv-nb',{}), nbShowAll=false;
 function nbById(id){ for(var i=0;i<NEIGHBOURS.length;i++) if(NEIGHBOURS[i].id===id) return NEIGHBOURS[i]; }
 function nbBtn(n){ var d=!!nbMine[n.id]; return '<button class="'+(d?'btn done':'btn')+'" type="button" data-nbin="'+n.id+'">'+(d?'You\'re in ✓':"I'm in")+'</button>'; }
 function renderNeighbours(){
-  var list=nbShowAll?NEIGHBOURS:NEIGHBOURS.slice(0,3);
+  var mineFirst=NEIGHBOURS.filter(function(n){return typeof picked!=='function' || picked(n.theme)});
+  var rest=NEIGHBOURS.filter(function(n){return mineFirst.indexOf(n)===-1});
+  var list=nbShowAll?mineFirst.concat(rest):mineFirst.slice(0,3);
+  if(!list.length) list=NEIGHBOURS.slice(0,3);
   $('#nbList').innerHTML=list.map(function(n){
     return '<article class="nb"><img src="'+esc(n.img)+'" alt="" width="56" height="56"><div style="min-width:0">'+
       '<h3><button type="button" data-nb="'+n.id+'">'+esc(n.title)+'</button></h3>'+
       '<div class="meta">with '+esc(n.who)+' · '+esc(n.where)+'</div><p>'+esc(n.line)+'</p><div class="row act">'+nbBtn(n)+'</div></div></article>';
   }).join('');
-  var all=$('#nbAll'); all.hidden=NEIGHBOURS.length<=3; all.textContent=nbShowAll?'Show fewer':'See all '+NEIGHBOURS.length;
+  var all=$('#nbAll'); all.hidden=NEIGHBOURS.length<=list.length && !nbShowAll; all.textContent=nbShowAll?'Show fewer':'See all '+NEIGHBOURS.length;
 }
 renderNeighbours();
 $('#nbAll').addEventListener('click',function(){ nbShowAll=!nbShowAll; renderNeighbours(); if(!nbShowAll) $('#neighbours').scrollIntoView({block:'start'}); });
@@ -655,43 +684,89 @@ function nbInterested(id){
     var isEmail=me.contact.indexOf('@')>-1;
     send({type:'signup',name:me.name,email:isEmail?me.contact:'',phone:isEmail?'':me.contact,where:getHome(),fit:'Interested',thread:'neighbour: '+id,website:trap||''});
     nbMine[id]=Date.now(); store('vvv-nb',JSON.stringify(nbMine)); track('neighbour interested',{neighbour:id});
-    renderNeighbours(); renderTiles();
+    renderNeighbours();
     openSheet('<h2 id="sheetTitle">Lovely, '+esc(me.name)+'.</h2><p class="done-msg">We\'ll tell you when there\'s a date.</p><button class="ghost" type="button" data-close>Done</button>');
     sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
   });
 }
 
-/* ---------- themes ---------- */
+/* ---------- themes: pick what pulls you, then a light profile ---------- */
 var pulls=getJSON('vvv-pulls',{});
+var profile=getJSON('vvv-profile',{});
 var themeFromQR=(arrivedVia.indexOf('t-')===0)?arrivedVia.slice(2):'';
 function themeById(id){ for(var i=0;i<THREADS.length;i++) if(THREADS[i].id===id) return THREADS[i]; }
 function themeItems(id){
   return { nb:NEIGHBOURS.filter(function(n){return n.theme===id}), ev:EVENTS.filter(function(e){return e.thread===id && isCurrent(e)}) };
 }
+function pickList(){ if(!pulls) return []; return THREADS.filter(function(t){return pulls[t.id]}).map(function(t){return t.id}); }
+function picked(id){ return !pickList().length || !!pulls[id]; }
 function renderTiles(){
-  $('#threads').innerHTML=THREADS.map(function(t,i){
-    var it=themeItems(t.id), n=it.nb.length+it.ev.length;
-    var line=n? (n+(n===1?' thing':' things')+' to get into') : 'Nothing yet. Know something?';
-    return '<button class="tile th-'+t.id+(pulls[t.id]?' on':'')+'" type="button" data-theme="'+t.id+'"><b>'+esc(t.t)+'</b><span>'+line+'</span></button>';
+  $('#threads').innerHTML=THREADS.map(function(t){
+    var it=themeItems(t.id), n=it.nb.length+it.ev.length, on=!!pulls[t.id];
+    var line=n? (n+(n===1?' thing':' things')+' round here') : 'Nothing yet';
+    return '<button class="tile th-'+t.id+(on?' on':'')+'" type="button" data-theme="'+t.id+'" aria-pressed="'+on+'"><b>'+esc(t.t)+'</b><span>'+line+'</span><i class="tick" aria-hidden="true">'+(on?'✓':'')+'</i></button>';
   }).join('');
 }
-renderTiles();
-$('#threads').addEventListener('click',function(e){ var b=e.target.closest('[data-theme]'); if(b) openTheme(b.getAttribute('data-theme')); });
+function renderNudge(){
+  var box=$('#nudge'), list=pickList();
+  if(!list.length){ box.hidden=true; return; }
+  box.hidden=false;
+  if(profile.saved && me.name){
+    box.className='nudge saved';
+    box.innerHTML='<div><b>Saved for you, '+esc(me.name)+' ✓</b><span>We\'ll tell you when something new turns up for your picks.</span></div>';
+  } else {
+    box.className='nudge';
+    box.innerHTML='<div><b>Want us to remember this?</b><span>Save your picks and we\'ll tell you when something new turns up.</span></div><button class="btn" type="button" id="saveBtn">Save</button>';
+  }
+}
+var profTimer=null;
+function sendProfile(trap){
+  var isEmail=(me.contact||'').indexOf('@')>-1;
+  send({type:'signup',name:me.name,email:isEmail?me.contact:'',phone:isEmail?'':me.contact,where:getHome(),fit:'Profile',
+        thread:'picks: '+pickList().join(', '),bring:'Tell me when new things match: '+(profile.notify?'yes':'no'),website:trap||''});
+}
+function togglePick(id){
+  var on=!pulls[id]; if(on) pulls[id]=1; else delete pulls[id];
+  store('vvv-pulls',JSON.stringify(pulls));
+  renderTiles(); renderEvents(); renderNeighbours(); renderNudge();
+  signal(on?'thread':'thread removed',id); track(on?'theme picked':'theme unpicked',{thread:id, picks:pickList().length});
+  if(profile.saved && me.name){ clearTimeout(profTimer); profTimer=setTimeout(function(){ sendProfile(''); track('profile updated'); },1500); }
+}
+function openProfile(){
+  var chips=pickList().map(function(id){ return '<i class="th-'+id+'">'+esc(themeById(id).t)+'</i>'; }).join('');
+  openSheet('<h2 id="sheetTitle">Save your picks</h2>'+
+    '<p>So next time you land straight on the things you care about, and we can tell you when something new turns up.</p>'+
+    '<div class="picked">'+chips+'</div>'+
+    '<form class="f" id="pfForm" novalidate>'+
+    '<label for="pfName">Your first name<input id="pfName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="pfContact">Mobile or email<input id="pfContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    '<label for="pfHome">Where\'s home?<input id="pfHome" type="text" maxlength="60" value="'+esc(getHome())+'"></label>'+
+    '<label class="tick" for="pfNotify"><input id="pfNotify" type="checkbox" checked><span>Tell me when something new matches my picks</span></label>'+
+    '<input class="trap" id="pfTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="pfErr" role="alert"></p><button class="btn" type="submit">Save my picks</button>'+
+    '<p class="fine">No password, no account. Only Kev and the hosts see your details. <a href="privacy.html">Privacy</a></p></form>');
+  track('profile opened',{picks:pickList().length});
+  $('#pfForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#pfName').value.trim(), c=$('#pfContact').value.trim(), h=$('#pfHome').value.trim(), err=$('#pfErr');
+    if(!n){ err.textContent='Please add your first name.'; $('#pfName').focus(); return; }
+    if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address.'; $('#pfContact').focus(); return; }
+    me={name:n,contact:c,show:!!me.show}; store('vvv-me',JSON.stringify(me));
+    if(h && h!==getHome()){ store('vvv-home',h); setWelcome(); }
+    profile={saved:Date.now(),notify:$('#pfNotify').checked}; store('vvv-profile',JSON.stringify(profile));
+    sendProfile($('#pfTrap').value); track('profile saved',{picks:pickList().length,notify:profile.notify});
+    renderNudge();
+    openSheet('<h2 id="sheetTitle">Saved, '+esc(me.name)+'!</h2><p class="done-msg">Your picks come first from now on.</p><p>Change them any time: just tap the tiles.</p><div class="row"><button class="ghost" type="button" data-close>Done</button></div>');
+    sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
+  });
+}
+renderTiles(); renderNudge(); renderEvents(); renderNeighbours();
+$('#threads').addEventListener('click',function(e){ var b=e.target.closest('[data-theme]'); if(b) togglePick(b.getAttribute('data-theme')); });
+$('#nudge').addEventListener('click',function(e){ if(e.target.closest('#saveBtn')) openProfile(); });
 function openTheme(id){
-  var t=themeById(id); if(!t) return;
-  if(!pulls[id]){ pulls[id]=1; store('vvv-pulls',JSON.stringify(pulls)); renderTiles(); }
-  signal('thread',id); track('theme opened',{thread:id});
-  var it=themeItems(id), rows='';
-  it.ev.forEach(function(e){ rows+='<div class="mini"><img src="'+esc((e.going[0]||{}).img||'people/kev.jpg')+'" alt=""><button type="button" data-tev="'+e.id+'"><b>'+esc(e.title)+'</b><span>'+esc(e.day+' '+e.d+' '+e.mon+' · '+e.where)+'</span></button></div>'; });
-  it.nb.forEach(function(n){ rows+='<div class="mini"><img src="'+esc(n.img)+'" alt=""><button type="button" data-tnb="'+n.id+'"><b>'+esc(n.title)+'</b><span>with '+esc(n.who)+' · '+esc(n.where)+'</span></button></div>'; });
-  var lower=t.t.charAt(0).toLowerCase()+t.t.slice(1);
-  openSheet('<div class="themebar th-'+id+'"></div><span class="badge">What pulls you?</span><h2 id="sheetTitle">'+esc(t.t)+'</h2>'+
-    (rows? rows : '<p>Nothing here yet. If you know a thing or two about '+esc(lower)+', share it and you could be the first.</p>')+
-    '<div class="row" style="margin-top:14px"><button class="btn" type="button" data-tshare="'+id+'">Know something? Share it</button></div>');
-  sheet.onclick=function(e){
-    var a=e.target.closest('[data-tev]'), b=e.target.closest('[data-tnb]'), c=e.target.closest('[data-tshare]');
-    if(a) openEvent(a.getAttribute('data-tev')); if(b) openNeighbour(b.getAttribute('data-tnb')); if(c) openShare(c.getAttribute('data-tshare'));
-  };
+  if(!themeById(id)) return;
+  if(!pulls[id]) togglePick(id);
+  $('#themes').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 /* ---------- know something? share it ---------- */
@@ -725,7 +800,7 @@ function openShare(theme){
 $('#shareBtn').addEventListener('click',function(){ openShare(''); });
 function openWhat(){
   openSheet('<h2 id="sheetTitle">What is Va Va Voom?</h2>'+
-    '<p><b>Our answer: start small, start local, start together.</b> One good walk a month, a question worth talking about, and neighbours you didn\'t know you had. Plus things to do and people to learn from, close to home.</p>'+
+    '<p><b>Our answer: start small, start local, start together.</b> Good walks and pub nights, a question worth talking about, and neighbours you didn\'t know you had. Plus things to do and people to learn from, close to home.</p>'+
     '<p><b>It\'s for you if</b> you\'d rather do something than talk about it, you want to meet the neighbours you haven\'t met yet, you like your purpose with a bit of fun, and small and brave sounds better than big and worthy. Not sure? Come once and see.</p>'+
     '<p>Started by Kev, Tim and Carl, with Reiks. It\'s an experiment, and you\'re one of the first.</p>'+
     '<div class="row"><button class="btn" type="button" data-whaton>Show me what\'s on</button></div>');
