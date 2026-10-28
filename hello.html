@@ -115,12 +115,12 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none}
 .tile:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 .tile b{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:22px;line-height:1}
 .tile span{font-size:13px;font-weight:700}
-.tile.t0{background:var(--rose);color:var(--paper);border-color:var(--rose)}
-.tile.t1{background:var(--sun);color:var(--ink);border-color:var(--sun)}
-.tile.t2{background:var(--lime);color:var(--ink);border-color:var(--lime)}
-.tile.t3{background:var(--ink);color:var(--paper)}
-.tile.t4{background:var(--moss);color:var(--paper);border-color:var(--moss)}
-.tile.t5{background:var(--paper);color:var(--ink)}
+/* Theme colours: one colour per topic, used on tiles, theme pages and anything tagged with a theme */
+:root{--th-move:#e8337f;--th-grow:#c4622d;--th-make:#2438d6;--th-homes:#9e1f2b;--th-talk:#f2c75a;--th-nature:#2f6b4f}
+.th-move{--th:var(--th-move);--th-ink:var(--paper)} .th-grow{--th:var(--th-grow);--th-ink:var(--paper)} .th-make{--th:var(--th-make);--th-ink:var(--paper)}
+.th-homes{--th:var(--th-homes);--th-ink:var(--paper)} .th-talk{--th:var(--th-talk);--th-ink:var(--ink)} .th-nature{--th:var(--th-nature);--th-ink:var(--paper)}
+.tile[class*="th-"]{background:var(--th);color:var(--th-ink);border-color:var(--th)}
+.themebar{height:10px;border-radius:5px;margin:0 0 12px;background:var(--th)}
 .tile.on{box-shadow:inset 0 0 0 3px var(--paper),0 0 0 3px var(--ink)}
 .share{background:var(--ink);color:var(--paper);border-radius:16px;padding:20px 18px;margin-top:16px;display:grid;gap:10px}
 .share h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:30px;line-height:1;margin:0;color:var(--lime)}
@@ -658,7 +658,7 @@ function renderTiles(){
   $('#threads').innerHTML=THREADS.map(function(t,i){
     var it=themeItems(t.id), n=it.nb.length+it.ev.length;
     var line=n? (n+(n===1?' thing':' things')+' to get into') : 'Nothing yet. Know something?';
-    return '<button class="tile t'+i+(pulls[t.id]?' on':'')+'" type="button" data-theme="'+t.id+'"><b>'+esc(t.t)+'</b><span>'+line+'</span></button>';
+    return '<button class="tile th-'+t.id+(pulls[t.id]?' on':'')+'" type="button" data-theme="'+t.id+'"><b>'+esc(t.t)+'</b><span>'+line+'</span></button>';
   }).join('');
 }
 renderTiles();
@@ -671,7 +671,7 @@ function openTheme(id){
   it.ev.forEach(function(e){ rows+='<div class="mini"><img src="'+esc((e.going[0]||{}).img||'people/kev.jpg')+'" alt=""><button type="button" data-tev="'+e.id+'"><b>'+esc(e.title)+'</b><span>'+esc(e.day+' '+e.d+' '+e.mon+' · '+e.where)+'</span></button></div>'; });
   it.nb.forEach(function(n){ rows+='<div class="mini"><img src="'+esc(n.img)+'" alt=""><button type="button" data-tnb="'+n.id+'"><b>'+esc(n.title)+'</b><span>with '+esc(n.who)+' · '+esc(n.where)+'</span></button></div>'; });
   var lower=t.t.charAt(0).toLowerCase()+t.t.slice(1);
-  openSheet('<span class="badge">What pulls you?</span><h2 id="sheetTitle">'+esc(t.t)+'</h2>'+
+  openSheet('<div class="themebar th-'+id+'"></div><span class="badge">What pulls you?</span><h2 id="sheetTitle">'+esc(t.t)+'</h2>'+
     (rows? rows : '<p>Nothing here yet. If you know a thing or two about '+esc(lower)+', share it and you could be the first.</p>')+
     '<div class="row" style="margin-top:14px"><button class="btn" type="button" data-tshare="'+id+'">Know something? Share it</button></div>');
   sheet.onclick=function(e){
