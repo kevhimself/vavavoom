@@ -35,11 +35,33 @@ button,select,input,textarea{font:inherit;color:inherit}
 
 header.top{padding-top:max(14px,env(safe-area-inset-top,0px))}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.wordmark{font-family:var(--display);font-weight:900;font-size:30px;letter-spacing:.02em;text-transform:uppercase;line-height:1;text-decoration:none}
+.wordmark{font-family:var(--display);font-weight:900;font-size:clamp(24px,7vw,30px);white-space:nowrap;letter-spacing:.02em;text-transform:uppercase;line-height:1;text-decoration:none}
 .wordmark span{color:var(--rose)}
-.whatpill{font-weight:700;font-size:15px;background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:8px 16px;min-height:40px;cursor:pointer;white-space:nowrap}
+.whatpill{font-weight:700;font-size:15px;background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer;white-space:nowrap}
 .whatpill:hover{background:var(--rose-dk)}
-header.top{padding-bottom:12px}
+header.top{padding-bottom:12px;position:relative;z-index:5}
+.right{display:flex;align-items:center;gap:8px}
+.whatpill{font-weight:700;font-size:15px;background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
+.burger{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);display:grid;place-items:center;cursor:pointer;padding:0}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;content:""}
+.burger span::before{position:absolute;top:-6px}.burger span::after{position:absolute;top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.menu{position:absolute;left:0;right:0;top:100%;z-index:20;padding-inline:16px}
+.menu ul{list-style:none;margin:0 auto;padding:8px;max-width:528px;background:var(--ink);color:var(--paper);border-radius:16px;box-shadow:0 10px 30px rgba(28,26,43,.25)}
+.menu a{display:block;padding:12px 14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:18px}
+.menu a:hover,.menu a[aria-current="page"]{background:rgba(251,247,242,.12)}
+.menu a[aria-current="page"]{color:var(--lime)}
+.menu small{display:block;font-weight:400;font-size:14px;opacity:.75}
+
+.storycard{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:14px;align-items:center;margin-top:18px;padding:14px;border-radius:16px;background:var(--sun);text-decoration:none;color:var(--ink)}
+.storycard svg{width:72px;height:72px;display:block}
+.storycard .badge{color:var(--ink)}
+.storycard b{display:block;font-size:17px;line-height:1.25;margin:2px 0}
+.storycard span.l{font-size:14px;color:var(--ink);opacity:.8}
+.storycard .go{font-size:24px;font-weight:700}
+.storycard:hover{box-shadow:inset 0 0 0 2px var(--ink)}
 
 .hero{background:var(--rose);color:var(--paper);position:relative;overflow:hidden}
 .hero .wrap{position:relative;padding-block:20px 24px}
@@ -143,7 +165,8 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none}
 .th-homes{--th:var(--th-homes);--th-ink:var(--paper)} .th-talk{--th:var(--th-talk);--th-ink:var(--ink)} .th-nature{--th:var(--th-nature);--th-ink:var(--paper)}
 .tile[class*="th-"]{background:var(--paper);color:var(--ink);border-color:var(--th)}
 .tile[class*="th-"].on{background:var(--th);color:var(--th-ink)}
-.tile .tick{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;border:2px solid var(--th);display:grid;place-items:center;font-size:13px;font-weight:900;line-height:1}
+.tile .tick{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;border:2px solid var(--th);display:flex;align-items:center;justify-content:center;font-style:normal;line-height:0}
+.tile .tick svg{display:block}
 .tile.on .tick{background:var(--th-ink);color:var(--th);border-color:var(--th-ink)}
 .themebar{height:10px;border-radius:5px;margin:0 0 12px;background:var(--th)}
 .nudge{background:var(--mist);border-radius:14px;padding:14px 16px;margin-top:12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
@@ -226,8 +249,22 @@ footer a{color:var(--ink)}
 <header class="top wrap">
   <div class="bar">
     <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
-    <button class="whatpill" type="button" id="whatBtn">What is it?</button>
+    <div class="right">
+      <button class="whatpill" type="button" id="whatBtn">What is it?</button>
+      <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span></button>
+    </div>
   </div>
+  <nav class="menu" id="menu" hidden aria-label="Main">
+    <ul>
+      <li><a href="#h-on">What's on<small>Dates, places, I'm in</small></a></li>
+      <li><a href="news.html">Stories from round here<small>Good news and a tip for the week</small></a></li>
+      <li><a href="#themes">What pulls you?</a></li>
+      <li><a href="#neighbours">Learn from a neighbour</a></li>
+      <li><a href="#h-want">Coming if you want it</a></li>
+      <li><a href="#h-who">Who's behind it</a></li>
+      <li><a href="#feedback">Tell us what you think</a></li>
+    </ul>
+  </nav>
 </header>
 
 <div class="hero">
@@ -269,6 +306,24 @@ footer a{color:var(--ink)}
     </div>
   </section>
 
+
+  <a class="storycard" href="news.html" data-stories>
+    <svg viewBox="0 0 120 120" aria-hidden="true">
+          <circle cx="60" cy="60" r="58" fill="#e8337f"/>
+          <rect x="14" y="62" width="92" height="40" rx="8" fill="#8a5a3b"/>
+          <rect x="14" y="62" width="92" height="6" fill="#6f4529"/>
+          <path d="M22 82h76M22 94h76" stroke="#6f4529" stroke-width="2"/>
+          <path d="M38 70c0-14 10-22 22-22s22 8 22 22v8H38z" fill="#fbf7f2"/>
+          <path d="M44 74c2-6 9-10 16-10s14 4 16 10" fill="none" stroke="#e8337f" stroke-width="3"/>
+          <circle cx="60" cy="38" r="14" fill="#f1c7a5"/>
+          <path d="M46 36c0-10 7-16 15-16 9 0 15 6 14 15-3-5-9-7-15-7-5 0-10 3-14 8z" fill="#1c1a2b"/>
+          <path d="M54 40q2 2 4 0M63 40q2 2 4 0" fill="none" stroke="#1c1a2b" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M56 46q4 3 8 0" fill="none" stroke="#1c1a2b" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M26 30c-4-5 4-8 0-13M94 30c-4-5 4-8 0-13M86 50c-3-4 3-6 0-10" fill="none" stroke="#fbf7f2" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+        </svg>
+    <div><span class="badge">Stories from round here</span><b>Tip of the week: meet Elenid and the Waggon Sauna</b><span class="l">Good news, small brave things, and how to join in.</span></div>
+    <span class="go" aria-hidden="true">→</span>
+  </a>
 
   <section class="sec" aria-labelledby="h-nb" id="neighbours">
     <h2 id="h-nb">Learn from a neighbour</h2>
@@ -327,7 +382,7 @@ footer a{color:var(--ink)}
 
 <footer class="wrap">
   <div>Your details stay with us. Promise. <a href="privacy.html">Privacy and our data promise</a></div>
-  <div>Release Coldharbour · a Better Men experiment, Godalming</div>
+  <div>Release Eashing · a Better Men experiment, Godalming · <a href="news.html">Stories from round here</a></div>
 </footer>
 
 <div class="consent" id="consent" hidden>
@@ -714,7 +769,7 @@ function renderTiles(){
   $('#threads').innerHTML=THREADS.map(function(t){
     var it=themeItems(t.id), n=it.nb.length+it.ev.length, on=!!pulls[t.id];
     var line=n? (n+(n===1?' thing':' things')+' round here') : 'Nothing yet';
-    return '<button class="tile th-'+t.id+(on?' on':'')+'" type="button" data-theme="'+t.id+'" aria-pressed="'+on+'"><b>'+esc(t.t)+'</b><span>'+line+'</span><i class="tick" aria-hidden="true">'+(on?'✓':'')+'</i></button>';
+    return '<button class="tile th-'+t.id+(on?' on':'')+'" type="button" data-theme="'+t.id+'" aria-pressed="'+on+'"><b>'+esc(t.t)+'</b><span>'+line+'</span><i class="tick" aria-hidden="true">'+(on?'<svg viewBox="0 0 16 16" width="12" height="12"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>':'')+'</i></button>';
   }).join('');
 }
 function renderNudge(){
@@ -819,6 +874,15 @@ function openWhat(){
 }
 $('#whatBtn').addEventListener('click',openWhat);
 
+/* ---------- menu ---------- */
+var burger=$('#burger'), menu=$('#menu');
+function setMenu(open){ menu.hidden=!open; burger.setAttribute('aria-expanded',open); if(open){ var a=menu.querySelector('a'); if(a) a.focus(); track('menu opened'); } }
+burger.addEventListener('click',function(){ setMenu(menu.hidden); });
+menu.addEventListener('click',function(e){ if(e.target.closest('a')) setMenu(false); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!menu.hidden){ setMenu(false); burger.focus(); } });
+document.addEventListener('click',function(e){ if(!menu.hidden && !e.target.closest('#menu') && !e.target.closest('#burger')) setMenu(false); });
+document.addEventListener('click',function(e){ if(e.target.closest('[data-stories]')) track('stories panel clicked'); });
+
 /* ---------- start something near me ---------- */
 $('#startBtn').addEventListener('click',function(){
   var h=(store('vvv-home')||'your patch');
@@ -864,6 +928,7 @@ $('#fbForm').addEventListener('submit',function(e){
 (function(){
   var welcomed=store('vvv-welcomed');
   if(evById(arrivedVia)){ showConsent(); setTimeout(function(){ openEvent(arrivedVia); },250); return; }
+  if(arrivedVia==='what'){ showConsent(); setTimeout(openWhat,250); return; }
   if(themeFromQR && themeById(themeFromQR)){ showConsent(); setTimeout(function(){ openTheme(themeFromQR); },250); return; }
   if(!welcomed && !getHome()){ setTimeout(function(){ openWelcome(false); },700); } else showConsent();
   if(arrivedVia==='feedback'){ $('#feedback').scrollIntoView(); }

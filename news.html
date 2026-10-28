@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stories from round here · Va Va Voom</title>
+<meta name="description" content="Good news, small brave things, and a tip for the week, from round Godalming.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Stories from round here · Va Va Voom">
+<meta property="og:description" content="Good news, small brave things, and a tip for the week.">
+<meta property="og:image" content="logos/vvv-banner-rose.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&display=swap">
+<style>
+/* Stories from round here. Same paper, ink and rose as hello.html. */
+:root{
+  --paper:#fbf7f2; --ink:#1c1a2b; --rose:#e8337f; --rose-dk:#c41f66; --sun:#f2c75a; --lime:#c9f24a;
+  --moss:#2f6b4f; --mist:#ece5dc; --muted:#4c4858;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+
+header.top{padding-top:max(14px,env(safe-area-inset-top,0px));padding-bottom:12px;position:relative}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.wordmark{font-family:var(--display);font-weight:900;font-size:clamp(24px,7vw,30px);white-space:nowrap;letter-spacing:.02em;text-transform:uppercase;line-height:1;text-decoration:none}
+.wordmark span{color:var(--rose)}
+.right{display:flex;align-items:center;gap:8px}
+.whatpill{font-weight:700;font-size:15px;background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
+.burger{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);display:grid;place-items:center;cursor:pointer;padding:0}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;content:""}
+.burger span::before{position:absolute;top:-6px}.burger span::after{position:absolute;top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.menu{position:absolute;left:0;right:0;top:100%;z-index:20;padding-inline:16px}
+.menu ul{list-style:none;margin:0 auto;padding:8px;max-width:528px;background:var(--ink);color:var(--paper);border-radius:16px;box-shadow:0 10px 30px rgba(28,26,43,.25)}
+.menu a{display:block;padding:12px 14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:18px}
+.menu a:hover,.menu a[aria-current="page"]{background:rgba(251,247,242,.12)}
+.menu a[aria-current="page"]{color:var(--lime)}
+.menu small{display:block;font-weight:400;font-size:14px;opacity:.75}
+
+.hero{background:var(--rose);color:var(--paper)}
+.hero .wrap{padding-block:20px 22px}
+.hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:44px;line-height:.95;margin:0 0 8px}
+.hero p{margin:0;font-weight:700}
+.near{display:inline-block;margin-top:10px;font-size:14px;font-weight:700;background:var(--paper);color:var(--ink);border-radius:999px;padding:4px 12px}
+
+section.sec{padding-block:22px 4px}
+.sec h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:32px;line-height:1;margin:0 0 4px}
+.sub{font-size:15px;color:var(--muted);margin:0 0 14px}
+.badge{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rose-dk)}
+
+.tip{background:var(--sun);border-radius:18px;padding:18px;display:grid;gap:12px}
+.tip .head{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center}
+.tip .head svg{width:96px;height:96px;display:block}
+.tip .badge{color:var(--ink)}
+.tip h3{margin:2px 0 0;font-size:22px;line-height:1.15}
+.tip .by{font-size:15px;margin:0}
+.tip ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.tip li{background:rgba(251,247,242,.65);border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.4}
+.tip li b{display:block}
+.credit{font-family:var(--hand);font-size:22px;line-height:1.1;margin:0}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.btn{font-weight:700;font-size:16px;background:var(--rose);color:var(--paper);border:0;border-radius:999px;padding:10px 20px;min-height:44px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.btn:hover{background:var(--rose-dk)}
+.btn.done{background:var(--paper);color:var(--rose-dk);box-shadow:inset 0 0 0 2px var(--rose)}
+.link{font-weight:700;font-size:15px;color:var(--ink);text-underline-offset:3px}
+
+.story{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;padding-block:16px;border-top:1px solid var(--mist)}
+.story:first-child{border-top:0;padding-top:4px}
+.story img{width:64px;height:64px;border-radius:50%;object-fit:cover;background:var(--mist)}
+.faces{position:relative;width:64px;height:64px}
+.story .faces img{position:absolute;width:38px;height:38px;border:2px solid var(--paper)}
+.story .faces img:nth-child(1){left:13px;top:0}.story .faces img:nth-child(2){left:0;top:26px}.story .faces img:nth-child(3){left:26px;top:26px}
+.story h3{margin:2px 0 4px;font-size:19px;line-height:1.25}
+.story p{margin:0 0 8px;font-size:15px}
+.story .meta{font-size:14px;color:var(--muted)}
+
+.tell{background:var(--ink);color:var(--paper);border-radius:16px;padding:20px 18px;margin-top:18px;display:grid;gap:10px}
+.tell h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:28px;line-height:1;margin:0;color:var(--lime)}
+.tell p{margin:0}
+.f{display:grid;gap:12px}
+.f label{display:grid;gap:4px;font-weight:700;font-size:15px}
+.f input,.f textarea{width:100%;border:2px solid var(--paper);border-radius:10px;padding:10px 12px;background:var(--paper);color:var(--ink);font-weight:400}
+.f textarea{min-height:110px;resize:vertical}
+.tell .btn{background:var(--lime);color:var(--ink);justify-self:start}
+.err{color:var(--lime);margin:0;font-weight:700;min-height:0}
+.trap{position:absolute;left:-9999px}
+.fine{font-size:13px;opacity:.8;margin:0}
+.thanks{font-family:var(--hand);font-size:28px;color:var(--lime);margin:0}
+
+footer{padding-block:24px 28px;font-size:14px;display:grid;gap:6px;color:var(--muted)}
+footer a{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header class="top wrap">
+  <div class="bar">
+    <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
+    <div class="right">
+      <a class="whatpill" href="hello.html#what">What is it?</a>
+      <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+  <nav class="menu" id="menu" hidden aria-label="Main">
+    <ul>
+      <li><a href="hello.html#h-on">What's on<small>Dates, places, I'm in</small></a></li>
+      <li><a href="news.html" aria-current="page">Stories from round here<small>Good news and a tip for the week</small></a></li>
+      <li><a href="hello.html#neighbours">Learn from a neighbour</a></li>
+      <li><a href="hello.html#h-want">Coming if you want it</a></li>
+      <li><a href="hello.html#h-who">Who's behind it</a></li>
+      <li><a href="hello.html#feedback">Tell us what you think</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Stories from round here</h1>
+    <p>Good news, small brave things, and a tip for the week.</p>
+    <span class="near" id="near" hidden></span>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="sec" aria-labelledby="h-tip">
+    <h2 id="h-tip">Tip of the week</h2>
+    <p class="sub">One good thing near you, and how to get the most from it.</p>
+    <article class="tip">
+      <div class="head">
+        <svg viewBox="0 0 120 120" role="img" aria-label="Illustration: someone relaxing in a wood-fired sauna">
+          <circle cx="60" cy="60" r="58" fill="#e8337f"/>
+          <rect x="14" y="62" width="92" height="40" rx="8" fill="#8a5a3b"/>
+          <rect x="14" y="62" width="92" height="6" fill="#6f4529"/>
+          <path d="M22 82h76M22 94h76" stroke="#6f4529" stroke-width="2"/>
+          <path d="M38 70c0-14 10-22 22-22s22 8 22 22v8H38z" fill="#fbf7f2"/>
+          <path d="M44 74c2-6 9-10 16-10s14 4 16 10" fill="none" stroke="#e8337f" stroke-width="3"/>
+          <circle cx="60" cy="38" r="14" fill="#f1c7a5"/>
+          <path d="M46 36c0-10 7-16 15-16 9 0 15 6 14 15-3-5-9-7-15-7-5 0-10 3-14 8z" fill="#1c1a2b"/>
+          <path d="M54 40q2 2 4 0M63 40q2 2 4 0" fill="none" stroke="#1c1a2b" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M56 46q4 3 8 0" fill="none" stroke="#1c1a2b" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M26 30c-4-5 4-8 0-13M94 30c-4-5 4-8 0-13M86 50c-3-4 3-6 0-10" fill="none" stroke="#fbf7f2" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+        </svg>
+        <div>
+          <span class="badge">Treat yourself this winter</span>
+          <h3>Meet Elenid, and the Waggon Sauna</h3>
+        </div>
+      </div>
+      <p class="by">Elenid Coleman, a textile artist, hosts a wood-fired sauna in a waggon on a woodland walk at the Hampton Estate, Seale. It has a huge window onto the trees, and bucket and woodland showers to cool off. The waggon was built from Hampton's own timber.</p>
+      <ul>
+        <li><b>Go with friends.</b> The Trailblazer pass works out at about £16 a session instead of £20, and you can book friends in on it.</li>
+        <li><b>Make it a gathering.</b> A private session fits about ten. That's our sauna sing-along idea: sweat, sing badly, feel brilliant.</li>
+        <li><b>Like it hot?</b> Take the corner seat. Then the bucket. Then do it again.</li>
+        <li><b>Times change with the seasons.</b> Check the booking page before you go.</li>
+      </ul>
+      <p class="credit">Tip from Kev and Jules, who've been and loved it.</p>
+      <div class="row">
+        <a class="link" href="https://www.thewaggonsauna.co.uk/" target="_blank" rel="noopener" data-out="sauna">Book a session ↗</a>
+        <button class="btn" type="button" id="saunaIn" aria-pressed="false">I'm in for a sing-along</button>
+      </div>
+    </article>
+  </section>
+
+  <section class="sec" aria-labelledby="h-st">
+    <h2 id="h-st">Good news</h2>
+    <p class="sub">Short, real, with faces. Every story ends in something you can do.</p>
+    <div id="stories">
+      <article class="story">
+        <img src="people/reiks.jpg" alt="" width="64" height="64">
+        <div>
+          <span class="badge">Small brave thing · Milford</span>
+          <h3>A £10 pump and a bath's worth of water for the garden</h3>
+          <p>Reiks spent a tenner on a little pump. In summer, the bath water goes into a tank instead of down the drain, and waters the garden. No several-grand system needed.</p>
+          <div class="meta">Your turn: what's one small thing you've done, or could do this month? <a href="#tell">Tell us</a></div>
+        </div>
+      </article>
+      <article class="story">
+        <img src="people/tim.jpg" alt="" width="64" height="64">
+        <div>
+          <span class="badge">This Saturday · Shackleford</span>
+          <h3>From the briefing to the farm</h3>
+          <p>A film, a proper conversation about where we're all at, then down to Norney Farm Bungalow to see solar, rain harvesting and regenerative growing working together.</p>
+          <div class="meta"><a href="hello.html#briefing">See the details</a></div>
+        </div>
+      </article>
+      <article class="story">
+        <div class="faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/carl.jpg" alt=""></div>
+        <div>
+          <span class="badge">How it started · Godalming</span>
+          <h3>Three men, Monday nights, one question</h3>
+          <p>Good food, big conversations, and the question we always ask: how have we been better this week? Now we're opening the door, starting with a pub night and a walk.</p>
+          <div class="meta"><a href="hello.html#walk">Come on the walk</a></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="tell" id="tell">
+      <h3>Got a story from round here?</h3>
+      <p>Something good, a small brave thing, a person worth knowing. Tell us and we'll help share it.</p>
+      <form class="f" id="tellForm" novalidate>
+        <label for="tTitle">What's the story, in a line?<input id="tTitle" type="text" maxlength="120"></label>
+        <label for="tWhat">Tell us a bit more<textarea id="tWhat" maxlength="1500"></textarea></label>
+        <label for="tName">Your first name<input id="tName" type="text" autocomplete="given-name" maxlength="60"></label>
+        <label for="tContact">Mobile or email<input id="tContact" type="text" autocomplete="email" maxlength="120"></label>
+        <input class="trap" id="tTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="err" id="tErr" role="alert"></p>
+        <button class="btn" type="submit">Send it</button>
+        <p class="fine">We check everything before it goes up. No web links please. <a href="privacy.html">Privacy</a></p>
+      </form>
+      <p class="thanks" id="tThanks" hidden>Brilliant. We'll be in touch.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div><a href="hello.html">Back to what's on</a> · <a href="privacy.html">Privacy and our data promise</a></div>
+  <div>Va Va Voom · stories from round here · made by neighbours, not committees</div>
+</footer>
+
+<script>
+var RELEASE='Eashing';
+var CATCHER='https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec';
+function $(s){return document.querySelector(s)}
+function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
+function getJSON(k,d){try{return JSON.parse(store(k))||d}catch(e){return d}}
+function send(data){
+  data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE;
+  try{ fetch(CATCHER,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).catch(function(){}) }catch(e){}
+}
+function track(n,p){try{ if(window.posthog&&posthog.capture) posthog.capture(n,Object.assign({release:RELEASE},p||{})) }catch(e){}}
+send({type:'signal',event:'stories opened',detail:(location.hash||'').replace('#','')});
+
+/* menu */
+var burger=$('#burger'), menu=$('#menu');
+function setMenu(open){ menu.hidden=!open; burger.setAttribute('aria-expanded',open); if(open){ var a=menu.querySelector('a'); if(a) a.focus(); } }
+burger.addEventListener('click',function(){ setMenu(menu.hidden); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!menu.hidden){ setMenu(false); burger.focus(); } });
+document.addEventListener('click',function(e){ if(!menu.hidden && !e.target.closest('#menu') && !e.target.closest('#burger')) setMenu(false); });
+
+/* where's home */
+var home=(store('vvv-home')||'').trim();
+if(home){ $('#near').textContent='Near '+home; $('#near').hidden=false; }
+
+/* sauna sing-along interest: shares the same list as hello.html */
+var keen=getJSON('vvv-keen',{}), sb=$('#saunaIn');
+function paint(){ var on=!!keen.sauna; sb.classList.toggle('done',on); sb.setAttribute('aria-pressed',on); sb.textContent=on?"You're in ✓":"I'm in for a sing-along"; }
+paint();
+sb.addEventListener('click',function(){
+  var on=!keen.sauna; if(on) keen.sauna=1; else delete keen.sauna; store('vvv-keen',JSON.stringify(keen)); paint();
+  send({type:'signal',event:on?'interest':'interest removed',detail:'sauna | '+home+' | stories'}); track(on?'interest':'interest removed',{item:'sauna',from:'stories'});
+});
+document.addEventListener('click',function(e){ var o=e.target.closest('[data-out]'); if(o) send({type:'signal',event:'outbound',detail:o.getAttribute('data-out')}); });
+
+/* tell us a story */
+var me=getJSON('vvv-me',{});
+if(me.name) $('#tName').value=me.name; if(me.contact) $('#tContact').value=me.contact;
+$('#tellForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var v=function(id){return $('#'+id).value.trim()}, err=$('#tErr');
+  if(!v('tTitle')||!v('tWhat')){ err.textContent='Tell us the story in a line, and a bit more.'; return; }
+  if(!v('tName')||!v('tContact')){ err.textContent='We need your first name and a way to reach you.'; return; }
+  if(/https?:\/\/|www\./i.test(v('tTitle')+' '+v('tWhat'))){ err.textContent='Please take out any web links, then send.'; return; }
+  store('vvv-me',JSON.stringify({name:v('tName'),contact:v('tContact'),show:!!me.show}));
+  send({type:'project',title:v('tTitle'),what:v('tWhat'),lead:v('tName'),thread:'story',where:home,name:v('tName'),email:v('tContact'),ok:'Ask first',website:v('tTrap')});
+  track('story sent');
+  $('#tellForm').hidden=true; $('#tThanks').hidden=false;
+});
+</script>
+</body>
+</html>
