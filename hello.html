@@ -456,7 +456,7 @@ $('#homeBtn').addEventListener('click',function(){ openWelcome(true); });
 function isCurrent(ev){ var d=(ev.until||ev.start||'').slice(0,10); if(!d) return true; var t=new Date(); var today=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0'); return d>=today; }
 function facesHTML(ev){
   if(!ev.going.length) return '';
-  var g=ev.going.slice(), mine=getJSON('vvv-in',{});
+  var g=ev.going.slice(), mine=getJSON('vvv-going',{});
   var names=g.map(function(x){return x.n});
   if(mine[ev.id] && me.show && me.name) names=names.concat(['you']);
   var html=g.map(function(x){return '<img src="'+esc(x.img)+'" alt="" width="28" height="28">'}).join('');
@@ -471,7 +471,7 @@ function inButton(ev,done,attr){
 }
 document.addEventListener('click',function(e){ var t=e.target.closest('[data-tix]'); if(t){ signal('tickets',t.getAttribute('data-tix')); track('tickets clicked',{event:t.getAttribute('data-tix')}); } });
 function renderEvents(){
-  var mine=getJSON('vvv-in',{});
+  var mine=getJSON('vvv-going',{});
   $('#events').innerHTML = EVENTS.filter(isCurrent).map(function(ev){
     var done=!!mine[ev.id];
     return '<article class="ev'+(ev.lead?' lead':'')+(ev.onnow?' onnow':'')+'" id="ev-'+ev.id+'">'+
@@ -504,7 +504,7 @@ function evById(id){ for(var i=0;i<EVENTS.length;i++) if(EVENTS[i].id===id) retu
 
 function openEvent(id){
   var ev=evById(id); if(!ev) return;
-  var done=!!getJSON('vvv-in',{})[id];
+  var done=!!getJSON('vvv-going',{})[id];
   openSheet('<span class="badge">'+esc(ev.badge||'What\'s on')+'</span><h2 id="sheetTitle">'+esc(ev.title)+'</h2>'+
     '<ul class="facts"><li><b>When</b> '+esc(ev.day+' '+ev.d+' '+ev.mon+', '+ev.time)+'</li>'+
     (ev.length?'<li><b>How long</b> '+esc(ev.length)+'</li>':'')+
@@ -522,7 +522,7 @@ function openEvent(id){
 }
 
 function imIn(id){
-  var ev=evById(id), mine=getJSON('vvv-in',{});
+  var ev=evById(id), mine=getJSON('vvv-going',{});
   if(mine[id]){ openEvent(id); return; }
   if(me.name && me.contact){ confirmIn(ev); return; }
   openSheet('<h2 id="sheetTitle">Ooh, lovely. You\'re nearly in.</h2>'+
@@ -550,7 +550,7 @@ function confirmIn(ev, trap){
   var isEmail=me.contact.indexOf('@')>-1;
   send({type:'signup', name:me.name, email:isEmail?me.contact:'', phone:isEmail?'':me.contact,
         where:getHome(), fit:'in', thread:'event: '+ev.id, bring:'Show first name: '+(me.show?'yes':'no'), website:trap||''});
-  var mine=getJSON('vvv-in',{}); mine[ev.id]=Date.now(); store('vvv-in',JSON.stringify(mine));
+  var mine=getJSON('vvv-going',{}); mine[ev.id]=Date.now(); store('vvv-going',JSON.stringify(mine));
   track("i'm in",{event:ev.id, via:arrivedVia||'page'});
   renderEvents();
   openSheet('<h2 id="sheetTitle">You\'re in, '+esc(me.name)+'!</h2>'+
