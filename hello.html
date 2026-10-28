@@ -196,7 +196,13 @@ form.f select{width:100%;border:2px solid var(--ink);border-radius:8px;padding:1
 .person .plinks{font-size:14px;margin-top:2px}
 .person .plinks a{color:var(--rose-dk);font-weight:700;text-underline-offset:3px}
 .ask{display:block;font-family:var(--hand);font-style:normal;font-size:22px;line-height:1.1;color:var(--rose-dk);margin-top:2px}
-.story{margin:14px 0 0;font-size:15px}
+.origin{margin-top:18px;background:var(--mist);border-radius:16px;padding:16px 18px}
+.origin h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:24px;line-height:1;margin:0 0 6px}
+.origin p{margin:0 0 10px;font-size:16px}
+.origin details p:last-child{margin-bottom:0}
+.origin summary{cursor:pointer;font-weight:700;color:var(--rose-dk);text-decoration:underline;text-underline-offset:3px;list-style:none;margin-bottom:2px}
+.origin summary::-webkit-details-marker{display:none}
+.origin details[open] summary{display:none}
 
 .fb{background:var(--ink);color:var(--paper);margin-top:28px}
 .fb .wrap{padding-block:22px;display:grid;gap:12px}
@@ -340,7 +346,18 @@ footer a{color:var(--ink)}
       <div class="person"><img src="people/carl.jpg" alt="" width="56" height="56"><div><b>Carl</b><span>Maker and builder of things, and cook for the group.</span><em class="ask">Want to know how to build it? Ask him</em><span class="plinks"><a href="https://www.spaces.green/" target="_blank" rel="noopener" data-out="greenspaces">Green Spaces Godalming ↗</a></span></div></div>
       <div class="person"><img src="people/kev.jpg" alt="" width="56" height="56"><div><b>Kev</b><span>Navigator of spaces. One foot in AI, one in humans, and a toe in the underworld. Hosts the circle.</span><em class="ask">Ask him about good wood</em><span class="plinks"><a href="https://www.linkedin.com/in/kevself/" target="_blank" rel="noopener" data-out="kev-linkedin">LinkedIn ↗</a> · <a href="https://valleysawmills.co.uk" target="_blank" rel="noopener" data-out="valley">Valley Sawmills ↗</a></span></div></div>
     </div>
-    <p class="story">It started as a men's group: three of us on Monday nights, good food, big conversations, and one question we always ask: how have we been better this week? (And what even is better?) Now we're gently opening the door.</p>
+    <div class="origin">
+      <h3>So where did this start?</h3>
+      <p>Depends who you ask.</p>
+      <p><b>Maybe with three men.</b> Two years ago Tim, Carl and Kev started meeting on Monday nights. Carl and Tim cooked, often with food from the farm, and every week we asked one question: how have we been better this week? We meant to grow. We didn't, and that turned out to be the point. Three people who turn up for each other are enough to change how a week feels.</p>
+      <details>
+        <summary>Read the rest</summary>
+        <p><b>Maybe with a film.</b> At the People's Emergency Briefing in Godalming, a room full of people watched where the world has got to. We walked out with hearts racing, and nowhere to put all that energy.</p>
+        <p><b>Or maybe with the follow-up session, where so few came.</b> All that feeling in the room, and only a handful turned up for what came next. That told us something. Worry doesn't get people off the sofa. Something fun, close to home, with people you like, just might.</p>
+        <p>So that's what this is. Small, brave, good things near where you live, with the neighbours you haven't met yet. A walk with a question. A pint. A sauna. We're the seed, not the committee. Ideas get sorted on a walk or in the pub, and anyone can pick something up and run with it.</p>
+        <p>It's an experiment, and you're early. Come along to something and see.</p>
+      </details>
+    </div>
   </section>
 </main>
 
@@ -372,7 +389,8 @@ footer a{color:var(--ink)}
 
 <footer class="wrap">
   <div>Your details stay with us. Promise. <a href="privacy.html">Privacy and our data promise</a></div>
-  <div>Release Eashing · a Better Men experiment, Godalming · <a href="news.html">Stories from round here</a></div>
+  <div>Va Va Voom grew out of Better Men, and is part of Purpose Nation and Open Commons.</div>
+  <div>Release Eashing · Godalming · <a href="news.html">Stories from round here</a></div>
 </footer>
 
 <div class="consent" id="consent" hidden>
