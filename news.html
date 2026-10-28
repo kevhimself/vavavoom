@@ -16,7 +16,7 @@
 <style>
 /* Stories from round here. Same paper, ink and rose as hello.html. */
 :root{
-  --paper:#fbf7f2; --ink:#1c1a2b; --rose:#e8337f; --rose-dk:#c41f66; --sun:#f2c75a; --lime:#c9f24a;
+  --paper:#fbf7f2; --ink:#1c1a2b; --rose:#e8337f; --rose-dk:#c41f66; --sun:#f2c75a; --sun-soft:#fbeec8; --lime:#c9f24a;
   --moss:#2f6b4f; --mist:#ece5dc; --muted:#4c4858;
   --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
   --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -62,7 +62,7 @@ section.sec{padding-block:22px 4px}
 .sub{font-size:15px;color:var(--muted);margin:0 0 14px}
 .badge{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rose-dk)}
 
-.tip{background:var(--sun);border-radius:18px;padding:18px;display:grid;gap:12px}
+.tip{background:var(--sun-soft);border-radius:18px;padding:18px;display:grid;gap:12px}
 .tip .head{display:block}
 .tip .head .thumb{width:96px;height:96px;display:block;border-radius:50%;object-fit:cover;border:3px solid var(--paper)}
 .tip .photo{width:100%;height:auto;display:block;border-radius:12px}
@@ -71,9 +71,9 @@ section.sec{padding-block:22px 4px}
 .tip h3{margin:2px 0 0;font-size:22px;line-height:1.15}
 .tip .by{font-size:15px;margin:0}
 .tip ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
-.tip li{background:rgba(251,247,242,.65);border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.4}
+.tip li{background:var(--paper);border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.4}
 .tip li b{display:block}
-.credit{font-family:var(--hand);font-size:22px;line-height:1.1;margin:0}
+.credit{font-family:var(--hand);font-size:26px;line-height:1.1;margin:6px 0 0;color:var(--rose-dk)}
 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
 .btn{font-weight:700;font-size:16px;background:var(--rose);color:var(--paper);border:0;border-radius:999px;padding:10px 20px;min-height:44px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
 .btn:hover{background:var(--rose-dk)}
@@ -151,13 +151,13 @@ footer a{color:var(--ink)}
         </div>
       </div>
       <p class="by">Elenid Coleman, a textile artist, hosts a wood-fired sauna in a waggon on a woodland walk at the Hampton Estate, Seale. It has a huge window onto the trees, and bucket and woodland showers to cool off. The waggon was built from Hampton's own timber.</p>
+      <p class="credit">Tips from Kev and Jules, who've been and loved it</p>
       <ul>
         <li><b>Go with friends.</b> The Trailblazer pass works out at about £16 a session instead of £20, and you can book friends in on it.</li>
         <li><b>Make it a gathering.</b> A private session fits about ten. That's our sauna sing-along idea: sweat, sing badly, feel brilliant.</li>
         <li><b>Like it hot?</b> Take the corner seat. Then the bucket. Then do it again.</li>
         <li><b>Times change with the seasons.</b> Check the booking page before you go.</li>
       </ul>
-      <p class="credit">Tip from Kev and Jules, who've been and loved it.</p>
       <div class="row">
         <a class="link" href="https://www.thewaggonsauna.co.uk/" target="_blank" rel="noopener" data-out="sauna">Book a session ↗</a>
         <button class="btn" type="button" id="saunaIn" aria-pressed="false">I'm in for a sing-along</button>

@@ -16,7 +16,7 @@
 <style>
 /* Release Eashing. One column, phone first. Paper, ink and rose. The walk leads; everything else gathers interest. */
 :root{
-  --paper:#fbf7f2; --ink:#1c1a2b; --rose:#e8337f; --rose-dk:#c41f66; --sun:#f2c75a; --lime:#c9f24a;
+  --paper:#fbf7f2; --ink:#1c1a2b; --rose:#e8337f; --rose-dk:#c41f66; --sun:#f2c75a; --sun-soft:#fbeec8; --lime:#c9f24a;
   --moss:#2f6b4f; --mist:#ece5dc; --muted:#4c4858;
   --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
   --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -55,7 +55,7 @@ header.top{padding-bottom:12px;position:relative;z-index:5}
 .menu a[aria-current="page"]{color:var(--lime)}
 .menu small{display:block;font-weight:400;font-size:14px;opacity:.75}
 
-.storycard{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:14px;align-items:center;margin-top:18px;padding:14px;border-radius:16px;background:var(--sun);text-decoration:none;color:var(--ink)}
+.storycard{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:14px;align-items:center;margin-top:18px;padding:14px;border-radius:16px;background:var(--sun-soft);text-decoration:none;color:var(--ink)}
 .storycard img{width:72px;height:72px;display:block;border-radius:50%;object-fit:cover;border:3px solid var(--paper)}
 .storycard .badge{color:var(--ink)}
 .storycard b{display:block;font-size:17px;line-height:1.25;margin:2px 0}
@@ -139,7 +139,7 @@ section.sec{padding-block:20px 4px}
 .host{color:var(--moss);font-weight:700}
 
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.ev.onnow{background:var(--sun);padding:14px 12px;border-radius:12px;border-top:0;margin-bottom:10px}
+.ev.onnow{background:var(--sun-soft);padding:14px 12px;border-radius:12px;border-top:0;margin-bottom:10px}
 .ev.onnow:first-of-type{padding-top:14px}
 .ev.onnow + .ev:not(.onnow){border-top:0;padding-top:6px}
 .ev.onnow .date{background:var(--ink)}
