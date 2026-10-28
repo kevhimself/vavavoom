@@ -52,6 +52,8 @@ header.top{padding-top:max(14px,env(safe-area-inset-top,0px))}
 #welcomeSheet input{width:100%;border:2px solid var(--ink);border-radius:8px;padding:10px;font-size:16px;background:#fff;color:var(--ink)}
 .hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(42px,11vw,58px);line-height:.92;margin:0 0 12px;max-width:8.5em;text-wrap:balance;position:relative}
 .strap{font-weight:700;margin:0;max-width:24ch;position:relative}
+.hero h1,.strap,.aside{max-width:calc(100% - 84px)}
+.aside{font-family:var(--hand);font-size:26px;line-height:1;margin:8px 0 0;color:var(--sun);position:relative;transform:rotate(-2deg);transform-origin:left}
 
 .why{padding-block:16px;border-bottom:2px solid var(--ink)}
 .why p{margin:0}
@@ -159,7 +161,7 @@ footer a{color:var(--ink)}
   <div class="bar">
     <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
   </div>
-  <div class="places">Godalming · Farncombe · Milford · Busbridge · and round about</div>
+  <div class="places">Godalming · Farncombe · Milford · Busbridge · and the bits in between</div>
 </header>
 
 <div class="hero">
@@ -174,35 +176,36 @@ footer a{color:var(--ink)}
     </div>
     <h1>How might we make tomorrow a little more beautiful?</h1>
     <p class="strap">Less scrolling, more doing. Get out, meet up, make something good happen.</p>
+    <p class="aside">(spoiler: it starts with a walk)</p>
   </div>
 </div>
 
 <main class="wrap">
   <div class="why">
-    <p><b>Our answer: start small, start local, start together.</b> One good walk a month, with a question to share and neighbours you haven't met yet.</p>
-    <span class="exp">An experiment. You're one of the first.</span>
+    <p><b>Our answer: start small, start local, start together.</b> One good walk a month, a cracking question to chew on, and neighbours you didn't know you had.</p>
+    <span class="exp">An experiment. You're one of the first brave ones.</span>
   </div>
 
   <section class="sec" aria-labelledby="h-on">
     <h2 id="h-on">What's on</h2>
-    <p class="sub">The walk is our regular: the first Saturday of every month.</p>
+    <p class="sub">First Saturday of every month, we walk. Rain, shine or mild drizzle.</p>
     <div id="events"></div>
     <div class="near" id="near" hidden>
       <b id="nearTitle">Nothing near you yet.</b>
-      <p>Fancy being the first? Tell us what you'd start and we'll help you get it going.</p>
+      <p>Fancy being the first? Tell us what you'd start and we'll bring the know-how (and probably biscuits).</p>
       <button class="ghost" type="button" id="startBtn">Start something here</button>
     </div>
   </section>
 
   <section class="sec" aria-labelledby="h-want">
     <h2 id="h-want">Coming if you want it</h2>
-    <p class="sub">No dates yet. Tap "I'd come" and we'll set one once enough people are keen.</p>
+    <p class="sub">No dates yet. Tap "I'd come" and once enough of you are keen, it's happening.</p>
     <div class="interest" id="interest"></div>
   </section>
 
   <section class="sec" aria-labelledby="h-more">
     <h2 id="h-more">Show me more of…</h2>
-    <p class="sub">Tap any. It helps us plan what comes next.</p>
+    <p class="sub">Tap whatever makes you go "ooh". It tells us what to cook up next.</p>
     <div class="chips" id="threads"></div>
   </section>
 
@@ -213,14 +216,14 @@ footer a{color:var(--ink)}
       <div class="person"><img src="people/carl.jpg" alt="" width="56" height="56"><div><b>Carl</b><span>Maker and builder of things, and cook for the group.</span></div></div>
       <div class="person"><img src="people/kev.jpg" alt="" width="56" height="56"><div><b>Kev</b><span>Facilitator and weaver. Hosts the circle.</span></div></div>
     </div>
-    <p class="story">It started with three of us on Monday nights, asking one question: how have we been better this week? Now we're opening the door.</p>
+    <p class="story">It started with three of us on Monday nights: good food, big conversations, and one question we always ask: how have we been better this week? Now we're flinging the door open.</p>
   </section>
 </main>
 
 <section class="fb" aria-labelledby="h-fb" id="feedback">
   <div class="wrap">
     <h2 id="h-fb">Tell us what you think</h2>
-    <p>Two minutes, four questions. It shapes what we build next.</p>
+    <p>Two minutes, four questions. Be honest, we can take it.</p>
     <button class="btn" type="button" id="fbOpen" aria-expanded="false" aria-controls="fbForm">Give feedback</button>
     <form class="f" id="fbForm" hidden novalidate>
       <label for="q1">What three words do you come away feeling?<input id="q1" type="text" maxlength="120"></label>
@@ -239,18 +242,18 @@ footer a{color:var(--ink)}
       <button class="btn" type="submit">Send</button>
       <p class="fine">No links please; they get held back. Release Busbridge.</p>
     </form>
-    <div class="thanks" id="fbThanks" hidden>Thank you, good human. We'll tell you what we change.</div>
+    <div class="thanks" id="fbThanks" hidden>Thank you, good human. You've just shaped what comes next.</div>
   </div>
 </section>
 
 <footer class="wrap">
-  <div>Your details stay with us. <a href="privacy.html">Privacy and our data promise</a></div>
+  <div>Your details stay with us. Promise. <a href="privacy.html">Privacy and our data promise</a></div>
   <div>Release Busbridge · a Better Men experiment, Godalming</div>
 </footer>
 
 <div class="consent" id="consent" hidden>
   <div class="in">
-    <p>Can we count how this page gets used? It helps us improve it. Anything you type stays hidden.</p>
+    <p>Mind if we count how this page gets used? It helps us make it better. Anything you type stays hidden.</p>
     <button class="yes" type="button" id="cYes">Yes, fine</button>
     <button class="no" type="button" id="cNo">No thanks</button>
   </div>
@@ -268,8 +271,8 @@ var EVENTS = [
     day:'Sat', d:'7', mon:'Nov', start:'2026-11-07T09:30', end:'2026-11-07T11:30',
     time:'9:30am', length:'About 2 hours', where:'Godalming station', host:'Tim and Kev', thread:'move',
     about:[
-      'A walk with a difference. Each stretch has a question to talk about. You swap walking partners at each stop, and we finish with a short circle.',
-      'Nobody gets stuck with one person, and everybody meets everyone. All paces welcome.'
+      'A walk with a difference. Every stretch comes with a question to chew on, you swap walking partners at each stop, and we finish with a short circle.',
+      'Nobody gets stuck with the same person, everybody meets everyone, and all paces are welcome.'
     ],
     bring:'Good shoes, a drink, and your curiosity.',
     going:[{n:'Tim',img:'people/tim.jpg'},{n:'Kev',img:'people/kev.jpg'},{n:'Carl',img:'people/carl.jpg'}] },
@@ -280,11 +283,11 @@ var EVENTS = [
     going:[{n:'Kev',img:'people/kev.jpg'}] }
 ];
 var INTEREST = [
-  { id:'run', title:'Social run', what:'Easy pace, all welcome', host:'Kev hosting' },
-  { id:'circle', title:'Circle round the fire', what:'Proper conversation', host:'Kev hosting' },
-  { id:'make', title:'Make something', what:'Hands-on, learn from a neighbour', host:'Tim hosting' },
-  { id:'pub', title:'Pub night', what:'Just come and say hello', host:'' },
-  { id:'sauna', title:'Waggon sauna sing-along', what:'Heat, songs and a chat', host:'' }
+  { id:'run', title:'Social run', what:'Chatty pace, nobody left behind', host:'Kev hosting' },
+  { id:'circle', title:'Circle round the fire', what:'Fire, stories, proper conversation', host:'Kev hosting' },
+  { id:'make', title:'Make something', what:'Get your hands dirty, learn from a neighbour', host:'Tim hosting' },
+  { id:'pub', title:'Pub night', what:'A pint, a hello, zero agenda', host:'' },
+  { id:'sauna', title:'Waggon sauna sing-along', what:'Sweat, sing badly, feel brilliant', host:'' }
 ];
 var THREADS = [
   { id:'grow', t:'Growing and food' }, { id:'make', t:'Making and mending' }, { id:'nature', t:'Nature and the Wey' },
@@ -347,12 +350,12 @@ function openWelcome(fromButton){
   var opts=PLACES.map(function(p){return '<option value="'+esc(p)+'">'}).join('');
   openSheet('<div id="welcomeSheet">'+
     '<div class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/carl.jpg" alt=""><img src="people/reiks.jpg" alt=""></div>'+
-    '<h2 id="sheetTitle">Hello, good human</h2>'+
-    '<p>We\'re Kev, Tim, Carl and Reiks. Tell us where home is and we\'ll show you what\'s on near you.</p>'+
+    '<h2 id="sheetTitle">Hello, good human!</h2>'+
+    '<p>We\'re Kev, Tim, Carl and Reiks, and we\'re very glad you\'re here. Where\'s home? We\'ll show you what\'s happening on your doorstep.</p>'+
     '<div class="quick">'+['Godalming','Farncombe','Milford','Witley','Shackleford','Elstead','Bramley','Guildford','Farnham','Haslemere','Cranleigh'].map(function(p){return '<button class="chip" type="button" data-home="'+p+'">'+p+'</button>'}).join('')+'</div>'+
     '<form class="f" id="homeForm" novalidate><label for="homeIn">Somewhere else? Type your town or village'+
     '<input id="homeIn" list="placeList" autocomplete="off" value="'+esc(fromButton?getHome():'')+'"></label><datalist id="placeList">'+opts+'</datalist>'+
-    '<div class="row"><button class="btn" type="submit">Show me what\'s on</button><button class="skip" type="button" data-skip>Skip for now</button></div></form></div>');
+    '<div class="row"><button class="btn" type="submit">Show me what\'s on</button><button class="skip" type="button" data-skip>I\'ll just have a nose around</button></div></form></div>');
   setTimeout(function(){ var q=sheet.querySelector('.chip'); if(q) q.focus(); },60);
   function done(){ store('vvv-welcomed','1'); }
   sheetOnClose=function(){ done(); if(!fromButton){ signal('welcome','skipped'); track('welcome skipped'); } showConsent(); };
@@ -432,8 +435,8 @@ function imIn(id){
   var ev=evById(id), mine=getJSON('vvv-in',{});
   if(mine[id]){ openEvent(id); return; }
   if(me.name && me.contact){ confirmIn(ev); return; }
-  openSheet('<h2 id="sheetTitle">Lovely. You\'re nearly in.</h2>'+
-    '<p>'+esc(ev.title)+', '+esc(ev.day+' '+ev.d+' '+ev.mon)+'. We just need a way to let you know if anything changes.</p>'+
+  openSheet('<h2 id="sheetTitle">Ooh, lovely. You\'re nearly in.</h2>'+
+    '<p>'+esc(ev.title)+', '+esc(ev.day+' '+ev.d+' '+ev.mon)+'. Just tell us how to reach you if plans change.</p>'+
     '<form class="f" id="inForm" novalidate>'+
     '<label for="inName">Your first name<input id="inName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
     '<label for="inContact">Mobile or email<input id="inContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
@@ -462,7 +465,7 @@ function confirmIn(ev, trap){
   renderEvents();
   openSheet('<h2 id="sheetTitle">You\'re in, '+esc(me.name)+'!</h2>'+
     '<p class="done-msg">See you on '+esc(ev.day+' '+ev.d+' '+ev.mon)+'.</p>'+
-    '<p>'+esc(ev.host)+' will message you before the day with anything you need to know.</p>'+
+    '<p>'+esc(ev.host)+' will drop you a message before the day. Bring your curiosity.</p>'+
     '<div class="row">'+(ev.start?'<button class="btn" type="button" data-cal="'+ev.id+'">Add to calendar</button>':'')+
     '<button class="ghost" type="button" data-close>Done</button></div>');
   sheet.onclick=function(e){
@@ -514,7 +517,7 @@ $('#threads').addEventListener('click',function(e){
 $('#startBtn').addEventListener('click',function(){
   var h=(store('vvv-home')||'your patch');
   openSheet('<h2 id="sheetTitle">Start something in '+esc(h)+'</h2>'+
-    '<p>You don\'t have to lead it. Tell us what you know or love, and we\'ll help with the setting up.</p>'+
+    '<p>You don\'t have to lead it. Tell us what you know or love, and we\'ll do the boring setting-up bit.</p>'+
     '<form class="f" id="stForm" novalidate>'+
     '<label for="stWhat">What would you start? A walk you know, a skill, a special place…<textarea id="stWhat" maxlength="800"></textarea></label>'+
     '<label for="stName">Your first name<input id="stName" type="text" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
@@ -530,7 +533,7 @@ $('#startBtn').addEventListener('click',function(){
     var isEmail=c.indexOf('@')>-1;
     send({type:'signup',name:n,email:isEmail?c:'',phone:isEmail?'':c,where:getHome(),fit:'Start something',thread:'start: '+(getHome()),voom:w,website:$('#stTrap').value});
     track('start something',{home:getHome()});
-    openSheet('<h2 id="sheetTitle">Brilliant, thank you.</h2><p class="done-msg">We\'ll be in touch soon.</p><button class="ghost" type="button" data-close>Done</button>');
+    openSheet('<h2 id="sheetTitle">Brilliant. Proper good human, you.</h2><p class="done-msg">We\'ll be in touch soon.</p><button class="ghost" type="button" data-close>Done</button>');
     sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
   });
 });
