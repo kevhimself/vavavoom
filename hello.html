@@ -91,7 +91,7 @@ section.sec{padding-block:20px 4px}
 .whatbtn{background:none;border:0;padding:4px 0;font-weight:700;font-size:15px;color:var(--rose-dk);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .btn{font-weight:700;font-size:16px;background:var(--rose);color:var(--paper);border:0;border-radius:999px;padding:10px 20px;min-height:44px;cursor:pointer}
 .btn:hover{background:var(--rose-dk)}
-.btn.done{background:var(--moss)}
+.btn.done{background:var(--paper);color:var(--rose-dk);box-shadow:inset 0 0 0 2px var(--rose)}
 .faces{display:flex;align-items:center;font-size:14px;color:var(--muted);min-width:0}
 .faces img,.faces i{width:28px;height:28px;border-radius:50%;border:2px solid var(--paper);margin-left:-8px;object-fit:cover;background:var(--mist)}
 .faces i{display:inline-grid;place-items:center;font-style:normal;font-weight:700;font-size:12px;background:var(--lime)}
@@ -251,7 +251,7 @@ footer a{color:var(--ink)}
 
   <section class="sec" aria-labelledby="h-nb" id="neighbours">
     <h2 id="h-nb">Learn from a neighbour</h2>
-    <p class="sub">Real people round here, happy to share what they know. Tap "I'm interested" and we'll set a date once enough of you are keen.</p>
+    <p class="sub">Real people round here, happy to share what they know. Tap "I'm in" and we'll set a date once enough of you are keen.</p>
     <div id="nbList"></div>
     <button class="ghost seeall" type="button" id="nbAll" hidden></button>
   </section>
@@ -269,7 +269,7 @@ footer a{color:var(--ink)}
 
   <section class="sec" aria-labelledby="h-want">
     <h2 id="h-want">Coming if you want it</h2>
-    <p class="sub">No dates yet. Tap "I'd come" and once enough of you are keen, it's happening.</p>
+    <p class="sub">No dates yet. Tap "I'm in" and once enough of you are keen, it's happening.</p>
     <div class="interest" id="interest"></div>
   </section>
 
@@ -593,20 +593,20 @@ function addCal(id){
 var keen=getJSON('vvv-keen',{});
 $('#interest').innerHTML=INTEREST.map(function(x){
   return '<div class="int"><div><b>'+esc(x.title)+'</b><span>'+esc(x.what)+(x.host?' · <span class="host">'+esc(x.host)+'</span>':'')+'</span></div>'+
-    '<button class="btn'+(keen[x.id]?' done':'')+'" type="button" data-keen="'+x.id+'" aria-pressed="'+(!!keen[x.id])+'">'+(keen[x.id]?'Counted ✓':"I'd come")+'</button></div>';
+    '<button class="btn'+(keen[x.id]?' done':'')+'" type="button" data-keen="'+x.id+'" aria-pressed="'+(!!keen[x.id])+'">'+(keen[x.id]?'You\'re in ✓':"I'm in")+'</button></div>';
 }).join('');
 $('#interest').addEventListener('click',function(e){
   var b=e.target.closest('[data-keen]'); if(!b) return;
   var id=b.getAttribute('data-keen'), on=!keen[id];
   if(on) keen[id]=1; else delete keen[id]; store('vvv-keen',JSON.stringify(keen));
-  b.classList.toggle('done',on); b.setAttribute('aria-pressed',on); b.textContent=on?'Counted ✓':"I'd come";
+  b.classList.toggle('done',on); b.setAttribute('aria-pressed',on); b.textContent=on?'You\'re in ✓':"I'm in";
   signal(on?'interest':'interest removed', id+' | '+(getHome())); track(on?'interest':'interest removed',{item:id});
 });
 
 /* ---------- neighbours ---------- */
 var nbMine=getJSON('vvv-nb',{}), nbShowAll=false;
 function nbById(id){ for(var i=0;i<NEIGHBOURS.length;i++) if(NEIGHBOURS[i].id===id) return NEIGHBOURS[i]; }
-function nbBtn(n){ var d=!!nbMine[n.id]; return '<button class="'+(d?'btn done':'btn')+'" type="button" data-nbin="'+n.id+'">'+(d?'Interested ✓':"I'm interested")+'</button>'; }
+function nbBtn(n){ var d=!!nbMine[n.id]; return '<button class="'+(d?'btn done':'btn')+'" type="button" data-nbin="'+n.id+'">'+(d?'You\'re in ✓':"I'm in")+'</button>'; }
 function renderNeighbours(){
   var list=nbShowAll?NEIGHBOURS:NEIGHBOURS.slice(0,3);
   $('#nbList').innerHTML=list.map(function(n){
