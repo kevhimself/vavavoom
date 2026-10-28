@@ -74,6 +74,10 @@ section.sec{padding-block:20px 4px}
 .ev h3 button{all:unset;cursor:pointer;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 .meta{font-size:15px;color:var(--muted);margin:4px 0 10px}
 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.row.act{justify-content:space-between}
+.row.act > .btn,.row.act > a.btn{margin-left:auto}
+.sheet .row{justify-content:flex-end}
+.whatbtn{background:none;border:0;padding:4px 0;font-weight:700;font-size:15px;color:var(--rose-dk);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .btn{font-weight:700;font-size:16px;background:var(--rose);color:var(--paper);border:0;border-radius:999px;padding:10px 20px;min-height:44px;cursor:pointer}
 .btn:hover{background:var(--rose-dk)}
 .btn.done{background:var(--moss)}
@@ -217,9 +221,9 @@ footer a{color:var(--ink)}
 </div>
 
 <main class="wrap">
-  <div class="why">
-    <p><b>Our answer: start small, start local, start together.</b> One good walk a month, a question worth talking about, and neighbours you didn't know you had.</p>
-    <span class="exp">An experiment. You're one of the first brave ones.</span>
+  <div class="why row">
+    <span class="exp" style="margin:0">An experiment. You're one of the first brave ones.</span>
+    <button class="whatbtn" type="button" id="whatBtn">What is it?</button>
   </div>
 
   <section class="sec" aria-labelledby="h-on">
@@ -479,8 +483,7 @@ function renderEvents(){
       '<div style="min-width:0">'+(ev.badge?'<span class="badge">'+esc(ev.badge)+'</span>':'')+
       '<h3><button type="button" data-open="'+ev.id+'">'+esc(ev.title)+'</button></h3>'+
       '<div class="meta">'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.time)+' · '+esc(ev.where)+' · with '+esc(ev.host)+'</div>'+
-      '<div class="row">'+inButton(ev,done,'data-in')+
-      '<span class="faces">'+facesHTML(ev)+'</span></div></div></article>';
+      '<div class="row act"><span class="faces">'+facesHTML(ev)+'</span>'+inButton(ev,done,'data-in')+'</div></div></article>';
   }).join('');
 }
 renderEvents();
@@ -579,7 +582,7 @@ function addCal(id){
 var keen=getJSON('vvv-keen',{});
 $('#interest').innerHTML=INTEREST.map(function(x){
   return '<div class="int"><div><b>'+esc(x.title)+'</b><span>'+esc(x.what)+(x.host?' · <span class="host">'+esc(x.host)+'</span>':'')+'</span></div>'+
-    '<button class="ghost'+(keen[x.id]?' done':'')+'" type="button" data-keen="'+x.id+'" aria-pressed="'+(!!keen[x.id])+'">'+(keen[x.id]?'Counted ✓':"I'd come")+'</button></div>';
+    '<button class="btn'+(keen[x.id]?' done':'')+'" type="button" data-keen="'+x.id+'" aria-pressed="'+(!!keen[x.id])+'">'+(keen[x.id]?'Counted ✓':"I'd come")+'</button></div>';
 }).join('');
 $('#interest').addEventListener('click',function(e){
   var b=e.target.closest('[data-keen]'); if(!b) return;
@@ -592,13 +595,13 @@ $('#interest').addEventListener('click',function(e){
 /* ---------- neighbours ---------- */
 var nbMine=getJSON('vvv-nb',{}), nbShowAll=false;
 function nbById(id){ for(var i=0;i<NEIGHBOURS.length;i++) if(NEIGHBOURS[i].id===id) return NEIGHBOURS[i]; }
-function nbBtn(n){ var d=!!nbMine[n.id]; return '<button class="'+(d?'ghost done':'ghost')+'" type="button" data-nbin="'+n.id+'">'+(d?'Interested ✓':"I'm interested")+'</button>'; }
+function nbBtn(n){ var d=!!nbMine[n.id]; return '<button class="'+(d?'btn done':'btn')+'" type="button" data-nbin="'+n.id+'">'+(d?'Interested ✓':"I'm interested")+'</button>'; }
 function renderNeighbours(){
   var list=nbShowAll?NEIGHBOURS:NEIGHBOURS.slice(0,3);
   $('#nbList').innerHTML=list.map(function(n){
     return '<article class="nb"><img src="'+esc(n.img)+'" alt="" width="56" height="56"><div style="min-width:0">'+
       '<h3><button type="button" data-nb="'+n.id+'">'+esc(n.title)+'</button></h3>'+
-      '<div class="meta">with '+esc(n.who)+' · '+esc(n.where)+'</div><p>'+esc(n.line)+'</p>'+nbBtn(n)+'</div></article>';
+      '<div class="meta">with '+esc(n.who)+' · '+esc(n.where)+'</div><p>'+esc(n.line)+'</p><div class="row act">'+nbBtn(n)+'</div></div></article>';
   }).join('');
   var all=$('#nbAll'); all.hidden=NEIGHBOURS.length<=3; all.textContent=nbShowAll?'Show fewer':'See all '+NEIGHBOURS.length;
 }
@@ -709,6 +712,16 @@ function openShare(theme){
   });
 }
 $('#shareBtn').addEventListener('click',function(){ openShare(''); });
+function openWhat(){
+  openSheet('<h2 id="sheetTitle">What is Va Va Voom?</h2>'+
+    '<p><b>Our answer: start small, start local, start together.</b> One good walk a month, a question worth talking about, and neighbours you didn\'t know you had. Plus things to do and people to learn from, close to home.</p>'+
+    '<p><b>It\'s for you if</b> you\'d rather do something than talk about it, you want to meet the neighbours you haven\'t met yet, you like your purpose with a bit of fun, and small and brave sounds better than big and worthy. Not sure? Come once and see.</p>'+
+    '<p>Started by Kev, Tim and Carl, with Reiks. It\'s an experiment, and you\'re one of the first.</p>'+
+    '<div class="row"><button class="btn" type="button" data-whaton>Show me what\'s on</button></div>');
+  track('what is it opened');
+  sheet.onclick=function(e){ if(e.target.closest('[data-whaton]')){ closeSheet(); $('#h-on').scrollIntoView({behavior:'smooth',block:'start'}); } };
+}
+$('#whatBtn').addEventListener('click',openWhat);
 
 /* ---------- start something near me ---------- */
 $('#startBtn').addEventListener('click',function(){
