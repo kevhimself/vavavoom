@@ -63,8 +63,10 @@ section.sec{padding-block:22px 4px}
 .badge{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rose-dk)}
 
 .tip{background:var(--sun);border-radius:18px;padding:18px;display:grid;gap:12px}
-.tip .head{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center}
-.tip .head svg{width:96px;height:96px;display:block}
+.tip .head{display:block}
+.tip .head .thumb{width:96px;height:96px;display:block;border-radius:50%;object-fit:cover;border:3px solid var(--paper)}
+.tip .photo{width:100%;height:auto;display:block;border-radius:12px}
+.avatar{width:64px;height:64px;border-radius:50%;background:var(--rose);color:var(--paper);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:26px}
 .tip .badge{color:var(--ink)}
 .tip h3{margin:2px 0 0;font-size:22px;line-height:1.15}
 .tip .by{font-size:15px;margin:0}
@@ -141,20 +143,8 @@ footer a{color:var(--ink)}
     <h2 id="h-tip">Tip of the week</h2>
     <p class="sub">One good thing near you, and how to get the most from it.</p>
     <article class="tip">
+      <img class="photo" src="img/waggon-sauna.jpg" alt="The Waggon Sauna: a timber waggon with big windows, in a clearing in the woods at the Hampton Estate" width="1298" height="690" loading="lazy">
       <div class="head">
-        <svg viewBox="0 0 120 120" role="img" aria-label="Illustration: someone relaxing in a wood-fired sauna">
-          <circle cx="60" cy="60" r="58" fill="#e8337f"/>
-          <rect x="14" y="62" width="92" height="40" rx="8" fill="#8a5a3b"/>
-          <rect x="14" y="62" width="92" height="6" fill="#6f4529"/>
-          <path d="M22 82h76M22 94h76" stroke="#6f4529" stroke-width="2"/>
-          <path d="M38 70c0-14 10-22 22-22s22 8 22 22v8H38z" fill="#fbf7f2"/>
-          <path d="M44 74c2-6 9-10 16-10s14 4 16 10" fill="none" stroke="#e8337f" stroke-width="3"/>
-          <circle cx="60" cy="38" r="14" fill="#f1c7a5"/>
-          <path d="M46 36c0-10 7-16 15-16 9 0 15 6 14 15-3-5-9-7-15-7-5 0-10 3-14 8z" fill="#1c1a2b"/>
-          <path d="M54 40q2 2 4 0M63 40q2 2 4 0" fill="none" stroke="#1c1a2b" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M56 46q4 3 8 0" fill="none" stroke="#1c1a2b" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M26 30c-4-5 4-8 0-13M94 30c-4-5 4-8 0-13M86 50c-3-4 3-6 0-10" fill="none" stroke="#fbf7f2" stroke-width="3" stroke-linecap="round" opacity=".9"/>
-        </svg>
         <div>
           <span class="badge">Treat yourself this winter</span>
           <h3>Meet Elenid, and the Waggon Sauna</h3>
@@ -179,6 +169,15 @@ footer a{color:var(--ink)}
     <h2 id="h-st">Good news</h2>
     <p class="sub">Short, real, with faces. Every story ends in something you can do.</p>
     <div id="stories">
+      <article class="story">
+        <div class="avatar" aria-hidden="true">IM</div>
+        <div>
+          <span class="badge">Good human · Godalming</span>
+          <h3>Ilona, the VA putting an engine under local business</h3>
+          <p>After ten years as a PA, Ilona went her own way. She walked into pretty much every shop in Godalming, said what she was doing, and was fully booked within a month. Now she's the flexible right hand for small businesses round here, and she joins the dots between them. She's just been on the Trinkfluss Wines podcast with Bastian and Matteo from Take One Studio.</p>
+          <div class="meta"><a href="https://podcastaddict.com/podcast/7023038" target="_blank" rel="noopener" data-out="trinkfluss-podcast">Listen to the podcast ↗</a> · Then say hello to Bastian at Trinkfluss</div>
+        </div>
+      </article>
       <article class="story">
         <img src="people/reiks.jpg" alt="" width="64" height="64">
         <div>
