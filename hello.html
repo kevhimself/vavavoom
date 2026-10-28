@@ -568,6 +568,7 @@ function openWelcome(fromButton){
     sug.hidden=!list.length;
   }
   hin.addEventListener('input',suggest);
+  hin.addEventListener('focus',function(){ if(hin.value){ hin.placeholder=hin.value; hin.value=''; suggest(); } });
   $('#homeForm').addEventListener('submit',function(e){ e.preventDefault(); var v=$('#homeIn').value; if(v.trim()){ var f=sheetOnClose; sheetOnClose=null; setHome(v); done(); closeSheet(); showConsent(); } else $('#homeIn').focus(); });
 }
 setWelcome();
