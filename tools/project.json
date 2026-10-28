@@ -25,6 +25,11 @@
    "date": "2026-10-26",
    "hours": 0.1,
    "what": "Safe in the Garden: asks before recording (shared choice with the main site), lesson-by-lesson PostHog events and replay with typed fields hidden"
+  },
+  {
+   "date": "2026-10-28",
+   "hours": 0.1,
+   "what": "Release Busbridge: hello.html, the Saturday MLP (welcome and where's home, what's on with I'm in, interest list, Show me more of, who's behind it, Three words and a wand feedback), privacy page, QR codes and print sheet (qr.html)"
   }
  ],
  "people": {

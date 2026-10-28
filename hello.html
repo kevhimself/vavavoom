@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Va Va Voom Godalming</title>
+<meta name="description" content="Less scrolling, more doing. Small, good things with your neighbours round Godalming.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Va Va Voom Godalming">
+<meta property="og:description" content="Less scrolling, more doing. Get out, meet up, make something good happen.">
+<meta property="og:image" content="logos/vvv-banner-rose.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&display=swap">
+<style>
+/* Release Busbridge. One column, phone first. Paper, ink and rose. The walk leads; everything else gathers interest. */
+:root{
+  --paper:#fbf7f2; --ink:#1c1a2b; --rose:#e8337f; --rose-dk:#c41f66; --sun:#f2c75a; --lime:#c9f24a;
+  --moss:#2f6b4f; --mist:#ece5dc; --muted:#4c4858;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+button,select,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+header.top{padding-top:max(14px,env(safe-area-inset-top,0px))}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.wordmark{font-family:var(--display);font-weight:900;font-size:30px;letter-spacing:.02em;text-transform:uppercase;line-height:1;text-decoration:none}
+.wordmark span{color:var(--rose)}
+.places{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--moss);font-weight:700;margin:4px 0 12px}
+
+.hero{background:var(--rose);color:var(--paper);position:relative;overflow:hidden}
+.hero .wrap{position:relative;padding-block:20px 24px}
+.birches{position:absolute;right:0;top:0;height:100%;width:120px;pointer-events:none}
+.welcome{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:15px;margin-bottom:12px;position:relative;max-width:calc(100% - 70px)}
+.welcome input{font-weight:700;font-size:15px;background:var(--paper);color:var(--ink);border:0;border-radius:999px;padding:6px 12px;width:11.5em;max-width:100%}
+.hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(42px,11vw,58px);line-height:.92;margin:0 0 12px;max-width:8.5em;text-wrap:balance;position:relative}
+.strap{font-weight:700;margin:0;max-width:24ch;position:relative}
+
+.why{padding-block:16px;border-bottom:2px solid var(--ink)}
+.why p{margin:0}
+.exp{display:inline-block;margin-top:8px;font-size:14px;background:var(--sun);padding:2px 8px;border-radius:4px;font-weight:700}
+
+section.sec{padding-block:20px 4px}
+.sec h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:32px;line-height:1;margin:0 0 4px}
+.sub{font-size:15px;color:var(--muted);margin:0 0 14px}
+
+.ev{display:grid;grid-template-columns:62px minmax(0,1fr);gap:14px;padding-block:14px;border-top:1px solid var(--mist)}
+.ev:first-of-type{border-top:0;padding-top:4px}
+.date{background:var(--ink);color:var(--paper);border-radius:8px;text-align:center;padding:7px 0;align-self:start;font-variant-numeric:tabular-nums}
+.date b{display:block;font-family:var(--display);font-size:30px;line-height:1}
+.date small{font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.ev.lead .date{background:var(--rose)}
+.badge{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rose-dk)}
+.ev h3{margin:2px 0 0;font-size:20px;line-height:1.2}
+.ev h3 button{all:unset;cursor:pointer;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.meta{font-size:15px;color:var(--muted);margin:4px 0 10px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{font-weight:700;font-size:16px;background:var(--rose);color:var(--paper);border:0;border-radius:999px;padding:10px 20px;min-height:44px;cursor:pointer}
+.btn:hover{background:var(--rose-dk)}
+.btn.done{background:var(--moss)}
+.faces{display:flex;align-items:center;font-size:14px;color:var(--muted);min-width:0}
+.faces img,.faces i{width:28px;height:28px;border-radius:50%;border:2px solid var(--paper);margin-left:-8px;object-fit:cover;background:var(--mist)}
+.faces i{display:inline-grid;place-items:center;font-style:normal;font-weight:700;font-size:12px;background:var(--lime)}
+.faces > :first-child{margin-left:0}
+.faces span{margin-left:6px}
+
+.near{background:var(--mist);border-radius:12px;padding:14px;display:grid;gap:8px;margin-top:16px}
+.near b{font-size:18px}
+.near p{margin:0;font-size:15px}
+.ghost{font-weight:700;font-size:15px;background:transparent;border:2px solid var(--ink);border-radius:999px;padding:8px 16px;min-height:42px;cursor:pointer;justify-self:start}
+.ghost.done{background:var(--ink);color:var(--paper)}
+
+.interest{display:grid}
+.int{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;border-top:1px solid var(--mist);padding-block:10px}
+.int:first-child{border-top:0;padding-top:0}
+.int b{display:block;font-size:17px}
+.int span{font-size:14px;color:var(--muted)}
+.host{color:var(--moss);font-weight:700}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-weight:700;font-size:15px;border:2px solid var(--ink);background:var(--paper);border-radius:999px;padding:7px 14px;min-height:40px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+.who{display:grid;gap:10px}
+.person{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;align-items:center}
+.person img{width:56px;height:56px;border-radius:50%;object-fit:cover;background:var(--mist)}
+.person b{display:block}
+.person span{font-size:15px;color:var(--muted)}
+.story{margin:14px 0 0;font-size:15px}
+
+.fb{background:var(--ink);color:var(--paper);margin-top:28px}
+.fb .wrap{padding-block:22px;display:grid;gap:12px}
+.fb h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:30px;line-height:1;margin:0;color:var(--lime)}
+.fb p{margin:0;font-size:15px}
+.fb .btn{background:var(--lime);color:var(--ink);justify-self:start}
+.thanks{font-family:var(--hand);font-size:28px;color:var(--lime);line-height:1.1}
+
+form.f{display:grid;gap:12px}
+form.f label{display:grid;gap:4px;font-size:15px;font-weight:700}
+form.f input[type=text],form.f input[type=tel],form.f textarea{width:100%;border:2px solid var(--ink);border-radius:8px;padding:10px;font-size:16px;background:#fff;color:var(--ink)}
+.fb form.f input,.fb form.f textarea{border-color:transparent}
+form.f textarea{min-height:64px;resize:vertical}
+.tick{display:flex !important;grid-template-columns:none;gap:10px;align-items:flex-start;font-weight:400 !important}
+.tick input{width:22px;height:22px;margin-top:2px;flex:none;accent-color:var(--moss)}
+.err{color:var(--rose-dk);font-weight:700;font-size:14px;min-height:1em;margin:0}
+.fb .err{color:var(--sun)}
+.trap{position:absolute;left:-5000px}
+.fine{font-size:13px;color:var(--muted);margin:0}
+.fb .fine,.fb summary{color:#bdb6cf}
+details summary{cursor:pointer;font-size:14px}
+
+footer{padding-block:18px 28px;font-size:14px;display:grid;gap:6px;color:var(--muted)}
+footer a{color:var(--ink)}
+
+/* sheets: event details, I'm in, start something */
+.scrim{position:fixed;inset:0;background:rgba(28,26,43,.55);display:flex;align-items:flex-end;justify-content:center;z-index:20}
+.sheet{background:var(--paper);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;
+  padding:18px max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.sheet h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:32px;line-height:1;margin:0 0 6px;text-wrap:balance}
+.sheet .close{float:right;background:none;border:0;font-size:28px;line-height:1;cursor:pointer;padding:4px 8px;margin:-6px -8px 0 0}
+.facts{list-style:none;padding:0;margin:10px 0 14px;display:grid;gap:4px;font-size:16px}
+.facts b{display:inline-block;min-width:4.8em}
+.sheet p{margin:0 0 12px}
+.qr{display:flex;gap:12px;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--mist);font-size:13px;color:var(--muted)}
+.qr img{width:84px;height:84px;background:#fff}
+.done-msg{font-family:var(--hand);font-size:28px;color:var(--moss);line-height:1.1;margin:6px 0 12px}
+
+.consent{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--paper);z-index:15;
+  padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.consent .in{max-width:560px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:14px}
+.consent p{margin:0;flex:1 1 220px}
+.consent button{font-weight:700;border-radius:999px;padding:8px 16px;border:2px solid var(--paper);cursor:pointer;min-height:40px}
+.consent .yes{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+.consent .no{background:transparent;color:var(--paper)}
+@media (prefers-reduced-motion:no-preference){ .sheet{animation:up .22s ease-out} @keyframes up{from{transform:translateY(24px);opacity:.6}} }
+</style>
+</head>
+<body>
+
+<header class="top wrap">
+  <div class="bar">
+    <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
+    <svg width="48" height="48" viewBox="0 0 100 100" role="img" aria-label="Va Va Voom Godalming rose stamp">
+      <defs><path id="ring" d="M50 50 m-36 0 a36 36 0 1 1 72 0 a36 36 0 1 1 -72 0"/></defs>
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#e8337f" stroke-width="4"/>
+      <text font-size="11.5" font-weight="700" fill="#e8337f" letter-spacing="1.6" font-family="Atkinson Hyperlegible, sans-serif"><textPath href="#ring">VA VA VOOM · GODALMING ·</textPath></text>
+      <circle cx="50" cy="50" r="12" fill="#e8337f"/><path d="M44 50 q6 -10 12 0 q-6 6 -12 0" fill="#fbf7f2"/>
+    </svg>
+  </div>
+  <div class="places">Godalming · Farncombe · Milford · Busbridge · and round about</div>
+</header>
+
+<div class="hero">
+  <svg class="birches" viewBox="0 0 120 300" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+    <g fill="#fbf7f2"><rect x="62" y="0" width="14" height="300"/><rect x="92" y="0" width="10" height="300"/></g>
+    <g fill="#1c1a2b"><rect x="62" y="40" width="8" height="3"/><rect x="68" y="92" width="8" height="2"/><rect x="62" y="150" width="10" height="3"/><rect x="66" y="210" width="10" height="2"/><rect x="62" y="262" width="7" height="3"/><rect x="92" y="70" width="6" height="2"/><rect x="95" y="128" width="7" height="3"/><rect x="92" y="190" width="6" height="2"/><rect x="94" y="244" width="8" height="3"/></g>
+  </svg>
+  <div class="wrap">
+    <div class="welcome">
+      <label for="home" id="homeLabel">Welcome, good human. Where's home?</label>
+      <input id="home" list="placeList" placeholder="Type your town or village" autocomplete="off">
+      <datalist id="placeList"></datalist>
+    </div>
+    <h1>How might we make tomorrow a little more beautiful?</h1>
+    <p class="strap">Less scrolling, more doing. Get out, meet up, make something good happen.</p>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="why">
+    <p><b>Our answer: start small, start local, start together.</b> One good walk a month, with a question to share and neighbours you haven't met yet.</p>
+    <span class="exp">An experiment. You're one of the first.</span>
+  </div>
+
+  <section class="sec" aria-labelledby="h-on">
+    <h2 id="h-on">What's on</h2>
+    <p class="sub">The walk is our regular: the first Saturday of every month.</p>
+    <div id="events"></div>
+    <div class="near" id="near" hidden>
+      <b id="nearTitle">Nothing near you yet.</b>
+      <p>Fancy being the first? Tell us what you'd start and we'll help you get it going.</p>
+      <button class="ghost" type="button" id="startBtn">Start something here</button>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-want">
+    <h2 id="h-want">Coming if you want it</h2>
+    <p class="sub">No dates yet. Tap "I'd come" and we'll set one once enough people are keen.</p>
+    <div class="interest" id="interest"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-more">
+    <h2 id="h-more">Show me more of…</h2>
+    <p class="sub">Tap any. It helps us plan what comes next.</p>
+    <div class="chips" id="threads"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-who">
+    <h2 id="h-who">Who's behind it</h2>
+    <div class="who">
+      <div class="person"><img src="people/tim.jpg" alt="" width="56" height="56"><div><b>Tim</b><span>Farmer, maker, builder of things. Hosts the walk.</span></div></div>
+      <div class="person"><img src="people/carl.jpg" alt="" width="56" height="56"><div><b>Carl</b><span>Cook and feeder of the group.</span></div></div>
+      <div class="person"><img src="people/kev.jpg" alt="" width="56" height="56"><div><b>Kev</b><span>Facilitator and weaver. Hosts the circle.</span></div></div>
+    </div>
+    <p class="story">It started with three of us on Monday nights, asking one question: how have we been better this week? Now we're opening the door.</p>
+  </section>
+</main>
+
+<section class="fb" aria-labelledby="h-fb" id="feedback">
+  <div class="wrap">
+    <h2 id="h-fb">Tell us what you think</h2>
+    <p>Two minutes, four questions. It shapes what we build next.</p>
+    <button class="btn" type="button" id="fbOpen" aria-expanded="false" aria-controls="fbForm">Give feedback</button>
+    <form class="f" id="fbForm" hidden novalidate>
+      <label for="q1">What three words do you come away feeling?<input id="q1" type="text" maxlength="120"></label>
+      <label for="q2">Magic wand: what one thing would you change?<textarea id="q2" maxlength="1000"></textarea></label>
+      <label for="q3">What one thing would you take out to make it better?<textarea id="q3" maxlength="1000"></textarea></label>
+      <label for="q4">What one thing didn't you understand?<textarea id="q4" maxlength="1000"></textarea></label>
+      <details>
+        <summary>Happy to tell us a bit more? (optional)</summary>
+        <div class="f" style="margin-top:10px;display:grid;gap:12px">
+          <label for="q5">Anything about you that helps us read your answers?<textarea id="q5" maxlength="1000"></textarea></label>
+          <label for="q6">Would you come along, or bring a friend?<textarea id="q6" maxlength="500"></textarea></label>
+        </div>
+      </details>
+      <input class="trap" id="fbTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="err" id="fbErr" role="alert"></p>
+      <button class="btn" type="submit">Send</button>
+      <p class="fine">No links please; they get held back. Release Busbridge.</p>
+    </form>
+    <div class="thanks" id="fbThanks" hidden>Thank you, good human. We'll tell you what we change.</div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div>Your details stay with us. <a href="privacy.html">Privacy and our data promise</a></div>
+  <div>Release Busbridge · a Better Men experiment, Godalming</div>
+</footer>
+
+<div class="consent" id="consent" hidden>
+  <div class="in">
+    <p>Can we count how this page gets used? It helps us improve it. Anything you type stays hidden.</p>
+    <button class="yes" type="button" id="cYes">Yes, fine</button>
+    <button class="no" type="button" id="cNo">No thanks</button>
+  </div>
+</div>
+
+<div class="scrim" id="scrim" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" id="sheet"></div>
+</div>
+
+<script>
+/* ---------- EDIT HERE: what's on, interest list, threads ---------- */
+var RELEASE = 'Busbridge';
+var EVENTS = [
+  { id:'walk', lead:true, badge:'Every first Saturday', title:'The walk with a question',
+    day:'Sat', d:'7', mon:'Nov', start:'2026-11-07T09:30', end:'2026-11-07T11:30',
+    time:'9:30am', length:'About 2 hours', where:'Godalming station', host:'Tim and Kev', thread:'move',
+    about:[
+      'A walk with a difference. Each stretch has a question to talk about. You swap walking partners at each stop, and we finish with a short circle.',
+      'Nobody gets stuck with one person, and everybody meets everyone. All paces welcome.'
+    ],
+    bring:'Good shoes, a drink, and your curiosity.',
+    going:[{n:'Tim',img:'people/tim.jpg'},{n:'Kev',img:'people/kev.jpg'},{n:'Carl',img:'people/carl.jpg'}] },
+  { id:'humanbit', title:'The Human Bit', day:'Thu', d:'12', mon:'Nov', start:'', end:'',
+    time:'Evening, time to come', length:'', where:'Godalming', host:'Kev', thread:'talk',
+    about:['An evening of real conversation. Full details and booking coming soon.'],
+    bring:'Yourself.',
+    going:[{n:'Kev',img:'people/kev.jpg'}] }
+];
+var INTEREST = [
+  { id:'run', title:'Social run', what:'Easy pace, all welcome', host:'Kev hosting' },
+  { id:'circle', title:'Circle round the fire', what:'Proper conversation', host:'Kev hosting' },
+  { id:'make', title:'Make something', what:'Hands-on, learn from a neighbour', host:'Tim hosting' },
+  { id:'pub', title:'Pub night', what:'Just come and say hello', host:'' },
+  { id:'sauna', title:'Waggon sauna sing-along', what:'Heat, songs and a chat', host:'' }
+];
+var THREADS = [
+  { id:'grow', t:'Growing and food' }, { id:'make', t:'Making and mending' }, { id:'nature', t:'Nature and the Wey' },
+  { id:'homes', t:'Warm homes, energy' }, { id:'move', t:'Moving and play' }, { id:'talk', t:'Meeting and talking' }
+];
+var NEAR_THINGS = ['Godalming','Farncombe','Milford','Busbridge','Catteshall','Binscombe'];
+var PLACES = ['Godalming','Farncombe','Milford','Busbridge','Catteshall','Binscombe','Witley','Elstead','Shackleford','Puttenham','Compton',
+  'Hambledon','Hascombe','Bramley','Wonersh','Shalford','Peper Harow','Thursley','Chiddingfold','Haslemere','Cranleigh','Guildford',
+  'Farnham','Tongham','Seale','Ash','Hindhead','Grayshott','Dunsfold','Alfold'];
+var CATCHER = 'https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec';
+var PH_KEY = 'phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6';
+/* ------------------------------------------------------------------ */
+
+function $(s,r){return (r||document).querySelector(s)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
+function getJSON(k,d){try{return JSON.parse(store(k))||d}catch(e){return d}}
+function send(data){
+  data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE;
+  try{ fetch(CATCHER,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).catch(function(){}) }catch(e){}
+}
+function signal(ev,detail){ send({type:'signal',event:ev,detail:detail||''}); }
+
+/* analytics: PostHog EU, asks first, shared choice with the rest of the site */
+var PH_CHOICE='vvv-ph';
+function track(n,p){try{ if(window.posthog&&posthog.capture) posthog.capture(n,Object.assign({release:RELEASE},p||{})) }catch(e){}}
+(function(){
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister identify reset get_distinct_id set_config startSessionRecording stopSessionRecording opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing get_explicit_consent_status debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init(PH_KEY,{api_host:'https://eu.i.posthog.com',defaults:'2025-05-24',cookieless_mode:'on_reject',person_profiles:'identified_only',respect_dnt:true,session_recording:{maskAllInputs:true}});
+  posthog.register({site_version:RELEASE, app:'va-va-voom'});
+  var c=store(PH_CHOICE), box=$('#consent');
+  if(c==='yes') posthog.opt_in_capturing(); else if(c==='no') posthog.opt_out_capturing(); else box.hidden=false;
+  function choose(yes){ store(PH_CHOICE,yes?'yes':'no'); try{yes?posthog.opt_in_capturing():posthog.opt_out_capturing()}catch(e){} box.hidden=true; track('privacy choice',{choice:yes?'yes':'no'}); }
+  $('#cYes').onclick=function(){choose(true)}; $('#cNo').onclick=function(){choose(false)};
+})();
+
+/* where did they come from? QR codes link to hello.html#walk, #t-move, #qr */
+var arrivedVia = (location.hash||'').replace('#','');
+if(arrivedVia){ signal('arrived', arrivedVia); track('arrived',{via:arrivedVia}); }
+
+/* ---------- home ---------- */
+var me = getJSON('vvv-me',{});
+var homeIn=$('#home'), list=$('#placeList');
+PLACES.forEach(function(p){ var o=document.createElement('option'); o.value=p; list.appendChild(o); });
+function setWelcome(){
+  var h=(homeIn.value||'').trim();
+  $('#homeLabel').textContent = h ? 'Welcome, good human from' : "Welcome, good human. Where's home?";
+  var near=$('#near');
+  if(h && NEAR_THINGS.map(function(x){return x.toLowerCase()}).indexOf(h.toLowerCase())===-1){
+    near.hidden=false; $('#nearTitle').textContent='Nothing in '+h+' yet.';
+  } else near.hidden=true;
+}
+homeIn.value = store('vvv-home')||'';
+setWelcome();
+homeIn.addEventListener('change',function(){
+  var h=homeIn.value.trim(); store('vvv-home',h); setWelcome();
+  if(h){ signal('home',h); track('home chosen',{home:h}); }
+});
+
+/* ---------- events ---------- */
+function facesHTML(ev){
+  var g=ev.going.slice(), mine=getJSON('vvv-in',{});
+  var names=g.map(function(x){return x.n});
+  if(mine[ev.id] && me.show && me.name) names=names.concat(['you']);
+  var html=g.map(function(x){return '<img src="'+esc(x.img)+'" alt="" width="28" height="28">'}).join('');
+  if(mine[ev.id]) html+='<i aria-hidden="true">'+esc((me.name||'Y')[0].toUpperCase())+'</i>';
+  var line = mine[ev.id] ? (names.length>1? 'You, '+names.filter(function(n){return n!=='you'}).join(', ')+' are in' : "You're in")
+                         : (names.length>2? names.slice(0,-1).join(', ')+' and '+names.slice(-1)+' are in' : names.join(' and ')+(names.length>1?' are in':' is in'));
+  return html+'<span>'+esc(line)+'</span>';
+}
+function renderEvents(){
+  var mine=getJSON('vvv-in',{});
+  $('#events').innerHTML = EVENTS.map(function(ev){
+    var done=!!mine[ev.id];
+    return '<article class="ev'+(ev.lead?' lead':'')+'" id="ev-'+ev.id+'">'+
+      '<div class="date" aria-hidden="true"><small>'+ev.day+'</small><b>'+ev.d+'</b><small>'+ev.mon+'</small></div>'+
+      '<div style="min-width:0">'+(ev.badge?'<span class="badge">'+esc(ev.badge)+'</span>':'')+
+      '<h3><button type="button" data-open="'+ev.id+'">'+esc(ev.title)+'</button></h3>'+
+      '<div class="meta">'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.time)+' · '+esc(ev.where)+' · with '+esc(ev.host)+'</div>'+
+      '<div class="row"><button class="btn'+(done?' done':'')+'" type="button" data-in="'+ev.id+'">'+(done?"You're in ✓":"I'm in")+'</button>'+
+      '<span class="faces">'+facesHTML(ev)+'</span></div></div></article>';
+  }).join('');
+}
+renderEvents();
+$('#events').addEventListener('click',function(e){
+  var o=e.target.closest('[data-open]'), i=e.target.closest('[data-in]');
+  if(o) openEvent(o.getAttribute('data-open'));
+  if(i) imIn(i.getAttribute('data-in'));
+});
+
+/* ---------- sheets ---------- */
+var scrim=$('#scrim'), sheet=$('#sheet'), lastFocus=null;
+function openSheet(html){
+  lastFocus=document.activeElement; sheet.innerHTML='<button class="close" type="button" aria-label="Close">×</button>'+html;
+  scrim.hidden=false; document.documentElement.style.overflow='hidden';
+  setTimeout(function(){ var f=sheet.querySelector('input,textarea,.btn'); (f||sheet.querySelector('.close')).focus(); },40);
+}
+function closeSheet(){ scrim.hidden=true; document.documentElement.style.overflow=''; if(lastFocus) try{lastFocus.focus()}catch(e){} }
+scrim.addEventListener('click',function(e){ if(e.target===scrim||e.target.closest('.close')) closeSheet(); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!scrim.hidden) closeSheet(); });
+function evById(id){ for(var i=0;i<EVENTS.length;i++) if(EVENTS[i].id===id) return EVENTS[i]; }
+
+function openEvent(id){
+  var ev=evById(id); if(!ev) return;
+  var done=!!getJSON('vvv-in',{})[id];
+  openSheet('<span class="badge">'+esc(ev.badge||'What\'s on')+'</span><h2 id="sheetTitle">'+esc(ev.title)+'</h2>'+
+    '<ul class="facts"><li><b>When</b> '+esc(ev.day+' '+ev.d+' '+ev.mon+', '+ev.time)+'</li>'+
+    (ev.length?'<li><b>How long</b> '+esc(ev.length)+'</li>':'')+
+    '<li><b>Where</b> '+esc(ev.where)+'</li><li><b>With</b> '+esc(ev.host)+'</li><li><b>Bring</b> '+esc(ev.bring)+'</li></ul>'+
+    ev.about.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+
+    '<div class="row"><button class="btn'+(done?' done':'')+'" type="button" data-sin="'+id+'">'+(done?"You're in ✓":"I'm in")+'</button>'+
+    (ev.start?'<button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button>':'')+'</div>'+
+    '<div class="qr"><img src="qr/'+id+'.svg" alt="QR code for this event" width="84" height="84"><span>Scan to share this event. It opens straight here.</span></div>');
+  track('event opened',{event:id});
+  sheet.onclick=function(e){
+    var b=e.target.closest('[data-sin]'), c=e.target.closest('[data-cal]');
+    if(b) imIn(b.getAttribute('data-sin'));
+    if(c) addCal(c.getAttribute('data-cal'));
+  };
+}
+
+function imIn(id){
+  var ev=evById(id), mine=getJSON('vvv-in',{});
+  if(mine[id]){ openEvent(id); return; }
+  if(me.name && me.contact){ confirmIn(ev); return; }
+  openSheet('<h2 id="sheetTitle">Lovely. You\'re nearly in.</h2>'+
+    '<p>'+esc(ev.title)+', '+esc(ev.day+' '+ev.d+' '+ev.mon)+'. We just need a way to let you know if anything changes.</p>'+
+    '<form class="f" id="inForm" novalidate>'+
+    '<label for="inName">Your first name<input id="inName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="inContact">Mobile or email<input id="inContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    '<label class="tick" for="inShow"><input id="inShow" type="checkbox"'+(me.show?' checked':'')+'><span>Show my first name to others going</span></label>'+
+    '<input class="trap" id="inTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="inErr" role="alert"></p>'+
+    '<button class="btn" type="submit">I\'m in</button>'+
+    '<p class="fine">Only Kev and the host see your details, for this event only. We remember you on this phone so it\'s one tap next time. <a href="privacy.html">Privacy</a></p>'+
+    '</form>');
+  $('#inForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#inName').value.trim(), c=$('#inContact').value.trim(), err=$('#inErr');
+    if(!n){ err.textContent='Please add your first name.'; $('#inName').focus(); return; }
+    var isEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c), isPhone=/^[+\d][\d\s()-]{8,}$/.test(c);
+    if(!isEmail && !isPhone){ err.textContent='Please add a mobile number or an email address.'; $('#inContact').focus(); return; }
+    me={name:n,contact:c,show:$('#inShow').checked}; store('vvv-me',JSON.stringify(me));
+    confirmIn(ev, $('#inTrap').value);
+  });
+}
+function confirmIn(ev, trap){
+  var isEmail=me.contact.indexOf('@')>-1;
+  send({type:'signup', name:me.name, email:isEmail?me.contact:'', phone:isEmail?'':me.contact,
+        where:store('vvv-home')||'', fit:'in', thread:'event: '+ev.id, bring:'Show first name: '+(me.show?'yes':'no'), website:trap||''});
+  var mine=getJSON('vvv-in',{}); mine[ev.id]=Date.now(); store('vvv-in',JSON.stringify(mine));
+  track("i'm in",{event:ev.id, via:arrivedVia||'page'});
+  renderEvents();
+  openSheet('<h2 id="sheetTitle">You\'re in, '+esc(me.name)+'!</h2>'+
+    '<p class="done-msg">See you on '+esc(ev.day+' '+ev.d+' '+ev.mon)+'.</p>'+
+    '<p>'+esc(ev.host)+' will message you before the day with anything you need to know.</p>'+
+    '<div class="row">'+(ev.start?'<button class="btn" type="button" data-cal="'+ev.id+'">Add to calendar</button>':'')+
+    '<button class="ghost" type="button" data-close>Done</button></div>');
+  sheet.onclick=function(e){
+    var c=e.target.closest('[data-cal]'); if(c) addCal(c.getAttribute('data-cal'));
+    if(e.target.closest('[data-close]')) closeSheet();
+  };
+}
+function addCal(id){
+  var ev=evById(id); if(!ev||!ev.start) return;
+  function f(s){return s.replace(/[-:]/g,'')+'00'}
+  var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Va Va Voom//Godalming//EN','BEGIN:VEVENT',
+    'UID:'+id+'-'+ev.start.replace(/\D/g,'')+'@vavavoom','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z',
+    'DTSTART;TZID=Europe/London:'+f(ev.start),'DTEND;TZID=Europe/London:'+f(ev.end),
+    'SUMMARY:'+ev.title+' (Va Va Voom)','LOCATION:'+ev.where,'DESCRIPTION:With '+ev.host+'. '+location.origin+location.pathname+'#'+id,
+    'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'})); a.download='va-va-voom-'+id+'.ics';
+  document.body.appendChild(a); a.click(); a.remove(); track('added to calendar',{event:id});
+}
+
+/* ---------- interest ---------- */
+var keen=getJSON('vvv-keen',{});
+$('#interest').innerHTML=INTEREST.map(function(x){
+  return '<div class="int"><div><b>'+esc(x.title)+'</b><span>'+esc(x.what)+(x.host?' · <span class="host">'+esc(x.host)+'</span>':'')+'</span></div>'+
+    '<button class="ghost'+(keen[x.id]?' done':'')+'" type="button" data-keen="'+x.id+'" aria-pressed="'+(!!keen[x.id])+'">'+(keen[x.id]?'Counted ✓':"I'd come")+'</button></div>';
+}).join('');
+$('#interest').addEventListener('click',function(e){
+  var b=e.target.closest('[data-keen]'); if(!b) return;
+  var id=b.getAttribute('data-keen'), on=!keen[id];
+  if(on) keen[id]=1; else delete keen[id]; store('vvv-keen',JSON.stringify(keen));
+  b.classList.toggle('done',on); b.setAttribute('aria-pressed',on); b.textContent=on?'Counted ✓':"I'd come";
+  signal(on?'interest':'interest removed', id+' | '+(store('vvv-home')||'')); track(on?'interest':'interest removed',{item:id});
+});
+
+/* ---------- threads ---------- */
+var pulls=getJSON('vvv-pulls',{});
+var themeFromQR=(arrivedVia.indexOf('t-')===0)?arrivedVia.slice(2):'';
+if(themeFromQR && !pulls[themeFromQR]){ pulls[themeFromQR]=1; store('vvv-pulls',JSON.stringify(pulls)); signal('thread',themeFromQR+' (from QR)'); }
+$('#threads').innerHTML=THREADS.map(function(t){
+  return '<button class="chip" type="button" data-thread="'+t.id+'" aria-pressed="'+(!!pulls[t.id])+'">'+esc(t.t)+'</button>';
+}).join('');
+$('#threads').addEventListener('click',function(e){
+  var b=e.target.closest('[data-thread]'); if(!b) return;
+  var id=b.getAttribute('data-thread'), on=!pulls[id];
+  if(on) pulls[id]=1; else delete pulls[id]; store('vvv-pulls',JSON.stringify(pulls));
+  b.setAttribute('aria-pressed',on); if(on){ signal('thread',id); track('thread tapped',{thread:id}); }
+});
+
+/* ---------- start something near me ---------- */
+$('#startBtn').addEventListener('click',function(){
+  var h=(store('vvv-home')||'your patch');
+  openSheet('<h2 id="sheetTitle">Start something in '+esc(h)+'</h2>'+
+    '<p>You don\'t have to lead it. Tell us what you know or love, and we\'ll help with the setting up.</p>'+
+    '<form class="f" id="stForm" novalidate>'+
+    '<label for="stWhat">What would you start? A walk you know, a skill, a special place…<textarea id="stWhat" maxlength="800"></textarea></label>'+
+    '<label for="stName">Your first name<input id="stName" type="text" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="stContact">Mobile or email<input id="stContact" type="text" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    '<input class="trap" id="stTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="stErr" role="alert"></p><button class="btn" type="submit">Send</button>'+
+    '<p class="fine"><a href="privacy.html">Privacy</a></p></form>');
+  $('#stForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var w=$('#stWhat').value.trim(), n=$('#stName').value.trim(), c=$('#stContact').value.trim(), err=$('#stErr');
+    if(!w){ err.textContent='Tell us a little about what you\'d start.'; return; }
+    if(!n||!c){ err.textContent='We need your first name and a way to reach you.'; return; }
+    var isEmail=c.indexOf('@')>-1;
+    send({type:'signup',name:n,email:isEmail?c:'',phone:isEmail?'':c,where:store('vvv-home')||'',fit:'Start something',thread:'start: '+(store('vvv-home')||''),voom:w,website:$('#stTrap').value});
+    track('start something',{home:store('vvv-home')||''});
+    openSheet('<h2 id="sheetTitle">Brilliant, thank you.</h2><p class="done-msg">We\'ll be in touch soon.</p><button class="ghost" type="button" data-close>Done</button>');
+    sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
+  });
+});
+
+/* ---------- feedback: Three words and a wand ---------- */
+$('#fbOpen').addEventListener('click',function(){ $('#fbForm').hidden=false; this.hidden=true; this.setAttribute('aria-expanded','true'); $('#q1').focus(); track('feedback opened'); });
+$('#fbForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var v=function(id){return $('#'+id).value.trim()};
+  if(!(v('q1')+v('q2')+v('q3')+v('q4')+v('q5')+v('q6'))){ $('#fbErr').textContent='Add an answer to at least one question.'; return; }
+  var all=[v('q1'),v('q2'),v('q3'),v('q4'),v('q5'),v('q6')].join(' ');
+  if(/https?:\/\/|www\./i.test(all)){ $('#fbErr').textContent='Please take out any web links, then send.'; return; }
+  var other=['Didn\'t understand: '+v('q4'), 'About me: '+v('q5'), 'Would come: '+v('q6'), 'Home: '+(store('vvv-home')||'')].join(' | ');
+  send({type:'feedback',felt:v('q1'),onething:v('q2'),turnoff:v('q3'),drawn:'',other:other,name:me.name||'',email:'',website:$('#fbTrap').value});
+  track('feedback sent',{release:RELEASE});
+  $('#fbForm').hidden=true; $('#fbThanks').hidden=false;
+});
+
+/* deep links from QR codes */
+(function(){
+  if(evById(arrivedVia)){ setTimeout(function(){ openEvent(arrivedVia); },250); }
+  else if(themeFromQR){ var c=$('#threads'); if(c) c.scrollIntoView({block:'center'}); }
+  else if(arrivedVia==='feedback'){ $('#feedback').scrollIntoView(); }
+})();
+</script>
+</body>
+</html>
