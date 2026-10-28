@@ -75,6 +75,8 @@ header.top{padding-bottom:12px;position:relative;z-index:5}
 .hello-faces img:first-child{margin-left:0}
 .quick{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px}
 .skip{background:none;border:0;padding:8px 4px;font-size:15px;text-decoration:underline;cursor:pointer;color:var(--muted)}
+.sug{display:flex;flex-wrap:wrap;gap:6px;margin-top:-4px}
+.sug .chip{background:var(--sun-soft);border-color:var(--ink)}
 #welcomeSheet .chip{font-size:14px;padding:6px 12px;min-height:38px}
 #welcomeSheet .quick{gap:6px}
 @media (max-height:700px){
@@ -478,9 +480,12 @@ var THREADS = [
   { id:'homes', t:'Warm homes, energy' }, { id:'move', t:'Moving and play' }, { id:'talk', t:'Meeting and talking' }
 ];
 var NEAR_THINGS = ['Godalming','Farncombe','Milford','Busbridge','Catteshall','Binscombe'];
-var PLACES = ['Godalming','Farncombe','Milford','Busbridge','Catteshall','Binscombe','Witley','Elstead','Shackleford','Puttenham','Compton',
-  'Hambledon','Hascombe','Bramley','Wonersh','Shalford','Peper Harow','Thursley','Chiddingfold','Haslemere','Cranleigh','Guildford',
-  'Farnham','Tongham','Seale','Ash','Hindhead','Grayshott','Dunsfold','Alfold'];
+var PLACES = ['Godalming','Farncombe','Milford','Busbridge','Catteshall','Binscombe','Ockford Ridge','Eashing','Hurtmore','Charterhouse',
+  'Witley','Wormley','Brook','Elstead','Shackleford','Puttenham','Compton','Peper Harow','Thursley','Hambledon','Hascombe','Hydestile','Enton',
+  'Bramley','Wonersh','Shamley Green','Blackheath','Chilworth','Shalford','Peasmarsh','Artington','Guildford','Merrow','Burpham','Onslow Village',
+  'Wood Street Village','Worplesdon','Normandy','Ash','Ash Vale','Tongham','Seale','The Sands','Runfold','Badshot Lea','Wrecclesham','Farnham',
+  'Frensham','Churt','Tilford','Rushmoor','Hindhead','Grayshott','Beacon Hill','Haslemere','Grayswood','Chiddingfold','Dunsfold','Alfold',
+  'Cranleigh','Ewhurst','Albury','Shere','Gomshall'];
 var CATCHER = 'https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec';
 var PH_KEY = 'phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6';
 /* ------------------------------------------------------------------ */
@@ -531,14 +536,15 @@ function setHome(h){
   store('vvv-home',h); setWelcome(); signal('home',h); track('home chosen',{home:h});
 }
 function openWelcome(fromButton){
-  var opts=PLACES.map(function(p){return '<option value="'+esc(p)+'">'}).join('');
   openSheet('<div id="welcomeSheet">'+
-    '<div class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/carl.jpg" alt=""><img src="people/reiks.jpg" alt=""></div>'+
+    '<div class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/carl.jpg" alt=""></div>'+
     '<h2 id="sheetTitle">Hello, good human!</h2>'+
-    '<p>We\'re Kev, Tim, Carl and Reiks, and we\'re very glad you\'re here. Where\'s home? We\'ll show you what\'s happening on your doorstep.</p>'+
+    '<p>We\'re Kev, Tim and Carl, and we\'re very glad you\'re here. Where\'s home? We\'ll show you what\'s happening on your doorstep.</p>'+
     '<div class="quick">'+['Godalming','Farncombe','Milford','Witley','Shackleford','Elstead','Bramley','Guildford','Farnham','Haslemere','Cranleigh'].map(function(p){return '<button class="chip" type="button" data-home="'+p+'">'+p+'</button>'}).join('')+'</div>'+
     '<form class="f" id="homeForm" novalidate><label for="homeIn">Somewhere else? Type your town or village'+
-    '<input id="homeIn" list="placeList" autocomplete="off" value="'+esc(fromButton?getHome():'')+'"></label><datalist id="placeList">'+opts+'</datalist>'+
+    '<input id="homeIn" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Start typing, e.g. Tongham" aria-describedby="homeHint" aria-controls="placeSug" value="'+esc(fromButton?getHome():'')+'"></label>'+
+    '<div class="sug" id="placeSug" role="listbox" aria-label="Places near Godalming" hidden></div>'+
+    '<p class="fine" id="homeHint">Anywhere within about 15 miles. Not listed? Just type it.</p>'+
     '<div class="row"><button class="btn" type="submit">Show me what\'s on</button><button class="skip" type="button" data-skip>I\'ll just have a nose around</button></div></form></div>');
   setTimeout(function(){ var q=sheet.querySelector('.chip'); if(q) q.focus(); },60);
   function done(){ store('vvv-welcomed','1'); }
@@ -548,6 +554,17 @@ function openWelcome(fromButton){
     if(q){ setHome(q.getAttribute('data-home')); closeSheet(); }
     if(e.target.closest('[data-skip]')) closeSheet();
   };
+  var hin=$('#homeIn'), sug=$('#placeSug');
+  function suggest(){
+    var q=hin.value.trim().toLowerCase(); if(!q){ sug.hidden=true; sug.innerHTML=''; return; }
+    var starts=PLACES.filter(function(p){return p.toLowerCase().indexOf(q)===0});
+    var has=PLACES.filter(function(p){var i=p.toLowerCase().indexOf(q); return i>0});
+    var list=starts.concat(has).slice(0,6);
+    if(list.length===1 && list[0].toLowerCase()===q) list=[];
+    sug.innerHTML=list.map(function(p){return '<button type="button" role="option" class="chip" data-home="'+esc(p)+'">'+esc(p)+'</button>'}).join('');
+    sug.hidden=!list.length;
+  }
+  hin.addEventListener('input',suggest);
   $('#homeForm').addEventListener('submit',function(e){ e.preventDefault(); var v=$('#homeIn').value; if(v.trim()){ var f=sheetOnClose; sheetOnClose=null; setHome(v); done(); closeSheet(); showConsent(); } else $('#homeIn').focus(); });
 }
 setWelcome();
@@ -875,7 +892,7 @@ function openWhat(){
   openSheet('<h2 id="sheetTitle">What is Va Va Voom?</h2>'+
     '<p><b>Our answer: start small, start local, start together.</b> Good walks and pub nights, a question worth talking about, and neighbours you didn\'t know you had. Plus things to do and people to learn from, close to home.</p>'+
     '<p><b>It\'s for you if</b> you\'d rather do something than talk about it, you want to meet the neighbours you haven\'t met yet, you like your purpose with a bit of fun, and small and brave sounds better than big and worthy. Not sure? Come once and see.</p>'+
-    '<p>Started by Kev, Tim and Carl, with Reiks. It\'s an experiment, and you\'re one of the first.</p>'+
+    '<p>Started by Kev, Tim and Carl. It\'s an experiment, and you\'re one of the first.</p>'+
     '<div class="row"><button class="btn" type="button" data-whaton>Show me what\'s on</button></div>');
   track('what is it opened');
   sheet.onclick=function(e){ if(e.target.closest('[data-whaton]')){ closeSheet(); $('#h-on').scrollIntoView({behavior:'smooth',block:'start'}); } };
