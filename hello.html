@@ -117,7 +117,9 @@ section.sec{padding-block:20px 4px}
 .host{color:var(--moss);font-weight:700}
 
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.ev.onnow{background:var(--sun);margin-inline:-12px;padding-inline:12px;border-radius:12px;border-top:0}
+.ev.onnow{background:var(--sun);padding:14px 12px;border-radius:12px;border-top:0;margin-bottom:10px}
+.ev.onnow:first-of-type{padding-top:14px}
+.ev.onnow + .ev:not(.onnow){border-top:0;padding-top:6px}
 .ev.onnow .date{background:var(--ink)}
 .ev.onnow .badge{color:var(--ink)}
 .ev.onnow .meta{color:var(--ink)}
@@ -344,7 +346,7 @@ footer a{color:var(--ink)}
 /* ---------- EDIT HERE: what's on, interest list, threads ---------- */
 var RELEASE = 'Eashing';
 var EVENTS = [
-  { id:'briefing', onnow:true, badge:'This Saturday · part 1', title:"People's Emergency Briefing", day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
+  { id:'briefing', badge:'Part 1', title:"People's Emergency Briefing", day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
     time:'10:15am (doors 10am)', length:'About 1½ hours', where:'Shackleford Village Hall', host:'Tim and Sue', thread:'nature', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
     about:[
       'A short welcome, then the 45-minute film. Here\'s where things are, plainly told. No lectures.',
@@ -353,7 +355,7 @@ var EVENTS = [
     ],
     bring:'Good shoes if you\'re coming on to the farm.',
     going:[] },
-  { id:'farm', onnow:true, badge:'This Saturday · part 2', title:'Norney Farm Bungalow visit', day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
+  { id:'farm', badge:'Part 2', title:'Norney Farm Bungalow visit', day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
     time:'12pm to about 1pm', length:'About an hour', where:'Norney Farm, Shackleford', host:'Tim', thread:'homes', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
     about:[
       'A welcome at the bungalow, then a guided tour of how it all fits together: solar, water harvesting and regenerative growing, and where it\'s going next.',
@@ -507,16 +509,24 @@ function inButton(ev,done,attr){
 }
 document.addEventListener('click',function(e){ var t=e.target.closest('[data-tix]'); if(t){ signal('tickets',t.getAttribute('data-tix')); track('tickets clicked',{event:t.getAttribute('data-tix')}); } });
 var evShowAll=false;
-function evMatch(ev){ return ev.onnow || typeof picked!=='function' || picked(ev.thread); }
+function evDay(ev){ return (ev.until||ev.start||'').slice(0,10); }
+function daysAway(ev){ var d=evDay(ev); if(!d) return 99; var t=new Date(); t.setHours(0,0,0,0); return Math.round((new Date(d+'T00:00:00')-t)/864e5); }
+function thisWeek(ev){ var n=daysAway(ev); return n>=0 && n<=7; }
+function badgeFor(ev){
+  if(!thisWeek(ev)) return ev.badge||'';
+  var n=daysAway(ev), tag=n===0?'Today':n===1?'Tomorrow':'Coming this week';
+  return tag+(ev.badge?' · '+ev.badge:'');
+}
+function evMatch(ev){ return thisWeek(ev) || typeof picked!=='function' || picked(ev.thread); }
 function renderEvents(){
   var mine=getJSON('vvv-going',{}), cur=EVENTS.filter(isCurrent);
   var list=evShowAll?cur:cur.filter(evMatch), hidden=cur.length-cur.filter(evMatch).length;
   var all=$('#evAll'); all.hidden=!hidden; all.textContent=evShowAll?'Just my picks':'+ '+hidden+' more on';
   $('#events').innerHTML = list.map(function(ev){
     var done=!!mine[ev.id];
-    return '<article class="ev'+(ev.lead?' lead':'')+(ev.onnow?' onnow':'')+'" id="ev-'+ev.id+'">'+
+    return '<article class="ev'+(ev.lead?' lead':'')+(thisWeek(ev)?' onnow':'')+'" id="ev-'+ev.id+'">'+
       '<div class="date" aria-hidden="true"><small>'+ev.day+'</small><b>'+ev.d+'</b><small>'+ev.mon+'</small></div>'+
-      '<div style="min-width:0">'+(ev.badge?'<span class="badge">'+esc(ev.badge)+'</span>':'')+
+      '<div style="min-width:0">'+(badgeFor(ev)?'<span class="badge">'+esc(badgeFor(ev))+'</span>':'')+
       '<h3><button type="button" data-open="'+ev.id+'">'+esc(ev.title)+'</button></h3>'+
       '<div class="meta">'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.time)+' · '+esc(ev.where)+' · with '+esc(ev.host)+'</div>'+
       '<div class="row act"><span class="faces">'+facesHTML(ev)+'</span>'+inButton(ev,done,'data-in')+'</div></div></article>';
@@ -545,7 +555,7 @@ function evById(id){ for(var i=0;i<EVENTS.length;i++) if(EVENTS[i].id===id) retu
 function openEvent(id){
   var ev=evById(id); if(!ev) return;
   var done=!!getJSON('vvv-going',{})[id];
-  openSheet('<span class="badge">'+esc(ev.badge||'What\'s on')+'</span><h2 id="sheetTitle">'+esc(ev.title)+'</h2>'+
+  openSheet('<span class="badge">'+esc(badgeFor(ev)||'What\'s on')+'</span><h2 id="sheetTitle">'+esc(ev.title)+'</h2>'+
     '<ul class="facts"><li><b>When</b> '+esc(ev.day+' '+ev.d+' '+ev.mon+', '+ev.time)+'</li>'+
     (ev.length?'<li><b>How long</b> '+esc(ev.length)+'</li>':'')+
     '<li><b>Where</b> '+esc(ev.where)+'</li><li><b>With</b> '+esc(ev.host)+'</li><li><b>Bring</b> '+esc(ev.bring)+'</li></ul>'+
