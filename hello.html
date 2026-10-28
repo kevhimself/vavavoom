@@ -158,12 +158,6 @@ footer a{color:var(--ink)}
 <header class="top wrap">
   <div class="bar">
     <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
-    <svg width="48" height="48" viewBox="0 0 100 100" role="img" aria-label="Va Va Voom Godalming rose stamp">
-      <defs><path id="ring" d="M50 50 m-36 0 a36 36 0 1 1 72 0 a36 36 0 1 1 -72 0"/></defs>
-      <circle cx="50" cy="50" r="46" fill="none" stroke="#e8337f" stroke-width="4"/>
-      <text font-size="11.5" font-weight="700" fill="#e8337f" letter-spacing="1.6" font-family="Atkinson Hyperlegible, sans-serif"><textPath href="#ring">VA VA VOOM · GODALMING ·</textPath></text>
-      <circle cx="50" cy="50" r="12" fill="#e8337f"/><path d="M44 50 q6 -10 12 0 q-6 6 -12 0" fill="#fbf7f2"/>
-    </svg>
   </div>
   <div class="places">Godalming · Farncombe · Milford · Busbridge · and round about</div>
 </header>
@@ -355,7 +349,7 @@ function openWelcome(fromButton){
     '<div class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/carl.jpg" alt=""><img src="people/reiks.jpg" alt=""></div>'+
     '<h2 id="sheetTitle">Hello, good human</h2>'+
     '<p>We\'re Kev, Tim, Carl and Reiks. Tell us where home is and we\'ll show you what\'s on near you.</p>'+
-    '<div class="quick">'+['Godalming','Farncombe','Milford','Busbridge'].map(function(p){return '<button class="chip" type="button" data-home="'+p+'">'+p+'</button>'}).join('')+'</div>'+
+    '<div class="quick">'+['Godalming','Farncombe','Milford','Witley','Shackleford','Elstead','Bramley','Guildford','Farnham','Haslemere','Cranleigh'].map(function(p){return '<button class="chip" type="button" data-home="'+p+'">'+p+'</button>'}).join('')+'</div>'+
     '<form class="f" id="homeForm" novalidate><label for="homeIn">Somewhere else? Type your town or village'+
     '<input id="homeIn" list="placeList" autocomplete="off" value="'+esc(fromButton?getHome():'')+'"></label><datalist id="placeList">'+opts+'</datalist>'+
     '<div class="row"><button class="btn" type="submit">Show me what\'s on</button><button class="skip" type="button" data-skip>Skip for now</button></div></form></div>');
