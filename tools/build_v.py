@@ -51,7 +51,7 @@ SAUNA = {
  'by': 'Hosted by Elenid Coleman at the Hampton Estate, Seale. A wood-fired sauna in a waggon, on a woodland walk, with bucket and woodland showers to cool off.',
  'tips': [
    '<b>Open:</b> Thursday 4 to 8pm, Friday 7 to 11am (the early commuter dip), Saturday 4 to 8pm, Sunday 8am to noon. Check the booking page, as times change with the seasons.',
-   '<b>Top tip:</b> get the Trailblazer pass. It works out at about £16 a session instead of £20, and you can book friends in on it.',
+   '<b>Top tip:</b> get the Trailblazer pass. It works out at about £16 a session instead of £20.',
    '<b>Go with:</b> a friend or three. Take the corner seat if you like it hot.',
  ],
  'credit': 'Good news from Jules, after a Sunday morning visit.',
