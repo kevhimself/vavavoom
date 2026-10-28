@@ -7,7 +7,7 @@ BASE = 'https://kevhimself.github.io/vavavoom/hello.html'
 CODES = [
     ('qr', 'Va Va Voom', 'The front page', ''),
     ('walk', 'The walk with a question', 'Event: opens straight to I\'m in', '#walk'),
-    ('humanbit', 'The Human Bit', 'Event: opens straight to I\'m in', '#humanbit'),
+    ('humanbit', 'Analogue Humans in a Digital World', 'Event: opens straight to I\'m in', '#humanbit'),
     ('feedback', 'Tell us what you think', 'Feedback', '#feedback'),
     ('t-grow', 'Growing and food', 'Theme', '#t-grow'),
     ('t-make', 'Making and mending', 'Theme', '#t-make'),
