@@ -189,6 +189,11 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none}
 .share h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:30px;line-height:1;margin:0;color:var(--lime)}
 .share p{margin:0;font-size:16px}
 .share .btn{background:var(--lime);color:var(--ink);justify-self:start}
+.ways{display:grid;gap:8px;margin-top:4px}
+.way{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;font:inherit;font-weight:700;font-size:16px;background:transparent;color:var(--paper);border:2px solid rgba(251,247,242,.35);border-radius:14px;padding:12px 14px;min-height:48px;cursor:pointer}
+.way small{display:block;font-weight:400;font-size:14px;opacity:.8}
+.way::after{content:"→";color:var(--rose);font-size:20px}
+.way:hover,.way:focus-visible{border-color:var(--rose)}
 .mini{display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;align-items:center;padding-block:8px;border-top:1px solid var(--mist)}
 .mini img{width:40px;height:40px;border-radius:50%;object-fit:cover}
 .mini b{display:block;font-size:16px}
@@ -337,9 +342,14 @@ footer a{color:var(--ink)}
     <div id="nbList"></div>
     <button class="ghost seeall" type="button" id="nbAll" hidden></button>
     <div class="share">
-      <h3>Know something? Share it.</h3>
-      <p>A walk you love, a skill, a special place, a thing you've fixed. You don't have to lead anything. Tell us, and we'll help you share it.</p>
-      <button class="btn" type="button" id="shareBtn">Share what you know</button>
+      <h3>Join in, any way you like</h3>
+      <p>This is everyday folk from round here giving stuff a go. It doesn't have to be perfect. Try something, learn something.</p>
+      <div class="ways" id="ways">
+        <button class="way" type="button" data-way="run"><span>I want to run something<small>A walk, a skill, a thing you've fixed</small></span></button>
+        <button class="way" type="button" data-way="help"><span>I'd like help running something<small>You've got the idea, we'll help with the rest</small></span></button>
+        <button class="way" type="button" data-way="organise"><span>I'll help organise<small>Lend a hand with someone else's thing</small></span></button>
+        <button class="way" type="button" data-way="show"><span>I'll just show up and explore<small>Come along, see what happens</small></span></button>
+      </div>
     </div>
   </section>
 
@@ -878,19 +888,25 @@ function openTheme(id){
 }
 
 /* ---------- know something? share it ---------- */
-function openShare(theme){
+var WAYS={
+  run:{h:'Run something',p:'A walk you love, a skill, a special place, a thing you\'ve fixed. It doesn\'t need to be polished. Tell us, and we\'ll help you put it out there.',q:'What would you like to run?',ph:'A walk, a skill, a special place…'},
+  help:{h:'Get help running something',p:'Got an idea but not sure how to make it happen? Tell us, and we\'ll help with the bits you\'d rather not do alone.',q:'What\'s the idea?',ph:'A repair café, a seed swap, a walk…'},
+  organise:{h:'Help organise',p:'Good with lists, keys, kettles or people? Tell us what you\'d enjoy and we\'ll match you with someone giving something a go.',q:'What would you enjoy helping with?',ph:'Booking a room, making tea, spreading the word…'}
+};
+function openShare(theme,way){
+  var w=WAYS[way]||WAYS.run;
   var opts='<option value="">Not sure</option>'+THREADS.map(function(t){return '<option value="'+t.id+'"'+(t.id===theme?' selected':'')+'>'+esc(t.t)+'</option>'}).join('');
-  openSheet('<h2 id="sheetTitle">Know something? Share it.</h2>'+
-    '<p>You don\'t have to lead anything. Tell us what you know or love, and we\'ll help you share it.</p>'+
+  openSheet('<h2 id="sheetTitle">'+w.h+'</h2>'+
+    '<p>'+w.p+'</p>'+
     '<form class="f" id="shForm" novalidate>'+
-    '<label for="shTitle">What do you know or love?<input id="shTitle" type="text" maxlength="120" placeholder="A walk, a skill, a special place…"></label>'+
+    '<label for="shTitle">'+w.q+'<input id="shTitle" type="text" maxlength="120" placeholder="'+w.ph+'"></label>'+
     '<label for="shWhat">Tell us a bit more<textarea id="shWhat" maxlength="1000"></textarea></label>'+
     '<label for="shTheme">Which theme fits best?<select id="shTheme">'+opts+'</select></label>'+
     '<label for="shName">Your first name<input id="shName" type="text" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
     '<label for="shContact">Mobile or email<input id="shContact" type="text" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
     '<label class="tick" for="shOk"><input id="shOk" type="checkbox"><span>Happy for us to put your first name with it on the site</span></label>'+
     '<input class="trap" id="shTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
-    '<p class="err" id="shErr" role="alert"></p><button class="btn" type="submit">Share it</button>'+
+    '<p class="err" id="shErr" role="alert"></p><button class="btn" type="submit">Send it</button>'+
     '<p class="fine">We check everything before it goes up. No web links please. <a href="privacy.html">Privacy</a></p></form>');
   $('#shForm').addEventListener('submit',function(e){
     e.preventDefault();
@@ -899,17 +915,24 @@ function openShare(theme){
     if(!v('shName')||!v('shContact')){ err.textContent='We need your first name and a way to reach you.'; return; }
     if(/https?:\/\/|www\./i.test(v('shTitle')+' '+v('shWhat'))){ err.textContent='Please take out any web links, then send.'; return; }
     me={name:v('shName'),contact:v('shContact'),show:!!me.show}; store('vvv-me',JSON.stringify(me));
-    send({type:'project',title:v('shTitle'),what:v('shWhat'),lead:v('shName'),thread:v('shTheme'),where:getHome(),name:v('shName'),email:v('shContact'),ok:$('#shOk').checked?'Yes':'No',website:v('shTrap')});
-    track('shared something',{thread:v('shTheme')});
+    send({type:'project',way:way||'run',title:v('shTitle'),what:v('shWhat'),lead:v('shName'),thread:v('shTheme'),where:getHome(),name:v('shName'),email:v('shContact'),ok:$('#shOk').checked?'Yes':'No',website:v('shTrap')});
+    track('shared something',{thread:v('shTheme'),way:way||'run'});
     openSheet('<h2 id="sheetTitle">Brilliant. Proper good human, you.</h2><p class="done-msg">We\'ll be in touch soon.</p><button class="ghost" type="button" data-close>Done</button>');
     sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
   });
 }
-$('#shareBtn').addEventListener('click',function(){ openShare(''); });
+$('#ways').addEventListener('click',function(e){
+  var b=e.target.closest('[data-way]'); if(!b) return; var way=b.getAttribute('data-way');
+  track('join way picked',{way:way});
+  if(way==='show'){ $('#h-on').scrollIntoView({behavior:'smooth',block:'start'}); return; }
+  openShare('',way);
+});
 function openWhat(){
   openSheet('<h2 id="sheetTitle">What is Va Va Voom?</h2>'+
-    '<p><b>Our answer: start small, start local, start together.</b> Good walks and pub nights, a question worth talking about, and neighbours you didn\'t know you had. Plus things to do and people to learn from, close to home.</p>'+
+    '<p><b>Everyday folk from round here, giving stuff a go.</b> It\'s not about doing it perfectly or getting it right. It\'s about trying something out and learning something on the way.</p>'+
+    '<p><b>Start small, start local, start together.</b> Good walks and pub nights, a question worth talking about, and neighbours you didn\'t know you had. Plus things to do and people to learn from, close to home.</p>'+
     '<p><b>It\'s for you if</b> you\'d rather do something than talk about it, you want to meet the neighbours you haven\'t met yet, you like your purpose with a bit of fun, and small and brave sounds better than big and worthy. Not sure? Come once and see.</p>'+
+    '<p><b>Join in any way you like.</b> Run something, get help running something, help organise, or just show up and explore.</p>'+
     '<p>Started by Kev, Tim and Carl. It\'s an experiment, and you\'re one of the first.</p>'+
     '<div class="row"><button class="btn" type="button" data-whaton>Show me what\'s on</button></div>');
   track('what is it opened');
