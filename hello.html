@@ -357,7 +357,7 @@ footer a{color:var(--ink)}
       <div class="ways" id="ways">
         <button class="way" type="button" data-way="run"><span>I want to run something<small>A walk, a skill, a thing you've fixed</small></span></button>
         <button class="way" type="button" data-way="help"><span>I'd like help running something<small>You've got the idea, we'll help with the rest</small></span></button>
-        <button class="way" type="button" data-way="organise"><span>I'll help organise<small>Lend a hand with someone else's thing</small></span></button>
+        <button class="way" type="button" data-way="organise"><span>I'll help organise<small>Lend a hand with someone else's thing. Go on, we dare you</small></span></button>
         <button class="way" type="button" data-way="show"><span>I'll just show up and explore<small>Come along, see what happens</small></span></button>
       </div>
     </div>
@@ -756,7 +756,7 @@ var keen=getJSON('vvv-keen',{}), helping=getJSON('vvv-help',{}), tellMe=getJSON(
 function helpNudge(x){
   if(!keen[x.id]) return '';
   var tell = tellMe[x.id] ? '<span class="ok">We\'ll tell you when it\'s on ✓</span>' : '<button type="button" data-tell="'+x.id+'">Tell me when it\'s on</button>';
-  var help = helping[x.id] ? '<span class="ok">You\'re helping make it happen ✓</span>' : '<button type="button" data-help="'+x.id+'">Fancy a hand in making it happen?</button>';
+  var help = helping[x.id] ? '<span class="ok">Dare accepted ✓</span>' : '<button type="button" data-help="'+x.id+'">Go on, help make it happen. Dare you</button>';
   return '<div class="nudge2"><span class="calm">Showing up is plenty. No strings, no homework.</span>'+tell+help+'</div>';
 }
 function renderInterest(){
@@ -769,8 +769,8 @@ renderInterest();
 /* One contact form for both: mode 'tell' (hear when it's on) or 'help' (help make it happen). */
 function openHelp(id,mode){
   var x=INTEREST.filter(function(i){return i.id===id})[0]; if(!x) return;
-  var who=(x.host?esc(x.host.replace(' hosting',''))+' or ':'')+'Kev', isHelp=mode!=='tell';
-  openSheet('<span class="badge">'+(isHelp?'Help make it happen':'Tell me when it\'s on')+'</span><h2 id="sheetTitle">'+esc(x.title)+'</h2>'+
+  var h=(x.host||'').replace(' hosting',''), who=(h && h!=='Kev')?esc(h)+' or Kev':'Kev', isHelp=mode!=='tell';
+  openSheet('<span class="badge">'+(isHelp?'Dare accepted':'Tell me when it\'s on')+'</span><h2 id="sheetTitle">'+esc(x.title)+'</h2>'+
     (isHelp?'<p>Brilliant. No experience needed, and you can do as much or as little as you like. Leave your details and '+who+' will get in touch for a chat.</p>'
            :'<p>Leave your details and we\'ll send you one message when there\'s a date. Nothing else unless you ask.</p>')+
     '<form class="f" id="hpForm" novalidate>'+
@@ -797,7 +797,7 @@ function openHelp(id,mode){
     }
     tellMe[id]=tellMe[id]||Date.now(); store('vvv-tell2',JSON.stringify(tellMe));
     renderInterest();
-    openSheet('<h2 id="sheetTitle">'+(isHelp?'You\'re a star, ':'Lovely, ')+esc(n)+'.</h2><p class="done-msg">'+(isHelp?'We\'ll be in touch. And if life gets busy, showing up is still plenty.':'We\'ll tell you when it\'s on.')+'</p><button class="ghost" type="button" data-close>Done</button>');
+    openSheet('<h2 id="sheetTitle">'+(isHelp?'Dare accepted, ':'Lovely, ')+esc(n)+'.</h2><p class="done-msg">'+(isHelp?'We\'ll be in touch. And if life gets busy, showing up is still plenty.':'We\'ll tell you when it\'s on.')+'</p><button class="ghost" type="button" data-close>Done</button>');
     sheet.onclick=function(ev){ if(ev.target.closest('[data-close]')) closeSheet(); };
   });
 }
