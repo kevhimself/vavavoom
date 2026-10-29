@@ -523,6 +523,9 @@ var NEIGHBOURS = [
   { id:'cider', feel:'inspired', theme:'grow', title:'Rain, gardens and cider', who:'Tim', where:'Norney', img:'people/tim.jpg?v=1029c',
     line:'Catch the rain, grow a regenerative veg patch, turn the apple glut into cider.',
     about:'Catch your rainwater, grow a regenerative veg patch, and turn the apple glut into cider. Tim is writing up how he does all three.' },
+  { id:'unmuddle', feel:'connect', theme:'talk', title:'Power Hour: Un-Muddle Me', who:'Ilona', where:'Godalming', img:'people/ilona.jpg?v=1029', book:'https://tidycal.com/ilonamckieva/power-hour-un-muddle-me', bookText:'Book a Power Hour', paid:true,
+    line:'An hour with a local VA to un-muddle the to-do list. Paid; price on her booking page.',
+    about:'Ilona spent ten years as a PA, then went her own way and is now the right hand for small businesses round here. Book a Power Hour with her to un-muddle things. It\'s a paid session: you\'ll see the price and times on her booking page before you book.' },
   { id:'change', feel:'connect', theme:'talk', title:'Navigate change', who:'Ruth', where:'Coaching', img:'people/ruth.jpg?v=1029c', link:'https://kevhimself.github.io/RuthBlanco/', linkText:'See Ruth\'s website',
     line:'Coaching for when life is shifting under your feet.',
     about:'Coaching for when life is shifting under your feet, and a kind ear if you\'re worried about where things are heading.' }
@@ -785,7 +788,7 @@ function addCal(id){
 
 /* ---------- learn from a neighbour (neighbours and coming items, one list) ---------- */
 var keen=getJSON('vvv-keen',{}), nbMine=getJSON('vvv-nb',{}), nbShowAll=false;
-var PEOPLE_IMG={Kev:'people/kev.jpg?v=1029c',Tim:'people/tim.jpg?v=1029c',Carl:'people/carl.jpg?v=1029c',Rieks:'people/reiks.jpg?v=1029c',Ruth:'people/ruth.jpg?v=1029c'};
+var PEOPLE_IMG={Ilona:'people/ilona.jpg?v=1029',Kev:'people/kev.jpg?v=1029c',Tim:'people/tim.jpg?v=1029c',Carl:'people/carl.jpg?v=1029c',Rieks:'people/reiks.jpg?v=1029c',Ruth:'people/ruth.jpg?v=1029c'};
 /* Kev 29 Oct: no photo? Up to two initials, with a colour for each place. */
 var LOC_COLOURS={godalming:'#1f9e8f',farncombe:'#4a6fd1',milford:'#4f8a3c',busbridge:'#9a5bb5',tongham:'#7b4fb8',seale:'#c47a1e',puttenham:'#b5546a',norney:'#8a6d3b',shackleford:'#8a6d3b',farnham:'#2f7fa3',witley:'#5d8f2f',elstead:'#a8613a',bramley:'#3f8f7a',guildford:'#6b5fb0'};
 function placeColour(p){ p=(p||'Godalming').toLowerCase(); if(LOC_COLOURS[p]) return LOC_COLOURS[p];
@@ -798,7 +801,7 @@ function avatarHTML(it,cls){
   return '<span class="av '+(cls||'')+'" style="background:'+placeColour(it.place)+'" aria-hidden="true">'+esc(txt)+'</span>';
 }
 function learnItems(){
-  var nb=NEIGHBOURS.map(function(n){ return {kind:'nb', id:n.id, title:n.title, who:n.who, where:n.where, place:n.place||n.where, img:n.img||PEOPLE_IMG[n.who], line:n.line, about:n.about, themes:nbThemes(n), near:n.near, link:n.link, linkText:n.linkText, ask:n.ask, shaping:n.shaping}; });
+  var nb=NEIGHBOURS.map(function(n){ return {kind:'nb', id:n.id, title:n.title, who:n.who, where:n.where, place:n.place||n.where, img:n.img||PEOPLE_IMG[n.who], line:n.line, about:n.about, themes:nbThemes(n), near:n.near, link:n.link, linkText:n.linkText, book:n.book, bookText:n.bookText, ask:n.ask, shaping:n.shaping}; });
   var it=INTEREST.map(function(x){ var who=(x.host||'').replace(/ hosting$/,''); return {kind:'int', id:x.id, title:x.title, who:who, where:'', place:x.place, img:PEOPLE_IMG[who], when:x.when, line:x.what, about:x.what, themes:x.themes||[], near:x.near}; });
   /* mix neighbours and coming items so both show in the first few */
   var mix=[]; for(var i=0;i<Math.max(nb.length,it.length);i++){ if(nb[i]) mix.push(nb[i]); if(it[i]) mix.push(it[i]); }
@@ -822,7 +825,7 @@ function renderNeighbours(){
   $('#nbList').innerHTML=list.map(function(n){
     return '<article class="nb">'+avatarHTML(n)+'<div style="min-width:0">'+
       '<h3><button type="button" data-nb="'+n.id+'">'+esc(n.title)+'</button>'+stkHTML(n.themes[0])+'</h3>'+
-      '<div class="meta">'+metaLine(n)+'</div><p>'+esc(n.line)+'</p><div class="row act">'+(n.shaping?'<span class="tag shaping">Still being shaped</span>':'')+nbBtn(n)+'</div></div></article>';
+      '<div class="meta">'+metaLine(n)+'</div><p>'+esc(n.line)+'</p><div class="row act">'+(n.shaping?'<span class="tag shaping">Still being shaped</span>':'')+'<span class="acts">'+(n.book?'<a class="tix" href="'+esc(n.book)+'" target="_blank" rel="noopener" data-out="book-'+n.id+'">'+esc(n.bookText||'Book')+' ↗</a>':'')+nbBtn(n)+'</span></div></div></article>';
   }).join('');
   var b=$('#nbAll'); b.hidden=all.length<=list.length && !nbShowAll; b.textContent=nbShowAll?'Show fewer':'See all '+all.length;
 }
@@ -840,7 +843,7 @@ function openNeighbour(id){
     '<div class="mini" style="border-top:0">'+avatarHTML(n,'sm')+'<div><b>'+(n.who?'With '+esc(n.who):'Looking for a host')+'</b><span>'+esc(n.where||n.when||'')+'</span></div></div>'+
     '<p>'+esc(n.about)+'</p>'+(n.ask?'<p class="ask" style="margin:0 0 10px">'+esc(n.ask)+'</p>':'')+(n.link?'<p style="margin:0 0 10px"><a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+esc(n.linkText||'Their website')+' ↗</a></p>':'')+
     '<p class="fine">No date yet. Say you\'re in and we\'ll set one once enough of you are keen.</p>'+
-    '<div class="row">'+(isIn(n)?'<button class="skip" type="button" data-out-of="'+n.id+'">Not for me after all</button>':'')+nbBtn(n)+'</div>');
+    '<div class="row">'+(isIn(n)?'<button class="skip" type="button" data-out-of="'+n.id+'">Not for me after all</button>':'')+(n.book?'<a class="tix" href="'+esc(n.book)+'" target="_blank" rel="noopener" data-out="book-'+n.id+'">'+esc(n.bookText||'Book')+' ↗</a>':'')+nbBtn(n)+'</div>');
   track('neighbour opened',{neighbour:id});
   sheet.onclick=function(e){
     var i=e.target.closest('[data-nbin]'); if(i) nbInterested(i.getAttribute('data-nbin'));
