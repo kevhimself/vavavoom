@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mood mockups · Va Va Voom</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&display=swap">
+<style>
+:root{
+  --paper:#fbf7f2; --ink:#1c1a2b; --rose:#e8337f; --rose-dk:#c41f66; --sun:#f2c75a; --sun-soft:#fbeec8;
+  --mist:#ece5dc; --muted:#4c4858;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,sans-serif;
+  --hand:"Caveat","Comic Sans MS",cursive;
+  --th-move:#e8337f;--th-grow:#ff8a2a;--th-make:#2438d6;--th-homes:#e2492f;--th-talk:#f2c75a;--th-nature:#2f6b4f;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding:16px max(16px,env(safe-area-inset-left,0px)) 48px}
+h1,h2{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:1;margin:0}
+h1{font-size:36px;margin:8px 0 6px}
+h2{font-size:30px;margin:24px 0 4px}
+.lede{margin:0 0 14px;color:var(--muted);font-size:16px}
+.sub{margin:0 0 12px;color:var(--muted);font-size:15px}
+.badge{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rose-dk)}
+
+/* option switcher (mockup only) */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--mist);padding:5px;border-radius:14px;position:sticky;top:8px;z-index:5}
+.opts button{all:unset;cursor:pointer;text-align:center;border-radius:10px;padding:8px 4px;font-weight:700;font-size:14px;line-height:1.2}
+.opts button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.opts button:focus-visible{outline:3px solid var(--sun)}
+.note{background:var(--sun-soft);border-radius:12px;padding:10px 14px;font-size:15px;margin:12px 0 4px}
+.note b{display:block}
+
+/* moods: neutral, so they never fight the theme colours */
+.moodq{font-family:var(--hand);font-size:28px;line-height:1;margin:6px 0 8px}
+.moods{display:flex;flex-wrap:wrap;gap:8px}
+.mood{all:unset;cursor:pointer;border:2px solid var(--ink);border-radius:999px;padding:7px 14px;font-weight:700;font-size:15px;display:inline-flex;gap:6px;align-items:center;min-height:28px}
+.mood i{font-style:normal}
+.mood[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.mood:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.clear{all:unset;cursor:pointer;font-size:14px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;margin-left:4px;align-self:center}
+
+/* doors (option B) */
+.doors{display:grid;gap:10px}
+.door{all:unset;box-sizing:border-box;width:100%;cursor:pointer;border-radius:16px;padding:14px 16px;background:var(--ink);color:var(--paper);display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.door i{font-style:normal;font-size:26px}
+.door b{display:block;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:22px;line-height:1}
+.door span{font-size:14px;opacity:.85}
+.door::after{content:"→";color:var(--rose);font-size:22px}
+.door[aria-expanded="true"]{background:var(--rose);}
+.door[aria-expanded="true"]::after{content:"↓";color:var(--paper)}
+.door:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.doorlist{background:var(--paper);border:2px solid var(--ink);border-radius:16px;padding:4px 14px;margin-top:-4px}
+
+/* cards */
+.list{display:grid}
+.card{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid var(--mist);transition:opacity .2s}
+.card:first-child{border-top:0}
+.card .dot{width:52px;height:52px;border-radius:12px;background:var(--th);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:900;font-size:13px;text-transform:uppercase;text-align:center;line-height:1}
+.card h3{margin:0;font-size:18px;line-height:1.2}
+.card .meta{font-size:14px;color:var(--muted)}
+.feel{font-family:var(--hand);font-size:21px;line-height:1;color:var(--rose-dk);display:block;margin-top:4px}
+.card.dim{opacity:.35}
+.th-move{--th:var(--th-move)} .th-grow{--th:var(--th-grow)} .th-make{--th:var(--th-make)}
+.th-homes{--th:var(--th-homes)} .th-talk{--th:var(--th-talk)} .th-nature{--th:var(--th-nature)}
+.th-talk .dot,.th-grow .dot{color:var(--ink)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.tile{border:2px solid var(--th);border-radius:12px;padding:8px 10px;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:15px;line-height:1.05}
+.muted{color:var(--muted);font-size:14px}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink);border-radius:999px;padding:3px;margin:8px 0 12px}
+.seg button{all:unset;cursor:pointer;text-align:center;border-radius:999px;padding:8px 6px;font-weight:700;font-size:15px}
+.seg button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.seg button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+button.tile{all:unset;box-sizing:border-box;cursor:pointer;border:2px solid var(--th,var(--ink));border-radius:12px;padding:10px 12px;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:16px;line-height:1.05;min-height:52px}
+button.tile[aria-pressed="true"]{background:var(--th,var(--ink));color:var(--paper)}
+button.tile.th-talk[aria-pressed="true"],button.tile.th-grow[aria-pressed="true"]{color:var(--ink)}
+button.tile:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.mtiles{display:grid;gap:8px}
+button.mtile{all:unset;box-sizing:border-box;cursor:pointer;border:2px solid var(--ink);border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}
+button.mtile i{font-style:normal;font-size:24px}
+button.mtile b{display:block;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:20px;line-height:1}
+button.mtile span span{font-size:14px;color:var(--muted)}
+button.mtile[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+button.mtile[aria-pressed="true"] span span{color:var(--paper);opacity:.85}
+button.mtile:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.back{display:inline-block;margin-bottom:6px;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="hello.html">← Back to the site</a>
+  <span class="badge">Mockup · not live</span>
+  <h1>What are you in the mood for?</h1>
+  <p class="lede">Four light ways to add how you want to <i>feel</i> alongside the themes. Same things on offer, a different way in. Tap the options to try each.</p>
+
+  <div class="opts" role="tablist" aria-label="Mockup options">
+    <button role="tab" aria-selected="true" data-opt="d">1 · Two doorways</button>
+    <button role="tab" aria-selected="false" data-opt="a">A · One row of moods</button>
+    <button role="tab" aria-selected="false" data-opt="b">B · Three doors</button>
+    <button role="tab" aria-selected="false" data-opt="c">C · Just a word</button>
+  </div>
+
+  <!-- D: two doorways -->
+  <section data-pane="d">
+    <div class="note"><b>Two doorways in (Kev's idea).</b>One switch: start with a topic, or start with a feeling. Same things underneath, two ways to find them. Topic shows the six themes; feeling shows three moods. Nothing else changes.</div>
+    <h2>What pulls you?</h2>
+    <div class="seg" role="tablist" aria-label="Way in">
+      <button type="button" role="tab" data-way="topic" aria-selected="true">Get into a topic</button>
+      <button type="button" role="tab" data-way="feel" aria-selected="false">Have an experience</button>
+    </div>
+    <div id="doorD"></div>
+    <h2>What's on and coming</h2>
+    <p class="sub" id="subD">Everything, soonest first.</p>
+    <div class="list" id="listD"></div>
+  </section>
+
+  <!-- A -->
+  <section data-pane="a" hidden>
+    <div class="note"><b>A: one optional row, three taps.</b>Sits just above the themes. Tap a mood and the things that feel like that rise to the top; the rest fade a little, never vanish. Each card says how it feels in Kev's handwriting font.</div>
+    <h2>What pulls you?</h2>
+    <p class="moodq">In the mood for…</p>
+    <div class="moods" id="moodsA"></div>
+    <p class="sub" style="margin-top:14px">And the themes, as now:</p>
+    <div class="tiles">
+      <div class="tile th-grow">Growing and food</div><div class="tile th-make">Making and mending</div>
+      <div class="tile th-nature">Nature and the Wey</div><div class="tile th-homes">Warm homes, energy</div>
+      <div class="tile th-move">Moving and play</div><div class="tile th-talk">Meeting and talking</div>
+    </div>
+    <h2>What's on and coming</h2>
+    <p class="sub" id="subA">Everything, soonest first.</p>
+    <div class="list" id="listA"></div>
+  </section>
+
+  <!-- B -->
+  <section data-pane="b" hidden>
+    <div class="note"><b>B: three doors before the themes.</b>A friendlier front door for people who don't know what topic they want. Each door opens to the three best matches. The themes stay below for people who do.</div>
+    <h2>Not sure where to start?</h2>
+    <p class="sub">Start with how you'd like to feel.</p>
+    <div class="doors" id="doorsB"></div>
+  </section>
+
+  <!-- C -->
+  <section data-pane="c" hidden>
+    <div class="note"><b>C: no new buttons at all.</b>Just one handwritten line on every card saying how it feels. The simplest; people scan for the feeling without having to choose anything.</div>
+    <h2>What's on and coming</h2>
+    <div class="list" id="listC"></div>
+  </section>
+
+  <div class="note" style="margin-top:26px"><b>Margot's pick: two doorways, with C's words on every card.</b>It answers Kev's question directly: do you want to get into a topic, or have an experience? One switch, no extra rows, and the themes keep their colours while the moods stay ink. A is the fallback if a switch feels like one thing too many.</div>
+  <p class="muted">Which mood each thing gets is a first guess, for Kev, Tim and Carl to correct. Hosts would set their own when they share something.</p>
+</div>
+
+<script>
+var MOODS=[
+  {id:'play', label:'Play and fun', icon:'☺', door:'Just want to play', line:'Fun, easy, nothing to prove'},
+  {id:'connect', label:'Feel connected', icon:'❋', door:'Want to feel connected', line:'Good people, proper conversation'},
+  {id:'inspired', label:'Get inspired', icon:'✦', door:'Need a bit of a spark', line:'See what others are doing, and go home itching to try'}
+];
+var FEEL={play:'feels like play', connect:'feels connected', inspired:'feels inspiring'};
+var ITEMS=[
+  {t:'Va Va Voom at the pub', m:'Tue 10 Nov · The Inn on the Lake', th:'talk', d:'10 Nov', moods:['connect','play']},
+  {t:'A better walk', m:'Sat 21 Nov · Puttenham Common', th:'move', d:'21 Nov', moods:['connect','inspired']},
+  {t:'Waggon sauna sing-along', m:'January 2027', th:'move', d:'Jan', moods:['play']},
+  {t:'Circle round the fire', m:'Early 2027 · Kev hosting', th:'talk', d:'Early 27', moods:['connect']},
+  {t:'Social run', m:'Spring 2027 · Kev hosting', th:'move', d:'Spring', moods:['play','connect']},
+  {t:'Bug houses, vertical gardens and the bath pump', m:'With Rieks · Milford', th:'nature', d:'Rieks', moods:['inspired','play']},
+  {t:'Micro homes, off-grid loos and a community sauna', m:'With Carl · Green Spaces', th:'make', d:'Carl', moods:['inspired']},
+  {t:'Choosing solar', m:'With Tim · Norney', th:'homes', d:'Tim', moods:['inspired']},
+  {t:'Analogue Humans in a Digital World', m:'Winter 2027 · Kev hosting', th:'talk', d:'Winter', moods:['connect','inspired']},
+  {t:'Armchair activism', m:'With Rieks · Milford', th:'homes', d:'Rieks', moods:['inspired']}
+];
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function card(x,dim,pref){
+  return '<article class="card th-'+x.th+(dim?' dim':'')+'"><div class="dot">'+esc(x.d)+'</div><div><h3>'+esc(x.t)+'</h3><div class="meta">'+esc(x.m)+'</div><span class="feel">'+esc(FEEL[(pref&&pref.filter(function(m){return x.moods.indexOf(m)>-1})[0])||x.moods[0]])+'</span></div></article>';
+}
+/* A */
+var picked={};
+function renderA(){
+  $('#moodsA').innerHTML=MOODS.map(function(m){return '<button class="mood" type="button" data-mood="'+m.id+'" aria-pressed="'+!!picked[m.id]+'"><i aria-hidden="true">'+m.icon+'</i>'+esc(m.label)+'</button>'}).join('')+
+    (Object.keys(picked).length?'<button class="clear" type="button" data-clear>Clear</button>':'');
+  var on=Object.keys(picked), match=function(x){return x.moods.some(function(m){return picked[m]})};
+  var list=on.length?ITEMS.filter(match).concat(ITEMS.filter(function(x){return !match(x)})):ITEMS;
+  $('#listA').innerHTML=list.map(function(x){return card(x,on.length&&!match(x),on)}).join('');
+  $('#subA').textContent=on.length?'Your mood first. Everything else is still here.':'Everything, soonest first.';
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-mood]'); if(b){ var id=b.getAttribute('data-mood'); if(picked[id]) delete picked[id]; else picked[id]=1; renderA(); return; }
+  if(e.target.closest('[data-clear]')){ picked={}; renderA(); return; }
+  var o=e.target.closest('[data-opt]'); if(o){ document.querySelectorAll('[data-opt]').forEach(function(t){t.setAttribute('aria-selected',t===o)});
+    document.querySelectorAll('[data-pane]').forEach(function(p){p.hidden=p.getAttribute('data-pane')!==o.getAttribute('data-opt')}); return; }
+  var d=e.target.closest('[data-door]'); if(d){ var open=d.getAttribute('aria-expanded')==='true'; renderB(open?'':d.getAttribute('data-door')); }
+});
+/* D: two doorways */
+var THEMES=[['grow','Growing and food'],['make','Making and mending'],['nature','Nature and the Wey'],['homes','Warm homes, energy'],['move','Moving and play'],['talk','Meeting and talking']];
+var way='topic', pickD={};
+function renderD(){
+  document.querySelectorAll('[data-way]').forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-way')===way)});
+  $('#doorD').innerHTML = way==='topic'
+    ? '<div class="tiles">'+THEMES.map(function(t){return '<button class="tile th-'+t[0]+'" type="button" data-pd="'+t[0]+'" aria-pressed="'+!!pickD[t[0]]+'">'+esc(t[1])+'</button>'}).join('')+'</div>'
+    : '<div class="mtiles">'+MOODS.map(function(m){return '<button class="mtile" type="button" data-pd="'+m.id+'" aria-pressed="'+!!pickD[m.id]+'"><i aria-hidden="true">'+m.icon+'</i><span><b>'+esc(m.label)+'</b><span>'+esc(m.line)+'</span></span></button>'}).join('')+'</div>';
+  var on=Object.keys(pickD), match=function(x){ return way==='topic' ? !!pickD[x.th] : x.moods.some(function(m){return pickD[m]}); };
+  var list=on.length?ITEMS.filter(match).concat(ITEMS.filter(function(x){return !match(x)})):ITEMS;
+  $('#listD').innerHTML=list.map(function(x){return card(x,on.length&&!match(x),way==='feel'?on:null)}).join('');
+  $('#subD').textContent=on.length?(way==='topic'?'Your topics first.':'Your kind of experience first.')+' Everything else is still here.':'Everything, soonest first.';
+}
+document.addEventListener('click',function(e){
+  var w=e.target.closest('[data-way]'); if(w){ way=w.getAttribute('data-way'); pickD={}; renderD(); return; }
+  var p=e.target.closest('[data-pd]'); if(p){ var id=p.getAttribute('data-pd'); if(pickD[id]) delete pickD[id]; else pickD[id]=1; renderD(); }
+});
+/* B */
+function renderB(openId){
+  $('#doorsB').innerHTML=MOODS.map(function(m){
+    var open=m.id===openId;
+    return '<div><button class="door" type="button" data-door="'+m.id+'" aria-expanded="'+open+'"><i aria-hidden="true">'+m.icon+'</i><span><b>'+esc(m.door)+'</b><span>'+esc(m.line)+'</span></span></button>'+
+      (open?'<div class="doorlist">'+ITEMS.filter(function(x){return x.moods.indexOf(m.id)>-1}).slice(0,3).map(function(x){return card(x,false,[m.id])}).join('')+'<p class="muted" style="margin:6px 0 10px">See all that '+esc(FEEL[m.id].replace('feels ',''))+' →</p></div>':'')+'</div>';
+  }).join('');
+}
+function $(s){return document.querySelector(s)}
+renderA(); renderB(''); renderD();
+$('#listC').innerHTML=ITEMS.map(function(x){return card(x,false)}).join('');
+</script>
+</body>
+</html>
