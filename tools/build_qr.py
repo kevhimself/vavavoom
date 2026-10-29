@@ -6,7 +6,7 @@ import os, qrcode, qrcode.image.svg
 BASE = 'https://kevhimself.github.io/vavavoom/hello.html'
 CODES = [
     ('qr', 'Va Va Voom', 'The front page', ''),
-    ('walk', 'Va Va Voom goes walking', 'Event: opens straight to I\'m in', '#walk'),
+    ('walk', 'A better walk', 'Event: opens straight to I\'m in', '#walk'),
     ('pub', 'Va Va Voom at the pub', 'Event: opens straight to I\'m in', '#pub'),
     ('feedback', 'Tell us what you think', 'Feedback', '#feedback'),
     ('t-grow', 'Growing and food', 'Theme', '#t-grow'),
