@@ -14,7 +14,7 @@ P = json.loads((ROOT / 'tools' / 'project.json').read_text())
 log = subprocess.run(['git', '-C', str(ROOT), 'log', '--format=%ad|%s', '--date=format:%Y-%m-%d %H:%M'], capture_output=True, text=True).stdout.strip().splitlines()
 log = [l.split('|', 1) for l in log if '|' in l]
 releases = len(log) + 1  # this release is about to be committed
-first = log[-1][0][:10] if log else ''
+first = min([s['date'] for s in P['sittings']] + ([log[-1][0][:10]] if log else []))  # the project started before the repo
 version = re.search(r"VERSION = window.VVV_VERSION = '([^']+)'", (ROOT / 'gate.js').read_text()).group(1)
 hours = sum(s['hours'] for s in P['sittings'])
 days = len({s['date'] for s in P['sittings']})
