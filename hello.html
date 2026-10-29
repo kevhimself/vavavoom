@@ -142,6 +142,11 @@ section.sec{padding-block:20px 4px}
 .int:first-child{border-top:0;padding-top:0}
 .int b{display:block;font-size:17px}
 .int span{font-size:14px;color:var(--muted)}
+.int .nudge2{grid-column:1/-1;background:var(--sun-soft);border-radius:12px;padding:10px 12px;font-size:15px;color:var(--ink);display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.int .nudge2 button{all:unset;cursor:pointer;font-weight:700;color:var(--rose-dk);text-decoration:underline;text-underline-offset:3px}
+.int .nudge2 > span:first-child{flex-basis:100%}
+.int .nudge2 .ok{font-weight:700;color:var(--ink)}
+.int .nudge2 button:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
 .int .when{display:inline-block;font-style:normal;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--rose-dk);margin-bottom:2px}
 .host{color:var(--moss);font-weight:700}
 
@@ -741,16 +746,64 @@ function addCal(id){
 }
 
 /* ---------- interest ---------- */
-var keen=getJSON('vvv-keen',{});
+var keen=getJSON('vvv-keen',{}), helping=getJSON('vvv-help',{}), tellMe=getJSON('vvv-tell',{});
+/* Kev 29 Oct: after "I'm in", a playful nudge to help make it happen. Showing up is enough. */
+function helpNudge(x){
+  if(!keen[x.id]) return '';
+  var tell = tellMe[x.id] ? '<span class="ok">We\'ll tell you when it\'s on ✓</span>' : '<button type="button" data-tell="'+x.id+'">Tell me when it\'s on →</button>';
+  var help = helping[x.id] ? '<span class="ok">You\'re helping make it happen ✓</span>' : '<button type="button" data-help="'+x.id+'">Fancy a hand in making it happen? →</button>';
+  return '<div class="nudge2"><span>Showing up is plenty. No strings, no homework.</span>'+tell+help+'</div>';
+}
+function tellWhenOn(id){
+  var x=INTEREST.filter(function(i){return i.id===id})[0]; if(!x || tellMe[id]) return;
+  withContact('So you hear when it\'s on', esc(x.title)+'. We\'ll send you one message when there\'s a date. Nothing else unless you ask.', function(trap){
+    var isEmail=me.contact.indexOf('@')>-1;
+    send({type:'signup',name:me.name,email:isEmail?me.contact:'',phone:isEmail?'':me.contact,where:getHome(),fit:'Tell me when it\'s on',thread:'interest: '+id,website:trap||''});
+    tellMe[id]=Date.now(); store('vvv-tell',JSON.stringify(tellMe)); track('tell me when on',{item:id});
+    if(!scrim.hidden) closeSheet();
+    renderInterest(); var t=$('#int-'+id+' .nudge2'); if(t) t.setAttribute('tabindex','-1'), t.focus();
+  });
+}
+function renderInterest(){
 $('#interest').innerHTML=INTEREST.map(function(x){
-  return '<div class="int"><div>'+(x.when?'<em class="when">'+esc(x.when)+'</em>':'')+'<b>'+esc(x.title)+'</b><span>'+esc(x.what)+(x.host?' · <span class="host">'+esc(x.host)+'</span>':'')+'</span></div>'+
-    '<button class="btn'+(keen[x.id]?' done':'')+'" type="button" data-keen="'+x.id+'" aria-pressed="'+(!!keen[x.id])+'">'+(keen[x.id]?'You\'re in ✓':"I'm in")+'</button></div>';
+  return '<div class="int" id="int-'+x.id+'"><div>'+(x.when?'<em class="when">'+esc(x.when)+'</em>':'')+'<b>'+esc(x.title)+'</b><span>'+esc(x.what)+(x.host?' · <span class="host">'+esc(x.host)+'</span>':'')+'</span></div>'+
+    '<button class="btn'+(keen[x.id]?' done':'')+'" type="button" data-keen="'+x.id+'" aria-pressed="'+(!!keen[x.id])+'">'+(keen[x.id]?'You\'re in ✓':"I'm in")+'</button>'+helpNudge(x)+'</div>';
 }).join('');
+}
+renderInterest();
+function openHelp(id){
+  var x=INTEREST.filter(function(i){return i.id===id})[0]; if(!x) return;
+  openSheet('<span class="badge">Help make it happen</span><h2 id="sheetTitle">'+esc(x.title)+'</h2>'+
+    '<p>Brilliant. No experience needed, and you can do as much or as little as you like. Leave your details and '+(x.host?esc(x.host.replace(' hosting',''))+' or ':'')+'Kev will get in touch for a chat.</p>'+
+    '<form class="f" id="hpForm" novalidate>'+
+    '<label for="hpName">Your first name<input id="hpName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="hpContact">Mobile or email<input id="hpContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    '<label for="hpWhat">Anything you\'d enjoy doing? (optional)<textarea id="hpWhat" maxlength="600" placeholder="Finding a venue, bringing snacks, telling friends, not sure yet…"></textarea></label>'+
+    '<input class="trap" id="hpTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="hpErr" role="alert"></p><div class="row"><button class="btn" type="submit">Contact me</button></div>'+
+    '<p class="fine">Only Kev and the host see your details. <a href="privacy.html">Privacy</a></p></form>');
+  track('help nudge opened',{item:id});
+  $('#hpForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#hpName').value.trim(), c=$('#hpContact').value.trim(), err=$('#hpErr');
+    if(!n){ err.textContent='Please add your first name.'; return; }
+    if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address.'; return; }
+    me={name:n,contact:c,show:!!me.show}; store('vvv-me',JSON.stringify(me));
+    send({type:'project',way:'organise',title:'Help make it happen: '+x.title,what:$('#hpWhat').value.trim(),lead:n,thread:id,where:getHome(),name:n,email:c,ok:'No',website:$('#hpTrap').value});
+    helping[id]=Date.now(); store('vvv-help',JSON.stringify(helping)); track('offered to help',{item:id});
+    tellMe[id]=tellMe[id]||Date.now(); store('vvv-tell',JSON.stringify(tellMe));
+    renderInterest();
+    openSheet('<h2 id="sheetTitle">You\'re a star, '+esc(n)+'.</h2><p class="done-msg">We\'ll be in touch. And if life gets busy, showing up is still plenty.</p><button class="ghost" type="button" data-close>Done</button>');
+    sheet.onclick=function(ev){ if(ev.target.closest('[data-close]')) closeSheet(); };
+  });
+}
 $('#interest').addEventListener('click',function(e){
+  var h=e.target.closest('[data-help]'); if(h){ openHelp(h.getAttribute('data-help')); return; }
+  var tl=e.target.closest('[data-tell]'); if(tl){ tellWhenOn(tl.getAttribute('data-tell')); return; }
   var b=e.target.closest('[data-keen]'); if(!b) return;
   var id=b.getAttribute('data-keen'), on=!keen[id];
   if(on) keen[id]=1; else delete keen[id]; store('vvv-keen',JSON.stringify(keen));
-  b.classList.toggle('done',on); b.setAttribute('aria-pressed',on); b.textContent=on?'You\'re in ✓':"I'm in";
+  renderInterest(); var nb=$('#int-'+id+' [data-keen]'); if(nb) nb.focus();
   signal(on?'interest':'interest removed', id+' | '+(getHome())); track(on?'interest':'interest removed',{item:id});
 });
 
