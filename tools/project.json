@@ -128,7 +128,7 @@
    "2026-10-21"
   ],
   [
-   "index.html",
+   "v-simple2.html",
    "Simple2 (the main page until 28 October)",
    "2026-10-21"
   ],
@@ -171,7 +171,7 @@
  "looks": [
   [
    "original",
-   "index.html",
+   "v-simple2.html",
    "The original",
    "Sticker logo, punky, \"psst, pass it on\""
   ],
@@ -248,6 +248,33 @@
   [
    "VVV-52",
    "A simple membership with credits for paid things"
+  ]
+ ],
+ "releases": [
+  [
+   "Abinger",
+   "26 October",
+   "First mockups: front page and rabbit hole"
+  ],
+  [
+   "Busbridge",
+   "28 October",
+   "The new front page: welcome, what's on, I'm in, feedback, privacy, QR codes"
+  ],
+  [
+   "Coldharbour",
+   "28 October",
+   "Theme colours, learn from a neighbour, share something"
+  ],
+  [
+   "Eashing",
+   "29 October",
+   "Join in any way you like, Near you for Tongham, policies"
+  ],
+  [
+   "Farncombe",
+   "29 October",
+   "Simpler page, details after I'm in, stickers, About this experiment, trust fixes"
   ]
  ]
 }

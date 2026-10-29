@@ -32,7 +32,7 @@ def d(s):
 stats = [
     (f'{hours:g}', 'hours of Kev\'s time'),
     (str((datetime.date.today()-datetime.date.fromisoformat(first)).days+1), 'days since it started'),
-    (str(releases), 'updates shipped'),
+    (str(len(P.get('releases',[]))), 'named releases'),
     (str(len(pv)), 'versions of the page'),
     (str(pp['let_in']), 'people let in so far'),
     (str(pp['in_person_tests']), 'real user tests' if pp['in_person_tests']!=1 else 'real user test'),
@@ -40,6 +40,7 @@ stats = [
 
 rows = ''.join(f'<tr><td>{E(d(s["date"]))}</td><td>{s["hours"]:g}h</td><td>{E(s["what"])}</td></tr>' for s in P['sittings'])
 vers = ''.join(f'<li><a href="{E(f)}">{E(n)}</a> <span>{E(d(dt))}</span></li>' for f, n, dt in pv)
+rels = ''.join(f'<li><span>{E(dt)}</span> <b>{E(n)}</b>: {E(w)}</li>' for n, dt, w in reversed(P.get('releases', [])))
 rel = ''.join(f'<li><span>{E(t)}</span> {E(m)}</li>' for t, m in log[:15])
 
 page = f'''<!doctype html>
@@ -92,7 +93,7 @@ footer{{padding:30px 0 80px}}
 <p class="lede">Va Va Voom was made by a few Godalming people and Claude, in spare evenings and early mornings. It's a test of what citizens can build for themselves with the tools we have today.</p>
 <p class="pen">Started {E(d(first))}. Now on Release {E(release)}.</p>
 <div class="stats">{''.join(f'<div class="stat"><b>{E(a)}</b><span>{E(b)}</span></div>' for a, b in stats)}</div>
-<p class="small">People let in counts unique emails through the gate. User tests: {E(pp.get('in_person_note',''))}. Also {pp['personas']} test personas (not real visitors), {pp['signups']} sign-ups, {pp['board_posts']} board post and {pp['feedback_forms']} feedback forms so far. As of {E(d(pp['as_of']))}.</p>
+<p class="small">Real user tests: {E(pp.get('in_person_note',''))}. We also test with pretend personas: a guide, not evidence. As of {E(d(pp['as_of']))}.</p>
 
 <h2>Five looks we tried</h2>
 <p>Same idea, five different coats of paint. Tap one to see it.</p>
@@ -113,9 +114,10 @@ footer{{padding:30px 0 80px}}
 <h2>Every version of the page</h2>
 <ul class="v">{vers}</ul>
 
-<h2>Latest releases</h2>
-<ul class="r">{rel}</ul>
-<p class="small">The full history is on <a href="https://github.com/kevhimself/vavavoom/commits/main" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2>Releases</h2>
+<p>Each release is named after a local place, A to Z.</p>
+<ul class="r">{rels}</ul>
+<p class="small">Every small change is on <a href="https://github.com/kevhimself/vavavoom/commits/main" target="_blank" rel="noopener">GitHub</a>, for the curious.</p>
 </main>
 <script>
 (function(){{

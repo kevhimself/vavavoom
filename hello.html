@@ -672,7 +672,7 @@ function facesHTML(ev){
 }
 /* Kev 29 Oct: if an event has a ticket link, it comes before "I'm in". */
 function inButton(ev,done,attr){
-  return '<span class="acts">'+(ev.tickets?'<a class="tix" href="'+esc(ev.tickets)+'" target="_blank" rel="noopener" data-tix="'+ev.id+'">Get tickets ↗</a>':'')+
+  return '<span class="acts">'+(ev.tickets?'<a class="tix" href="'+esc(ev.tickets)+'" target="_blank" rel="noopener" data-tix="'+ev.id+'">Tickets on Ticket Tailor ↗</a>':'')+
     '<button class="btn'+(done?' done':'')+'" type="button" '+attr+'="'+ev.id+'">'+(done?"You're in ✓":"I'm in")+'</button></span>';
 }
 document.addEventListener('click',function(e){ var t=e.target.closest('[data-tix]'); if(t){ signal('tickets',t.getAttribute('data-tix')); track('tickets clicked',{event:t.getAttribute('data-tix')}); } });
