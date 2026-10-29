@@ -248,10 +248,9 @@ function $(s){return document.querySelector(s)}
 function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
 function getJSON(k,d){try{return JSON.parse(store(k))||d}catch(e){return d}}
 /* Kev 29 Oct: track features used, but ignore Kev, Tim and Carl. Their phones are marked as team
-   (open any page once with ?team, or it's spotted from their contact). Team taps are tagged, not dropped. */
-var TEAM_CONTACTS=['kevinself@hotmail.com','timhopkin@gmail.com','carl.staniforth@gmail.com'];
+   (open any page once with ?team). No personal details are kept in the page. Team taps are tagged, not dropped. */
 (function(){ var q=location.search; if(/[?&]team(=|&|$)/.test(q)) store('vvv-team','1'); if(/[?&]notteam(=|&|$)/.test(q)) store('vvv-team',''); })();
-function isTeam(){ if(store('vvv-team')==='1') return true; var m=getJSON('vvv-me',{}); return TEAM_CONTACTS.indexOf(String(m.contact||'').toLowerCase().trim())>-1; }
+function isTeam(){ return store('vvv-team')==='1'; }
 function send(data){
   data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE+(BUILD?' · '+BUILD:'');
   data.who=isTeam()?'team':'visitor'; if(data.type==='signal' && data.who==='team') data.detail='[team] '+(data.detail||'');
