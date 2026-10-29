@@ -414,7 +414,7 @@ footer a{color:var(--ink)}
       <input class="trap" id="fbTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="err" id="fbErr" role="alert"></p>
       <button class="btn" type="submit">Send</button>
-      <p class="fine">No links please; they get held back. Release Coldharbour.</p>
+      <p class="fine">No links please; they get held back.</p>
     </form>
     <div class="thanks" id="fbThanks" hidden>Thank you, good human. You've just shaped what comes next.</div>
   </div>
@@ -423,7 +423,7 @@ footer a{color:var(--ink)}
 <footer class="wrap">
   <div>Your details stay with us. Promise. <a href="privacy.html">Privacy and our data promise</a></div>
   <div>Va Va Voom grew out of Better Men, and is part of Purpose Nation and Open Commons.</div>
-  <div>Release Eashing · Godalming · <a href="news.html">Stories from round here</a></div>
+  <div>Godalming · <a href="news.html">Stories from round here</a></div>
 </footer>
 
 <div class="consent" id="consent" hidden>
@@ -575,7 +575,10 @@ function setWelcome(){
   $('#homeChg').textContent = h ? 'Change' : 'Tell us';
   $('#homeBtn').setAttribute('aria-label', h ? 'Home: '+h+'. Change' : "Tell us where home is");
   var near=$('#near');
-  if(h && NEAR_THINGS.map(function(x){return x.toLowerCase()}).indexOf(h.toLowerCase())===-1){
+  var hl=(h||'').toLowerCase(), hasLocal = NEAR_THINGS.map(function(x){return x.toLowerCase()}).indexOf(hl)>-1 ||
+    EVENTS.some(function(e){return isUpcoming(e) && (e.where||'').toLowerCase().indexOf(hl)>-1}) ||
+    INTEREST.concat(NEIGHBOURS).some(function(x){return isNear(x)});
+  if(h && !hasLocal){
     near.hidden=false; $('#nearTitle').textContent='Nothing in '+h+' yet.';
   } else near.hidden=true;
 }
@@ -588,7 +591,7 @@ function openWelcome(fromButton){
   openSheet('<div id="welcomeSheet">'+
     '<div class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/ruth.jpg" alt=""><img src="people/carl.jpg" alt=""><img src="people/reiks.jpg" alt=""></div>'+
     '<h2 id="sheetTitle">Hello, good human!</h2>'+
-    '<p>We\'re Kev, Tim and Carl, and we\'re very glad you\'re here. Where\'s home? We\'ll show you what\'s happening on your doorstep.</p>'+
+    '<p>We\'re Kev, Tim and Carl, with Ruth, Rieks and friends, and we\'re very glad you\'re here. Where\'s home? We\'ll show you what\'s happening on your doorstep.</p>'+
     '<div class="quick">'+['Godalming','Farncombe','Milford','Witley','Shackleford','Elstead','Bramley','Guildford','Farnham','Haslemere','Cranleigh'].map(function(p){return '<button class="chip" type="button" data-home="'+p+'">'+p+'</button>'}).join('')+'</div>'+
     '<form class="f" id="homeForm" novalidate><label for="homeIn">Somewhere else? Type your town or village'+
     '<input id="homeIn" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Start typing, e.g. Tongham" aria-describedby="homeHint" aria-controls="placeSug" value="'+esc(fromButton?getHome():'')+'"></label>'+
