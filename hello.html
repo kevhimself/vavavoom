@@ -183,8 +183,9 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none}
 .nb h3 button{all:unset;cursor:pointer;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 .nb .meta{margin:2px 0 6px}
 .tags{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 6px}
-.tag{background:var(--th,var(--mist));color:var(--th-ink,var(--ink));font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;line-height:1.5}
-.tag.shaping{background:var(--mist);color:var(--ink)}
+/* Kev 29 Oct: less colour. Theme tags are ink text with just a coloured border. */
+.tag{background:transparent;color:var(--ink);border:1.5px solid var(--th,var(--ink));font-size:11px;font-weight:700;border-radius:999px;padding:1px 8px;line-height:1.5}
+.tag.shaping{border-color:var(--muted);color:var(--muted)}
 .nb p{margin:0 0 10px;font-size:15px}
 .seeall{margin-top:6px}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
