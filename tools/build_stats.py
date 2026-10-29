@@ -34,7 +34,7 @@ stats = [
     (str(releases), 'updates shipped'),
     (str(len(pv)), 'versions of the page'),
     (str(pp['let_in']), 'people let in so far'),
-    (str(pp['in_person_tests']), 'in-person user test'),
+    (str(pp['in_person_tests']), 'real user tests' if pp['in_person_tests']!=1 else 'real user test'),
 ]
 
 rows = ''.join(f'<tr><td>{E(d(s["date"]))}</td><td>{s["hours"]:g}h</td><td>{E(s["what"])}</td></tr>' for s in P['sittings'])
@@ -88,7 +88,7 @@ footer{{padding:30px 0 80px}}
 <p class="lede">Va Va Voom was made by a few Godalming people and Claude, in spare evenings and early mornings. It's a test of what citizens can build for themselves with the tools we have today.</p>
 <p class="pen">Started {E(d(first))}. Now on Release {E(release)}.</p>
 <div class="stats">{''.join(f'<div class="stat"><b>{E(a)}</b><span>{E(b)}</span></div>' for a, b in stats)}</div>
-<p class="small">People let in counts unique emails through the gate. Also {pp['personas']} test personas (not real visitors), {pp['signups']} sign-ups, {pp['board_posts']} board post and {pp['feedback_forms']} feedback forms so far. As of {E(d(pp['as_of']))}.</p>
+<p class="small">People let in counts unique emails through the gate. User tests: {E(pp.get('in_person_note',''))}. Also {pp['personas']} test personas (not real visitors), {pp['signups']} sign-ups, {pp['board_posts']} board post and {pp['feedback_forms']} feedback forms so far. As of {E(d(pp['as_of']))}.</p>
 
 <h2>Five looks we tried</h2>
 <p>Same idea, five different coats of paint. Tap one to see it.</p>
