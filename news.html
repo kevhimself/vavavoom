@@ -240,8 +240,9 @@ footer a{color:var(--ink)}
   <div>Stories from round here · made by neighbours, not committees</div>
 </footer>
 
+<script src="release.js"></script>
 <script>
-var RELEASE='Farncombe';
+var RELEASE = window.VVV_RELEASE || 'Farncombe', BUILD = window.VVV_BUILD || '';
 var CATCHER='https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec';
 function $(s){return document.querySelector(s)}
 function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
@@ -252,7 +253,7 @@ var TEAM_CONTACTS=['kevinself@hotmail.com','timhopkin@gmail.com','carl.stanifort
 (function(){ var q=location.search; if(/[?&]team(=|&|$)/.test(q)) store('vvv-team','1'); if(/[?&]notteam(=|&|$)/.test(q)) store('vvv-team',''); })();
 function isTeam(){ if(store('vvv-team')==='1') return true; var m=getJSON('vvv-me',{}); return TEAM_CONTACTS.indexOf(String(m.contact||'').toLowerCase().trim())>-1; }
 function send(data){
-  data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE;
+  data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE+(BUILD?' · '+BUILD:'');
   data.who=isTeam()?'team':'visitor'; if(data.type==='signal' && data.who==='team') data.detail='[team] '+(data.detail||'');
   try{ fetch(CATCHER,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).catch(function(){}) }catch(e){}
 }

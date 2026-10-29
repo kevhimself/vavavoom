@@ -342,9 +342,10 @@ footer a{color:var(--ink)}
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" id="sheet"></div>
 </div>
 
+<script src="release.js"></script>
 <script>
 /* ---------- EDIT HERE: what's on, interest list, threads ---------- */
-var RELEASE = 'Coldharbour';
+var RELEASE = window.VVV_RELEASE || 'Farncombe', BUILD = window.VVV_BUILD || '';
 var EVENTS = [
   { id:'briefing', onnow:true, badge:'On now · this Saturday', title:"People's Emergency Briefing", day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
     time:'10:30am', length:'', where:'Shackleford', host:'Tim and Sue', thread:'nature', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
@@ -425,7 +426,7 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return
 function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
 function getJSON(k,d){try{return JSON.parse(store(k))||d}catch(e){return d}}
 function send(data){
-  data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE;
+  data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE+(BUILD?' · '+BUILD:'');
   try{ fetch(CATCHER,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).catch(function(){}) }catch(e){}
 }
 function signal(ev,detail){ send({type:'signal',event:ev,detail:detail||''}); }

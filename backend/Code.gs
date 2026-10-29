@@ -28,12 +28,12 @@ function doPost(e) {
         now, clean(d.name), clean(d.phone), clean(d.email), clean(d.where),
         d.fit === 'in' ? "I'm in" : d.fit === 'out' ? 'Not for me' : clean(d.fit),
         clean(d.voom), clean(d.five_easy), clean(d.bring), clean(d.experiment),
-        clean(d.five_grow), clean(d.cool), clean(d.thread), clean(d.page), ''
+        clean(d.five_grow), clean(d.cool), clean(d.thread), clean(d.page), '', clean(d.version), clean(d.who || '')
       ]);
     } else if (d.type === 'board') {
       ss.getSheetByName('Board').appendRow([
         now, clean(d.level), clean(d.thread), clean(d.tag), clean(d.post),
-        clean(d.name), clean(d.email), clean(d.page), 'New', '', ''
+        clean(d.name), clean(d.email), clean(d.page), 'New', '', '', clean(d.version), clean(d.who || '')
       ]);
     } else if (d.type === 'signal') {
       // Signals: Received, Event, Detail, Page, Release, Who (team or visitor; Kev 29 Oct: ignore Kev, Tim and Carl when counting)
@@ -46,12 +46,12 @@ function doPost(e) {
       ss.getSheetByName('Projects').appendRow([
         now, clean(d.title), clean(d.what), clean(d.rel), clean(d.lead), clean(d.about), clean(d.love), clean(d.tips),
         clean(d.engage), clean(d.dates), clean(d.url), clean(d.thread), clean(d.where), clean(d.name), clean(d.email),
-        clean(d.ok), clean(d.page), 'New'
+        clean(d.ok), clean(d.page), 'New', clean(d.version), clean(d.who || '')
       ]);
     } else if (d.type === 'feedback') {
       ss.getSheetByName('Feedback').appendRow([
         now, clean(d.version), clean(d.felt), clean(d.drawn), clean(d.turnoff), clean(d.onething),
-        clean(d.other), clean(d.name), clean(d.email), clean(d.page)
+        clean(d.other), clean(d.name), clean(d.email), clean(d.page), clean(d.who || '')
       ]);
     }
   } catch (err) {

@@ -20,7 +20,7 @@ hours = sum(s['hours'] for s in P['sittings'])
 days = len({s['date'] for s in P['sittings']})
 pv = P['page_versions']
 pp = P['people']
-release = re.search(r"var RELEASE = '([^']+)'", (ROOT / 'hello.html').read_text()).group(1)
+release = re.search(r"VVV_RELEASE = '([^']+)'", (ROOT / 'release.js').read_text()).group(1)
 looks = ''.join(f'<a class="look" href="{E(h)}"><img src="img/looks/{E(i)}.jpg" alt="" loading="lazy"><b>{E(t)}</b><span>{E(s)}</span></a>' for i, h, t, s in P.get('looks', []))
 votes = ''.join(f'<li><span class="vt">{E(t)}</span><button type="button" class="vote" data-vote="{E(i)}">I\'d use this</button></li>' for i, t in P.get('vote', []))
 today = datetime.date.today().isoformat()
@@ -80,6 +80,7 @@ footer{{padding:30px 0 80px}}
 </style>
 </head>
 <body>
+<script src="release.js"></script>
 <script src="gate.js"></script>
 <main class="wrap">
 <p class="small" style="margin-top:24px"><a href="./">← Va Va Voom</a></p>
@@ -119,7 +120,7 @@ footer{{padding:30px 0 80px}}
   function paint(b){{ var on=!!mine[b.getAttribute('data-vote')]; b.classList.toggle('on',on); b.textContent=on?'Voted ✓':"I'd use this"; b.setAttribute('aria-pressed',on); }}
   document.querySelectorAll('[data-vote]').forEach(function(b){{ paint(b); b.addEventListener('click',function(){{
     var id=b.getAttribute('data-vote'), on=!mine[id]; if(on) mine[id]=Date.now(); else delete mine[id]; save(); paint(b);
-    try{{ fetch(CATCHER,{{method:'POST',mode:'no-cors',headers:{{'Content-Type':'text/plain'}},body:JSON.stringify({{type:'signal',event:on?'vote':'vote removed',detail:(localStorage.getItem('vvv-team')==='1'?'[team] ':'')+id,who:(localStorage.getItem('vvv-team')==='1'?'team':'visitor'),page:location.pathname,when:new Date().toISOString(),version:'{E(release)}'}})}}).catch(function(){{}}) }}catch(e){{}}
+    try{{ fetch(CATCHER,{{method:'POST',mode:'no-cors',headers:{{'Content-Type':'text/plain'}},body:JSON.stringify({{type:'signal',event:on?'vote':'vote removed',detail:(localStorage.getItem('vvv-team')==='1'?'[team] ':'')+id,who:(localStorage.getItem('vvv-team')==='1'?'team':'visitor'),page:location.pathname,when:new Date().toISOString(),version:(window.VVV_RELEASE||'{E(release)}')+(window.VVV_BUILD?' · '+window.VVV_BUILD:'')}})}}).catch(function(){{}}) }}catch(e){{}}
   }}); }});
 }})();
 </script>

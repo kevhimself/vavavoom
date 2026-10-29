@@ -451,9 +451,10 @@ footer a{color:var(--ink)}
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" id="sheet"></div>
 </div>
 
+<script src="release.js"></script>
 <script>
 /* ---------- EDIT HERE: what's on, interest list, threads ---------- */
-var RELEASE = 'Farncombe';
+var RELEASE = window.VVV_RELEASE || 'Farncombe', BUILD = window.VVV_BUILD || '';
 var EVENTS = [
   { id:'briefing', feel:'inspired', badge:'Part 1', title:"People's Emergency Briefing", day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
     time:'10:15am (doors 10am)', length:'About 1½ hours', where:'Shackleford Village Hall', host:'Tim and Sue', thread:'nature', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
@@ -565,7 +566,7 @@ var TEAM_CONTACTS=['kevinself@hotmail.com','timhopkin@gmail.com','carl.stanifort
 (function(){ var q=location.search; if(/[?&]team(=|&|$)/.test(q)) store('vvv-team','1'); if(/[?&]notteam(=|&|$)/.test(q)) store('vvv-team',''); })();
 function isTeam(){ if(store('vvv-team')==='1') return true; var m=getJSON('vvv-me',{}); return TEAM_CONTACTS.indexOf(String(m.contact||'').toLowerCase().trim())>-1; }
 function send(data){
-  data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE;
+  data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE+(BUILD?' · '+BUILD:'');
   data.who=isTeam()?'team':'visitor'; if(data.type==='signal' && data.who==='team') data.detail='[team] '+(data.detail||'');
   try{ fetch(CATCHER,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).catch(function(){}) }catch(e){}
 }
@@ -575,12 +576,12 @@ function signal(ev,detail){ send({type:'signal',event:ev,detail:detail||''}); }
 var PH_CHOICE='vvv-ph';
 /* Features we want counted in the sheet too (not just PostHog), for the features-used tracker. */
 var FEATURE_SIGNALS=['what is it opened','who row opened','join way picked','details left','offered to help','neighbour opened','event opened','home missing','added to calendar','shared something'];
-function track(n,p){try{ if(window.posthog&&posthog.capture) posthog.capture(n,Object.assign({release:RELEASE,team:isTeam()},p||{})) }catch(e){}
+function track(n,p){try{ if(window.posthog&&posthog.capture) posthog.capture(n,Object.assign({release:RELEASE,build:BUILD,team:isTeam()},p||{})) }catch(e){}
   if(FEATURE_SIGNALS.indexOf(n)>-1){ var d=p?Object.keys(p).map(function(k){return p[k]}).join(' | '):''; send({type:'signal',event:n,detail:d}); } }
 (function(){
   !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister identify reset get_distinct_id set_config startSessionRecording stopSessionRecording opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing get_explicit_consent_status debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
   posthog.init(PH_KEY,{api_host:'https://eu.i.posthog.com',defaults:'2025-05-24',cookieless_mode:'on_reject',person_profiles:'identified_only',respect_dnt:true,session_recording:{maskAllInputs:true}});
-  posthog.register({site_version:RELEASE, app:'va-va-voom', team:isTeam()});
+  posthog.register({site_version:RELEASE, build:BUILD, app:'va-va-voom', team:isTeam()});
   var c=store(PH_CHOICE), box=$('#consent');
   if(c==='yes') posthog.opt_in_capturing(); else if(c==='no') posthog.opt_out_capturing(); else window.__askConsent=true;
   function choose(yes){ store(PH_CHOICE,yes?'yes':'no'); try{yes?posthog.opt_in_capturing():posthog.opt_out_capturing()}catch(e){} box.hidden=true; track('privacy choice',{choice:yes?'yes':'no'}); }
@@ -1052,7 +1053,7 @@ function openWhat(toWho){ toWho = toWho===true;
 }
 $('#whatBtn').addEventListener('click',function(){ openWhat(false); });
 $('#whoBtn').addEventListener('click',function(){ openWhat(true); track('who row opened'); });
-document.querySelectorAll('[data-release]').forEach(function(el){ el.textContent='Release '+RELEASE; });
+document.querySelectorAll('[data-release]').forEach(function(el){ el.textContent='Release '+RELEASE+(BUILD?' · '+BUILD:''); });
 
 /* ---------- menu ---------- */
 var burger=$('#burger'), menu=$('#menu');
