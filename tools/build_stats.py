@@ -83,7 +83,7 @@ footer{{padding:30px 0 80px}}
 <script src="release.js"></script>
 <script src="gate.js"></script>
 <main class="wrap">
-<p class="small" style="margin-top:24px"><a href="./">← Va Va Voom</a></p>
+<p class="small" style="margin-top:24px"><a href="hello.html">← Va Va Voom</a> · <a href="experiment.html">About this experiment</a></p>
 <h1>How we built this</h1>
 <p class="lede">Va Va Voom was made by a few Godalming people and Claude, in spare evenings and early mornings. It's a test of what citizens can build for themselves with the tools we have today.</p>
 <p class="pen">Started {E(d(first))}. Now on Release {E(release)}.</p>
