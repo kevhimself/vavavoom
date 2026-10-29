@@ -93,6 +93,10 @@ section.sec{padding-block:22px 4px}
 .story h3{margin:2px 0 4px;font-size:19px;line-height:1.25}
 .story p{margin:0 0 8px;font-size:15px}
 .story .meta{font-size:14px;color:var(--muted)}
+/* Kev 29 Oct: the main action is an obvious button; a secondary one is a quiet text link beside it. */
+.story .acts{display:flex;justify-content:flex-end;align-items:center;gap:8px 16px;flex-wrap:wrap;margin-top:10px}
+.story .acts .btn{min-height:40px;padding:8px 16px;font-size:15px}
+.story .acts .sec{font-weight:700;font-size:14px;color:var(--ink);text-decoration:underline;text-decoration-color:var(--rose);text-underline-offset:4px}
 
 .tell{background:var(--ink);color:var(--paper);border-radius:16px;padding:20px 18px;margin-top:18px;display:grid;gap:10px}
 .tell h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:28px;line-height:1;margin:0;color:var(--lime)}
@@ -180,7 +184,7 @@ footer a{color:var(--ink)}
           <span class="badge">Good human · Godalming</span>
           <h3>Ilona, the VA putting an engine under local business</h3>
           <p>After ten years as a PA, Ilona went her own way. She walked into pretty much every shop in Godalming, said what she was doing, and was fully booked within a month. Now she's the flexible right hand for small businesses round here, and she joins the dots between them. She's just been on the Trinkfluss Wines podcast with Bastian and Matteo from Take One Studio.</p>
-          <div class="meta"><a href="https://tidycal.com/ilonamckieva/power-hour-un-muddle-me" target="_blank" rel="noopener" data-out="ilona-powerhour">Book a Power Hour: Un-Muddle Me (£130) ↗</a> · <a href="https://podcastaddict.com/podcast/7023038" target="_blank" rel="noopener" data-out="trinkfluss-podcast">Listen to the podcast ↗</a> · Then say hello to Bastian at Trinkfluss</div>
+          <div class="acts"><a class="sec" href="https://tidycal.com/ilonamckieva/power-hour-un-muddle-me" target="_blank" rel="noopener" data-out="ilona-powerhour">Her Power Hour (£130) ↗</a><a class="btn" href="https://podcastaddict.com/podcast/7023038" target="_blank" rel="noopener" data-out="trinkfluss-podcast">Listen to the podcast ↗</a></div>
         </div>
       </article>
       <article class="story">
@@ -189,7 +193,7 @@ footer a{color:var(--ink)}
           <span class="badge">Small brave thing · Milford</span>
           <h3>A £10 pump and a bath's worth of water for the garden</h3>
           <p>Rieks spent a tenner on a little pump. In summer, the bath water goes into a tank instead of down the drain, and waters the garden. No several-grand system needed.</p>
-          <div class="meta">Your turn: what's one small thing you've done, or could do this month? <a href="#tell">Tell us</a></div>
+          <div class="meta">Your turn: what's one small thing you've done, or could do this month?</div><div class="acts"><a class="btn" href="#tell">Tell us</a></div>
         </div>
       </article>
       <article class="story">
@@ -198,7 +202,7 @@ footer a{color:var(--ink)}
           <span class="badge">This Saturday · Shackleford</span>
           <h3>From the briefing to the farm</h3>
           <p>A film, a proper conversation about where we're all at, then down to Norney Farm Bungalow to see solar, rain harvesting and regenerative growing working together.</p>
-          <div class="meta"><a href="hello.html#briefing">See the details</a></div>
+          <div class="acts"><a class="btn" href="hello.html#briefing">See the details</a></div>
         </div>
       </article>
       <article class="story">
@@ -207,7 +211,7 @@ footer a{color:var(--ink)}
           <span class="badge">How it started · Godalming</span>
           <h3>Three men, Monday nights, one question</h3>
           <p>Good food, big conversations, and the question we always ask: how have we been better this week? Now we're opening the door, starting with a pub night and a walk.</p>
-          <div class="meta"><a href="hello.html#walk">Come on the walk</a></div>
+          <div class="acts"><a class="btn" href="hello.html#walk">Come on the walk</a></div>
         </div>
       </article>
     </div>
