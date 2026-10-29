@@ -404,7 +404,7 @@ var NEIGHBOURS = [
   { id:'bugs', theme:'nature', title:'Bug houses and vertical gardens', who:'Rieks', where:'Milford', img:'people/reiks.jpg',
     line:'Homes for the small wild things, and growing up a wall when there\'s no room to grow out.',
     about:'Make homes for the small wild things, and grow up a wall when you have no room to grow out.' },
-  { id:'change', theme:'talk', title:'Navigate change', who:'Ruth', where:'Coaching', img:'people/ruth.jpg',
+  { id:'change', theme:'talk', title:'Navigate change', who:'Ruth', where:'Coaching', img:'people/ruth.jpg', link:'https://kevhimself.github.io/RuthBlanco/', linkText:'See Ruth\'s website',
     line:'Coaching for when life is shifting under your feet.',
     about:'Coaching for when life is shifting under your feet, and a kind ear if you\'re worried about where things are heading.' }
 ];
@@ -648,7 +648,7 @@ function openNeighbour(id){
   var n=nbById(id); if(!n) return;
   openSheet('<span class="badge">Learn from a neighbour</span><h2 id="sheetTitle">'+esc(n.title)+'</h2>'+
     '<div class="mini" style="border-top:0"><img src="'+esc(n.img)+'" alt=""><div><b>With '+esc(n.who)+'</b><span>'+esc(n.where)+'</span></div></div>'+
-    '<p>'+esc(n.about)+'</p><p class="fine">No date yet. Say you\'re interested and we\'ll set one once enough of you are keen.</p>'+
+    '<p>'+esc(n.about)+'</p>'+(n.link?'<p style="margin:0 0 10px"><a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+esc(n.linkText||'Their website')+' ↗</a></p>':'')+'<p class="fine">No date yet. Say you\'re interested and we\'ll set one once enough of you are keen.</p>'+
     '<div class="row">'+nbBtn(n)+'</div>');
   track('neighbour opened',{neighbour:id});
   sheet.onclick=function(e){ var i=e.target.closest('[data-nbin]'); if(i) nbInterested(i.getAttribute('data-nbin')); };
