@@ -185,6 +185,10 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none}
 .tags{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 6px}
 /* Kev 29 Oct: less colour. Theme tags are ink text with just a coloured border. */
 .tag{background:transparent;color:var(--ink);border:1.5px solid var(--th,var(--ink));font-size:11px;font-weight:700;border-radius:999px;padding:1px 8px;line-height:1.5}
+.stk{display:inline-block;width:26px;height:26px;vertical-align:-6px;margin-left:6px;transform:rotate(-10deg);filter:drop-shadow(2px 2px 0 rgba(34,30,25,.3))}
+.f input[aria-invalid="true"]{border-color:var(--rose-dk);box-shadow:0 0 0 3px rgba(232,51,127,.2)}
+.tile .tl{display:flex;align-items:center;gap:6px}
+.tile .stk{width:22px;height:22px;margin:0;vertical-align:0;flex-shrink:0}
 .tag.shaping{border-color:var(--muted);color:var(--muted)}
 .nb p{margin:0 0 10px;font-size:15px}
 .seeall{margin-top:6px}
@@ -606,7 +610,7 @@ function openWelcome(fromButton){
     '<form class="f" id="homeForm" novalidate><label for="homeIn">Somewhere else? Type your town or village'+
     '<input id="homeIn" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Start typing, e.g. Tongham" aria-describedby="homeHint" aria-controls="placeSug" value="'+esc(fromButton?getHome():'')+'"></label>'+
     '<div class="sug" id="placeSug" role="listbox" aria-label="Places near Godalming" hidden></div>'+
-    '<p class="fine" id="homeHint">Anywhere within about 15 miles. Not listed? Just type it.</p>'+
+    '<p class="err" id="homeErr" role="alert"></p><p class="fine" id="homeHint">Anywhere within about 15 miles. Not listed? Just type it.</p>'+
     '<div class="row"><button class="btn" type="submit">Show me what\'s on</button><button class="skip" type="button" data-skip>I\'ll just have a nose around</button></div></form></div>');
   setTimeout(function(){ var q=sheet.querySelector('.chip'); if(q) q.focus(); },60);
   function done(){ store('vvv-welcomed','1'); }
@@ -627,8 +631,12 @@ function openWelcome(fromButton){
     sug.hidden=!list.length;
   }
   hin.addEventListener('input',suggest);
-  hin.addEventListener('focus',function(){ if(hin.value){ hin.placeholder=hin.value; hin.value=''; suggest(); } });
-  $('#homeForm').addEventListener('submit',function(e){ e.preventDefault(); var v=$('#homeIn').value; if(v.trim()){ var f=sheetOnClose; sheetOnClose=null; setHome(v); done(); closeSheet(); showConsent(); } else $('#homeIn').focus(); });
+  hin.addEventListener('focus',function(){ if(hin.value){ hin.dataset.prev=hin.value; hin.placeholder=hin.value; hin.value=''; suggest(); } });
+  hin.addEventListener('input',function(){ hin.removeAttribute('aria-invalid'); var er=$('#homeErr'); if(er) er.textContent=''; });
+  /* Kev 29 Oct: an empty box gets a clear message, not silence. A home they already had still counts. */
+  $('#homeForm').addEventListener('submit',function(e){ e.preventDefault(); var v=$('#homeIn').value.trim()||($('#homeIn').dataset.prev||'');
+    if(v){ var f=sheetOnClose; sheetOnClose=null; setHome(v); done(); closeSheet(); showConsent(); }
+    else { hin.setAttribute('aria-invalid','true'); $('#homeErr').textContent='Tap a place above, or type your town or village here.'; hin.focus(); track('home missing'); } });
 }
 setWelcome();
 $('#homeBtn').addEventListener('click',function(){ openWelcome(true); });
@@ -800,6 +808,9 @@ function learnById(id){ return learnItems().filter(function(x){return x.id===id}
 function isIn(it){ return it.kind==='nb' ? !!nbMine[it.id] : !!keen[it.id]; }
 function setIn(it,on){ var m=it.kind==='nb'?nbMine:keen; if(on) m[it.id]=Date.now(); else delete m[it.id]; store(it.kind==='nb'?'vvv-nb':'vvv-keen',JSON.stringify(m)); }
 function nbBtn(it){ var d=isIn(it); return '<button class="'+(d?'btn done':'btn')+'" type="button" data-nbin="'+it.id+'">'+(d?'You\'re in ✓':"I'm in")+'</button>'; }
+var STK={"grow": "<path d=\"M8 54 Q32 46 56 54 L56 60 L8 60 Z\" fill=\"#9a6a45\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/><path d=\"M32 52 V30\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linecap=\"round\"/><path d=\"M32 34 C18 34 12 24 12 14 C24 14 32 20 32 34 Z\" fill=\"#7cc04a\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/><path d=\"M32 30 C40 30 50 24 52 12 C40 12 32 18 32 30 Z\" fill=\"#c9f24a\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/>", "move": "<path d=\"M36 3 L12 36 H29 L23 61 L52 24 H34 Z\" fill=\"#e8337f\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/><path d=\"M33 10 L20 29\" stroke=\"#fff\" stroke-width=\"2.5\" stroke-linecap=\"round\" opacity=\".7\"/>", "talk": "<path d=\"M32 56 C10 40 4 28 8 18 C12 8 26 8 32 19 C38 8 52 8 56 18 C60 28 54 40 32 56 Z\" fill=\"#ee5a6f\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/><path d=\"M15 20 q3 -6 9 -5\" stroke=\"#fff\" stroke-width=\"2.5\" fill=\"none\" stroke-linecap=\"round\" opacity=\".75\"/>", "nature": "<path d=\"M32 4 C40 18 52 30 52 42 C52 53 43 60 32 60 C21 60 12 53 12 42 C12 30 24 18 32 4 Z\" fill=\"#5aa9e6\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/><path d=\"M22 40 q0 -8 6 -12\" stroke=\"#fff\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" opacity=\".8\"/>", "homes": "<path d=\"M32 60 C16 60 10 48 14 36 C17 27 24 24 22 10 C34 16 38 26 36 34 C40 30 42 26 41 20 C50 28 54 38 52 46 C50 55 42 60 32 60 Z\" fill=\"#f2a13a\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/><path d=\"M32 56 C25 56 22 50 24 44 C26 39 30 38 30 32 C37 37 40 43 38 49 C37 53 35 56 32 56 Z\" fill=\"#ffd95a\" stroke=\"#221e19\" stroke-width=\"2.5\"/>", "make": "<path d=\"M16 50 L38 28\" stroke=\"#221e19\" stroke-width=\"10\" stroke-linecap=\"round\"/><path d=\"M16 50 L38 28\" stroke=\"#c98a4b\" stroke-width=\"5\" stroke-linecap=\"round\"/><path d=\"M30 16 L44 8 L56 20 L48 34 Z\" fill=\"#5aa9e6\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/>"};
+/* Kev 29 Oct: graffiti sticker at the end of the title instead of a theme tag. Name kept for screen readers. */
+function stkHTML(t){ var th=THREADS.filter(function(x){return x.id===t})[0]; return STK[t]?'<svg class="stk" viewBox="0 0 64 64" aria-hidden="true">'+STK[t]+'</svg>'+(th?'<span class="sr"> ('+esc(th.t)+')</span>':''):''; }
 function tagsHTML(n){ return '<div class="tags">'+(n.shaping?'<span class="tag shaping">Still being shaped</span>':'')+(n.themes||nbThemes(n)).map(function(t){ var th=THREADS.filter(function(x){return x.id===t})[0]; return th?'<span class="tag th-'+t+'">'+esc(th.t)+'</span>':''; }).join('')+'</div>'; }
 function metaLine(it){ var bits=[]; if(it.when) bits.push(esc(it.when)); if(it.who) bits.push('with '+esc(it.who)); if(it.where) bits.push(esc(it.where)); return nearTag(it)+bits.join(' · '); }
 function renderNeighbours(){
@@ -810,8 +821,8 @@ function renderNeighbours(){
   if(!list.length) list=all.slice(0,4);
   $('#nbList').innerHTML=list.map(function(n){
     return '<article class="nb">'+avatarHTML(n)+'<div style="min-width:0">'+
-      '<h3><button type="button" data-nb="'+n.id+'">'+esc(n.title)+'</button></h3>'+
-      '<div class="meta">'+metaLine(n)+'</div><p>'+esc(n.line)+'</p><div class="row act">'+tagsHTML(n)+nbBtn(n)+'</div></div></article>';
+      '<h3><button type="button" data-nb="'+n.id+'">'+esc(n.title)+'</button>'+stkHTML(n.themes[0])+'</h3>'+
+      '<div class="meta">'+metaLine(n)+'</div><p>'+esc(n.line)+'</p><div class="row act">'+(n.shaping?'<span class="tag shaping">Still being shaped</span>':'')+nbBtn(n)+'</div></div></article>';
   }).join('');
   var b=$('#nbAll'); b.hidden=all.length<=list.length && !nbShowAll; b.textContent=nbShowAll?'Show fewer':'See all '+all.length;
 }
@@ -886,7 +897,7 @@ function renderTiles(){
   $('#threads').innerHTML=THREADS.map(function(t){
     var it=themeItems(t.id), n=it.nb.length+it.ev.length+INTEREST.filter(nearOk).filter(function(x){return (x.themes||[]).indexOf(t.id)>-1}).length, on=!!pulls[t.id];
     var line=n? (n+(n===1?' thing':' things')+' round here') : 'Nothing yet';
-    return '<button class="tile th-'+t.id+(on?' on':'')+'" type="button" data-theme="'+t.id+'" aria-pressed="'+on+'"><b>'+esc(t.t)+'</b><span>'+line+'</span><i class="tick" aria-hidden="true">'+(on?'<svg viewBox="0 0 16 16" width="12" height="12"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>':'')+'</i></button>';
+    return '<button class="tile th-'+t.id+(on?' on':'')+'" type="button" data-theme="'+t.id+'" aria-pressed="'+on+'"><b>'+esc(t.t)+'</b><span class="tl"><svg class="stk" viewBox="0 0 64 64" aria-hidden="true">'+(STK[t.id]||'')+'</svg>'+line+'</span><i class="tick" aria-hidden="true">'+(on?'<svg viewBox="0 0 16 16" width="12" height="12"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>':'')+'</i></button>';
   }).join('');
 }
 function renderNudge(){
