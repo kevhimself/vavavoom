@@ -375,7 +375,7 @@ footer a{color:var(--ink)}
 
   <section class="sec" aria-labelledby="h-who">
     <h2 id="h-who">Who's behind it</h2>
-    <button class="facesrow" type="button" id="whoBtn"><span class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/ruth.jpg" alt=""><img src="people/carl.jpg" alt=""><img src="people/reiks.jpg" alt=""></span><span class="txt"><b>Kev, Tim, Carl and friends</b><span>Meet them</span></span></button>
+    <button class="facesrow" type="button" id="whoBtn"><span class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/ruth.jpg" alt=""><img src="people/carl.jpg" alt=""><img src="people/jules.jpg" alt=""><img src="people/reiks.jpg" alt=""></span><span class="txt"><b>Kev, Tim, Carl and friends</b><span>Meet them</span></span></button>
   </section>
 </main>
 
@@ -598,9 +598,9 @@ function setHome(h){
 }
 function openWelcome(fromButton){
   openSheet('<div id="welcomeSheet">'+
-    '<div class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/ruth.jpg" alt=""><img src="people/carl.jpg" alt=""><img src="people/reiks.jpg" alt=""></div>'+
+    '<div class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/ruth.jpg" alt=""><img src="people/carl.jpg" alt=""><img src="people/jules.jpg" alt=""><img src="people/reiks.jpg" alt=""></div>'+
     '<h2 id="sheetTitle">Hello, good human!</h2>'+
-    '<p>We\'re Kev, Tim and Carl, with Ruth, Rieks and friends, and we\'re very glad you\'re here. Where\'s home? We\'ll show you what\'s happening on your doorstep.</p>'+
+    '<p>We\'re Kev, Tim and Carl, with Ruth, Jules, Rieks and friends, and we\'re very glad you\'re here. Where\'s home? We\'ll show you what\'s happening on your doorstep.</p>'+
     '<div class="quick">'+['Godalming','Farncombe','Milford','Witley','Shackleford','Elstead','Bramley','Guildford','Farnham','Haslemere','Cranleigh'].map(function(p){return '<button class="chip" type="button" data-home="'+p+'">'+p+'</button>'}).join('')+'</div>'+
     '<form class="f" id="homeForm" novalidate><label for="homeIn">Somewhere else? Type your town or village'+
     '<input id="homeIn" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Start typing, e.g. Tongham" aria-describedby="homeHint" aria-controls="placeSug" value="'+esc(fromButton?getHome():'')+'"></label>'+
