@@ -851,7 +851,7 @@ function openNeighbour(id){
   openSheet('<span class="badge">Learn from a neighbour</span><h2 id="sheetTitle">'+esc(n.title)+'</h2>'+
     '<div class="mini" style="border-top:0">'+avatarHTML(n,'sm')+'<div><b>'+(n.who?'With '+esc(n.who):'Looking for a host')+'</b><span>'+esc(n.where||n.when||'')+'</span></div></div>'+
     '<p>'+esc(n.about)+'</p>'+(n.ask?'<p class="ask" style="margin:0 0 10px">'+esc(n.ask)+'</p>':'')+(n.link?'<p style="margin:0 0 10px"><a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+esc(n.linkText||'Their website')+' ↗</a></p>':'')+
-    '<p class="fine">No date yet. Say you\'re in and we\'ll set one once enough of you are keen.</p>'+
+    (n.book?'<p class="fine">Book a time directly with '+esc(n.who)+'. Tap "I\'m in" if you\'d rather hear about a group session.</p>':'<p class="fine">No date yet. Say you\'re in and we\'ll set one once enough of you are keen.</p>')+
     '<div class="row">'+(isIn(n)?'<button class="skip" type="button" data-out-of="'+n.id+'">Not for me after all</button>':'')+(n.book?'<a class="tix" href="'+esc(n.book)+'" target="_blank" rel="noopener" data-out="book-'+n.id+'">'+esc(n.bookText||'Book')+' ↗</a>':'')+nbBtn(n)+'</div>');
   track('neighbour opened',{neighbour:id});
   sheet.onclick=function(e){
@@ -1024,7 +1024,7 @@ function openHelpOut(){
     '<label for="hoWhat">Anything you\'d enjoy? (optional)<input id="hoWhat" type="text" maxlength="200" placeholder="Booking a room, making tea, telling friends…"></label>'+
     '<input class="trap" id="hoTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
     '<p class="err" id="hoErr" role="alert"></p><div class="row"><button class="btn" type="submit">Dare accepted</button></div>'+
-    '<p class="fine">Only Kev sees your details. <a href="privacy.html">Privacy</a></p></form>');
+    '<p class="fine">Only Kev and the host see your details. <a href="privacy.html">Privacy</a></p></form>');
   $('#hoForm').addEventListener('submit',function(e){
     e.preventDefault();
     var n=$('#hoName').value.trim(), c=$('#hoContact').value.trim(), err=$('#hoErr');

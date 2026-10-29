@@ -24,14 +24,15 @@ ul{padding-left:20px}li{margin-bottom:6px}a{color:var(--ink)}.muted{color:var(--
 <ul>
 <li><b>Where's home:</b> the town or village you type, so we can show what's near you.</li>
 <li><b>What pulls you:</b> the themes you tap and the things you'd come to, so we can plan what people round here want.</li>
-<li><b>When you say "I'm in":</b> your first name and a mobile or email, so the host can let you know about that event.</li>
+<li><b>When you say "I'm in":</b> we count it. If you choose to leave your first name and a mobile or email, the host can let you know about that event. That part is optional.</li>
+<li><b>If you share something or offer to help:</b> what you tell us, your first name and how to reach you.</li>
 <li><b>Feedback:</b> whatever you choose to tell us.</li>
 <li><b>How the site's used:</b> only if you say yes. We use PostHog to see which bits work. Anything you type is hidden from it. If you say no, we only count visits, anonymously, with no cookies.</li>
 </ul>
 <p>Your phone also remembers your name, home and choices, so you don't have to type them again. That stays on your phone.</p>
 
 <h2>Who sees it</h2>
-<p>Kev, and the host of anything you've said "I'm in" to, for that event only. Other people only see your first name if you tick the box to show it. We never sell your details or share them for adverts.</p>
+<p>Kev, and the host of anything you've said "I'm in" to, for that event only. An AI helper (Claude, made by Anthropic) also reads what comes in each morning to sort it and spot anything that shouldn't be there. It never contacts you and never shares your details. Other people only see your first name if you tick the box to show it. We never sell your details or share them for adverts.</p>
 
 <h2>Where it's kept</h2>
 <p>In a private Google Sheet and our PostHog account (EU), both protected with two-step login.</p>
@@ -44,6 +45,7 @@ ul{padding-left:20px}li{margin-bottom:6px}a{color:var(--ink)}.muted{color:var(--
 
 <h2>This is an experiment</h2>
 <p>Things will change as we learn. If how we use your data changes, we'll update this page and tell you.</p>
-<p class="muted">Last updated 28 October 2026 · Release Busbridge</p>
+<p class="muted">Last updated 29 October 2026 · <span data-release>Release Farncombe</span></p>
+<script src="release.js"></script><script>document.querySelectorAll('[data-release]').forEach(function(el){el.textContent='Release '+(window.VVV_RELEASE||'')});</script>
 </main></body>
 </html>
