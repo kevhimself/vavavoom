@@ -30,18 +30,23 @@
    "date": "2026-10-28",
    "hours": 0.1,
    "what": "Release Busbridge: hello.html, the Saturday MLP (welcome and where's home, what's on with I'm in, interest list, Show me more of, who's behind it, Three words and a wand feedback), privacy page, QR codes and print sheet (qr.html)"
+  },
+  {
+   "date": "2026-10-29",
+   "hours": 3.4,
+   "what": "Releases Eashing and Farncombe: policies and processes index, join in any way, near you for Tongham, simplify review with James and Sam's panel (page from 6½ to about 4 screens), I'm in always offers details, graffiti stickers, photos on coloured backgrounds, Ilona's Power Hour, About this experiment, this page's looks and vote"
   }
  ],
  "people": {
-  "as_of": "2026-10-25",
-  "let_in": 5,
-  "let_in_note": "Unique emails through the gate (Access tab), including Kev",
+  "as_of": "2026-10-29",
+  "let_in": 6,
+  "let_in_note": "Unique emails through the gate (Access tab), including Kev. The new hello page has no gate, so its visitors aren't counted here",
   "in_person_tests": 1,
   "in_person_note": "Carl, at Better Men, 24 October",
   "feedback_forms": 0,
   "signups": 0,
-  "board_posts": 1,
-  "personas": 8,
+  "board_posts": 0,
+  "personas": 9,
   "personas_note": "Nikki & James, Gill, Imogen & Dominic, plus Carl, Sue and Tim as personas (simulated panels, not real visitors)"
  },
  "team": [
@@ -108,6 +113,103 @@
    "tongham.html",
    "Tongham, made local",
    "2026-10-25"
+  ],
+  [
+   "hello.html",
+   "Hello: the live page (Busbridge to Farncombe)",
+   "2026-10-28"
+  ],
+  [
+   "tongham2.html",
+   "Tongham on the hello look",
+   "2026-10-28"
+  ],
+  [
+   "mock-feel.html",
+   "Mockup: a topic or an experience",
+   "2026-10-29"
+  ]
+ ],
+ "looks": [
+  [
+   "original",
+   "index.html",
+   "The original",
+   "Sticker logo, punky, \"psst, pass it on\""
+  ],
+  [
+   "pink",
+   "v-pink.html",
+   "Pink",
+   "Soft pink with a typewriter voice"
+  ],
+  [
+   "grounded",
+   "v-grounded.html",
+   "Grounded",
+   "Calm serif and a sunrise, after Carl's test"
+  ],
+  [
+   "tongham",
+   "tongham.html",
+   "Tongham",
+   "Grounded, made local with its own badge"
+  ],
+  [
+   "busbridge",
+   "hello.html",
+   "Busbridge, now live",
+   "Bold pink question, the look we went with"
+  ]
+ ],
+ "vote": [
+  [
+   "VVV-72",
+   "Near me: what's closest to home comes first"
+  ],
+  [
+   "VVV-63",
+   "Browse by feeling, not just topic: play, connect, get inspired"
+  ],
+  [
+   "VVV-34",
+   "A reminder the day before, and a reply from a real person"
+  ],
+  [
+   "VVV-62",
+   "Log in with an email link, so your picks follow you to any phone"
+  ],
+  [
+   "VVV-64",
+   "See your card before it goes live when you share something"
+  ],
+  [
+   "VVV-20",
+   "Quick posts: \"walking Saturday, who's coming?\""
+  ],
+  [
+   "VVV-13",
+   "Project pages with a lead and simple ways to help"
+  ],
+  [
+   "VVV-41",
+   "Ways to take part with less screen time"
+  ],
+  [
+   "VVV-68",
+   "An archive of past events, and how they went"
+  ],
+  [
+   "VVV-55",
+   "A sauna as a meeting place, for about ten"
+  ],
+  [
+   "VVV-67",
+   "Good human badges you earn by joining in"
+  ],
+  [
+   "VVV-52",
+   "A simple membership with credits for paid things"
   ]
  ]
 }

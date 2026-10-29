@@ -20,6 +20,9 @@ hours = sum(s['hours'] for s in P['sittings'])
 days = len({s['date'] for s in P['sittings']})
 pv = P['page_versions']
 pp = P['people']
+release = re.search(r"var RELEASE = '([^']+)'", (ROOT / 'hello.html').read_text()).group(1)
+looks = ''.join(f'<a class="look" href="{E(h)}"><img src="img/looks/{E(i)}.jpg" alt="" loading="lazy"><b>{E(t)}</b><span>{E(s)}</span></a>' for i, h, t, s in P.get('looks', []))
+votes = ''.join(f'<li><span class="vt">{E(t)}</span><button type="button" class="vote" data-vote="{E(i)}">I\'d use this</button></li>' for i, t in P.get('vote', []))
 today = datetime.date.today().isoformat()
 
 def d(s):
@@ -28,7 +31,7 @@ def d(s):
 stats = [
     (f'{hours:g}', 'hours of Kev\'s time'),
     (str((datetime.date.today()-datetime.date.fromisoformat(first)).days+1), 'days since it started'),
-    (str(releases), 'releases'),
+    (str(releases), 'updates shipped'),
     (str(len(pv)), 'versions of the page'),
     (str(pp['let_in']), 'people let in so far'),
     (str(pp['in_person_tests']), 'in-person user test'),
@@ -66,6 +69,13 @@ table{{width:100%;border-collapse:collapse;font-size:14px}}td{{border-top:1px da
 ul.v,ul.r{{list-style:none;padding:0;margin:0}}ul.v li,ul.r li{{padding:6px 0;border-top:1px dashed #c9c0ae}}ul.v span,ul.r span{{color:var(--clay);font-size:13px;margin-right:8px}}
 a{{color:inherit;text-decoration-color:var(--zap);text-underline-offset:3px}}
 .small{{font-size:13px;color:var(--clay)}}
+.looks{{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}}
+.look{{display:block;text-decoration:none;background:var(--card);border:2px solid var(--char);box-shadow:4px 4px 0 var(--char);padding:8px}}
+.look img{{width:100%;height:220px;object-fit:cover;object-position:top;display:block;border:1px solid #c9c0ae}}
+.look b{{display:block;margin-top:6px}} .look span{{font-size:13px}}
+ul.vl{{list-style:none;padding:0;margin:0}} ul.vl li{{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-top:1px dashed #c9c0ae}}
+.vote{{font:inherit;font-weight:700;font-size:14px;background:var(--card);color:var(--char);border:2px solid var(--char);border-radius:999px;padding:6px 12px;cursor:pointer;white-space:nowrap}}
+.vote.on{{background:var(--zap);color:#fff;border-color:var(--zap)}}
 footer{{padding:30px 0 80px}}
 </style>
 </head>
@@ -75,9 +85,18 @@ footer{{padding:30px 0 80px}}
 <p class="small" style="margin-top:24px"><a href="./">← Va Va Voom</a></p>
 <h1>How we built this</h1>
 <p class="lede">Va Va Voom was made by a few Godalming people and Claude, in spare evenings and early mornings. It's a test of what citizens can build for themselves with the tools we have today.</p>
-<p class="pen">Started {E(d(first))}. Now on version {E(version.split(" ")[0])}.</p>
+<p class="pen">Started {E(d(first))}. Now on Release {E(release)}.</p>
 <div class="stats">{''.join(f'<div class="stat"><b>{E(a)}</b><span>{E(b)}</span></div>' for a, b in stats)}</div>
 <p class="small">People let in counts unique emails through the gate. Also {pp['personas']} test personas (not real visitors), {pp['signups']} sign-ups, {pp['board_posts']} board post and {pp['feedback_forms']} feedback forms so far. As of {E(d(pp['as_of']))}.</p>
+
+<h2>Five looks we tried</h2>
+<p>Same idea, five different coats of paint. Tap one to see it.</p>
+<div class="looks">{looks}</div>
+
+<h2>What should we build next?</h2>
+<p>This is our feature backlog, opened up. Tap <b>I'd use this</b> on anything you'd actually use, and we'll build the most wanted first. Something missing? <a href="hello.html#feedback">Tell us</a>.</p>
+<ul class="vl">{votes}</ul>
+<p class="small">Votes go to our private sheet with the release you saw. No name needed.</p>
 
 <h2>Who's on the team</h2>
 <p>{E(', '.join(P['team']))}.</p>
@@ -92,7 +111,19 @@ footer{{padding:30px 0 80px}}
 <ul class="r">{rel}</ul>
 <p class="small">The full history is on <a href="https://github.com/kevhimself/vavavoom/commits/main" target="_blank" rel="noopener">GitHub</a>.</p>
 </main>
-<footer class="wrap small">Updated {E(d(today))} · version {E(version)}</footer>
+<script>
+(function(){{
+  var CATCHER='https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec';
+  var key='vvv-votes', mine={{}}; try{{mine=JSON.parse(localStorage.getItem(key))||{{}}}}catch(e){{}}
+  function save(){{ try{{localStorage.setItem(key,JSON.stringify(mine))}}catch(e){{}} }}
+  function paint(b){{ var on=!!mine[b.getAttribute('data-vote')]; b.classList.toggle('on',on); b.textContent=on?'Voted ✓':"I'd use this"; b.setAttribute('aria-pressed',on); }}
+  document.querySelectorAll('[data-vote]').forEach(function(b){{ paint(b); b.addEventListener('click',function(){{
+    var id=b.getAttribute('data-vote'), on=!mine[id]; if(on) mine[id]=Date.now(); else delete mine[id]; save(); paint(b);
+    try{{ fetch(CATCHER,{{method:'POST',mode:'no-cors',headers:{{'Content-Type':'text/plain'}},body:JSON.stringify({{type:'signal',event:on?'vote':'vote removed',detail:(localStorage.getItem('vvv-team')==='1'?'[team] ':'')+id,who:(localStorage.getItem('vvv-team')==='1'?'team':'visitor'),page:location.pathname,when:new Date().toISOString(),version:'{E(release)}'}})}}).catch(function(){{}}) }}catch(e){{}}
+  }}); }});
+}})();
+</script>
+<footer class="wrap small">Updated {E(d(today))} · Release {E(release)} · site version {E(version)}</footer>
 </body>
 </html>
 '''

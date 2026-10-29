@@ -36,7 +36,8 @@ function doPost(e) {
         clean(d.name), clean(d.email), clean(d.page), 'New', '', ''
       ]);
     } else if (d.type === 'signal') {
-      ss.getSheetByName('Signals').appendRow([now, clean(d.event), clean(d.detail), clean(d.page)]);
+      // Signals: Received, Event, Detail, Page, Release, Who (team or visitor; Kev 29 Oct: ignore Kev, Tim and Carl when counting)
+      ss.getSheetByName('Signals').appendRow([now, clean(d.event), clean(d.detail), clean(d.page), clean(d.version), clean(d.who || 'visitor')]);
     } else if (d.type === 'access') {
       ss.getSheetByName('Access').appendRow([now, clean(d.email), clean(d.page), clean(d.version), clean(d.contact || 'No')]);
     } else if (d.type === 'project') {

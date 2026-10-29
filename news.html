@@ -241,13 +241,19 @@ footer a{color:var(--ink)}
 </footer>
 
 <script>
-var RELEASE='Eashing';
+var RELEASE='Farncombe';
 var CATCHER='https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec';
 function $(s){return document.querySelector(s)}
 function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
 function getJSON(k,d){try{return JSON.parse(store(k))||d}catch(e){return d}}
+/* Kev 29 Oct: track features used, but ignore Kev, Tim and Carl. Their phones are marked as team
+   (open any page once with ?team, or it's spotted from their contact). Team taps are tagged, not dropped. */
+var TEAM_CONTACTS=['kevinself@hotmail.com','timhopkin@gmail.com','carl.staniforth@gmail.com'];
+(function(){ var q=location.search; if(/[?&]team(=|&|$)/.test(q)) store('vvv-team','1'); if(/[?&]notteam(=|&|$)/.test(q)) store('vvv-team',''); })();
+function isTeam(){ if(store('vvv-team')==='1') return true; var m=getJSON('vvv-me',{}); return TEAM_CONTACTS.indexOf(String(m.contact||'').toLowerCase().trim())>-1; }
 function send(data){
   data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE;
+  data.who=isTeam()?'team':'visitor'; if(data.type==='signal' && data.who==='team') data.detail='[team] '+(data.detail||'');
   try{ fetch(CATCHER,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).catch(function(){}) }catch(e){}
 }
 function track(n,p){try{ if(window.posthog&&posthog.capture) posthog.capture(n,Object.assign({release:RELEASE},p||{})) }catch(e){}}
