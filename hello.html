@@ -220,7 +220,8 @@ form.f select{width:100%;border:2px solid var(--ink);border-radius:8px;padding:1
 .person span{font-size:15px;color:var(--muted);display:block}
 .person .plinks{font-size:14px;margin-top:2px}
 .person .plinks a{color:var(--rose-dk);font-weight:700;text-underline-offset:3px}
-.feel,.int span.feel{display:block;font-family:var(--hand);font-size:20px;line-height:1.1;color:var(--rose-dk);margin-top:2px}
+.feel,.int span.feel{display:block;font-family:var(--hand);font-size:19px;line-height:1;color:var(--rose-dk);margin-top:2px}
+.tag.near,.int span.tag.near{background:var(--ink);color:var(--paper);font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;display:inline-block;margin:0 4px 2px 0}
 .ask{display:block;font-family:var(--hand);font-style:normal;font-size:22px;line-height:1.1;color:var(--rose-dk);margin-top:2px}
 .origin{margin-top:18px;background:var(--mist);border-radius:16px;padding:16px 18px}
 .origin h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:24px;line-height:1;margin:0 0 6px}
@@ -479,6 +480,8 @@ var EVENTS = [
     going:[{n:'Tim',img:'people/tim.jpg'},{n:'Kev',img:'people/kev.jpg'}] }
 ];
 var INTEREST = [
+  { id:'ridge', feel:'connect', themes:['move'], near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], title:'A walk up the ridge and a pint', what:'Hampton Estate path to the viewpoint, then down to the Hogs Back Brewery', host:'', when:'' },
+  { id:'recsport', feel:'play', themes:['move'], near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], title:'Sport for the fun of it', what:'Ultimate frisbee on the Rec, a social run on the Blackwater Valley Path, or a ceilidh in a barn', host:'', when:'' },
   { id:'sauna', feel:'play', themes:['move'], title:'Waggon sauna sing-along', what:'Sweat, sing badly, feel brilliant', host:'', when:'January 2027' },
   { id:'circle', feel:'connect', themes:['talk'], title:'Circle round the fire', what:'Fire, stories, proper conversation', host:'Kev hosting', when:'Early 2027' },
   { id:'run', feel:'play', themes:['move'], title:'Social run', what:'Chatty pace, nobody left behind', host:'Kev hosting', when:'Spring 2027' },
@@ -489,6 +492,12 @@ var INTEREST = [
   { id:'r-beyond', feel:'connect', themes:['talk'], title:'Beyond the armchair', what:'What gets some people marching, and what holds others back? Still being shaped', host:'Rieks hosting', when:'' }
 ];
 var NEIGHBOURS = [
+  { id:'estategarden', feel:'connect', theme:'grow', near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], title:'A garden on a forgotten corner', who:'a neighbour', where:'one of the new estates', img:'logos/vvv-icon-512-rose.png',
+    line:'Someone\'s quietly started growing on a scrap of the estate nobody uses.',
+    about:'Someone\'s quietly started growing on a scrap of the estate nobody uses. Want to help it spread, even if you\'re only here a couple of years?' },
+  { id:'downland', feel:'connect', theme:'nature', near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], title:'Volunteer days on the chalk downland', who:'the Hampton Estate', where:'Seale', img:'logos/vvv-icon-512-rose.png',
+    line:'Hedge planting and scrub clearing on the Hog\'s Back slopes, usually in winter.',
+    about:'Hedge planting and scrub clearing on the Hog\'s Back slopes, usually in winter. Good company, fresh air, cake if you\'re lucky.' },
   { id:'solar', feel:'inspired', theme:'homes', title:'Choosing solar', who:'Tim', where:'Norney', img:'people/tim.jpg',
     line:'Solar, a battery and rain tanks: how he chose them and what they actually save.',
     about:'Tim has solar, a battery and rain tanks at Norney. Find out how he chose them, what they actually save, and what he\'d do differently.' },
@@ -521,8 +530,15 @@ var PH_KEY = 'phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6';
 /* ------------------------------------------------------------------ */
 
 function $(s,r){return (r||document).querySelector(s)}
-var FEELS={play:'feels like play',connect:'feels connected',inspired:'feels inspiring'};
+/* Kev 29 Oct: one word for the feeling, not a phrase. */
+var FEELS={play:'play',connect:'connection',inspired:'inspiration'};
 function feelHTML(x){ return x.feel&&FEELS[x.feel]?'<span class="feel">'+FEELS[x.feel]+'</span>':''; }
+/* Near me (Kev 29 Oct): items with a near list only show to people whose home is on it, and go first. */
+function homeIs(){ return (store('vvv-home')||'').trim().toLowerCase(); }
+function isNear(x){ return !!x.near && x.near.some(function(p){return p.toLowerCase()===homeIs()}); }
+function nearOk(x){ return !x.near || isNear(x); }
+function nearFirst(arr){ var a=arr.filter(nearOk); return a.filter(isNear).concat(a.filter(function(x){return !isNear(x)})); }
+function nearTag(x){ return isNear(x)?'<span class="tag near">Near you</span> ':''; }
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
 function getJSON(k,d){try{return JSON.parse(store(k))||d}catch(e){return d}}
@@ -566,10 +582,11 @@ function setWelcome(){
 function setHome(h){
   h=(h||'').trim(); if(!h) return;
   store('vvv-home',h); setWelcome(); signal('home',h); track('home chosen',{home:h});
+  try{ renderInterest(); renderNeighbours(); renderTiles(); }catch(e){}
 }
 function openWelcome(fromButton){
   openSheet('<div id="welcomeSheet">'+
-    '<div class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/carl.jpg" alt=""><img src="people/reiks.jpg" alt=""></div>'+
+    '<div class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/ruth.jpg" alt=""><img src="people/carl.jpg" alt=""><img src="people/reiks.jpg" alt=""></div>'+
     '<h2 id="sheetTitle">Hello, good human!</h2>'+
     '<p>We\'re Kev, Tim and Carl, and we\'re very glad you\'re here. Where\'s home? We\'ll show you what\'s happening on your doorstep.</p>'+
     '<div class="quick">'+['Godalming','Farncombe','Milford','Witley','Shackleford','Elstead','Bramley','Guildford','Farnham','Haslemere','Cranleigh'].map(function(p){return '<button class="chip" type="button" data-home="'+p+'">'+p+'</button>'}).join('')+'</div>'+
@@ -754,8 +771,8 @@ function helpNudge(x){
   return '<div class="nudge2"><span class="calm">Showing up is plenty. No strings, no homework.</span>'+tell+help+'</div>';
 }
 function renderInterest(){
-$('#interest').innerHTML=INTEREST.map(function(x){
-  return '<div class="int" id="int-'+x.id+'"><div>'+(x.when?'<em class="when">'+esc(x.when)+'</em>':'')+'<b>'+esc(x.title)+'</b><span>'+esc(x.what)+(x.host?' · <span class="host">'+esc(x.host)+'</span>':'')+'</span>'+feelHTML(x)+'</div>'+
+$('#interest').innerHTML=nearFirst(INTEREST).map(function(x){
+  return '<div class="int" id="int-'+x.id+'"><div>'+nearTag(x)+(x.when?'<em class="when">'+esc(x.when)+'</em>':'')+'<b>'+esc(x.title)+'</b><span>'+esc(x.what)+(x.host?' · <span class="host">'+esc(x.host)+'</span>':'')+'</span>'+feelHTML(x)+'</div>'+
     '<button class="btn'+(keen[x.id]?' done':'')+'" type="button" data-keen="'+x.id+'" aria-pressed="'+(!!keen[x.id])+'">'+(keen[x.id]?'You\'re in ✓':"I'm in")+'</button>'+helpNudge(x)+'</div>';
 }).join('');
 }
@@ -811,16 +828,17 @@ function nbById(id){ for(var i=0;i<NEIGHBOURS.length;i++) if(NEIGHBOURS[i].id===
 function nbBtn(n){ var d=!!nbMine[n.id]; return '<button class="'+(d?'btn done':'btn')+'" type="button" data-nbin="'+n.id+'">'+(d?'You\'re in ✓':"I'm in")+'</button>'; }
 function tagsHTML(n){ return '<div class="tags">'+(n.shaping?'<span class="tag shaping">Still being shaped</span>':'')+nbThemes(n).map(function(t){ var th=THREADS.filter(function(x){return x.id===t})[0]; return th?'<span class="tag th-'+t+'">'+esc(th.t)+'</span>':''; }).join('')+'</div>'; }
 function renderNeighbours(){
-  var mineFirst=NEIGHBOURS.filter(function(n){return typeof picked!=='function' || nbThemes(n).some(picked)});
-  var rest=NEIGHBOURS.filter(function(n){return mineFirst.indexOf(n)===-1});
+  var NB=nearFirst(NEIGHBOURS);
+  var mineFirst=NB.filter(function(n){return isNear(n) || typeof picked!=='function' || nbThemes(n).some(picked)});
+  var rest=NB.filter(function(n){return mineFirst.indexOf(n)===-1});
   var list=nbShowAll?mineFirst.concat(rest):mineFirst.slice(0,3);
-  if(!list.length) list=NEIGHBOURS.slice(0,3);
+  if(!list.length) list=NB.slice(0,3);
   $('#nbList').innerHTML=list.map(function(n){
     return '<article class="nb"><img src="'+esc(n.img)+'" alt="" width="56" height="56"><div style="min-width:0">'+
       '<h3><button type="button" data-nb="'+n.id+'">'+esc(n.title)+'</button></h3>'+
-      '<div class="meta">with '+esc(n.who)+' · '+esc(n.where)+'</div>'+feelHTML(n)+tagsHTML(n)+'<p>'+esc(n.line)+'</p><div class="row act">'+nbBtn(n)+'</div></div></article>';
+      '<div class="meta">'+nearTag(n)+'with '+esc(n.who)+' · '+esc(n.where)+'</div>'+feelHTML(n)+tagsHTML(n)+'<p>'+esc(n.line)+'</p><div class="row act">'+nbBtn(n)+'</div></div></article>';
   }).join('');
-  var all=$('#nbAll'); all.hidden=NEIGHBOURS.length<=list.length && !nbShowAll; all.textContent=nbShowAll?'Show fewer':'See all '+NEIGHBOURS.length;
+  var all=$('#nbAll'); all.hidden=NB.length<=list.length && !nbShowAll; all.textContent=nbShowAll?'Show fewer':'See all '+NB.length;
 }
 renderNeighbours();
 $('#nbAll').addEventListener('click',function(){ nbShowAll=!nbShowAll; renderNeighbours(); if(!nbShowAll) $('#neighbours').scrollIntoView({block:'start'}); });
@@ -838,8 +856,8 @@ function openNeighbour(id){
   track('neighbour opened',{neighbour:id});
   sheet.onclick=function(e){ var i=e.target.closest('[data-nbin]'); if(i) nbInterested(i.getAttribute('data-nbin')); };
 }
-function withContact(title, intro, done){
-  if(me.name && me.contact){ done(''); return; }
+function withContact(title, intro, done, always){
+  if(!always && me.name && me.contact){ done(''); return; }
   openSheet('<h2 id="sheetTitle">'+title+'</h2><p>'+intro+'</p>'+
     '<form class="f" id="ctForm" novalidate>'+
     '<label for="ctName">Your first name<input id="ctName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
@@ -864,7 +882,7 @@ function nbInterested(id){
     renderNeighbours();
     openSheet('<h2 id="sheetTitle">Lovely, '+esc(me.name)+'.</h2><p class="done-msg">We\'ll tell you when there\'s a date.</p><button class="ghost" type="button" data-close>Done</button>');
     sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
-  });
+  }, true);
 }
 
 /* ---------- themes: pick what pulls you, then a light profile ---------- */
@@ -874,13 +892,13 @@ var themeFromQR=(arrivedVia.indexOf('t-')===0)?arrivedVia.slice(2):'';
 function themeById(id){ for(var i=0;i<THREADS.length;i++) if(THREADS[i].id===id) return THREADS[i]; }
 function nbThemes(n){ return n.themes||[n.theme]; }
 function themeItems(id){
-  return { nb:NEIGHBOURS.filter(function(n){return nbThemes(n).indexOf(id)>-1}), ev:EVENTS.filter(function(e){return e.thread===id && isUpcoming(e)}) };
+  return { nb:NEIGHBOURS.filter(nearOk).filter(function(n){return nbThemes(n).indexOf(id)>-1}), ev:EVENTS.filter(function(e){return e.thread===id && isUpcoming(e)}) };
 }
 function pickList(){ if(!pulls) return []; return THREADS.filter(function(t){return pulls[t.id]}).map(function(t){return t.id}); }
 function picked(id){ return !pickList().length || !!pulls[id]; }
 function renderTiles(){
   $('#threads').innerHTML=THREADS.map(function(t){
-    var it=themeItems(t.id), n=it.nb.length+it.ev.length+INTEREST.filter(function(x){return (x.themes||[]).indexOf(t.id)>-1}).length, on=!!pulls[t.id];
+    var it=themeItems(t.id), n=it.nb.length+it.ev.length+INTEREST.filter(nearOk).filter(function(x){return (x.themes||[]).indexOf(t.id)>-1}).length, on=!!pulls[t.id];
     var line=n? (n+(n===1?' thing':' things')+' round here') : 'Nothing yet';
     return '<button class="tile th-'+t.id+(on?' on':'')+'" type="button" data-theme="'+t.id+'" aria-pressed="'+on+'"><b>'+esc(t.t)+'</b><span>'+line+'</span><i class="tick" aria-hidden="true">'+(on?'<svg viewBox="0 0 16 16" width="12" height="12"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>':'')+'</i></button>';
   }).join('');
