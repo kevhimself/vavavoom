@@ -159,6 +159,9 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none}
 .nb h3{margin:0;font-size:18px;line-height:1.25}
 .nb h3 button{all:unset;cursor:pointer;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 .nb .meta{margin:2px 0 6px}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 6px}
+.tag{background:var(--th,var(--mist));color:var(--th-ink,var(--ink));font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;line-height:1.5}
+.tag.shaping{background:var(--mist);color:var(--ink)}
 .nb p{margin:0 0 10px;font-size:15px}
 .seeall{margin-top:6px}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -352,6 +355,7 @@ footer a{color:var(--ink)}
       <div class="person"><img src="people/tim.jpg" alt="" width="56" height="56"><div><b>Tim</b><span>Innovating for a better future. As happy building a rainwater system as vibe-coding software. Hosts the walk.</span><em class="ask">Ask him about the farm</em><span class="plinks"><a href="https://norneyfarmbungalow.netlify.app/" target="_blank" rel="noopener" data-out="open-norney">Open Norney ↗</a> · <a href="https://thelandapp.com" target="_blank" rel="noopener" data-out="landapp">LandApp ↗</a></span></div></div>
       <div class="person"><img src="people/carl.jpg" alt="" width="56" height="56"><div><b>Carl</b><span>Maker and builder of things, and cook for the group.</span><em class="ask">Want to know how to build it? Ask him</em><span class="plinks"><a href="https://www.spaces.green/" target="_blank" rel="noopener" data-out="greenspaces">Green Spaces Godalming ↗</a></span></div></div>
       <div class="person"><img src="people/kev.jpg" alt="" width="56" height="56"><div><b>Kev</b><span>Navigator of spaces. One foot in AI, one in humans, and a toe in the underworld. Hosts the circle.</span><em class="ask">Ask him about good wood</em><span class="plinks"><a href="https://www.linkedin.com/in/kevself/" target="_blank" rel="noopener" data-out="kev-linkedin">LinkedIn ↗</a> · <a href="https://valleysawmills.co.uk" target="_blank" rel="noopener" data-out="valley">Valley Sawmills ↗</a></span></div></div>
+      <div class="person"><img src="people/reiks.jpg" alt="" width="56" height="56"><div><b>Rieks</b><span>Facilitator and recently retired drama teacher in Milford. Bug houses, a bath pump and armchair activism.</span><em class="ask">Ask him about his photo</em></div></div>
     </div>
     <div class="origin">
       <h3>So where did this start?</h3>
@@ -473,9 +477,15 @@ var NEIGHBOURS = [
   { id:'cider', theme:'grow', title:'Rain, gardens and cider', who:'Tim', where:'Norney', img:'people/tim.jpg',
     line:'Catch the rain, grow a regenerative veg patch, turn the apple glut into cider.',
     about:'Catch your rainwater, grow a regenerative veg patch, and turn the apple glut into cider. Tim is writing up how he does all three.' },
-  { id:'bugs', theme:'nature', title:'Bug houses and vertical gardens', who:'Reiks', where:'Milford', img:'people/reiks.jpg',
-    line:'Homes for the small wild things, and growing up a wall when there\'s no room to grow out.',
-    about:'Make homes for the small wild things, and grow up a wall when you have no room to grow out.' },
+  { id:'bugs', theme:'nature', themes:['nature','grow','homes'], title:'Bug houses, vertical gardens and the bath pump', who:'Rieks', where:'Milford', img:'people/reiks.jpg', ask:'Ask him about his photo',
+    line:'Homes for the small wild things, growing up a wall, and a pump that sends the bathwater out to the garden.',
+    about:'Make homes for the small wild things, grow up a wall when you have no room to grow out, and see how Rieks pumps his bathwater onto the garden in summer.' },
+  { id:'armchair', theme:'homes', themes:['homes','talk'], title:'Armchair activism', who:'Rieks', where:'Milford', img:'people/reiks.jpg',
+    line:'The changes you can make from your armchair that make a difference, if we all do them.',
+    about:'The changes you can make from your armchair that can make a difference, if we all do them: making good choices about your bank, your insurance and your energy supply.' },
+  { id:'beyondarmchair', theme:'talk', themes:['talk'], title:'Beyond the armchair', who:'Rieks', where:'Milford', img:'people/reiks.jpg', shaping:true,
+    line:'What gets some people marching, and what holds others back? Still being shaped.',
+    about:'What motivates some people to be activists, and what holds others back? What even is activism, to different people? It\'s often said that going on a march changes the marcher. There\'s something to explore there. Rieks is still shaping this one, so say you\'re interested and help shape it.' },
   { id:'change', theme:'talk', title:'Navigate change', who:'Ruth', where:'Coaching', img:'people/ruth.jpg',
     line:'Coaching for when life is shifting under your feet.',
     about:'Coaching for when life is shifting under your feet, and a kind ear if you\'re worried about where things are heading.' }
@@ -729,15 +739,16 @@ $('#interest').addEventListener('click',function(e){
 var nbMine=getJSON('vvv-nb',{}), nbShowAll=false;
 function nbById(id){ for(var i=0;i<NEIGHBOURS.length;i++) if(NEIGHBOURS[i].id===id) return NEIGHBOURS[i]; }
 function nbBtn(n){ var d=!!nbMine[n.id]; return '<button class="'+(d?'btn done':'btn')+'" type="button" data-nbin="'+n.id+'">'+(d?'You\'re in ✓':"I'm in")+'</button>'; }
+function tagsHTML(n){ return '<div class="tags">'+(n.shaping?'<span class="tag shaping">Still being shaped</span>':'')+nbThemes(n).map(function(t){ var th=THREADS.filter(function(x){return x.id===t})[0]; return th?'<span class="tag th-'+t+'">'+esc(th.t)+'</span>':''; }).join('')+'</div>'; }
 function renderNeighbours(){
-  var mineFirst=NEIGHBOURS.filter(function(n){return typeof picked!=='function' || picked(n.theme)});
+  var mineFirst=NEIGHBOURS.filter(function(n){return typeof picked!=='function' || nbThemes(n).some(picked)});
   var rest=NEIGHBOURS.filter(function(n){return mineFirst.indexOf(n)===-1});
   var list=nbShowAll?mineFirst.concat(rest):mineFirst.slice(0,3);
   if(!list.length) list=NEIGHBOURS.slice(0,3);
   $('#nbList').innerHTML=list.map(function(n){
     return '<article class="nb"><img src="'+esc(n.img)+'" alt="" width="56" height="56"><div style="min-width:0">'+
       '<h3><button type="button" data-nb="'+n.id+'">'+esc(n.title)+'</button></h3>'+
-      '<div class="meta">with '+esc(n.who)+' · '+esc(n.where)+'</div><p>'+esc(n.line)+'</p><div class="row act">'+nbBtn(n)+'</div></div></article>';
+      '<div class="meta">with '+esc(n.who)+' · '+esc(n.where)+'</div>'+tagsHTML(n)+'<p>'+esc(n.line)+'</p><div class="row act">'+nbBtn(n)+'</div></div></article>';
   }).join('');
   var all=$('#nbAll'); all.hidden=NEIGHBOURS.length<=list.length && !nbShowAll; all.textContent=nbShowAll?'Show fewer':'See all '+NEIGHBOURS.length;
 }
@@ -752,7 +763,7 @@ function openNeighbour(id){
   var n=nbById(id); if(!n) return;
   openSheet('<span class="badge">Learn from a neighbour</span><h2 id="sheetTitle">'+esc(n.title)+'</h2>'+
     '<div class="mini" style="border-top:0"><img src="'+esc(n.img)+'" alt=""><div><b>With '+esc(n.who)+'</b><span>'+esc(n.where)+'</span></div></div>'+
-    '<p>'+esc(n.about)+'</p><p class="fine">No date yet. Say you\'re interested and we\'ll set one once enough of you are keen.</p>'+
+    '<p>'+esc(n.about)+'</p>'+(n.ask?'<p class="ask" style="margin:0 0 10px">'+esc(n.ask)+'</p>':'')+'<p class="fine">No date yet. Say you\'re interested and we\'ll set one once enough of you are keen.</p>'+
     '<div class="row">'+nbBtn(n)+'</div>');
   track('neighbour opened',{neighbour:id});
   sheet.onclick=function(e){ var i=e.target.closest('[data-nbin]'); if(i) nbInterested(i.getAttribute('data-nbin')); };
@@ -791,8 +802,9 @@ var pulls=getJSON('vvv-pulls',{});
 var profile=getJSON('vvv-profile',{});
 var themeFromQR=(arrivedVia.indexOf('t-')===0)?arrivedVia.slice(2):'';
 function themeById(id){ for(var i=0;i<THREADS.length;i++) if(THREADS[i].id===id) return THREADS[i]; }
+function nbThemes(n){ return n.themes||[n.theme]; }
 function themeItems(id){
-  return { nb:NEIGHBOURS.filter(function(n){return n.theme===id}), ev:EVENTS.filter(function(e){return e.thread===id && isCurrent(e)}) };
+  return { nb:NEIGHBOURS.filter(function(n){return nbThemes(n).indexOf(id)>-1}), ev:EVENTS.filter(function(e){return e.thread===id && isCurrent(e)}) };
 }
 function pickList(){ if(!pulls) return []; return THREADS.filter(function(t){return pulls[t.id]}).map(function(t){return t.id}); }
 function picked(id){ return !pickList().length || !!pulls[id]; }
