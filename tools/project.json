@@ -50,13 +50,51 @@
   "personas_note": "Nikki & James, Gill, Imogen & Dominic, plus Carl, Sue and Tim as personas (simulated panels, not real visitors)"
  },
  "team": [
-  "Kev",
-  "Claude",
-  "Sam (testing)",
-  "Grain (style)",
-  "Margot (shaping)",
-  "James (build)",
-  "the Watcher (board)"
+  [
+   "Kev",
+   "founder, with Tim and Carl",
+   false
+  ],
+  [
+   "Claude",
+   "building",
+   true
+  ],
+  [
+   "Margot",
+   "shaping",
+   true
+  ],
+  [
+   "James",
+   "build and design",
+   true
+  ],
+  [
+   "Sam",
+   "testing",
+   true
+  ],
+  [
+   "Grain",
+   "style",
+   true
+  ],
+  [
+   "Bee",
+   "curator",
+   true
+  ],
+  [
+   "Rowan",
+   "stories",
+   true
+  ],
+  [
+   "the Watcher",
+   "the board",
+   true
+  ]
  ],
  "page_versions": [
   [

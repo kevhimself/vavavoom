@@ -21,6 +21,7 @@ days = len({s['date'] for s in P['sittings']})
 pv = P['page_versions']
 pp = P['people']
 release = re.search(r"VVV_RELEASE = '([^']+)'", (ROOT / 'release.js').read_text()).group(1)
+team = ''.join(f'<li><b>{E(n)}</b> {E(r)}{" <span class=ai>AI</span>" if ai else ""}</li>' for n, r, ai in P['team'])
 looks = ''.join(f'<a class="look" href="{E(h)}"><img src="img/looks/{E(i)}.jpg" alt="" loading="lazy"><b>{E(t)}</b><span>{E(s)}</span></a>' for i, h, t, s in P.get('looks', []))
 votes = ''.join(f'<li><span class="vt">{E(t)}</span><button type="button" class="vote" data-vote="{E(i)}">I\'d use this</button></li>' for i, t in P.get('vote', []))
 today = datetime.date.today().isoformat()
@@ -69,6 +70,9 @@ table{{width:100%;border-collapse:collapse;font-size:14px}}td{{border-top:1px da
 ul.v,ul.r{{list-style:none;padding:0;margin:0}}ul.v li,ul.r li{{padding:6px 0;border-top:1px dashed #c9c0ae}}ul.v span,ul.r span{{color:var(--clay);font-size:13px;margin-right:8px}}
 a{{color:inherit;text-decoration-color:var(--zap);text-underline-offset:3px}}
 .small{{font-size:13px;color:var(--clay)}}
+.team{{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}}
+.team li{{background:var(--card);border:2px solid var(--char);padding:4px 10px;font-size:14px}}
+.ai{{display:inline-block;background:var(--volt);color:var(--char);font-weight:700;font-size:11px;padding:0 6px;margin-left:4px;border:1px solid var(--char)}}
 .looks{{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}}
 .look{{display:block;text-decoration:none;background:var(--card);border:2px solid var(--char);box-shadow:4px 4px 0 var(--char);padding:8px}}
 .look img{{width:100%;height:220px;object-fit:cover;object-position:top;display:block;border:1px solid #c9c0ae}}
@@ -100,7 +104,8 @@ footer{{padding:30px 0 80px}}
 <p class="small">Votes go to our private sheet with the release you saw. No name needed.</p>
 
 <h2>Who's on the team</h2>
-<p>{E(', '.join(P['team']))}.</p>
+<ul class="team">{team}</ul>
+<p class="small">AI = one of Kev's AI team, played by Claude. The people are real.</p>
 
 <h2>Where the hours went</h2>
 <p class="small">Kev's time is measured from when he was actually in the chat, plus ten minutes a sitting. Claude does the building in between, so the making took longer than this.</p><table>{rows}</table>
