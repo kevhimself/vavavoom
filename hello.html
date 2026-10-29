@@ -58,6 +58,19 @@ header.top{padding-bottom:12px;position:relative;z-index:5}
 .menu a[aria-current="page"]{color:var(--lime)}
 .menu small{display:block;font-weight:400;font-size:14px;opacity:.75}
 
+.acts{display:inline-flex;align-items:center;gap:14px;margin-left:auto}
+.tix{font-weight:700;font-size:15px;color:var(--ink);text-decoration:underline;text-decoration-color:var(--rose);text-decoration-thickness:1px;text-underline-offset:4px;white-space:nowrap}
+.av{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:.02em;flex-shrink:0}
+.av.sm{width:40px;height:40px;font-size:16px}
+.facesrow{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:14px;width:100%;padding:12px 14px;border:2px solid var(--ink);border-radius:16px}
+.facesrow .hello-faces{display:flex;flex-shrink:0;margin:0}
+.facesrow .hello-faces img{width:40px;height:40px}
+.facesrow .txt b{display:block;font-size:16px}
+.facesrow .txt span{font-size:14px;color:var(--rose-dk);font-weight:700}
+.facesrow .txt span::after{content:" →"}
+.facesrow:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.whoin{margin-top:18px;border-top:2px solid var(--mist);padding-top:14px}
+.sheeth{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:24px;line-height:1;margin:0 0 10px}
 .storycard{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:14px;align-items:center;margin-top:18px;padding:14px;border-radius:16px;background:var(--sun-soft);text-decoration:none;color:var(--ink)}
 .storycard img{width:72px;height:72px;display:block;border-radius:50%;object-fit:cover;border:3px solid var(--paper)}
 .storycard .badge{color:var(--ink)}
@@ -294,8 +307,8 @@ footer a{color:var(--ink)}
       <li><a href="#h-on">What's on<small>Dates, places, I'm in</small></a></li>
       <li><a href="news.html">Stories from round here<small>Good news and a tip for the week</small></a></li>
       <li><a href="#themes">What pulls you?</a></li>
-      <li><a href="#neighbours">Learn from a neighbour</a></li>
-      <li><a href="#h-want">Coming if you want it</a></li>
+      <li><a href="#neighbours">Learn from a neighbour<small>Coming if you want it</small></a></li>
+      <li><a href="#joinin">Join in, any way you like</a></li>
       <li><a href="#h-who">Who's behind it</a></li>
       <li><a href="#feedback">Tell us what you think</a></li>
     </ul>
@@ -322,13 +335,6 @@ footer a{color:var(--ink)}
     <span class="exp" style="margin:0">Welcome to an experiment. You're one of the first brave ones.</span>
   </div>
 
-  <section class="sec picks" aria-labelledby="h-more" id="themes">
-    <h2 id="h-more">What pulls you?</h2>
-    <p class="sub">Tap all that apply. We'll put those first.</p>
-    <div class="tiles" id="threads"></div>
-    <div class="nudge" id="nudge" hidden></div>
-  </section>
-
   <section class="sec" aria-labelledby="h-on">
     <h2 id="h-on">What's on</h2>
     <p class="sub">To start: a pub night and a walk. Come to one, bring a friend.</p>
@@ -342,55 +348,34 @@ footer a{color:var(--ink)}
   </section>
 
 
-  <a class="storycard" href="news.html" data-stories>
-    <img src="img/elenid.jpg" alt="" width="72" height="72">
-    <div><span class="badge">Stories from round here</span><b>Tip of the week: meet Elenid and the Waggon Sauna</b><span class="l">Good news, small brave things, and how to join in.</span></div>
-    <span class="go" aria-hidden="true">→</span>
-  </a>
+  <section class="sec picks" aria-labelledby="h-more" id="themes">
+    <h2 id="h-more">What pulls you?</h2>
+    <p class="sub">Tap all that apply. We'll put those first.</p>
+    <div class="tiles" id="threads"></div>
+    <div class="nudge" id="nudge" hidden></div>
+  </section>
 
   <section class="sec" aria-labelledby="h-nb" id="neighbours">
     <h2 id="h-nb">Learn from a neighbour</h2>
-    <p class="sub">Real people round here, happy to share what they know. Tap "I'm in" and we'll set a date once enough of you are keen.</p>
+    <p class="sub">Coming if you want it. Tap "I'm in" and once enough of you are keen, we'll set a date.</p>
     <div id="nbList"></div>
     <button class="ghost seeall" type="button" id="nbAll" hidden></button>
+  </section>
+
+  <section class="sec" aria-labelledby="h-join" id="joinin">
     <div class="share">
-      <h3>Join in, any way you like</h3>
-      <p>This is everyday folk from round here giving stuff a go. It doesn't have to be perfect. Try something, learn something.</p>
+      <h3 id="h-join">Join in, any way you like</h3>
+      <p>This is everyday folk from round here giving stuff a go. It doesn't have to be perfect. Try something, learn something. Showing up is plenty too.</p>
       <div class="ways" id="ways">
-        <button class="way" type="button" data-way="run"><span>I want to run something<small>A walk, a skill, a thing you've fixed</small></span></button>
-        <button class="way" type="button" data-way="help"><span>I'd like help running something<small>You've got the idea, we'll help with the rest</small></span></button>
-        <button class="way" type="button" data-way="organise"><span>I'll help organise<small>Lend a hand with someone else's thing. Go on, we dare you</small></span></button>
-        <button class="way" type="button" data-way="show"><span>I'll just show up and explore<small>Come along, see what happens</small></span></button>
+        <button class="way" type="button" data-way="run"><span>I want to run something<small>A walk, a skill, a thing you've fixed. We'll help with the rest</small></span></button>
+        <button class="way" type="button" data-way="organise"><span>I'll help out<small>Lend a hand with someone else's thing. Go on, we dare you</small></span></button>
       </div>
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="h-want">
-    <h2 id="h-want">Coming if you want it</h2>
-    <p class="sub">Roughly when, not dates yet. Tap "I'm in" and once enough of you are keen, it's happening.</p>
-    <div class="interest" id="interest"></div>
-  </section>
-
   <section class="sec" aria-labelledby="h-who">
     <h2 id="h-who">Who's behind it</h2>
-    <div class="who">
-      <div class="person"><img src="people/tim.jpg" alt="" width="56" height="56"><div><b>Tim</b><span>Innovating for a better future. As happy building a rainwater system as vibe-coding software. Hosts the walk.</span><em class="ask">Ask him about the farm</em><span class="plinks"><a href="https://norneyfarmbungalow.netlify.app/" target="_blank" rel="noopener" data-out="open-norney">Open Norney ↗</a> · <a href="https://thelandapp.com" target="_blank" rel="noopener" data-out="landapp">LandApp ↗</a></span></div></div>
-      <div class="person"><img src="people/carl.jpg" alt="" width="56" height="56"><div><b>Carl</b><span>Maker and builder of things, and cook for the group.</span><em class="ask">Want to know how to build it? Ask him</em><span class="plinks"><a href="https://www.spaces.green/" target="_blank" rel="noopener" data-out="greenspaces">Green Spaces Godalming ↗</a></span></div></div>
-      <div class="person"><img src="people/kev.jpg" alt="" width="56" height="56"><div><b>Kev</b><span>Navigator of spaces. One foot in AI, one in humans, and a toe in the underworld. Hosts the circle.</span><em class="ask">Ask him about good wood</em><span class="plinks"><a href="https://www.linkedin.com/in/kevself/" target="_blank" rel="noopener" data-out="kev-linkedin">LinkedIn ↗</a> · <a href="https://valleysawmills.co.uk" target="_blank" rel="noopener" data-out="valley">Valley Sawmills ↗</a></span></div></div>
-      <div class="person"><img src="people/reiks.jpg" alt="" width="56" height="56"><div><b>Rieks</b><span>Facilitator and recently retired drama teacher in Milford. Bug houses, a bath pump and armchair activism.</span><em class="ask">Ask him about his photo</em></div></div>
-    </div>
-    <div class="origin">
-      <h3>So where did this start?</h3>
-      <p>Depends who you ask.</p>
-      <p><b>Maybe with three men.</b> Two years ago Tim, Carl and Kev started meeting on Monday nights. Carl and Tim cooked, often with food from the farm, and every week we asked one question: how have we been better this week? We meant to grow. We didn't, and that turned out to be the point. Three people who turn up for each other are enough to change how a week feels.</p>
-      <details>
-        <summary>Read the rest</summary>
-        <p><b>Maybe with a film.</b> At the People's Emergency Briefing in Godalming, a room full of people watched where the world has got to. We walked out with hearts racing, and nowhere to put all that energy.</p>
-        <p><b>Or maybe with the follow-up session, where so few came.</b> All that feeling in the room, and only a handful turned up for what came next. That told us something. Worry doesn't get people off the sofa. Something fun, close to home, with people you like, just might.</p>
-        <p>So that's what this is. Small, brave, good things near where you live, with the neighbours you haven't met yet. A better walk. A pint. A sauna. We're the seed, not the committee. Ideas get sorted on a walk or in the pub, and anyone can pick something up and run with it.</p>
-        <p>It's an experiment, and you're early. Come along to something and see.</p>
-      </details>
-    </div>
+    <button class="facesrow" type="button" id="whoBtn"><span class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/ruth.jpg" alt=""><img src="people/carl.jpg" alt=""><img src="people/reiks.jpg" alt=""></span><span class="txt"><b>Kev, Tim, Carl and friends</b><span>Meet them</span></span></button>
   </section>
 </main>
 
@@ -414,7 +399,7 @@ footer a{color:var(--ink)}
       <input class="trap" id="fbTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="err" id="fbErr" role="alert"></p>
       <button class="btn" type="submit">Send</button>
-      <p class="fine">No links please; they get held back.</p>
+      <p class="fine">No links please; they get held back. <span data-release></span></p>
     </form>
     <div class="thanks" id="fbThanks" hidden>Thank you, good human. You've just shaped what comes next.</div>
   </div>
@@ -423,7 +408,7 @@ footer a{color:var(--ink)}
 <footer class="wrap">
   <div>Your details stay with us. Promise. <a href="privacy.html">Privacy and our data promise</a></div>
   <div>Va Va Voom grew out of Better Men, and is part of Purpose Nation and Open Commons.</div>
-  <div>Godalming · <a href="news.html">Stories from round here</a></div>
+  <div><span data-release></span> · Godalming · <a href="news.html">Stories from round here</a></div>
 </footer>
 
 <div class="consent" id="consent" hidden>
@@ -434,13 +419,36 @@ footer a{color:var(--ink)}
   </div>
 </div>
 
+<template id="whoTpl">
+  <h3 class="sheeth" id="whoHead">Who's behind it</h3>
+  <div class="who">
+      <div class="person"><img src="people/tim.jpg" alt="" width="56" height="56"><div><b>Tim</b><span>Innovating for a better future. As happy building a rainwater system as vibe-coding software. Hosts the walk.</span><em class="ask">Ask him about the farm</em><span class="plinks"><a href="https://norneyfarmbungalow.netlify.app/" target="_blank" rel="noopener" data-out="open-norney">Open Norney ↗</a> · <a href="https://thelandapp.com" target="_blank" rel="noopener" data-out="landapp">LandApp ↗</a></span></div></div>
+      <div class="person"><img src="people/carl.jpg" alt="" width="56" height="56"><div><b>Carl</b><span>Maker and builder of things, and cook for the group.</span><em class="ask">Want to know how to build it? Ask him</em><span class="plinks"><a href="https://www.spaces.green/" target="_blank" rel="noopener" data-out="greenspaces">Green Spaces Godalming ↗</a></span></div></div>
+      <div class="person"><img src="people/kev.jpg" alt="" width="56" height="56"><div><b>Kev</b><span>Navigator of spaces. One foot in AI, one in humans, and a toe in the underworld. Hosts the circle.</span><em class="ask">Ask him about good wood</em><span class="plinks"><a href="https://www.linkedin.com/in/kevself/" target="_blank" rel="noopener" data-out="kev-linkedin">LinkedIn ↗</a> · <a href="https://valleysawmills.co.uk" target="_blank" rel="noopener" data-out="valley">Valley Sawmills ↗</a></span></div></div>
+      <div class="person"><img src="people/ruth.jpg" alt="" width="56" height="56"><div><b>Ruth</b><span>Coaching for when life shifts under your feet.</span><span class="plinks"><a href="https://kevhimself.github.io/RuthBlanco/" target="_blank" rel="noopener" data-out="ruth">Ruth's website ↗</a></span></div></div>
+      <div class="person"><img src="people/reiks.jpg" alt="" width="56" height="56"><div><b>Rieks</b><span>Facilitator and recently retired drama teacher in Milford. Bug houses, a bath pump and armchair activism.</span><em class="ask">Ask him about his photo</em></div></div>
+    </div>
+    <div class="origin">
+      <h3>So where did this start?</h3>
+      <p>Depends who you ask.</p>
+      <p><b>Maybe with three men.</b> Two years ago Tim, Carl and Kev started meeting on Monday nights. Carl and Tim cooked, often with food from the farm, and every week we asked one question: how have we been better this week? We meant to grow. We didn't, and that turned out to be the point. Three people who turn up for each other are enough to change how a week feels.</p>
+      <details>
+        <summary>Read the rest</summary>
+        <p><b>Maybe with a film.</b> At the People's Emergency Briefing in Godalming, a room full of people watched where the world has got to. We walked out with hearts racing, and nowhere to put all that energy.</p>
+        <p><b>Or maybe with the follow-up session, where so few came.</b> All that feeling in the room, and only a handful turned up for what came next. That told us something. Worry doesn't get people off the sofa. Something fun, close to home, with people you like, just might.</p>
+        <p>So that's what this is. Small, brave, good things near where you live, with the neighbours you haven't met yet. A better walk. A pint. A sauna. We're the seed, not the committee. Ideas get sorted on a walk or in the pub, and anyone can pick something up and run with it.</p>
+        <p>It's an experiment, and you're early. Come along to something and see.</p>
+      </details>
+    </div>
+</template>
+
 <div class="scrim" id="scrim" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" id="sheet"></div>
 </div>
 
 <script>
 /* ---------- EDIT HERE: what's on, interest list, threads ---------- */
-var RELEASE = 'Eashing';
+var RELEASE = 'Farncombe';
 var EVENTS = [
   { id:'briefing', feel:'inspired', badge:'Part 1', title:"People's Emergency Briefing", day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
     time:'10:15am (doors 10am)', length:'About 1½ hours', where:'Shackleford Village Hall', host:'Tim and Sue', thread:'nature', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
@@ -480,9 +488,9 @@ var EVENTS = [
     going:[{n:'Tim',img:'people/tim.jpg'},{n:'Kev',img:'people/kev.jpg'}] }
 ];
 var INTEREST = [
-  { id:'ridge', feel:'connect', themes:['move'], near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], title:'A walk up the ridge and a pint', what:'Hampton Estate path to the viewpoint, then down to the Hogs Back Brewery', host:'', when:'' },
-  { id:'recsport', feel:'play', themes:['move'], near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], title:'Sport for the fun of it', what:'Ultimate frisbee on the Rec, a social run on the Blackwater Valley Path, or a ceilidh in a barn', host:'', when:'' },
-  { id:'sauna', feel:'play', themes:['move'], title:'Waggon sauna sing-along', what:'Sweat, sing badly, feel brilliant', host:'', when:'January 2027' },
+  { id:'ridge', feel:'connect', themes:['move'], near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], place:'Seale', title:'A walk up the ridge and a pint', what:'Hampton Estate path to the viewpoint, then down to the Hogs Back Brewery', host:'', when:'' },
+  { id:'recsport', feel:'play', themes:['move'], near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], place:'Tongham', title:'Sport for the fun of it', what:'Ultimate frisbee on the Rec, a social run on the Blackwater Valley Path, or a ceilidh in a barn', host:'', when:'' },
+  { id:'sauna', feel:'play', themes:['move'], place:'Seale', title:'Waggon sauna sing-along', what:'Sweat, sing badly, feel brilliant', host:'', when:'January 2027' },
   { id:'circle', feel:'connect', themes:['talk'], title:'Circle round the fire', what:'Fire, stories, proper conversation', host:'Kev hosting', when:'Early 2027' },
   { id:'run', feel:'play', themes:['move'], title:'Social run', what:'Chatty pace, nobody left behind', host:'Kev hosting', when:'Spring 2027' },
   { id:'make', feel:'inspired', themes:['make'], title:'Make something', what:'Get your hands dirty, learn from a neighbour', host:'Tim hosting', when:'Spring 2027' },
@@ -492,10 +500,10 @@ var INTEREST = [
   { id:'r-beyond', feel:'connect', themes:['talk'], title:'Beyond the armchair', what:'What gets some people marching, and what holds others back? Still being shaped', host:'Rieks hosting', when:'' }
 ];
 var NEIGHBOURS = [
-  { id:'estategarden', feel:'connect', theme:'grow', near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], title:'A garden on a forgotten corner', who:'a neighbour', where:'one of the new estates', img:'logos/vvv-icon-512-rose.png',
+  { id:'estategarden', feel:'connect', theme:'grow', near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], title:'A garden on a forgotten corner', who:'a neighbour', where:'one of the new estates', place:'Tongham',
     line:'Someone\'s quietly started growing on a scrap of the estate nobody uses.',
     about:'Someone\'s quietly started growing on a scrap of the estate nobody uses. Want to help it spread, even if you\'re only here a couple of years?' },
-  { id:'downland', feel:'connect', theme:'nature', near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], title:'Volunteer days on the chalk downland', who:'the Hampton Estate', where:'Seale', img:'logos/vvv-icon-512-rose.png',
+  { id:'downland', feel:'connect', theme:'nature', near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], title:'Volunteer days on the chalk downland', who:'the Hampton Estate', where:'Seale', place:'Seale',
     line:'Hedge planting and scrub clearing on the Hog\'s Back slopes, usually in winter.',
     about:'Hedge planting and scrub clearing on the Hog\'s Back slopes, usually in winter. Good company, fresh air, cake if you\'re lucky.' },
   { id:'solar', feel:'inspired', theme:'homes', title:'Choosing solar', who:'Tim', where:'Norney', img:'people/tim.jpg',
@@ -641,9 +649,10 @@ function facesHTML(ev){
                          : (names.length>2? names.slice(0,-1).join(', ')+' and '+names.slice(-1)+' are in' : names.join(' and ')+(names.length>1?' are in':' is in'));
   return html+'<span>'+esc(line)+'</span>';
 }
+/* Kev 29 Oct: if an event has a ticket link, it comes before "I'm in". */
 function inButton(ev,done,attr){
-  if(ev.tickets) return '<a class="btn" href="'+esc(ev.tickets)+'" target="_blank" rel="noopener" data-tix="'+ev.id+'">Get tickets ↗</a>';
-  return '<button class="btn'+(done?' done':'')+'" type="button" '+attr+'="'+ev.id+'">'+(done?"You're in ✓":"I'm in")+'</button>';
+  return '<span class="acts">'+(ev.tickets?'<a class="tix" href="'+esc(ev.tickets)+'" target="_blank" rel="noopener" data-tix="'+ev.id+'">Get tickets ↗</a>':'')+
+    '<button class="btn'+(done?' done':'')+'" type="button" '+attr+'="'+ev.id+'">'+(done?"You're in ✓":"I'm in")+'</button></span>';
 }
 document.addEventListener('click',function(e){ var t=e.target.closest('[data-tix]'); if(t){ signal('tickets',t.getAttribute('data-tix')); track('tickets clicked',{event:t.getAttribute('data-tix')}); } });
 var evShowAll=false;
@@ -711,47 +720,47 @@ function openEvent(id){
   };
 }
 
+/* Kev 29 Oct: "I'm in" counts you straight away, then always offers to take your details (optional). */
+function detailsForm(o){
+  return '<form class="f" id="dtForm" novalidate>'+
+    '<label for="dtName">Your first name<input id="dtName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="dtContact">Mobile or email<input id="dtContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    (o.showName?'<label class="tick" for="dtShow"><input id="dtShow" type="checkbox"'+(me.show?' checked':'')+'><span>Show my first name to others going</span></label>':'')+
+    (o.dare?'<label class="tick" for="dtHelp"><input id="dtHelp" type="checkbox"><span>I\'d help make it happen. Go on, dare me</span></label>':'')+
+    '<input class="trap" id="dtTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="dtErr" role="alert"></p>'+
+    '<div class="row"><button class="skip" type="button" data-close>No thanks</button><button class="btn" type="submit">Keep me posted</button></div>'+
+    '<p class="fine">Optional. Only Kev and the host see your details. <a href="privacy.html">Privacy</a></p></form>';
+}
+function readDetails(){
+  var n=$('#dtName').value.trim(), c=$('#dtContact').value.trim(), err=$('#dtErr');
+  if(!n){ err.textContent='Please add your first name, or tap No thanks.'; $('#dtName').focus(); return null; }
+  if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address.'; $('#dtContact').focus(); return null; }
+  me={name:n,contact:c,show:$('#dtShow')?$('#dtShow').checked:!!me.show}; store('vvv-me',JSON.stringify(me));
+  return {name:n, contact:c, isEmail:c.indexOf('@')>-1, help:!!($('#dtHelp')&&$('#dtHelp').checked), trap:$('#dtTrap').value};
+}
 function imIn(id){
   var ev=evById(id), mine=getJSON('vvv-going',{});
   if(mine[id]){ openEvent(id); return; }
-  if(me.name && me.contact){ confirmIn(ev); return; }
-  openSheet('<h2 id="sheetTitle">Ooh, lovely. You\'re nearly in.</h2>'+
-    '<p>'+esc(ev.title)+', '+esc(ev.day+' '+ev.d+' '+ev.mon)+'. Just tell us how to reach you if plans change.</p>'+
-    '<form class="f" id="inForm" novalidate>'+
-    '<label for="inName">Your first name<input id="inName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
-    '<label for="inContact">Mobile or email<input id="inContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
-    '<label class="tick" for="inShow"><input id="inShow" type="checkbox"'+(me.show?' checked':'')+'><span>Show my first name to others going</span></label>'+
-    '<input class="trap" id="inTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
-    '<p class="err" id="inErr" role="alert"></p>'+
-    '<button class="btn" type="submit">I\'m in</button>'+
-    '<p class="fine">Only Kev and the host see your details, for this event only. We remember you on this phone so it\'s one tap next time. <a href="privacy.html">Privacy</a></p>'+
-    '</form>');
-  $('#inForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    var n=$('#inName').value.trim(), c=$('#inContact').value.trim(), err=$('#inErr');
-    if(!n){ err.textContent='Please add your first name.'; $('#inName').focus(); return; }
-    var isEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c), isPhone=/^[+\d][\d\s()-]{8,}$/.test(c);
-    if(!isEmail && !isPhone){ err.textContent='Please add a mobile number or an email address.'; $('#inContact').focus(); return; }
-    me={name:n,contact:c,show:$('#inShow').checked}; store('vvv-me',JSON.stringify(me));
-    confirmIn(ev, $('#inTrap').value);
-  });
-}
-function confirmIn(ev, trap){
-  var isEmail=me.contact.indexOf('@')>-1;
-  send({type:'signup', name:me.name, email:isEmail?me.contact:'', phone:isEmail?'':me.contact,
-        where:getHome(), fit:'in', thread:'event: '+ev.id, bring:'Show first name: '+(me.show?'yes':'no'), website:trap||''});
-  var mine=getJSON('vvv-going',{}); mine[ev.id]=Date.now(); store('vvv-going',JSON.stringify(mine));
-  track("i'm in",{event:ev.id, via:arrivedVia||'page'});
+  mine[id]=Date.now(); store('vvv-going',JSON.stringify(mine));
+  signal('in','event: '+id+' | '+getHome()); track("i'm in",{event:id, via:arrivedVia||'page'});
   renderEvents();
-  openSheet('<h2 id="sheetTitle">You\'re in, '+esc(me.name)+'!</h2>'+
-    '<p class="done-msg">See you on '+esc(ev.day+' '+ev.d+' '+ev.mon)+'.</p>'+
-    '<p>'+esc(ev.host)+' will drop you a message before the day. Bring your curiosity.</p>'+
-    '<div class="row">'+(ev.start?'<button class="btn" type="button" data-cal="'+ev.id+'">Add to calendar</button>':'')+
-    '<button class="ghost" type="button" data-close>Done</button></div>');
+  openSheet('<span class="badge">You\'re in ✓</span><h2 id="sheetTitle">'+esc(ev.title)+'</h2>'+
+    '<p>See you on '+esc(ev.day+' '+ev.d+' '+ev.mon)+'. Leave your details and '+esc(ev.host)+' can let you know if plans change.</p>'+
+    detailsForm({showName:true})+
+    (ev.start?'<p style="margin:8px 0 0"><button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button></p>':''));
   sheet.onclick=function(e){
     var c=e.target.closest('[data-cal]'); if(c) addCal(c.getAttribute('data-cal'));
     if(e.target.closest('[data-close]')) closeSheet();
   };
+  $('#dtForm').addEventListener('submit',function(e){
+    e.preventDefault(); var d=readDetails(); if(!d) return;
+    send({type:'signup', name:d.name, email:d.isEmail?d.contact:'', phone:d.isEmail?'':d.contact,
+          where:getHome(), fit:'in', thread:'event: '+id, bring:'Show first name: '+(me.show?'yes':'no'), website:d.trap});
+    track('details left',{item:'event: '+id}); renderEvents();
+    openSheet('<h2 id="sheetTitle">Lovely, '+esc(d.name)+'.</h2><p class="done-msg">'+esc(ev.host)+' will drop you a message before the day. Bring your curiosity.</p>'+
+      '<div class="row">'+(ev.start?'<button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button>':'')+'<button class="btn" type="button" data-close>Done</button></div>');
+  });
 }
 function addCal(id){
   var ev=evById(id); if(!ev||!ev.start) return;
@@ -765,85 +774,47 @@ function addCal(id){
   document.body.appendChild(a); a.click(); a.remove(); track('added to calendar',{event:id});
 }
 
-/* ---------- interest ---------- */
-var keen=getJSON('vvv-keen',{}), helping=getJSON('vvv-help',{}), tellMe=getJSON('vvv-tell2',{});
-/* Kev 29 Oct: after "I'm in", a playful nudge to help make it happen. Showing up is enough. */
-function helpNudge(x){
-  if(!keen[x.id]) return '';
-  var tell = tellMe[x.id] ? '<span class="ok">We\'ll tell you when it\'s on ✓</span>' : '<button type="button" data-tell="'+x.id+'">Tell me when it\'s on</button>';
-  var help = helping[x.id] ? '<span class="ok">Dare accepted ✓</span>' : '<button type="button" data-help="'+x.id+'">Go on, help make it happen. Dare you</button>';
-  return '<div class="nudge2"><span class="calm">Showing up is plenty. No strings, no homework.</span>'+tell+help+'</div>';
+/* ---------- learn from a neighbour (neighbours and coming items, one list) ---------- */
+var keen=getJSON('vvv-keen',{}), nbMine=getJSON('vvv-nb',{}), nbShowAll=false;
+var PEOPLE_IMG={Kev:'people/kev.jpg',Tim:'people/tim.jpg',Carl:'people/carl.jpg',Rieks:'people/reiks.jpg',Ruth:'people/ruth.jpg'};
+/* Kev 29 Oct: no photo? Up to two initials, with a colour for each place. */
+var LOC_COLOURS={godalming:'#1f9e8f',farncombe:'#4a6fd1',milford:'#4f8a3c',busbridge:'#9a5bb5',tongham:'#7b4fb8',seale:'#c47a1e',puttenham:'#b5546a',norney:'#8a6d3b',shackleford:'#8a6d3b',farnham:'#2f7fa3',witley:'#5d8f2f',elstead:'#a8613a',bramley:'#3f8f7a',guildford:'#6b5fb0'};
+function placeColour(p){ p=(p||'Godalming').toLowerCase(); if(LOC_COLOURS[p]) return LOC_COLOURS[p];
+  var pal=['#1f9e8f','#7b4fb8','#c47a1e','#2f7fa3','#b5546a','#4f8a3c'], h=0; for(var i=0;i<p.length;i++) h=(h*31+p.charCodeAt(i))>>>0; return pal[h%pal.length]; }
+function initials(t){ var w=String(t||'').replace(/[^A-Za-z\s'-]/g,' ').split(/\s+/).filter(function(x){return x && !/^(a|an|the|and|of|on|in|up|for|to)$/i.test(x)}); return w.slice(0,2).map(function(x){return x[0].toUpperCase()}).join(''); }
+function avatarHTML(it,cls){
+  if(it.img) return '<img class="'+(cls||'')+'" src="'+esc(it.img)+'" alt="" width="56" height="56">';
+  var named = it.who && !/^(a |an |someone)/i.test(it.who);
+  var txt = initials(named ? it.who : (it.place || it.title));
+  return '<span class="av '+(cls||'')+'" style="background:'+placeColour(it.place)+'" aria-hidden="true">'+esc(txt)+'</span>';
 }
-function renderInterest(){
-$('#interest').innerHTML=nearFirst(INTEREST).map(function(x){
-  return '<div class="int" id="int-'+x.id+'"><div>'+nearTag(x)+(x.when?'<em class="when">'+esc(x.when)+'</em>':'')+'<b>'+esc(x.title)+'</b><span>'+esc(x.what)+(x.host?' · <span class="host">'+esc(x.host)+'</span>':'')+'</span>'+feelHTML(x)+'</div>'+
-    '<button class="btn'+(keen[x.id]?' done':'')+'" type="button" data-keen="'+x.id+'" aria-pressed="'+(!!keen[x.id])+'">'+(keen[x.id]?'You\'re in ✓':"I'm in")+'</button>'+helpNudge(x)+'</div>';
-}).join('');
+function learnItems(){
+  var nb=NEIGHBOURS.map(function(n){ return {kind:'nb', id:n.id, title:n.title, who:n.who, where:n.where, place:n.place||n.where, img:n.img||PEOPLE_IMG[n.who], line:n.line, about:n.about, themes:nbThemes(n), near:n.near, link:n.link, linkText:n.linkText, ask:n.ask, shaping:n.shaping}; });
+  var it=INTEREST.map(function(x){ var who=(x.host||'').replace(/ hosting$/,''); return {kind:'int', id:x.id, title:x.title, who:who, where:'', place:x.place, img:PEOPLE_IMG[who], when:x.when, line:x.what, about:x.what, themes:x.themes||[], near:x.near}; });
+  /* mix neighbours and coming items so both show in the first few */
+  var mix=[]; for(var i=0;i<Math.max(nb.length,it.length);i++){ if(nb[i]) mix.push(nb[i]); if(it[i]) mix.push(it[i]); }
+  return nearFirst(mix);
 }
-renderInterest();
-/* One contact form for both: mode 'tell' (hear when it's on) or 'help' (help make it happen). */
-function openHelp(id,mode){
-  var x=INTEREST.filter(function(i){return i.id===id})[0]; if(!x) return;
-  var h=(x.host||'').replace(' hosting',''), who=(h && h!=='Kev')?esc(h)+' or Kev':'Kev', isHelp=mode!=='tell';
-  openSheet('<span class="badge">'+(isHelp?'Help make it happen':'Tell me when it\'s on')+'</span><h2 id="sheetTitle">'+esc(x.title)+'</h2>'+
-    (isHelp?'<p>Brilliant. No experience needed, and you can do as much or as little as you like. Leave your details and '+who+' will get in touch for a chat.</p>'
-           :'<p>Leave your details and we\'ll send you one message when there\'s a date. Nothing else unless you ask.</p>')+
-    '<form class="f" id="hpForm" novalidate>'+
-    '<label for="hpName">Your first name<input id="hpName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
-    '<label for="hpContact">Mobile or email<input id="hpContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
-    (isHelp?'<label for="hpWhat">Anything you\'d enjoy doing? (optional)<textarea id="hpWhat" maxlength="600" placeholder="Finding a venue, bringing snacks, telling friends, not sure yet…"></textarea></label>':'')+
-    '<input class="trap" id="hpTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
-    '<p class="err" id="hpErr" role="alert"></p><div class="row"><button class="btn" type="submit">'+(isHelp?'Contact me':'Tell me')+'</button></div>'+
-    '<p class="fine">Only Kev and the host see your details. <a href="privacy.html">Privacy</a></p></form>');
-  track(isHelp?'help nudge opened':'tell me opened',{item:id});
-  $('#hpForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    var n=$('#hpName').value.trim(), c=$('#hpContact').value.trim(), err=$('#hpErr');
-    if(!n){ err.textContent='Please add your first name.'; return; }
-    if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address.'; return; }
-    me={name:n,contact:c,show:!!me.show}; store('vvv-me',JSON.stringify(me));
-    var isEmail=c.indexOf('@')>-1, trap=$('#hpTrap').value;
-    if(isHelp){
-      send({type:'project',way:'organise',title:'Help make it happen: '+x.title,what:$('#hpWhat').value.trim(),lead:n,thread:id,where:getHome(),name:n,email:c,ok:'No',website:trap});
-      helping[id]=Date.now(); store('vvv-help',JSON.stringify(helping)); track('offered to help',{item:id});
-    } else {
-      send({type:'signup',name:n,email:isEmail?c:'',phone:isEmail?'':c,where:getHome(),fit:'Tell me when it\'s on',thread:'interest: '+id,website:trap});
-      track('tell me when on',{item:id});
-    }
-    tellMe[id]=tellMe[id]||Date.now(); store('vvv-tell2',JSON.stringify(tellMe));
-    renderInterest();
-    openSheet('<h2 id="sheetTitle">'+(isHelp?'Dare accepted, ':'Lovely, ')+esc(n)+'.</h2><p class="done-msg">'+(isHelp?'We\'ll be in touch. And if life gets busy, showing up is still plenty.':'We\'ll tell you when it\'s on.')+'</p><button class="ghost" type="button" data-close>Done</button>');
-    sheet.onclick=function(ev){ if(ev.target.closest('[data-close]')) closeSheet(); };
-  });
-}
-$('#interest').addEventListener('click',function(e){
-  var h=e.target.closest('[data-help]'); if(h){ openHelp(h.getAttribute('data-help')); return; }
-  var tl=e.target.closest('[data-tell]'); if(tl){ openHelp(tl.getAttribute('data-tell'),'tell'); return; }
-  var b=e.target.closest('[data-keen]'); if(!b) return;
-  var id=b.getAttribute('data-keen'), on=!keen[id];
-  if(on) keen[id]=1; else delete keen[id]; store('vvv-keen',JSON.stringify(keen));
-  renderInterest(); var nb=$('#int-'+id+' [data-keen]'); if(nb) nb.focus();
-  signal(on?'interest':'interest removed', id+' | '+(getHome())); track(on?'interest':'interest removed',{item:id});
-});
-
-/* ---------- neighbours ---------- */
-var nbMine=getJSON('vvv-nb',{}), nbShowAll=false;
-function nbById(id){ for(var i=0;i<NEIGHBOURS.length;i++) if(NEIGHBOURS[i].id===id) return NEIGHBOURS[i]; }
-function nbBtn(n){ var d=!!nbMine[n.id]; return '<button class="'+(d?'btn done':'btn')+'" type="button" data-nbin="'+n.id+'">'+(d?'You\'re in ✓':"I'm in")+'</button>'; }
-function tagsHTML(n){ return '<div class="tags">'+(n.shaping?'<span class="tag shaping">Still being shaped</span>':'')+nbThemes(n).map(function(t){ var th=THREADS.filter(function(x){return x.id===t})[0]; return th?'<span class="tag th-'+t+'">'+esc(th.t)+'</span>':''; }).join('')+'</div>'; }
+function learnById(id){ return learnItems().filter(function(x){return x.id===id})[0]; }
+function isIn(it){ return it.kind==='nb' ? !!nbMine[it.id] : !!keen[it.id]; }
+function setIn(it,on){ var m=it.kind==='nb'?nbMine:keen; if(on) m[it.id]=Date.now(); else delete m[it.id]; store(it.kind==='nb'?'vvv-nb':'vvv-keen',JSON.stringify(m)); }
+function nbBtn(it){ var d=isIn(it); return '<button class="'+(d?'btn done':'btn')+'" type="button" data-nbin="'+it.id+'">'+(d?'You\'re in ✓':"I'm in")+'</button>'; }
+function tagsHTML(n){ return '<div class="tags">'+(n.shaping?'<span class="tag shaping">Still being shaped</span>':'')+(n.themes||nbThemes(n)).map(function(t){ var th=THREADS.filter(function(x){return x.id===t})[0]; return th?'<span class="tag th-'+t+'">'+esc(th.t)+'</span>':''; }).join('')+'</div>'; }
+function metaLine(it){ var bits=[]; if(it.when) bits.push(esc(it.when)); if(it.who) bits.push('with '+esc(it.who)); if(it.where) bits.push(esc(it.where)); return nearTag(it)+bits.join(' · '); }
 function renderNeighbours(){
-  var NB=nearFirst(NEIGHBOURS);
-  var mineFirst=NB.filter(function(n){return isNear(n) || typeof picked!=='function' || nbThemes(n).some(picked)});
-  var rest=NB.filter(function(n){return mineFirst.indexOf(n)===-1});
-  var list=nbShowAll?mineFirst.concat(rest):mineFirst.slice(0,3);
-  if(!list.length) list=NB.slice(0,3);
+  var all=learnItems();
+  var mineFirst=all.filter(function(n){return isNear(n) || typeof picked!=='function' || n.themes.some(picked)});
+  var rest=all.filter(function(n){return mineFirst.indexOf(n)===-1});
+  var list=nbShowAll?mineFirst.concat(rest):mineFirst.slice(0,4);
+  if(!list.length) list=all.slice(0,4);
   $('#nbList').innerHTML=list.map(function(n){
-    return '<article class="nb"><img src="'+esc(n.img)+'" alt="" width="56" height="56"><div style="min-width:0">'+
+    return '<article class="nb">'+avatarHTML(n)+'<div style="min-width:0">'+
       '<h3><button type="button" data-nb="'+n.id+'">'+esc(n.title)+'</button></h3>'+
-      '<div class="meta">'+nearTag(n)+'with '+esc(n.who)+' · '+esc(n.where)+'</div>'+feelHTML(n)+tagsHTML(n)+'<p>'+esc(n.line)+'</p><div class="row act">'+nbBtn(n)+'</div></div></article>';
+      '<div class="meta">'+metaLine(n)+'</div><p>'+esc(n.line)+'</p><div class="row act">'+tagsHTML(n)+nbBtn(n)+'</div></div></article>';
   }).join('');
-  var all=$('#nbAll'); all.hidden=NB.length<=list.length && !nbShowAll; all.textContent=nbShowAll?'Show fewer':'See all '+NB.length;
+  var b=$('#nbAll'); b.hidden=all.length<=list.length && !nbShowAll; b.textContent=nbShowAll?'Show fewer':'See all '+all.length;
 }
+function renderInterest(){ renderNeighbours(); }
 renderNeighbours();
 $('#nbAll').addEventListener('click',function(){ nbShowAll=!nbShowAll; renderNeighbours(); if(!nbShowAll) $('#neighbours').scrollIntoView({block:'start'}); });
 $('#nbList').addEventListener('click',function(e){
@@ -852,13 +823,34 @@ $('#nbList').addEventListener('click',function(e){
   if(i) nbInterested(i.getAttribute('data-nbin'));
 });
 function openNeighbour(id){
-  var n=nbById(id); if(!n) return;
+  var n=learnById(id); if(!n) return;
   openSheet('<span class="badge">Learn from a neighbour</span><h2 id="sheetTitle">'+esc(n.title)+'</h2>'+
-    '<div class="mini" style="border-top:0"><img src="'+esc(n.img)+'" alt=""><div><b>With '+esc(n.who)+'</b><span>'+esc(n.where)+'</span></div></div>'+
-    '<p>'+esc(n.about)+'</p>'+(n.ask?'<p class="ask" style="margin:0 0 10px">'+esc(n.ask)+'</p>':'')+(n.link?'<p style="margin:0 0 10px"><a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+esc(n.linkText||'Their website')+' ↗</a></p>':'')+'<p class="fine">No date yet. Say you\'re interested and we\'ll set one once enough of you are keen.</p>'+
-    '<div class="row">'+nbBtn(n)+'</div>');
+    '<div class="mini" style="border-top:0">'+avatarHTML(n,'sm')+'<div><b>'+(n.who?'With '+esc(n.who):'Looking for a host')+'</b><span>'+esc(n.where||n.when||'')+'</span></div></div>'+
+    '<p>'+esc(n.about)+'</p>'+(n.ask?'<p class="ask" style="margin:0 0 10px">'+esc(n.ask)+'</p>':'')+(n.link?'<p style="margin:0 0 10px"><a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+esc(n.linkText||'Their website')+' ↗</a></p>':'')+
+    '<p class="fine">No date yet. Say you\'re in and we\'ll set one once enough of you are keen.</p>'+
+    '<div class="row">'+(isIn(n)?'<button class="skip" type="button" data-out-of="'+n.id+'">Not for me after all</button>':'')+nbBtn(n)+'</div>');
   track('neighbour opened',{neighbour:id});
-  sheet.onclick=function(e){ var i=e.target.closest('[data-nbin]'); if(i) nbInterested(i.getAttribute('data-nbin')); };
+  sheet.onclick=function(e){
+    var i=e.target.closest('[data-nbin]'); if(i) nbInterested(i.getAttribute('data-nbin'));
+    var x=e.target.closest('[data-out-of]'); if(x){ setIn(n,false); signal('interest removed',n.id+' | '+getHome()); renderNeighbours(); closeSheet(); }
+  };
+}
+function nbInterested(id){
+  var n=learnById(id); if(!n) return;
+  if(isIn(n)){ openNeighbour(id); return; }
+  setIn(n,true); signal('interest',id+' | '+getHome()); track('neighbour interested',{neighbour:id});
+  renderNeighbours();
+  openSheet('<span class="badge">You\'re in ✓</span><h2 id="sheetTitle">'+esc(n.title)+'</h2>'+
+    '<p>Want to hear when there\'s a date? Leave your details. Showing up is plenty: no strings, no homework.</p>'+detailsForm({dare:true}));
+  sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
+  $('#dtForm').addEventListener('submit',function(e){
+    e.preventDefault(); var d=readDetails(); if(!d) return;
+    send({type:'signup',name:d.name,email:d.isEmail?d.contact:'',phone:d.isEmail?'':d.contact,where:getHome(),fit:d.help?'In, will help':'In, tell me when',thread:'learn: '+id,website:d.trap});
+    if(d.help) send({type:'project',way:'organise',title:'Help make it happen: '+n.title,what:'',lead:d.name,thread:id,where:getHome(),name:d.name,email:d.contact,ok:'No',website:d.trap});
+    track('details left',{item:'learn: '+id, help:d.help});
+    openSheet('<h2 id="sheetTitle">'+(d.help?'Dare accepted, ':'Lovely, ')+esc(d.name)+'.</h2><p class="done-msg">'+(d.help?'We\'ll be in touch. And if life gets busy, showing up is still plenty.':'We\'ll tell you when there\'s a date.')+'</p><div class="row"><button class="btn" type="button" data-close>Done</button></div>');
+    sheet.onclick=function(ev){ if(ev.target.closest('[data-close]')) closeSheet(); };
+  });
 }
 function withContact(title, intro, done, always){
   if(!always && me.name && me.contact){ done(''); return; }
@@ -876,17 +868,6 @@ function withContact(title, intro, done, always){
     if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address.'; return; }
     me={name:n,contact:c,show:!!me.show}; store('vvv-me',JSON.stringify(me)); done($('#ctTrap').value);
   });
-}
-function nbInterested(id){
-  var n=nbById(id); if(!n || nbMine[id]) return;
-  withContact('Ooh, good choice.', esc(n.title)+' with '+esc(n.who)+'. Tell us how to reach you when there\'s a date.', function(trap){
-    var isEmail=me.contact.indexOf('@')>-1;
-    send({type:'signup',name:me.name,email:isEmail?me.contact:'',phone:isEmail?'':me.contact,where:getHome(),fit:'Interested',thread:'neighbour: '+id,website:trap||''});
-    nbMine[id]=Date.now(); store('vvv-nb',JSON.stringify(nbMine)); track('neighbour interested',{neighbour:id});
-    renderNeighbours();
-    openSheet('<h2 id="sheetTitle">Lovely, '+esc(me.name)+'.</h2><p class="done-msg">We\'ll tell you when there\'s a date.</p><button class="ghost" type="button" data-close>Done</button>');
-    sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
-  }, true);
 }
 
 /* ---------- themes: pick what pulls you, then a light profile ---------- */
@@ -1006,21 +987,48 @@ function openShare(theme,way){
 $('#ways').addEventListener('click',function(e){
   var b=e.target.closest('[data-way]'); if(!b) return; var way=b.getAttribute('data-way');
   track('join way picked',{way:way});
-  if(way==='show'){ $('#h-on').scrollIntoView({behavior:'smooth',block:'start'}); return; }
+  if(way==='organise'){ openHelpOut(); return; }
   openShare('',way);
 });
-function openWhat(){
+/* Help out: a dare, so keep it short. Name, contact, one optional line. */
+function openHelpOut(){
+  openSheet('<span class="badge">Go on, we dare you</span><h2 id="sheetTitle">Help out</h2>'+
+    '<p>Good with lists, keys, kettles or people? No experience needed, and do as much or as little as you like.</p>'+
+    '<form class="f" id="hoForm" novalidate>'+
+    '<label for="hoName">Your first name<input id="hoName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="hoContact">Mobile or email<input id="hoContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    '<label for="hoWhat">Anything you\'d enjoy? (optional)<input id="hoWhat" type="text" maxlength="200" placeholder="Booking a room, making tea, telling friends…"></label>'+
+    '<input class="trap" id="hoTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="hoErr" role="alert"></p><div class="row"><button class="btn" type="submit">Dare accepted</button></div>'+
+    '<p class="fine">Only Kev sees your details. <a href="privacy.html">Privacy</a></p></form>');
+  $('#hoForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#hoName').value.trim(), c=$('#hoContact').value.trim(), err=$('#hoErr');
+    if(!n){ err.textContent='Please add your first name.'; return; }
+    if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address.'; return; }
+    me={name:n,contact:c,show:!!me.show}; store('vvv-me',JSON.stringify(me));
+    send({type:'project',way:'organise',title:'Help out',what:$('#hoWhat').value.trim(),lead:n,thread:'',where:getHome(),name:n,email:c,ok:'No',website:$('#hoTrap').value});
+    track('offered to help',{item:'general'});
+    openSheet('<h2 id="sheetTitle">You\'re a star, '+esc(n)+'.</h2><p class="done-msg">We\'ll be in touch. And if life gets busy, showing up is still plenty.</p><div class="row"><button class="btn" type="button" data-close>Done</button></div>');
+    sheet.onclick=function(ev){ if(ev.target.closest('[data-close]')) closeSheet(); };
+  });
+}
+function openWhat(toWho){ toWho = toWho===true;
   openSheet('<h2 id="sheetTitle">What is Va Va Voom?</h2>'+
     '<p><b>Everyday folk from round here, giving stuff a go.</b> It\'s not about doing it perfectly or getting it right. It\'s about trying something out and learning something on the way.</p>'+
     '<p><b>Start small, start local, start together.</b> Good walks and pub nights, a question worth talking about, and neighbours you didn\'t know you had. Plus things to do and people to learn from, close to home.</p>'+
     '<p><b>It\'s for you if</b> you\'d rather do something than talk about it, you want to meet the neighbours you haven\'t met yet, you like your purpose with a bit of fun, and small and brave sounds better than big and worthy. Not sure? Come once and see.</p>'+
-    '<p><b>Join in any way you like.</b> Run something, get help running something, help organise, or just show up and explore.</p>'+
+    '<p><b>Join in any way you like.</b> Run something, help out, or just show up.</p>'+
     '<p>Started by Kev, Tim and Carl. It\'s an experiment, and you\'re one of the first.</p>'+
-    '<div class="row"><button class="btn" type="button" data-whaton>Show me what\'s on</button></div>');
+    '<div class="row"><button class="btn" type="button" data-whaton>Show me what\'s on</button></div>'+
+    '<div class="whoin">'+$('#whoTpl').innerHTML+'</div>');
   track('what is it opened');
+  if(toWho) setTimeout(function(){ var h=$('#whoHead'); if(h){ sheet.scrollTop=h.offsetTop-16; } },60);
   sheet.onclick=function(e){ if(e.target.closest('[data-whaton]')){ closeSheet(); $('#h-on').scrollIntoView({behavior:'smooth',block:'start'}); } };
 }
-$('#whatBtn').addEventListener('click',openWhat);
+$('#whatBtn').addEventListener('click',function(){ openWhat(false); });
+$('#whoBtn').addEventListener('click',function(){ openWhat(true); track('who row opened'); });
+document.querySelectorAll('[data-release]').forEach(function(el){ el.textContent='Release '+RELEASE; });
 
 /* ---------- menu ---------- */
 var burger=$('#burger'), menu=$('#menu');
