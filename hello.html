@@ -532,7 +532,8 @@ var PH_KEY = 'phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6';
 function $(s,r){return (r||document).querySelector(s)}
 /* Kev 29 Oct: one word for the feeling, not a phrase. */
 var FEELS={play:'play',connect:'connection',inspired:'inspiration'};
-function feelHTML(x){ return x.feel&&FEELS[x.feel]?'<span class="feel">'+FEELS[x.feel]+'</span>':''; }
+/* 29 Oct: Kev, James and Sam's panel: feeling off the cards (too wordy, two label systems). Data kept for the doorways test. */
+function feelHTML(x){ return ''; }
 /* Near me (Kev 29 Oct): items with a near list only show to people whose home is on it, and go first. */
 function homeIs(){ return (store('vvv-home')||'').trim().toLowerCase(); }
 function isNear(x){ return !!x.near && x.near.some(function(p){return p.toLowerCase()===homeIs()}); }
@@ -784,7 +785,7 @@ renderInterest();
 function openHelp(id,mode){
   var x=INTEREST.filter(function(i){return i.id===id})[0]; if(!x) return;
   var h=(x.host||'').replace(' hosting',''), who=(h && h!=='Kev')?esc(h)+' or Kev':'Kev', isHelp=mode!=='tell';
-  openSheet('<span class="badge">'+(isHelp?'Dare accepted':'Tell me when it\'s on')+'</span><h2 id="sheetTitle">'+esc(x.title)+'</h2>'+
+  openSheet('<span class="badge">'+(isHelp?'Help make it happen':'Tell me when it\'s on')+'</span><h2 id="sheetTitle">'+esc(x.title)+'</h2>'+
     (isHelp?'<p>Brilliant. No experience needed, and you can do as much or as little as you like. Leave your details and '+who+' will get in touch for a chat.</p>'
            :'<p>Leave your details and we\'ll send you one message when there\'s a date. Nothing else unless you ask.</p>')+
     '<form class="f" id="hpForm" novalidate>'+
