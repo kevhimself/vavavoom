@@ -93,7 +93,7 @@ footer{{padding:30px 0 80px}}
 <p>Same idea, five different coats of paint. Tap one to see it.</p>
 <div class="looks">{looks}</div>
 
-<h2>What should we build next?</h2>
+<h2 id="vote">What should we build next?</h2>
 <p>This is our feature backlog, opened up. Tap <b>I'd use this</b> on anything you'd actually use, and we'll build the most wanted first. Something missing? <a href="hello.html#feedback">Tell us</a>.</p>
 <ul class="vl">{votes}</ul>
 <p class="small">Votes go to our private sheet with the release you saw. No name needed.</p>
