@@ -289,11 +289,11 @@ footer a{color:var(--ink)}
 
 .consent{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--paper);z-index:15;
   padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
-.consent .in{max-width:560px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:14px}
+.consent .in{max-width:560px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:16px;line-height:1.4}
 .consent p{margin:0;flex:1 1 220px}
 .consent p a{color:var(--paper);text-decoration-color:var(--lime);text-underline-offset:3px;white-space:nowrap}
-.consent button{font-weight:700;border-radius:999px;padding:8px 16px;border:2px solid var(--paper);cursor:pointer;min-height:40px}
-.consent .yes{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+.consent button{font-weight:700;border-radius:999px;padding:8px 16px;border:2px solid var(--paper);cursor:pointer;min-height:44px}
+.consent .yes{background:transparent;color:var(--paper)}
 .consent .no{background:transparent;color:var(--paper)}
 @media (prefers-reduced-motion:no-preference){ .sheet{animation:up .22s ease-out} @keyframes up{from{transform:translateY(12px) scale(.98);opacity:.5}} }
 </style>
@@ -419,8 +419,8 @@ footer a{color:var(--ink)}
 
 <div class="consent" id="consent" hidden>
   <div class="in">
-    <p><b>Help us learn?</b> Say yes and this phone gets a random code (not your name), so we can see how people find their way round and make it better for you. Typing stays hidden. Never sold. <a href="privacy.html#code">One small cookie, explained</a></p>
-    <button class="yes" type="button" id="cYes">Yes, count me in</button>
+    <p><b>Help us learn?</b> Say yes and we'll remember this phone with a random code (not your name) and see how people tap and scroll round the site. Typing stays hidden. Say no and everything still works. <a href="privacy.html#code">What we keep</a></p>
+    <button class="yes" type="button" id="cYes">Yes, happy to help</button>
     <button class="no" type="button" id="cNo">No thanks</button>
   </div>
 </div>
@@ -587,7 +587,7 @@ function track(n,p){try{ if(window.posthog&&posthog.capture) posthog.capture(n,O
   posthog.register({site_version:RELEASE, build:BUILD, app:'va-va-voom', team:isTeam()}); try{ if(VVV_ID.kept()) posthog.register({vvv_id:VVV_ID.kept()}); }catch(e){}
   var c=store(PH_CHOICE), box=$('#consent');
   if(c==='yes') posthog.opt_in_capturing(); else if(c==='no') posthog.opt_out_capturing(); else window.__askConsent=true;
-  function choose(yes){ store(PH_CHOICE,yes?'yes':'no'); try{yes?posthog.opt_in_capturing():posthog.opt_out_capturing()}catch(e){} try{VVV_ID.chose(yes)}catch(e){} box.hidden=true; track('privacy choice',{choice:yes?'yes':'no'}); }
+  function choose(yes){ store(PH_CHOICE,yes?'yes':'no'); try{yes?posthog.opt_in_capturing():posthog.opt_out_capturing()}catch(e){} try{VVV_ID.chose(yes)}catch(e){} box.hidden=true; document.body.style.paddingBottom=''; track('privacy choice',{choice:yes?'yes':'no'}); }
   $('#cYes').onclick=function(){choose(true)}; $('#cNo').onclick=function(){choose(false)};
 })();
 
@@ -597,7 +597,7 @@ if(arrivedVia){ signal('arrived', arrivedVia); track('arrived',{via:arrivedVia})
 
 /* ---------- home and the welcome ---------- */
 var me = getJSON('vvv-me',{});
-function showConsent(){ if(window.__askConsent){ window.__askConsent=false; $('#consent').hidden=false; } }
+function showConsent(){ if(window.__askConsent){ window.__askConsent=false; var b=$('#consent'); b.hidden=false; document.body.style.paddingBottom=(b.offsetHeight+8)+'px'; } }
 function getHome(){ return (store('vvv-home')||'').trim(); }
 function setWelcome(){
   var h=getHome();

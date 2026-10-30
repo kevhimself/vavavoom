@@ -128,7 +128,7 @@ footer{margin:28px 0 max(24px,env(safe-area-inset-bottom,0px));font-size:14px;co
   <h2>How we count</h2>
   <ul class="how">
     <li>Only counts. No names, no faces, nothing anyone typed. Nobody is shown here.</li>
-    <li>Neighbours who say "Yes, count me in" get a random code on their phone (not their name), so we know which taps belong together and when someone comes back. <a href="privacy.html#code">One small cookie, explained</a>.</li>
+    <li>Neighbours who say "Yes, happy to help" get a random code on their phone (not their name), so we know which taps belong together and when someone comes back. <a href="privacy.html#code">What we keep</a>.</li>
     <li>For everyone else, a visit is one page view, or for older taps, one stretch of tapping with no break over 20 minutes. Tapping a button ten times in one visit counts once.</li>
     <li>Our own visits, as the three people who run this, are left out where we can tell they're ours. "Devices" comes from our visit counter and can't tell us apart, so it includes us.</li>
     <li id="since">Counting from 28 October, when the hello page went up.</li>
@@ -263,7 +263,7 @@ fetch('pulse.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.j
   document.getElementById('since').textContent='Counting from '+new Date(d.since).toLocaleDateString('en-GB',{day:'numeric',month:'long'})+', when the hello page went up.';
   document.querySelectorAll('[data-n]').forEach(function(n){countUp(n,d.counts[n.getAttribute('data-n')])});
   var c=d.counts,h=document.getElementById('helpers');
-  if(c.helpers!=null){h.hidden=false;h.textContent=c.helpers?(c.helpers===1?'1 neighbour is':c.helpers+' neighbours are')+' helping the experiment'+(c.returning?', and '+c.returning+' came back for more.':'. Thank you!'):'Nobody is helping the experiment yet. Be the first: say "Yes, count me in" on the hello page.';}
+  if(c.helpers!=null){h.hidden=false;h.textContent=c.helpers?(c.helpers===1?'1 neighbour is':c.helpers+' neighbours are')+' helping the experiment'+(c.returning?', and '+c.returning+' came back for more.':'. Thank you!'):'Nobody is helping the experiment yet. Be the first: say "Yes, happy to help" on the hello page.';}
   tops('topT',d.top_threads);tops('topI',d.top_items);words(d);draw(d);
   var last=0;window.addEventListener('resize',function(){var w=document.getElementById('cloud').parentNode.clientWidth;if(Math.abs(w-last)>40){last=w;draw(d)}});
 }).catch(function(){

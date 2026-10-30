@@ -1,5 +1,5 @@
 /* Va Va Voom: the experiment code.
-   Say yes on the "Help us learn?" bar and this phone keeps one random code (vvv-id), so we can
+   Say yes ("Yes, happy to help") on the "Help us learn?" bar and this phone keeps one random code (vvv-id), so we can
    tell one person's taps from another's without knowing who anyone is. It is not your name,
    it never sits next to your name in our records, and it is never sold.
    Say no (or nothing) and nothing is stored: each page view gets a throwaway code held in memory
