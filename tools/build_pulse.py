@@ -27,6 +27,20 @@ KEPT_GAP = datetime.timedelta(minutes=30)   # kept code: a new visit after 30 mi
 PAGE_GAP = datetime.timedelta(hours=12)     # page code: one page view is one visit
 PAD = datetime.timedelta(minutes=2)
 
+# Code names, worked out exactly as vid.js does on the phone (keep the two lists in step).
+ADJ = ['Brave','Sunny','Curious','Merry','Nimble','Gentle','Bold','Cheery','Swift','Jolly','Plucky','Kind','Dapper','Breezy','Spry','Mellow']
+ANIMAL = ['Badger','Otter','Kingfisher','Hedgehog','Owl','Heron','Fox','Hare','Wren','Robin','Dormouse','Newt','Swift','Vole','Kestrel','Mole']
+
+def code_name(code):
+    try:
+        h = int(code[1:9], 16)
+    except ValueError:
+        h = 0
+    adj, an = ADJ[h % 16], ANIMAL[(h >> 4) % 16]
+    if adj == an:
+        adj = 'Merry'
+    return adj, an, (h >> 8) % 98 + 2
+
 def rows(path):
     p = pathlib.Path(path)
     if not p.exists():
@@ -123,6 +137,7 @@ def main():
     iin = {i: 0 for i in items}
     stories = 0
     im_in = 0
+    crew = {}
     for v in kept:
         ts, its, read = set(), set(), False
         for _, ev, det, *_ in v:
@@ -142,6 +157,11 @@ def main():
             elif ev == 'stories opened':
                 read = True
         for t in ts: tscore[t] += 1
+        c = v[0][3]
+        if c in helpers:
+            crew.setdefault(c, {'visits': 0, 'threads': {}})
+            crew[c]['visits'] += 1
+            for t in ts: crew[c]['threads'][t] = crew[c]['threads'].get(t, 0) + 1
         for i in its: iscore[i] += 1
         stories += read
 
@@ -153,6 +173,16 @@ def main():
     def top(d, labels, n=3):
         best = sorted(((c, k) for k, c in d.items() if c > 0), key=lambda x: (-x[0], labels[x[1]]))[:n]
         return [dict(id=k, title=labels[k], n=c) for c, k in best]
+
+    # The crew: one entry per code name. Only the name, how often they came and the threads they
+    # picked. Never the code, never events or times (that would say where someone will be).
+    pluckies = []
+    for c, d in crew.items():
+        adj, an, num = code_name(c)
+        pluckies.append(dict(name=f'{adj} {an} {num}', adj=adj, animal=an, visits=d['visits'],
+                             back=len(days.get(c, ())) > 1,
+                             threads=[t for t, _ in sorted(d['threads'].items(), key=lambda x: -x[1])][:3]))
+    pluckies.sort(key=lambda p: (-p['visits'], p['name']))
 
     out = dict(
         updated=datetime.datetime.now().strftime('%Y-%m-%dT%H:%M'),
@@ -168,6 +198,7 @@ def main():
                  for t, n in MAP['threads']],
         top_threads=top(tscore, threads),
         top_items=top(iscore, {k: v['title'] for k, v in items.items()}),
+        crew=pluckies,
     )
     pathlib.Path(a.out).write_text(json.dumps(out, indent=1, ensure_ascii=False) + '\n')
     print(f"pulse.json: {coded} visits known by code, {len(helpers)} helpers; {len(kept)} visits kept of {len(visits)} ({len(visits)-len(kept)} team), "

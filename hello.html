@@ -431,7 +431,7 @@ footer a{color:var(--ink)}
   <div class="in" id="cAsk">
     <p class="c-kick">Psst. Fancy joining the experiment?</p>
     <p class="c-name">Say yes and you become <b id="cName">a code name</b>.</p>
-    <p class="c-what">The name stays on your phone. A random code goes with your taps, so we can see what people tap and scroll and grow the right things. <a href="privacy.html#code">What we keep</a></p>
+    <p class="c-what">A random code goes with your taps, so we can see what people tap and scroll and grow the right things. Your code name pops up on our Pulse page, never your real name. <a href="privacy.html#code">What we keep</a></p>
     <ul class="c-ticks"><li>Not your name</li><li>Typing hidden</li><li>No selling, no ads</li></ul>
     <div class="c-row">
       <button class="yes" type="button" id="cYes">Yes, I'll help</button>
@@ -606,8 +606,8 @@ function track(n,p){try{ if(window.posthog&&posthog.capture) posthog.capture(n,O
   function choose(yes){ store(PH_CHOICE,yes?'yes':'no'); try{yes?posthog.opt_in_capturing():posthog.opt_out_capturing()}catch(e){} try{VVV_ID.chose(yes)}catch(e){}
     var nm=''; try{ nm=VVV_ID.name(); }catch(e){}
     $('#cAsk').hidden=true; $('#cDone').hidden=false;
-    $('#cThanks').innerHTML = yes ? 'Welcome to the experiment, <b>'+esc(nm)+'</b>. Thank you for helping us learn.' : 'No problem. Everything still works, and we won\'t link your visits together.';
-    setTimeout(function(){ box.hidden=true; document.body.style.paddingBottom=''; }, yes?3500:1800); track('privacy choice',{choice:yes?'yes':'no'}); }
+    $('#cThanks').innerHTML = yes ? 'Welcome to the experiment, <b>'+esc(nm)+'</b>. Thank you for helping us learn. Spot yourself on <a href="pulse.html">the Pulse</a> after the next refresh.' : 'No problem. Everything still works, and we won\'t link your visits together.';
+    setTimeout(function(){ box.hidden=true; document.body.style.paddingBottom=''; }, yes?6000:1800); track('privacy choice',{choice:yes?'yes':'no'}); }
   $('#cYes').onclick=function(){choose(true)}; $('#cNo').onclick=function(){choose(false)};
 })();
 

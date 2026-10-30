@@ -80,11 +80,23 @@ details.words summary{cursor:pointer;font-weight:700;min-height:44px;display:fle
 .next p{margin:0 0 6px}
 footer{margin:28px 0 max(24px,env(safe-area-inset-bottom,0px));font-size:14px;color:var(--muted)}
 .helpers{margin:10px 0 0;font-family:var(--hand);font-size:24px;line-height:1.2;color:var(--rose-dk)}
+.crew{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}
+.mate{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:12px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;position:relative}
+.mate svg{width:72px;height:72px}
+.mate b{font-size:16px;line-height:1.2}
+.mate .meta{font-size:14px;color:var(--muted)}
+.mate .ths{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin-top:2px}
+.mate .ths span{white-space:nowrap;font-size:12px;border:2px solid var(--c);border-radius:999px;padding:0 7px;line-height:1.6}
+.mate.me{border-color:var(--rose);box-shadow:4px 4px 0 var(--rose)}
+.mate .you{position:absolute;top:-10px;right:-6px;background:var(--rose);color:#fff;font-weight:700;font-size:13px;border-radius:999px;padding:1px 9px;transform:rotate(4deg)}
+.mate.ghost{border-style:dashed;color:var(--muted);background:transparent}
+.crewnote{grid-column:1/-1;margin:2px 0 0;font-size:15px;color:var(--muted)}
 .empty{padding:30px 16px;text-align:center;color:var(--muted)}
 </style>
 </head>
 <body>
 <script src="release.js"></script>
+<script src="vid.js"></script>
 <div class="wrap">
 <header>
   <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
@@ -125,10 +137,14 @@ footer{margin:28px 0 max(24px,env(safe-area-inset-bottom,0px));font-size:14px;co
     <div id="words"></div>
   </details>
 
+  <h2>Meet the crew</h2>
+  <p style="margin:0 0 4px">Neighbours who joined the experiment, by their code names. Never real names, and never where or when they'll be.</p>
+  <div class="crew" id="crew"></div>
+
   <h2>How we count</h2>
   <ul class="how">
     <li>Only counts. No names, no faces, nothing anyone typed. Nobody is shown here.</li>
-    <li>Neighbours who join the experiment get a made-up code name on their phone, like Plucky Hare 15 (never their real name), so we know which taps belong together and when someone comes back. <a href="privacy.html#code">What we keep</a>.</li>
+    <li>Neighbours who join the experiment get a made-up code name on their phone, like Plucky Hare 15 (never their real name), so we know which taps belong together and when someone comes back. It's one per phone or laptop, so someone who joins on both shows up twice. <a href="privacy.html#code">What we keep</a>.</li>
     <li>For everyone else, a visit is one page view, or for older taps, one stretch of tapping with no break over 20 minutes. Tapping a button ten times in one visit counts once.</li>
     <li>Our own visits, as the three people who run this, are left out where we can tell they're ours. "Devices" comes from our visit counter and can't tell us apart, so it includes us.</li>
     <li id="since">Counting from 28 October, when the hello page went up.</li>
@@ -175,6 +191,46 @@ function words(d){
     return '<div class="thr"><h4><i style="background:'+COL[t.id]+'"></i>'+esc(t.title)+' <small style="font-weight:400;color:var(--muted)">picked in '+visits(t.n)+'</small></h4><ul>'+
       t.items.map(function(i){return '<li>'+esc(i.title)+' <small>'+KIND[i.kind].toLowerCase()+', '+(i.n?visits(i.n):'no taps yet')+(i.im_in?', '+i.im_in+' said "I\'m in"':'')+'</small></li>'}).join('')+'</ul></div>';
   }).join('');
+}
+
+// The crew: little animal badges, drawn here so they look the same on every phone.
+var ADJCOL={Brave:'#ffd9c2',Sunny:'#fbeec8',Curious:'#d8e7ff',Merry:'#ffd6e6',Nimble:'#e2f5c4',Gentle:'#ece5dc',Bold:'#ffc9c2',Cheery:'#fff1b8',Swift:'#cdeefa',Jolly:'#f3d6ff',Plucky:'#ffe0b3',Kind:'#d9f2e4',Dapper:'#e3e0f7',Breezy:'#d6f1f0',Spry:'#eaf7c8',Mellow:'#f5e6d3'};
+var FACE={Badger:'#f4f1ec',Otter:'#8a5a3b',Kingfisher:'#1f8fc2',Hedgehog:'#c79a6b',Owl:'#a67f52',Heron:'#c2ccd3',Fox:'#e0662b',Hare:'#b9966f',Wren:'#9a6b45',Robin:'#9a6b45',Dormouse:'#e0ae66',Newt:'#e9803a',Swift:'#4a4a58',Vole:'#86674f',Kestrel:'#bf6d33',Mole:'#3d3636'};
+var BIRDS={Kingfisher:1,Owl:1,Heron:1,Wren:1,Robin:1,Swift:1,Kestrel:1};
+function critter(an,adj){
+  var f=FACE[an]||'#b9966f',bg=ADJCOL[adj]||'#ece5dc',ink='#1c1a2b',o='<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="'+bg+'" stroke="'+ink+'" stroke-width="2"/>';
+  if(an==='Hedgehog'){var sp='';for(var i=0;i<12;i++){var a=Math.PI*(1.05+i/11*0.9);sp+=(i?' L':'M')+(32+Math.cos(a)*25).toFixed(1)+' '+(36+Math.sin(a)*25).toFixed(1)+' L'+(32+Math.cos(a+0.13)*17).toFixed(1)+' '+(36+Math.sin(a+0.13)*17).toFixed(1)}o+='<path d="'+sp+'" fill="#6b4b30" stroke="'+ink+'" stroke-width="1.5" stroke-linejoin="round"/>'}
+  else if(an==='Fox')o+='<path d="M15 26 L19 8 L28 20 Z M49 26 L45 8 L36 20 Z" fill="'+f+'" stroke="'+ink+'" stroke-width="2" stroke-linejoin="round"/>';
+  else if(an==='Hare')o+='<ellipse cx="24" cy="13" rx="4.5" ry="12" fill="'+f+'" stroke="'+ink+'" stroke-width="2"/><ellipse cx="40" cy="13" rx="4.5" ry="12" fill="'+f+'" stroke="'+ink+'" stroke-width="2"/>';
+  else if(an==='Owl')o+='<path d="M17 24 L18 13 L26 20 Z M47 24 L46 13 L38 20 Z" fill="'+f+'" stroke="'+ink+'" stroke-width="2" stroke-linejoin="round"/>';
+  else if(!BIRDS[an]&&an!=='Newt'&&an!=='Mole')o+='<circle cx="19" cy="21" r="6.5" fill="'+f+'" stroke="'+ink+'" stroke-width="2"/><circle cx="45" cy="21" r="6.5" fill="'+f+'" stroke="'+ink+'" stroke-width="2"/>';
+  o+='<circle cx="32" cy="36" r="18" fill="'+f+'" stroke="'+ink+'" stroke-width="2"/>';
+  if(an==='Badger')o+='<path d="M23 22 Q25 34 27 44 L22 44 Q18 32 19 25 Z M41 22 Q39 34 37 44 L42 44 Q46 32 45 25 Z" fill="'+ink+'"/>';
+  if(an==='Robin')o+='<path d="M20 44 Q32 56 44 44 Q32 50 20 44 Z" fill="#e2492f"/><path d="M19 42 Q32 52 45 42 L44 47 Q32 56 20 47 Z" fill="#e2492f"/>';
+  if(an==='Kingfisher')o+='<path d="M18 42 Q32 55 46 42 L45 47 Q32 56 19 47 Z" fill="#ff8a2a"/>';
+  if(an==='Kestrel'||an==='Newt'){o+='<circle cx="22" cy="42" r="1.6" fill="'+ink+'"/><circle cx="42" cy="44" r="1.6" fill="'+ink+'"/><circle cx="35" cy="48" r="1.3" fill="'+ink+'"/>'}
+  if(an==='Owl')o+='<circle cx="25" cy="33" r="6" fill="#fff" stroke="'+ink+'" stroke-width="1.5"/><circle cx="39" cy="33" r="6" fill="#fff" stroke="'+ink+'" stroke-width="1.5"/><circle cx="25" cy="33" r="2.8" fill="'+ink+'"/><circle cx="39" cy="33" r="2.8" fill="'+ink+'"/>';
+  else if(an==='Mole')o+='<circle cx="26" cy="33" r="1.4" fill="#fff"/><circle cx="38" cy="33" r="1.4" fill="#fff"/>';
+  else o+='<circle cx="26" cy="33" r="2.6" fill="'+(an==='Badger'?'#fff':ink)+'"/><circle cx="38" cy="33" r="2.6" fill="'+(an==='Badger'?'#fff':ink)+'"/><circle cx="26.8" cy="32.2" r=".8" fill="#fff"/><circle cx="38.8" cy="32.2" r=".8" fill="#fff"/>';
+  if(BIRDS[an])o+='<path d="M28 39 L36 39 L32 46 Z" fill="#f2c75a" stroke="'+ink+'" stroke-width="1.5" stroke-linejoin="round"/>';
+  else if(an==='Newt')o+='<path d="M24 42 Q32 47 40 42" fill="none" stroke="'+ink+'" stroke-width="2" stroke-linecap="round"/>';
+  else o+='<ellipse cx="32" cy="41" rx="3.4" ry="2.4" fill="'+(an==='Mole'?'#f19bb6':ink)+'"/><path d="M29 45 Q32 47 35 45" fill="none" stroke="'+(an==='Mole'?'#f4f1ec':ink)+'" stroke-width="1.5" stroke-linecap="round"/>';
+  return o+'</svg>';
+}
+function crew(d){
+  var box=document.getElementById('crew'),list=d.crew||[],mine='';
+  try{ if(VVV_ID.kept()) mine=VVV_ID.name(); }catch(e){}
+  var TT={grow:'Growing',make:'Making',nature:'Nature',homes:'Warm homes',move:'Moving',talk:'Meeting'};
+  if(!list.length){
+    box.innerHTML=['Brave Badger','Curious Owl','Plucky Hare'].map(function(n){var p=n.split(' ');return '<div class="mate ghost">'+critter(p[1],p[0]).replace('<svg ','<svg style="opacity:.35" ')+'<b>'+n+' ?</b><span class="meta">could be you</span></div>'}).join('')+
+      '<p class="crewnote">Nobody has joined yet. Say "Yes, I\'ll help" on the <a href="hello.html">hello page</a> and you\'ll pop up here as your code name.</p>';
+    return;
+  }
+  box.innerHTML=list.map(function(m){
+    var me=mine&&m.name===mine;
+    return '<div class="mate'+(me?' me':'')+'">'+(me?'<span class="you">That\'s you!</span>':'')+critter(m.animal,m.adj)+'<b>'+esc(m.name)+'</b><span class="meta">'+visits(m.visits)+(m.back?' · came back':'')+'</span>'+
+      (m.threads.length?'<span class="ths">'+m.threads.map(function(t){return '<span style="--c:'+COL[t]+'">'+esc(TT[t]||t)+'</span>'}).join('')+'</span>':'')+'</div>';
+  }).join('')+(mine&&!list.some(function(m){return m.name===mine})?'<p class="crewnote">You\'re <b>'+esc(mine)+'</b>. You\'ll show up here after the next refresh.</p>':'');
 }
 
 // Lay out: thread hubs on a grid, items pulled to their hub, nothing overlapping.
@@ -264,7 +320,7 @@ fetch('pulse.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.j
   document.querySelectorAll('[data-n]').forEach(function(n){countUp(n,d.counts[n.getAttribute('data-n')])});
   var c=d.counts,h=document.getElementById('helpers');
   if(c.helpers!=null){h.hidden=false;h.textContent=c.helpers?(c.helpers===1?'1 neighbour is':c.helpers+' neighbours are')+' in the experiment'+(c.returning?', and '+c.returning+' came back for more.':'. Thank you!'):'Nobody has joined the experiment yet. Be the first: say "Yes, I\'ll help" on the hello page.';}
-  tops('topT',d.top_threads);tops('topI',d.top_items);words(d);draw(d);
+  tops('topT',d.top_threads);tops('topI',d.top_items);words(d);crew(d);draw(d);
   var last=0;window.addEventListener('resize',function(){var w=document.getElementById('cloud').parentNode.clientWidth;if(Math.abs(w-last)>40){last=w;draw(d)}});
 }).catch(function(){
   document.getElementById('updated').textContent='The numbers are having a lie-in.';

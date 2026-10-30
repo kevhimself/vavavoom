@@ -17,7 +17,8 @@
   var pageCode = 'p' + fresh(); // this page view only, memory only
   var offered = 'k' + fresh();  // the code we'd give you if you say yes (memory only until then)
 
-  // A friendly code name made from the code, shown only on your own phone. Never sent anywhere.
+  // A friendly code name made from the code. Only the code is sent; the Pulse (tools/build_pulse.py)
+  // works out the same name from it, so keep these two lists in step with build_pulse.py.
   var ADJ = ['Brave','Sunny','Curious','Merry','Nimble','Gentle','Bold','Cheery','Swift','Jolly','Plucky','Kind','Dapper','Breezy','Spry','Mellow'];
   var ANIMAL = ['Badger','Otter','Kingfisher','Hedgehog','Owl','Heron','Fox','Hare','Wren','Robin','Dormouse','Newt','Swift','Vole','Kestrel','Mole'];
   function nameFor(code) {
