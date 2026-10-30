@@ -30,3 +30,5 @@ https://app.notion.com/p/40893f7bf11a8182bc6dcf1ef52242ea
 
 ## Git
 Another session may edit this folder: `git pull --rebase` first, commit only your files.
+Claude sessions commit as `Claude <noreply@anthropic.com>` (signed, so GitHub shows Verified), never under Kev's name.
+Never rewrite or force-push main to fix old "Unverified" badges: they only mean a commit wasn't signed.
