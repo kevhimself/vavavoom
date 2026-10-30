@@ -35,17 +35,18 @@ code{font-size:15px;background:#ece5dc;padding:1px 5px;border-radius:4px}
 <p>Your phone also remembers your name, home and choices, so you don't have to type them again. That stays on your phone.</p>
 
 <h2 id="code">What we keep, and one small cookie</h2>
-<p>Va Va Voom is an experiment, and you can help us learn. If you say <b>"Yes, happy to help"</b>, your phone keeps a random code: a jumble of letters and numbers, not your name. It lets us see that the same person tapped Growing, then the sauna, then came back on Tuesday. That helps us work out what people round here want, so we can make it better for you.</p>
+<p>Va Va Voom is an experiment, and you can help us learn. If you say <b>"Yes, I'll help"</b>, your phone keeps a random code: a jumble of letters and numbers, not your name. To make it friendlier, your phone turns it into a code name like Plucky Hare 15. Only your phone shows that name; we never see it. It lets us see that the same person tapped Growing, then the sauna, then came back on Tuesday. That helps us work out what people round here want, so we can make it better for you.</p>
 <ul>
 <li><b>It isn't your name.</b> It's made up at random on your phone. We never put it next to your name, number or email in our records.</li>
 <li><b>Your taps and scrolls.</b> With a yes, we also record how you move round the page, so we can spot what's confusing. Anything you type is hidden from it.</li>
 <li><b>Where it goes.</b> The code stays on your phone. Your taps go to our private Google Sheet and to PostHog, the tool we use to count them (its servers are in the EU).</li>
 <li><b>No IP addresses.</b> We don't keep them, in the sheet or in PostHog.</li>
 <li><b>We don't sell it or share it for adverts.</b> If that ever changed, we'd ask you first.</li>
-<li><b>Say no, or nothing,</b> and nothing is kept on your phone. We still count the page anonymously, with a throwaway code that's gone when you close it, so we can't link one visit to the next.</li>
+<li><b>Say no, or nothing,</b> and we can't link one visit to the next. Your phone only remembers your "no", so we don't keep asking. We still count the page anonymously, with a throwaway code that's gone when you close it.</li>
 </ul>
 <p>Nobody likes cookies. Well, nobody likes the kind that follow you round the internet. Ours is more of a plain digestive: it stays on this site and goes nowhere else.</p>
 <p>Rather ask a person? Grab Kev, Tim or Carl at any event.</p>
+<p id="myname" hidden>On this phone you're <b></b> in the experiment. Only your phone knows that name.</p>
 <p>Changed your mind? <button type="button" id="forget" class="forget">Forget my code</button> <span id="forgot" role="status"></span></p>
 
 <h2>Who sees it</h2>
@@ -63,6 +64,6 @@ code{font-size:15px;background:#ece5dc;padding:1px 5px;border-radius:4px}
 <h2>This is an experiment</h2>
 <p>Things will change as we learn. If how we use your data changes, we'll update this page and tell you.</p>
 <p class="muted">Last updated 30 October 2026 · <span data-release>Release Farncombe</span></p>
-<script src="release.js"></script><script src="vid.js"></script><script>(function(){var b=document.getElementById('forget'),o=document.getElementById('forgot');if(!b)return;b.onclick=function(){try{VVV_ID.forget()}catch(e){}o.textContent='Done. Your code is gone, and we\'ll ask again next time.'};})();</script><script>document.querySelectorAll('[data-release]').forEach(function(el){el.textContent='Release '+(window.VVV_RELEASE||'')});</script>
+<script src="release.js"></script><script src="vid.js"></script><script>(function(){var b=document.getElementById('forget'),o=document.getElementById('forgot'),m=document.getElementById('myname');if(!b)return;try{if(VVV_ID.kept()){m.querySelector('b').textContent=VVV_ID.name();m.hidden=false}}catch(e){}b.onclick=function(){try{VVV_ID.forget()}catch(e){}o.textContent='Done. Your code is gone, and we\'ll ask again next time.';m.hidden=true};})();</script><script>document.querySelectorAll('[data-release]').forEach(function(el){el.textContent='Release '+(window.VVV_RELEASE||'')});</script>
 </main></body>
 </html>

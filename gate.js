@@ -147,7 +147,7 @@
     '<h2 id="vg-oh" tabindex="-1">Help us make it better?</h2>' +
     '<p>Let us see how people move around the page, not who you are. It shows us what Godalming actually taps on, so we grow the right things.</p>' +
     '<ul class="vg-ticks"><li>Anything you type stays hidden</li><li>No names, no selling, data stays in the EU</li><li>Change your mind any time</li></ul>' +
-    '<button type="button" class="vg-btn vg-yes">Yes, happy to help →</button>' +
+    '<button type="button" class="vg-btn vg-yes">Yes, I\'ll help →</button>' +
     '<button type="button" class="vg-ghost vg-no">Just count my visit</button></div>' +
     '</div></div>');
   var s1 = note.querySelector('.vg-s1'), s2 = note.querySelector('.vg-s2');
