@@ -138,13 +138,13 @@ footer{margin:28px 0 max(24px,env(safe-area-inset-bottom,0px));font-size:14px;co
   </details>
 
   <h2>Meet the crew</h2>
-  <p style="margin:0 0 4px">Neighbours who joined the experiment, by their code names. Never real names, and never where or when they'll be.</p>
+  <p style="margin:0 0 4px">Neighbours who joined the experiment, by their secret names. Never real names, and never where or when they'll be.</p>
   <div class="crew" id="crew"></div>
 
   <h2>How we count</h2>
   <ul class="how">
     <li>Only counts. No names, no faces, nothing anyone typed. Nobody is shown here.</li>
-    <li>Neighbours who join the experiment get a made-up code name on their phone, like Plucky Hare 15 (never their real name), so we know which taps belong together and when someone comes back. It's one per phone or laptop, so someone who joins on both shows up twice. <a href="privacy.html#code">What we keep</a>.</li>
+    <li>Neighbours who join the experiment get a made-up secret name on their phone, like Plucky Hare 15 (never their real name), so we know which taps belong together and when someone comes back. It's one per phone or laptop, so someone who joins on both shows up twice. <a href="privacy.html#code">What we keep</a>.</li>
     <li>For everyone else, a visit is one page view, or for older taps, one stretch of tapping with no break over 20 minutes. Tapping a button ten times in one visit counts once.</li>
     <li>Our own visits, as the three people who run this, are left out where we can tell they're ours. "Devices" comes from our visit counter and can't tell us apart, so it includes us.</li>
     <li id="since">Counting from 28 October, when the hello page went up.</li>
@@ -223,7 +223,7 @@ function crew(d){
   var TT={grow:'Growing',make:'Making',nature:'Nature',homes:'Warm homes',move:'Moving',talk:'Meeting'};
   if(!list.length){
     box.innerHTML=['Brave Badger','Curious Owl','Plucky Hare'].map(function(n){var p=n.split(' ');return '<div class="mate ghost">'+critter(p[1],p[0]).replace('<svg ','<svg style="opacity:.35" ')+'<b>'+n+' ?</b><span class="meta">could be you</span></div>'}).join('')+
-      '<p class="crewnote">Nobody has joined yet. Say "Yes, I\'ll help" on the <a href="hello.html">hello page</a> and you\'ll pop up here as your code name.</p>';
+      '<p class="crewnote">Nobody has joined yet. Say "Yes, I\'ll help" on the <a href="hello.html">hello page</a> and you\'ll pop up here as your secret name.</p>';
     return;
   }
   box.innerHTML=list.map(function(m){

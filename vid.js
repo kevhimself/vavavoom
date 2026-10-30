@@ -17,7 +17,7 @@
   var pageCode = 'p' + fresh(); // this page view only, memory only
   var offered = 'k' + fresh();  // the code we'd give you if you say yes (memory only until then)
 
-  // A friendly code name made from the code. Only the code is sent; the Pulse (tools/build_pulse.py)
+  // A friendly secret name made from the code. Only the code is sent; the Pulse (tools/build_pulse.py)
   // works out the same name from it, so keep these two lists in step with build_pulse.py.
   var ADJ = ['Brave','Sunny','Curious','Merry','Nimble','Gentle','Bold','Cheery','Swift','Jolly','Plucky','Kind','Dapper','Breezy','Spry','Mellow'];
   var ANIMAL = ['Badger','Otter','Kingfisher','Hedgehog','Owl','Heron','Fox','Hare','Wren','Robin','Dormouse','Newt','Swift','Vole','Kestrel','Mole'];
@@ -50,7 +50,7 @@
       try { if (window.posthog) { window.posthog.unregister('vvv_id'); window.posthog.opt_out_capturing(); } } catch (e) {}
     },
     kept: function () { return get(CHOICE) === 'yes' ? get(KEY) : null; },
-    // Your code name if you've said yes, or the one waiting for you if you haven't.
+    // Your secret name if you've said yes, or the one waiting for you if you haven't.
     name: function () { return nameFor(this.kept() || offered); }
   };
   // Link PostHog replays to the same code, only for people who said yes.

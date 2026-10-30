@@ -295,16 +295,16 @@ footer a{color:var(--ink)}
 .consent .c-name{font-size:18px;margin-top:2px}
 .consent .c-name b{color:var(--sun);white-space:nowrap}
 .consent .c-what{font-size:15px;opacity:.92;margin-top:4px}
-.consent .c-ticks{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
-.consent .c-ticks li{font-size:14px;border:1px solid rgba(251,247,242,.45);border-radius:999px;padding:2px 10px}
+.consent .c-ticks{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:2px 16px}
+.consent .c-ticks li{font-size:14px;opacity:.95}
 .consent .c-ticks li::before{content:"\2713\00a0";color:var(--lime);font-weight:700}
 .consent .c-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
 .consent .c-row button{flex:1 1 0}
 .consent a{color:var(--paper);text-decoration-color:var(--lime);text-underline-offset:3px;white-space:nowrap;font-weight:700;padding:12px 0}
 .consent button{font-weight:700;border-radius:999px;padding:8px 16px;border:2px solid var(--paper);cursor:pointer;min-height:44px;background:transparent;color:var(--paper)}
 .consent .c-more{margin-top:2px;font-size:15px}
-.consent .c-thanks{font-size:18px}
-.consent .c-thanks b{color:var(--sun)}
+.consent .c-thanks{font-size:18px;line-height:1.45}
+.consent .c-thanks b{color:var(--sun);white-space:nowrap}
 @media (prefers-reduced-motion:no-preference){ .sheet{animation:up .22s ease-out} @keyframes up{from{transform:translateY(12px) scale(.98);opacity:.5}} }
 </style>
 </head>
@@ -430,15 +430,15 @@ footer a{color:var(--ink)}
 <div class="consent" id="consent" hidden role="region" aria-label="Help us learn">
   <div class="in" id="cAsk">
     <p class="c-kick">Psst. Fancy joining the experiment?</p>
-    <p class="c-name">Say yes and you become <b id="cName">a code name</b>.</p>
-    <p class="c-what">A random code goes with your taps, so we can see what people tap and scroll and grow the right things. Your code name pops up on our Pulse page, never your real name. <a href="privacy.html#code">What we keep</a></p>
+    <p class="c-name">Say yes and your secret name will be <b id="cName">a surprise</b>.</p>
+    <p class="c-what">A random code goes with your taps, so we can see what people tap and scroll and grow the right things. Your secret name pops up on our Pulse page, never your real name. <a href="privacy.html#code">What we keep</a></p>
     <ul class="c-ticks"><li>Not your name</li><li>Typing hidden</li><li>No selling, no ads</li></ul>
     <div class="c-row">
       <button class="yes" type="button" id="cYes">Yes, I'll help</button>
       <button class="no" type="button" id="cNo">No thanks</button>
     </div>
   </div>
-  <div class="in" id="cDone" hidden><p class="c-thanks" id="cThanks" role="status"></p></div>
+  <div class="in" id="cDone" hidden><p class="c-thanks" id="cThanks" role="status"></p><div class="c-row" id="cOkRow"><button type="button" id="cOk">Lovely</button></div></div>
 </div>
 
 <template id="whoTpl">
@@ -605,11 +605,24 @@ function track(n,p){try{ if(window.posthog&&posthog.capture) posthog.capture(n,O
   var c=store(PH_CHOICE), box=$('#consent');
   if(c==='yes') posthog.opt_in_capturing(); else if(c==='no') posthog.opt_out_capturing(); else window.__askConsent=true;
   function choose(yes){ store(PH_CHOICE,yes?'yes':'no'); try{yes?posthog.opt_in_capturing():posthog.opt_out_capturing()}catch(e){} try{VVV_ID.chose(yes)}catch(e){}
-    var nm=''; try{ nm=VVV_ID.name(); }catch(e){}
-    $('#cAsk').hidden=true; $('#cDone').hidden=false;
-    $('#cThanks').innerHTML = yes ? 'Welcome to the experiment, <b>'+esc(nm)+'</b>. Thank you for helping us learn. Spot yourself on <a href="pulse.html">the Pulse</a> after the next refresh.' : 'No problem. Everything still works, and we won\'t link your visits together.';
-    setTimeout(function(){ box.hidden=true; document.body.style.paddingBottom=''; }, yes?6000:1800); track('privacy choice',{choice:yes?'yes':'no'}); }
-  $('#cYes').onclick=function(){choose(true)}; $('#cNo').onclick=function(){choose(false)};
+    track('privacy choice',{choice:yes?'yes':'no'});
+    if(yes){ meetName('Welcome to the experiment. Thank you for helping us learn!'); return; }
+    $('#cAsk').hidden=true; $('#cDone').hidden=false; $('#cOkRow').hidden=true;
+    $('#cThanks').textContent='No problem. Everything still works, and we won\'t link your visits together.';
+    setTimeout(closeBar,1800); }
+  function closeBar(){ box.hidden=true; document.body.style.paddingBottom=''; }
+  /* Show someone their secret name, and keep it up until they tap Lovely. Also used once for people
+     who said yes before secret names existed, so everyone gets to meet theirs. */
+  function meetName(lead){
+    var nm=''; try{ VVV_ID.code(); nm=VVV_ID.name(); }catch(e){}
+    if(!nm) return;
+    store('vvv-named','1');
+    $('#cAsk').hidden=true; $('#cDone').hidden=false; $('#cOkRow').hidden=false;
+    $('#cThanks').innerHTML=esc(lead)+'<br>Meet your secret name: <b>'+esc(nm)+'</b>. Spot yourself on <a href="pulse.html">the Pulse</a> after the next refresh.';
+    box.hidden=false; document.body.style.paddingBottom=(box.offsetHeight+8)+'px';
+  }
+  $('#cYes').onclick=function(){choose(true)}; $('#cNo').onclick=function(){choose(false)}; $('#cOk').onclick=closeBar;
+  if(c==='yes' && store('vvv-named')!=='1') setTimeout(function(){ meetName('You\'re already helping the experiment. Thank you!'); },1500);
 })();
 
 /* where did they come from? QR codes link to hello.html#walk, #t-move, #qr */

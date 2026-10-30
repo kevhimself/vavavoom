@@ -27,7 +27,7 @@ KEPT_GAP = datetime.timedelta(minutes=30)   # kept code: a new visit after 30 mi
 PAGE_GAP = datetime.timedelta(hours=12)     # page code: one page view is one visit
 PAD = datetime.timedelta(minutes=2)
 
-# Code names, worked out exactly as vid.js does on the phone (keep the two lists in step).
+# Secret names, worked out exactly as vid.js does on the phone (keep the two lists in step).
 ADJ = ['Brave','Sunny','Curious','Merry','Nimble','Gentle','Bold','Cheery','Swift','Jolly','Plucky','Kind','Dapper','Breezy','Spry','Mellow']
 ANIMAL = ['Badger','Otter','Kingfisher','Hedgehog','Owl','Heron','Fox','Hare','Wren','Robin','Dormouse','Newt','Swift','Vole','Kestrel','Mole']
 
@@ -174,7 +174,7 @@ def main():
         best = sorted(((c, k) for k, c in d.items() if c > 0), key=lambda x: (-x[0], labels[x[1]]))[:n]
         return [dict(id=k, title=labels[k], n=c) for c, k in best]
 
-    # The crew: one entry per code name. Only the name, how often they came and the threads they
+    # The crew: one entry per secret name. Only the name, how often they came and the threads they
     # picked. Never the code, never events or times (that would say where someone will be).
     pluckies = []
     for c, d in crew.items():
