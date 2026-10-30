@@ -241,6 +241,7 @@ footer a{color:var(--ink)}
 </footer>
 
 <script src="release.js"></script>
+<script src="vid.js"></script>
 <script>
 var RELEASE = window.VVV_RELEASE || 'Farncombe', BUILD = window.VVV_BUILD || '';
 var CATCHER='https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec';
@@ -254,6 +255,8 @@ function isTeam(){ return store('vvv-team')==='1'; }
 function send(data){
   data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE+(BUILD?' · '+BUILD:'');
   data.who=isTeam()?'team':'visitor'; if(data.type==='signal' && data.who==='team') data.detail='[team] '+(data.detail||'');
+  /* the experiment code (vid.js): taps only, never sent with a name, phone or email */
+  if(data.type==='signal' && window.VVV_ID){ var c=VVV_ID.code(); data.vid=c.vid; data.vk=c.vk; }
   try{ fetch(CATCHER,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).catch(function(){}) }catch(e){}
 }
 function track(n,p){try{ if(window.posthog&&posthog.capture) posthog.capture(n,Object.assign({release:RELEASE},p||{})) }catch(e){}}

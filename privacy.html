@@ -13,6 +13,8 @@ main{max-width:640px;margin:0 auto;padding:max(20px,env(safe-area-inset-top,0px)
 h1,h2{font-family:"Big Shoulders Display","Arial Narrow",sans-serif;font-weight:900;text-transform:uppercase;line-height:1}
 h1{font-size:44px;margin:10px 0 12px}h2{font-size:26px;margin:26px 0 8px;color:var(--rose)}
 ul{padding-left:20px}li{margin-bottom:6px}a{color:var(--ink)}.muted{color:var(--muted);font-size:15px}
+.forget{font:inherit;font-weight:700;color:var(--ink);background:none;border:0;padding:0;min-height:44px;cursor:pointer;text-decoration:underline;text-decoration-color:var(--rose);text-underline-offset:4px}
+code{font-size:15px;background:#ece5dc;padding:1px 5px;border-radius:4px}
 </style>
 </head>
 <body><main>
@@ -28,8 +30,21 @@ ul{padding-left:20px}li{margin-bottom:6px}a{color:var(--ink)}.muted{color:var(--
 <li><b>If you share something or offer to help:</b> what you tell us, your first name and how to reach you.</li>
 <li><b>Feedback:</b> whatever you choose to tell us.</li>
 <li><b>How the site's used:</b> only if you say yes. We use PostHog to see which bits work. Anything you type is hidden from it. If you say no, we only count visits, anonymously, with no cookies.</li>
+<li><b>Your experiment code:</b> only if you say yes. See below.</li>
 </ul>
 <p>Your phone also remembers your name, home and choices, so you don't have to type them again. That stays on your phone.</p>
+
+<h2 id="code">One small cookie, explained</h2>
+<p>Nobody likes cookies. Well, nobody likes the kind that follow you round the internet. Ours is more of a plain digestive: one crumb, and it stays on this site.</p>
+<p>Va Va Voom is an experiment, and you can help us learn. If you say <b>"Yes, count me in"</b>, your phone keeps a random code, something like <code>k3f9a01c2b7d4</code>. It lets us see that the same person tapped Growing, then the sauna, then came back on Tuesday. That helps us work out what people round here want, so we can make it better for you.</p>
+<ul>
+<li><b>It isn't your name.</b> It's made up at random on your phone. We never put it next to your name, number or email in our records.</li>
+<li><b>Only your taps.</b> The code goes with your taps and nothing else.</li>
+<li><b>No IP addresses.</b> We don't keep them, here or in PostHog.</li>
+<li><b>Never sold, never shared for adverts.</b> Not now, not later.</li>
+<li><b>Say no, or nothing,</b> and nothing is stored. Each page you open gets a throwaway code that disappears when you close it.</li>
+</ul>
+<p>Changed your mind? <button type="button" id="forget" class="forget">Forget my code</button> <span id="forgot" role="status"></span></p>
 
 <h2>Who sees it</h2>
 <p>Kev, and the host of anything you've said "I'm in" to, for that event only. An AI helper (Claude, made by Anthropic) also reads what comes in each morning to sort it and spot anything that shouldn't be there. It never contacts you and never shares your details. Other people only see your first name if you tick the box to show it. We never sell your details or share them for adverts.</p>
@@ -45,7 +60,7 @@ ul{padding-left:20px}li{margin-bottom:6px}a{color:var(--ink)}.muted{color:var(--
 
 <h2>This is an experiment</h2>
 <p>Things will change as we learn. If how we use your data changes, we'll update this page and tell you.</p>
-<p class="muted">Last updated 29 October 2026 · <span data-release>Release Farncombe</span></p>
-<script src="release.js"></script><script>document.querySelectorAll('[data-release]').forEach(function(el){el.textContent='Release '+(window.VVV_RELEASE||'')});</script>
+<p class="muted">Last updated 30 October 2026 · <span data-release>Release Farncombe</span></p>
+<script src="release.js"></script><script src="vid.js"></script><script>(function(){var b=document.getElementById('forget'),o=document.getElementById('forgot');if(!b)return;b.onclick=function(){try{VVV_ID.forget()}catch(e){}o.textContent='Done. Your code is gone, and we\'ll ask again next time.'};})();</script><script>document.querySelectorAll('[data-release]').forEach(function(el){el.textContent='Release '+(window.VVV_RELEASE||'')});</script>
 </main></body>
 </html>

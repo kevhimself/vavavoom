@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30T09:03",
+ "updated": "2026-10-30T09:48",
  "since": "2026-10-28",
  "counts": {
   "visitors": 10,
@@ -9,7 +9,10 @@
   "signups_in": 0,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 7
+  "story_visits": 7,
+  "helpers": 0,
+  "returning": 0,
+  "visits_known": 0
  },
  "threads": [
   {

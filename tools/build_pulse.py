@@ -9,7 +9,8 @@ one team email or first name per line. team.txt never goes in the repo.
 --visitors is PostHog's unique devices since the start date (optional).
 
 How it counts
-- A "visit" is a run of Signals rows with no gap over 20 minutes (Signals has no visitor ID).
+- A "visit": rows with an experiment code (vid.js) are grouped by that code. Rows without one
+  (older rows) fall back to a run of taps with no gap over 20 minutes.
 - A bubble's number is how many visits touched it (picked the thread, tapped interest,
   opened the event, tapped "I'm in"), so toggling a button ten times still counts once.
 - Team visits are dropped: rows marked Who = team, and any visit that contains a team
@@ -21,7 +22,9 @@ import csv, json, sys, pathlib, datetime, argparse, re
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 MAP = json.loads((ROOT / 'tools' / 'pulse_map.json').read_text())
 TEAM_EMAILS, TEAM_NAMES = set(), set()  # filled from DATA_DIR/team.txt, kept out of the repo (no emails in public files)
-GAP = datetime.timedelta(minutes=20)
+GAP = datetime.timedelta(minutes=20)        # no code: a visit is taps with no 20-minute break
+KEPT_GAP = datetime.timedelta(minutes=30)   # kept code: a new visit after 30 minutes away
+PAGE_GAP = datetime.timedelta(hours=12)     # page code: one page view is one visit
 PAD = datetime.timedelta(minutes=2)
 
 def rows(path):
@@ -76,21 +79,44 @@ def main():
         if is_team(m_n.group(1) if m_n else '', m_e.group(1) if m_e else ''): marks.append(when(r.get('Received')))
     marks = [m for m in marks if m]
 
+    # Each tap row: (time, event, detail, code, kept?). The code comes from vid.js (since 30 Oct):
+    # 'kept' codes belong to people who said yes to helping the experiment and last across visits;
+    # 'page' codes last one page view. Older rows have no code and fall back to the 20-minute rule.
     sig = []
     for r in rows(D / 'signals.csv'):
         t = when(r.get('Received'))
         if not t or t < since or (r.get('Who') or '').strip().lower() == 'team':
             continue
-        sig.append((t, (r.get('Event') or '').strip(), (r.get('Detail') or '').strip()))
+        sig.append((t, (r.get('Event') or '').strip(), (r.get('Detail') or '').strip(),
+                    (r.get('Visitor code') or '').strip(), (r.get('Code kept') or '').strip() == 'kept'))
     sig.sort()
 
-    visits, cur = [], []
+    def runs(rs, gap):
+        out, cur = [], []
+        for s in rs:
+            if cur and s[0] - cur[-1][0] > gap:
+                out.append(cur); cur = []
+            cur.append(s)
+        if cur: out.append(cur)
+        return out
+
+    by_code = {}
     for s in sig:
-        if cur and s[0] - cur[-1][0] > GAP:
-            visits.append(cur); cur = []
-        cur.append(s)
-    if cur: visits.append(cur)
-    kept = [v for v in visits if not any(v[0][0] - PAD <= m <= v[-1][0] + PAD for m in marks)]
+        if s[3]: by_code.setdefault(s[3], []).append(s)
+    visits = runs([s for s in sig if not s[3]], GAP)          # no code: guess from timing
+    for code, rs in by_code.items():                           # with a code: we know it's one person
+        visits += runs(rs, KEPT_GAP if rs[0][4] else PAGE_GAP)
+    visits.sort(key=lambda v: v[0][0])
+
+    def touches_team(v):
+        return any(v[0][0] - PAD <= m <= v[-1][0] + PAD for m in marks)
+    team_codes = {v[0][3] for v in visits if v[0][3] and v[0][4] and touches_team(v)}
+    kept = [v for v in visits if not touches_team(v) and v[0][3] not in team_codes]
+    helpers = {v[0][3] for v in kept if v[0][3] and v[0][4]}
+    days = {}
+    for v in kept:
+        if v[0][3] in helpers: days.setdefault(v[0][3], set()).add(v[0][0].date())
+    coded = sum(1 for v in kept if v[0][3])
 
     tscore = {t: 0 for t in threads}
     iscore = {i: 0 for i in items}
@@ -99,7 +125,7 @@ def main():
     im_in = 0
     for v in kept:
         ts, its, read = set(), set(), False
-        for _, ev, det in v:
+        for _, ev, det, *_ in v:
             key = det.split('|')[0].strip()
             if ev == 'thread' and key in threads:
                 ts.add(key)
@@ -133,7 +159,9 @@ def main():
         since=MAP['since'],
         counts=dict(visitors=a.visitors, visits=len(kept), im_in=im_in,
                     signups=len(su), signups_in=sum(1 for r in su if "I'm in" in (r.get('Is it for them?') or '')),
-                    neighbours_gate=len(gate), posts=len(posts), story_visits=stories),
+                    neighbours_gate=len(gate), posts=len(posts), story_visits=stories,
+                    helpers=len(helpers), returning=sum(1 for c in helpers if len(days.get(c, ())) > 1),
+                    visits_known=coded),
         threads=[dict(id=t, title=n, n=tscore[t],
                       items=[dict(id=i, kind=v['kind'], title=v['title'], n=iscore[i], im_in=iin[i])
                              for i, v in items.items() if v['thread'] == t])
@@ -142,7 +170,7 @@ def main():
         top_items=top(iscore, {k: v['title'] for k, v in items.items()}),
     )
     pathlib.Path(a.out).write_text(json.dumps(out, indent=1, ensure_ascii=False) + '\n')
-    print(f"pulse.json: {len(kept)} visits kept of {len(visits)} ({len(visits)-len(kept)} team), "
+    print(f"pulse.json: {coded} visits known by code, {len(helpers)} helpers; {len(kept)} visits kept of {len(visits)} ({len(visits)-len(kept)} team), "
           f"{im_in} I'm in, {len(su)} sign-ups, top: {', '.join(t['title'] for t in out['top_threads'])}")
 
 if __name__ == '__main__':

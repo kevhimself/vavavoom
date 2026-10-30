@@ -158,6 +158,7 @@
   function choose(yes, silent) {
     store(PH_CHOICE, yes ? 'yes' : 'no');
     try { if (yes) window.posthog.opt_in_capturing(); else window.posthog.opt_out_capturing(); } catch (e) {}
+    if (!yes) { try { localStorage.removeItem('vvv-id'); } catch (e) {} } // no means no experiment code either (see vid.js)
     if (!silent) finish();
   }
   note.querySelector('.vg-yes').addEventListener('click', function () { choose(true); });

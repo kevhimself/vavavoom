@@ -12,7 +12,7 @@ Claude "refresh the pulse", or run the "Refresh the Pulse" scheduled task from t
 1. `git pull --rebase` in the repo.
 2. Read these tabs of the responses sheet (1Gvy7ZzehWgtZVw_0lSr6uoZxs4K_cF2Tc5p16wySc7o) with the
    Google Sheets connector, then save each as CSV with its header row in a scratch folder (not in the repo):
-   - `Signals!A1:F` → `signals.csv`
+   - `Signals!A1:H` → `signals.csv`
    - `Sign-ups!A1:Q` → `signups.csv`
    - `Access!A1:E` → `access.csv`
    - `Board!A1:K` → `board.csv`
