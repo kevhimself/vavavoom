@@ -1,0 +1,246 @@
+{
+ "updated": "2026-10-30T09:03",
+ "since": "2026-10-28",
+ "counts": {
+  "visitors": 10,
+  "visits": 12,
+  "im_in": 2,
+  "signups": 0,
+  "signups_in": 0,
+  "neighbours_gate": 3,
+  "posts": 0,
+  "story_visits": 7
+ },
+ "threads": [
+  {
+   "id": "grow",
+   "title": "Growing and food",
+   "n": 6,
+   "items": [
+    {
+     "id": "farm",
+     "kind": "event",
+     "title": "Norney Farm Bungalow visit",
+     "n": 1,
+     "im_in": 1
+    },
+    {
+     "id": "estategarden",
+     "kind": "project",
+     "title": "Grow something on a spare patch",
+     "n": 0,
+     "im_in": 0
+    },
+    {
+     "id": "cider",
+     "kind": "project",
+     "title": "Rain, gardens and cider",
+     "n": 0,
+     "im_in": 0
+    }
+   ]
+  },
+  {
+   "id": "make",
+   "title": "Making and mending",
+   "n": 3,
+   "items": [
+    {
+     "id": "make",
+     "kind": "idea",
+     "title": "Make something",
+     "n": 2,
+     "im_in": 0
+    },
+    {
+     "id": "micro",
+     "kind": "project",
+     "title": "Micro homes, off-grid loos and a community sauna",
+     "n": 0,
+     "im_in": 0
+    }
+   ]
+  },
+  {
+   "id": "nature",
+   "title": "Nature and the Wey",
+   "n": 3,
+   "items": [
+    {
+     "id": "r-bugs",
+     "kind": "idea",
+     "title": "Bug houses, vertical gardens and the bath pump",
+     "n": 0,
+     "im_in": 0
+    },
+    {
+     "id": "downland",
+     "kind": "project",
+     "title": "Volunteer days on the chalk downland",
+     "n": 0,
+     "im_in": 0
+    }
+   ]
+  },
+  {
+   "id": "homes",
+   "title": "Warm homes, energy",
+   "n": 3,
+   "items": [
+    {
+     "id": "r-armchair",
+     "kind": "idea",
+     "title": "Armchair activism",
+     "n": 0,
+     "im_in": 0
+    },
+    {
+     "id": "solar",
+     "kind": "project",
+     "title": "Choosing solar",
+     "n": 0,
+     "im_in": 0
+    },
+    {
+     "id": "automate",
+     "kind": "project",
+     "title": "Automating your home",
+     "n": 1,
+     "im_in": 0
+    }
+   ]
+  },
+  {
+   "id": "move",
+   "title": "Moving and play",
+   "n": 3,
+   "items": [
+    {
+     "id": "walk",
+     "kind": "event",
+     "title": "A better walk",
+     "n": 0,
+     "im_in": 0
+    },
+    {
+     "id": "ridge",
+     "kind": "idea",
+     "title": "A walk up the ridge and a pint",
+     "n": 0,
+     "im_in": 0
+    },
+    {
+     "id": "recsport",
+     "kind": "idea",
+     "title": "Sport for the fun of it",
+     "n": 0,
+     "im_in": 0
+    },
+    {
+     "id": "sauna",
+     "kind": "idea",
+     "title": "Waggon sauna sing-along",
+     "n": 3,
+     "im_in": 0
+    },
+    {
+     "id": "run",
+     "kind": "idea",
+     "title": "Social run",
+     "n": 2,
+     "im_in": 0
+    }
+   ]
+  },
+  {
+   "id": "talk",
+   "title": "Meeting and talking",
+   "n": 4,
+   "items": [
+    {
+     "id": "briefing",
+     "kind": "event",
+     "title": "People's Emergency Briefing",
+     "n": 2,
+     "im_in": 1
+    },
+    {
+     "id": "pub",
+     "kind": "event",
+     "title": "Va Va Voom at the pub",
+     "n": 1,
+     "im_in": 0
+    },
+    {
+     "id": "circle",
+     "kind": "idea",
+     "title": "Circle round the fire",
+     "n": 3,
+     "im_in": 0
+    },
+    {
+     "id": "humanbit",
+     "kind": "idea",
+     "title": "Analogue Humans in a Digital World",
+     "n": 0,
+     "im_in": 0
+    },
+    {
+     "id": "r-beyond",
+     "kind": "idea",
+     "title": "Beyond the armchair",
+     "n": 0,
+     "im_in": 0
+    },
+    {
+     "id": "unmuddle",
+     "kind": "project",
+     "title": "Power Hour: Un-Muddle Me",
+     "n": 0,
+     "im_in": 0
+    },
+    {
+     "id": "change",
+     "kind": "project",
+     "title": "Navigate change",
+     "n": 0,
+     "im_in": 0
+    }
+   ]
+  }
+ ],
+ "top_threads": [
+  {
+   "id": "grow",
+   "title": "Growing and food",
+   "n": 6
+  },
+  {
+   "id": "talk",
+   "title": "Meeting and talking",
+   "n": 4
+  },
+  {
+   "id": "make",
+   "title": "Making and mending",
+   "n": 3
+  }
+ ],
+ "top_items": [
+  {
+   "id": "circle",
+   "title": "Circle round the fire",
+   "n": 3
+  },
+  {
+   "id": "sauna",
+   "title": "Waggon sauna sing-along",
+   "n": 3
+  },
+  {
+   "id": "make",
+   "title": "Make something",
+   "n": 2
+  }
+ ]
+}

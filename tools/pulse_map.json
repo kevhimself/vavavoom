@@ -1,0 +1,36 @@
+{
+  "_about": "What the Pulse page shows. Threads are the big bubbles; items cluster round their thread. kind: event, idea or project. Add a line when hello.html gets a new card. Titles only, never people's names (a new page is a new ask).",
+  "since": "2026-10-28",
+  "threads": [
+    ["grow", "Growing and food"],
+    ["make", "Making and mending"],
+    ["nature", "Nature and the Wey"],
+    ["homes", "Warm homes, energy"],
+    ["move", "Moving and play"],
+    ["talk", "Meeting and talking"]
+  ],
+  "items": [
+    ["briefing", "event", "talk", "People's Emergency Briefing"],
+    ["farm", "event", "grow", "Norney Farm Bungalow visit"],
+    ["pub", "event", "talk", "Va Va Voom at the pub"],
+    ["walk", "event", "move", "A better walk"],
+    ["ridge", "idea", "move", "A walk up the ridge and a pint"],
+    ["recsport", "idea", "move", "Sport for the fun of it"],
+    ["sauna", "idea", "move", "Waggon sauna sing-along"],
+    ["circle", "idea", "talk", "Circle round the fire"],
+    ["run", "idea", "move", "Social run"],
+    ["make", "idea", "make", "Make something"],
+    ["humanbit", "idea", "talk", "Analogue Humans in a Digital World"],
+    ["r-bugs", "idea", "nature", "Bug houses, vertical gardens and the bath pump"],
+    ["r-armchair", "idea", "homes", "Armchair activism"],
+    ["r-beyond", "idea", "talk", "Beyond the armchair"],
+    ["estategarden", "project", "grow", "Grow something on a spare patch"],
+    ["downland", "project", "nature", "Volunteer days on the chalk downland"],
+    ["solar", "project", "homes", "Choosing solar"],
+    ["automate", "project", "homes", "Automating your home"],
+    ["micro", "project", "make", "Micro homes, off-grid loos and a community sauna"],
+    ["cider", "project", "grow", "Rain, gardens and cider"],
+    ["unmuddle", "project", "talk", "Power Hour: Un-Muddle Me"],
+    ["change", "project", "talk", "Navigate change"]
+  ]
+}

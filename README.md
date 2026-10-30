@@ -13,6 +13,10 @@ One-page invitation site. Served with GitHub Pages from the main branch.
 - `garden/` (Safe in the Garden, no gate) asks the same question with its own bar and shares the choice (`vvv-ph`). Its events, filtered by `app = safe-in-the-garden`: page views per card (`#lesson-card1`, `#lesson-check`), `lesson started`, `card viewed`, `went back`, `check answered` (answer, right or wrong, attempt), `lesson completed` (seconds, attempts), `lesson left` (where they stopped), `course completed`, `pocket card seen`, `lead name added` (never the name), `number tapped`, `number copied`, `privacy choice`.
 - PostHog project settings to switch on: Discard client IP data, Cookieless server hash mode (Web analytics), Session replay with Mask all inputs.
 
+## The Pulse
+
+`pulse.html` (hidden, linked from the foot of happening.html) shows what neighbours tap on, as counts only. It reads `pulse.json`, made by `tools/build_pulse.py`. The Watcher refreshes it each morning; see `tools/PULSE.md` to refresh it on demand.
+
 ## On every release
 
 1. Bump `VERSION` in `gate.js`.
