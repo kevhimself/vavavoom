@@ -44,6 +44,15 @@ header.top{padding-top:max(14px,env(safe-area-inset-top,0px))}
 .whatpill:hover{background:var(--rose-dk)}
 header.top{padding-bottom:12px;position:relative;z-index:5}
 .right{display:flex;align-items:center;gap:8px}
+@media (max-width:430px){ body.has-me .wordmark{font-size:clamp(20px,6vw,26px)} body.has-me .right{gap:5px} body.has-me .whatpill{padding:8px 11px;font-size:14px} }
+.me-badge{width:44px;height:44px;border-radius:50%;border:0;padding:0;background:none;cursor:pointer;flex:none}
+.me-badge svg{width:44px;height:44px;display:block}
+.me-sheet{text-align:center}
+.me-sheet svg{width:112px;height:112px;margin:4px auto 6px;display:block}
+.me-sheet .who{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:34px;line-height:1;margin:0 0 8px}
+.me-sheet p{margin:0 0 10px}
+.me-sheet .links{display:flex;flex-direction:column;gap:2px;align-items:center}
+.me-sheet .links a{font-weight:700;min-height:44px;display:inline-flex;align-items:center;text-decoration-color:var(--rose);text-underline-offset:4px}
 .whatpill{font-weight:700;font-size:15px;background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
 .burger{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);display:grid;place-items:center;cursor:pointer;padding:0}
 .burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;content:""}
@@ -315,6 +324,7 @@ footer a{color:var(--ink)}
     <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
     <div class="right">
       <button class="whatpill" type="button" id="whatBtn">What is it?</button>
+      <button class="me-badge" type="button" id="meBadge" hidden aria-label="Your secret name"></button>
       <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span></button>
     </div>
   </div>
@@ -621,7 +631,7 @@ function track(n,p){try{ if(window.posthog&&posthog.capture) posthog.capture(n,O
     $('#cThanks').innerHTML=esc(lead)+'<br>Meet your secret name: <b>'+esc(nm)+'</b>. Spot yourself on <a href="pulse.html">the Pulse</a> after the next refresh.';
     box.hidden=false; document.body.style.paddingBottom=(box.offsetHeight+8)+'px';
   }
-  $('#cYes').onclick=function(){choose(true)}; $('#cNo').onclick=function(){choose(false)}; $('#cOk').onclick=closeBar;
+  $('#cYes').onclick=function(){choose(true)}; $('#cNo').onclick=function(){choose(false)}; $('#cOk').onclick=function(){ closeBar(); showMeBadge(); };
   if(c==='yes' && store('vvv-named')!=='1') setTimeout(function(){ meetName('You\'re already helping the experiment. Thank you!'); },1500);
 })();
 
@@ -631,6 +641,21 @@ if(arrivedVia){ signal('arrived', arrivedVia); track('arrived',{via:arrivedVia})
 
 /* ---------- home and the welcome ---------- */
 var me = getJSON('vvv-me',{});
+/* Your secret name, as a little animal badge in the header. Tap it to see your name again.
+   Only shown to people who said yes; worked out on this phone, never sent. */
+function showMeBadge(){
+  var b=$('#meBadge'); if(!b) return;
+  var nm=''; try{ nm=VVV_ID.kept()?VVV_ID.name():''; }catch(e){}
+  if(!nm){ b.hidden=true; document.body.classList.remove('has-me'); return; }
+  var p=VVV_ID.parts(); b.innerHTML=VVV_ID.badge(p[1],p[0]); b.setAttribute('aria-label','Your secret name: '+nm); b.hidden=false; document.body.classList.add('has-me');
+}
+function openMe(){
+  var nm=VVV_ID.name(), p=VVV_ID.parts();
+  openSheet('<div class="me-sheet">'+VVV_ID.badge(p[1],p[0])+'<h2 id="sheetTitle" class="who">'+esc(nm)+'</h2>'+
+    '<p>That\'s your secret name in the experiment. It lives on this phone or laptop, and it\'s never your real name.</p>'+
+    '<div class="links"><a href="pulse.html">Spot yourself on the Pulse</a><a href="privacy.html#code">What we keep, or forget my name</a></div></div>');
+  track('secret name opened');
+}
 function showConsent(){ if(window.__askConsent){ window.__askConsent=false; var b=$('#consent'); try{ $('#cName').textContent=VVV_ID.name(); }catch(e){} b.hidden=false; document.body.style.paddingBottom=(b.offsetHeight+8)+'px'; } }
 function getHome(){ return (store('vvv-home')||'').trim(); }
 function setWelcome(){
@@ -1089,6 +1114,7 @@ function openWhat(toWho){ toWho = toWho===true;
   sheet.onclick=function(e){ if(e.target.closest('[data-whaton]')){ closeSheet(); $('#h-on').scrollIntoView({behavior:'smooth',block:'start'}); } };
 }
 $('#whatBtn').addEventListener('click',function(){ openWhat(false); });
+$('#meBadge').addEventListener('click',openMe); showMeBadge();
 $('#whoBtn').addEventListener('click',function(){ openWhat(true); track('who row opened'); });
 document.querySelectorAll('[data-release]').forEach(function(el){ el.textContent='Release '+RELEASE+(BUILD?' · '+BUILD:''); });
 
