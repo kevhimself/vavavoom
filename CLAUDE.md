@@ -28,6 +28,11 @@ https://app.notion.com/p/40893f7bf11a8182bc6dcf1ef52242ea
 - Release name visible on every page (release.js); every submission tagged with it.
 - Team (Kev, Tim, Carl) excluded from usage numbers via ?team.
 
+## Before every release
+- `python3 tools/check_links.py` must pass: every link on a live page goes to a current page and every #anchor exists.
+  Old looks (v-*.html, simple*.html, happening.html...) are only linked from built.html's gallery.
+  New live page? Add it to CURRENT in the script.
+
 ## Git
 Another session may edit this folder: `git pull --rebase` first, commit only your files.
 Claude sessions commit as `Claude <noreply@anthropic.com>` (signed, so GitHub shows Verified), never under Kev's name.
