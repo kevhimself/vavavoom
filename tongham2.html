@@ -265,7 +265,7 @@ footer a{color:var(--ink)}
   </section>
 
   <section class="sec" aria-labelledby="h-nb" id="neighbours">
-    <h2 id="h-nb">Learn from a neighbour</h2>
+    <h2 id="h-nb">Learn with a neighbour</h2>
     <p class="sub">Real people round here, happy to share what they know. Tap "I'm in" and we'll set a date once enough of you are keen.</p>
     <div id="nbList"></div>
     <button class="ghost seeall" type="button" id="nbAll" hidden></button>
@@ -647,7 +647,7 @@ $('#nbList').addEventListener('click',function(e){
 });
 function openNeighbour(id){
   var n=nbById(id); if(!n) return;
-  openSheet('<span class="badge">Learn from a neighbour</span><h2 id="sheetTitle">'+esc(n.title)+'</h2>'+
+  openSheet('<span class="badge">Learn with a neighbour</span><h2 id="sheetTitle">'+esc(n.title)+'</h2>'+
     '<div class="mini" style="border-top:0"><img src="'+esc(n.img)+'" alt=""><div><b>With '+esc(n.who)+'</b><span>'+esc(n.where)+'</span></div></div>'+
     '<p>'+esc(n.about)+'</p>'+(n.link?'<p style="margin:0 0 10px"><a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+esc(n.linkText||'Their website')+' ↗</a></p>':'')+'<p class="fine">No date yet. Say you\'re interested and we\'ll set one once enough of you are keen.</p>'+
     '<div class="row">'+nbBtn(n)+'</div>');

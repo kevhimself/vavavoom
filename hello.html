@@ -333,7 +333,7 @@ footer a{color:var(--ink)}
       <li><a href="#h-on">What's on<small>Dates, places, I'm in</small></a></li>
       <li><a href="news.html">Stories from round here<small>Good news and a tip for the week</small></a></li>
       <li><a href="#themes">What pulls you?</a></li>
-      <li><a href="#neighbours">Learn from a neighbour<small>Coming if you want it</small></a></li>
+      <li><a href="#neighbours">Learn with a neighbour<small>Coming if you want it</small></a></li>
       <li><a href="#joinin">Join in, any way you like</a></li>
       <li><a href="#h-who">Who's behind it</a></li>
       <li><a href="#feedback">Tell us what you think</a></li>
@@ -382,7 +382,7 @@ footer a{color:var(--ink)}
   </section>
 
   <section class="sec" aria-labelledby="h-nb" id="neighbours">
-    <h2 id="h-nb">Learn from a neighbour</h2>
+    <h2 id="h-nb">Learn with a neighbour</h2>
     <p class="sub">Coming if you want it. Tap "I'm in" and once enough of you are keen, we'll set a date.</p>
     <div id="nbList"></div>
     <button class="ghost seeall" type="button" id="nbAll" hidden></button>
@@ -522,13 +522,13 @@ var EVENTS = [
     going:[{n:'Tim',img:'people/tim.jpg?v=1029c'},{n:'Kev',img:'people/kev.jpg?v=1029c'}] }
 ];
 var INTEREST = [
-  { id:'surgery', feel:'connect', themes:['talk','homes'], title:'Safe, shiny and sorted', what:'Bring your phone or a question: AI, staying safe online, smart home or small business. Free, tea on. We never ask for your passwords.', host:'Kev hosting', when:'Tuesday evenings, monthly' },
+  { id:'surgery', feel:'connect', themes:['talk','homes'], title:'Safe, shiny and sorted with AI', what:'Bring your phone or a question: AI, staying safe online, smart home or small business. Free, tea on. We never ask for your passwords.', host:'Kev hosting', when:'Tuesday evenings, monthly' },
   { id:'ridge', feel:'connect', themes:['move'], near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], place:'Seale', title:'A walk up the ridge and a pint', what:'Hampton Estate path to the viewpoint, then down to the Hogs Back Brewery', host:'', when:'' },
   { id:'recsport', feel:'play', themes:['move'], near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], place:'Tongham', title:'Sport for the fun of it', what:'Ultimate frisbee on the Rec, a social run on the Blackwater Valley Path, or a ceilidh in a barn', host:'', when:'' },
   { id:'sauna', feel:'play', themes:['move'], place:'Seale', title:'Waggon sauna sing-along', what:'Sweat, sing badly, feel brilliant', host:'', when:'January 2027' },
   { id:'circle', feel:'connect', themes:['talk'], title:'Circle round the fire', what:'Fire, stories, proper conversation', host:'Kev hosting', when:'Early 2027' },
   { id:'run', feel:'play', themes:['move'], title:'Social run', what:'Chatty pace, nobody left behind', host:'Kev hosting', when:'Spring 2027' },
-  { id:'make', feel:'inspired', themes:['make'], title:'Make something', what:'Get your hands dirty, learn from a neighbour', host:'Tim hosting', when:'Spring 2027' },
+  { id:'make', feel:'inspired', themes:['make'], title:'Make something', what:'Get your hands dirty, learn with a neighbour', host:'Tim hosting', when:'Spring 2027' },
   { id:'humanbit', feel:'connect', themes:['talk'], title:'Analogue Humans in a Digital World', what:'A circle on staying properly human with AI around', host:'Kev hosting', when:'Winter 2027' },
   { id:'r-bugs', feel:'inspired', themes:['nature','grow','homes'], title:'Bug houses, vertical gardens and the bath pump', what:'Homes for small wild things, growing up a wall, bathwater for the garden', host:'Rieks hosting', when:'' },
   { id:'r-armchair', feel:'inspired', themes:['homes','talk'], title:'Armchair activism', what:'Your bank, insurance and energy: small switches that add up', host:'Rieks hosting', when:'' },
@@ -858,7 +858,7 @@ function addCal(id){
   document.body.appendChild(a); a.click(); a.remove(); track('added to calendar',{event:id});
 }
 
-/* ---------- learn from a neighbour (neighbours and coming items, one list) ---------- */
+/* ---------- learn with a neighbour (neighbours and coming items, one list) ---------- */
 var keen=getJSON('vvv-keen',{}), nbMine=getJSON('vvv-nb',{}), nbShowAll=false;
 var PEOPLE_IMG={Ilona:'people/ilona.jpg?v=1029',Kev:'people/kev.jpg?v=1029c',Tim:'people/tim.jpg?v=1029c',Carl:'people/carl.jpg?v=1029c',Rieks:'people/reiks.jpg?v=1029c',Ruth:'people/ruth.jpg?v=1029c'};
 /* Kev 29 Oct: no photo? Up to two initials, with a colour for each place. */
@@ -911,7 +911,7 @@ $('#nbList').addEventListener('click',function(e){
 });
 function openNeighbour(id){
   var n=learnById(id); if(!n) return;
-  openSheet('<span class="badge">Learn from a neighbour</span><h2 id="sheetTitle">'+esc(n.title)+'</h2>'+
+  openSheet('<span class="badge">Learn with a neighbour</span><h2 id="sheetTitle">'+esc(n.title)+'</h2>'+
     '<div class="mini" style="border-top:0">'+avatarHTML(n,'sm')+'<div><b>'+(n.who?'With '+esc(n.who):'Looking for a host')+'</b><span>'+esc(n.where||n.when||'')+'</span></div></div>'+
     '<p>'+esc(n.about)+'</p>'+(n.ask?'<p class="ask" style="margin:0 0 10px">'+esc(n.ask)+'</p>':'')+(n.link?'<p style="margin:0 0 10px"><a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+esc(n.linkText||'Their website')+' ↗</a></p>':'')+
     (n.book?'<p class="fine">Book a time directly with '+esc(n.who)+'. Tap "I\'m in" if you\'d rather hear about a group session.</p>':'<p class="fine">No date yet. Say you\'re in and we\'ll set one once enough of you are keen.</p>')+

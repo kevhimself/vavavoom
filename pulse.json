@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30T11:05",
+ "updated": "2026-10-30T12:00",
  "since": "2026-10-28",
  "counts": {
   "visitors": 10,
@@ -179,6 +179,13 @@
      "kind": "idea",
      "title": "Circle round the fire",
      "n": 3,
+     "im_in": 0
+    },
+    {
+     "id": "surgery",
+     "kind": "idea",
+     "title": "Safe, shiny and sorted with AI",
+     "n": 0,
      "im_in": 0
     },
     {
