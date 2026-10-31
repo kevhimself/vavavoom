@@ -12,7 +12,7 @@ CODES = [
     ('t-grow', 'Grow and share food', 'Theme', '#t-grow'),
     ('t-make', 'Make, mend and share', 'Theme', '#t-make'),
     ('t-nature', 'Get out in nature', 'Theme', '#t-nature'),
-    ('t-homes', 'Save energy and water', 'Theme', '#t-homes'),
+    ('t-homes', 'Save energy & water', 'Theme', '#t-homes'),
     ('t-move', 'Move and play', 'Theme', '#t-move'),
     ('t-talk', 'Meet and belong', 'Theme', '#t-talk'),
 ]
