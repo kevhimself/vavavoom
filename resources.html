@@ -33,6 +33,9 @@ ol.steps li{counter-increment:s;position:relative;padding:0 0 14px 46px}
 ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:34px;height:34px;border-radius:50%;background:var(--moss);color:#fff;font-weight:700;display:grid;place-items:center}
 .letter{position:relative;background:var(--mist);border-radius:12px;padding:16px;white-space:pre-wrap;font-size:16px;margin:8px 0}
 .copy{min-height:44px;padding:0 18px;border:2px solid var(--ink);border-radius:999px;background:#fff;font:inherit;font-weight:700;cursor:pointer}
+.letter .note{font-size:14px;color:var(--moss);font-weight:700}
+.letter .note a{font-weight:700}
+dt{scroll-margin-top:16px}
 .copied{margin-left:10px;color:var(--moss);font-weight:700}
 dl{margin:0}dt{font-weight:700;margin-top:12px}dd{margin:2px 0 0}
 .small{font-size:15px;color:var(--muted)}
@@ -65,7 +68,7 @@ footer{font-size:14px;color:var(--muted);text-align:center;margin-top:30px}
 
 I live in [your village or town]. I recently watched the People's Emergency Briefing on climate and nature with my neighbours in Shackleford.
 
-Please back the Parliamentary Call for a live, televised Government briefing on climate and nature, and sign Early Day Motion 93 if you haven't already.
+Please back the Parliamentary Call for a live, televised Government briefing on climate and nature, and sign Early Day Motion 93<span class="note"> (<a href="#edm">what this means is explained below</a>, and this note won't be copied)</span> if you haven't already.
 
 [One line about why this matters to you, or to where we live.]
 
@@ -81,7 +84,7 @@ Yours sincerely,
     <dt>Your MP</dt><dd>The person elected to speak for your area in Parliament. They work for you, and their office reads what local people send.</dd>
     <dt>Constituent</dt><dd>Someone who lives in an MP's area. That's you.</dd>
     <dt>The Parliamentary Call</dt><dd>A public list of MPs who've said the Government should hold a live, televised briefing on climate and nature, a bit like the Covid briefings.</dd>
-    <dt>Early Day Motion 93</dt><dd>A short statement MPs can add their name to, to show they agree. This one backs the same televised briefing. Signing it is a public "yes, I support this".</dd>
+    <dt id="edm">Early Day Motion 93</dt><dd>A short statement MPs can add their name to, to show they agree. This one backs the same televised briefing. Signing it is a public "yes, I support this".</dd>
     <dt>MP's surgery</dt><dd>A local slot where you can meet your MP, or someone from their team, face to face. You usually book ahead.</dd>
     <dt>WriteToThem.com</dt><dd>A free, independent website. Type your postcode and it finds your MP and sends your message for you.</dd>
   </dl>
@@ -110,7 +113,7 @@ Yours sincerely,
 <script>
 try{document.getElementById('rel').textContent='Release '+(window.VVV_RELEASE||'');}catch(e){}
 document.getElementById('copyBtn').addEventListener('click',function(){
-  var t=document.getElementById('letter').innerText, msg=document.getElementById('copied');
+  var c=document.getElementById('letter').cloneNode(true); c.querySelectorAll('.note').forEach(function(n){n.remove();}); var t=c.textContent, msg=document.getElementById('copied');
   function done(){msg.textContent='Copied. Now paste it into WriteToThem.';}
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){msg.textContent='Press and hold the letter to copy it.';});}
   else{msg.textContent='Press and hold the letter to copy it.';}
