@@ -183,7 +183,10 @@ section.sec{padding-block:20px 4px}
 .ev.onnow + .ev:not(.onnow){border-top:0;padding-top:6px}
 .ev.onnow .date{background:var(--ink)}
 .ev.onnow .badge{color:var(--ink)}
-.ev.past{opacity:.55}
+.ev.past{opacity:.8}
+.recap{margin:6px 0 0;font-size:15px}
+.recap b{color:var(--moss)}
+.recap a{font-weight:700;text-decoration-color:var(--rose);text-underline-offset:3px;white-space:nowrap}
 .ev.past .date{background:var(--muted)}
 .ev.past .badge{color:var(--muted)}
 .ev.onnow .meta{color:var(--ink)}
@@ -493,6 +496,7 @@ var RELEASE = window.VVV_RELEASE || 'Farncombe', BUILD = window.VVV_BUILD || '';
 var EVENTS = [
   { id:'briefing', feel:'inspired', badge:'Part 1', title:"People's Emergency Briefing", day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
     time:'10:15am (doors 10am)', length:'About 1½ hours', where:'Shackleford Village Hall', host:'Tim and Sue', thread:'nature', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
+    done:true, keep:true, recap:'About 70 people came, and about 30 walked on to Norney Farm.', recapLink:'news.html#s-shackleford',
     about:[
       'A short welcome, then the 45-minute film. Here\'s where things are, plainly told. No lectures.',
       'Then we talk. First, where you\'re at with it all: say it out loud and be heard. Then something real that\'s going on round here, and a small, doable thing you\'ve done or could do next. Kev hosts the conversations.',
@@ -502,6 +506,7 @@ var EVENTS = [
     going:[] },
   { id:'farm', feel:'inspired', badge:'Part 2', title:'Norney Farm Bungalow visit', day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
     time:'12pm to about 1pm', length:'About an hour', where:'Norney Farm, Shackleford', host:'Tim', thread:'homes', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
+    done:true, keep:true, recap:'About 30 people came on from the village hall for the tour.', recapLink:'news.html#s-shackleford',
     about:[
       'A welcome at the bungalow, then a guided tour of how it all fits together: solar, water harvesting and regenerative growing, and where it\'s going next.',
       'Then a short workshop: what would you love to learn or get stuck into here? Grafting, propagating, making, mending. Sticky notes welcome.',
@@ -730,8 +735,8 @@ $('#homeBtn').addEventListener('click',function(){ openWelcome(true); });
 /* ---------- events ---------- */
 /* Kev 29 Oct: fade an event as soon as it's happened, take it down 1 week after (then it goes to the archive). */
 function isoDay(t){ return t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0'); }
-function isPast(ev){ var d=(ev.until||ev.start||'').slice(0,10); return !!d && d<isoDay(new Date()); }
-function isCurrent(ev){ var d=(ev.until||ev.start||'').slice(0,10); if(!d) return true; var t=new Date(); t.setDate(t.getDate()-7); return d>=isoDay(t); }
+function isPast(ev){ if(ev.done) return true; var d=(ev.until||ev.start||'').slice(0,10); return !!d && d<isoDay(new Date()); }
+function isCurrent(ev){ if(ev.keep) return true; var d=(ev.until||ev.start||'').slice(0,10); if(!d) return true; var t=new Date(); t.setDate(t.getDate()-7); return d>=isoDay(t); }
 function isUpcoming(ev){ return isCurrent(ev) && !isPast(ev); }
 function facesHTML(ev){
   if(!ev.going.length) return '';
@@ -755,12 +760,14 @@ function evDay(ev){ return (ev.until||ev.start||'').slice(0,10); }
 function daysAway(ev){ var d=evDay(ev); if(!d) return 99; var t=new Date(); t.setHours(0,0,0,0); return Math.round((new Date(d+'T00:00:00')-t)/864e5); }
 function thisWeek(ev){ var n=daysAway(ev); return n>=0 && n<=7; }
 function badgeFor(ev){
-  if(isPast(ev)) return 'This happened';
+  if(isPast(ev)) return 'This happened ✓';
   if(!thisWeek(ev)) return ev.badge||'';
   var n=daysAway(ev), tag=n===0?'Today':n===1?'Tomorrow':'Coming this week';
   return tag+(ev.badge?' · '+ev.badge:'');
 }
 function evMatch(ev){ return thisWeek(ev) || typeof picked!=='function' || picked(ev.thread); }
+function recapHTML(ev){ if(!ev.recap) return '';
+  return '<p class="recap"><b>✓ It happened.</b> '+esc(ev.recap)+(ev.recapLink?' <a href="'+esc(ev.recapLink)+'">What came out of it</a>':'')+'</p>'; }
 function renderEvents(){
   var mine=getJSON('vvv-going',{}), cur=EVENTS.filter(isUpcoming), past=EVENTS.filter(function(e){return isCurrent(e)&&isPast(e)});
   var list=(evShowAll?cur:cur.filter(evMatch)).concat(past), hidden=cur.length-cur.filter(evMatch).length;
@@ -773,7 +780,7 @@ function renderEvents(){
       '<div style="min-width:0">'+(badgeFor(ev)?'<span class="badge">'+esc(badgeFor(ev))+'</span>':'')+
       '<h3><button type="button" data-open="'+ev.id+'">'+esc(ev.title)+'</button></h3>'+
       '<div class="meta">'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.time)+' · '+esc(ev.where)+' · with '+esc(ev.host)+'</div>'+feelHTML(ev)+
-      (gone?'':'<div class="row act"><span class="faces">'+facesHTML(ev)+'</span>'+inButton(ev,done,'data-in')+'</div>')+'</div></article>';
+      (gone?recapHTML(ev):'<div class="row act"><span class="faces">'+facesHTML(ev)+'</span>'+inButton(ev,done,'data-in')+'</div>')+'</div></article>';
   }).join('');
 }
 renderEvents();
@@ -803,7 +810,7 @@ function openEvent(id){
     '<ul class="facts"><li><b>When</b> '+esc(ev.day+' '+ev.d+' '+ev.mon+', '+ev.time)+'</li>'+
     (ev.length?'<li><b>How long</b> '+esc(ev.length)+'</li>':'')+
     '<li><b>Where</b> '+esc(ev.where)+'</li><li><b>With</b> '+esc(ev.host)+'</li><li><b>Bring</b> '+esc(ev.bring)+'</li></ul>'+
-    ev.about.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+
+    (gone?recapHTML(ev):'')+ev.about.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+
     (gone?'':'<div class="row">'+inButton(ev,done,'data-sin')+
     (ev.start?'<button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button>':'')+'</div>')+
     (ev.tickets||gone?'':'<div class="qr"><img src="qr/'+id+'.svg" alt="QR code for this event" width="84" height="84"><span>Scan to share this event. It opens straight here.</span></div>'));
