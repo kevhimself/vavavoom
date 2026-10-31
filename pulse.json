@@ -1,18 +1,18 @@
 {
- "updated": "2026-10-31T07:40",
+ "updated": "2026-10-31T07:41",
  "since": "2026-10-28",
  "counts": {
   "visitors": 9,
-  "visits": 21,
+  "visits": 22,
   "im_in": 2,
   "signups": 0,
   "signups_in": 0,
   "neighbours_gate": 3,
   "posts": 0,
   "story_visits": 8,
-  "helpers": 3,
+  "helpers": 4,
   "returning": 0,
-  "visits_known": 9
+  "visits_known": 10
  },
  "threads": [
   {
@@ -171,7 +171,7 @@
      "id": "pub",
      "kind": "event",
      "title": "Va Va Voom at the pub",
-     "n": 1,
+     "n": 2,
      "im_in": 0
     },
     {
@@ -263,14 +263,22 @@
    "threads": []
   },
   {
+   "name": "Merry Wren 24",
+   "adj": "Merry",
+   "animal": "Wren",
+   "visits": 1,
+   "back": false,
+   "threads": []
+  },
+  {
    "name": "Plucky Swift 90",
    "adj": "Plucky",
    "animal": "Swift",
    "visits": 1,
    "back": false,
    "threads": [
-    "grow",
     "homes",
+    "grow",
     "make"
    ]
   },
