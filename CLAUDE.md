@@ -11,6 +11,13 @@ https://app.notion.com/p/40893f7bf11a8182bc6dcf1ef52242ea
 - A new use of someone (new photo, page or story) is a new ask. People named in passing count too.
 - Bios in the person's own words. Never point at someone's home: invite openly.
 
+## Personas are private (fundamental control, Kev 31 Oct 2026)
+- Personas and persona panels are for Kev only. Never put a persona's name, quote, score or story in this repo,
+  the site, commit messages, artifacts or anything shared. This repo is public.
+- Public pages may say "we test with pretend personas", nothing more. Share findings without who said them.
+- Persona work lives only in Kev's private Notion page "Va Va Voom: personas and panels (Kev only)".
+- Before every release: `grep -rniE "persona|panel 0" --include=*.{html,js,json,md} .` and check no persona is named.
+
 ## Safe
 - No emails, phone numbers or addresses in public files. Only the PostHog key and catcher URL are public.
 - "I'm in" counts first; details are always optional. Every form says who sees details and links privacy.html.
