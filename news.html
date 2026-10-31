@@ -92,6 +92,23 @@ section.sec{padding-block:22px 4px}
 .story .faces img:nth-child(1){left:13px;top:0}.story .faces img:nth-child(2){left:0;top:26px}.story .faces img:nth-child(3){left:26px;top:26px}
 .story h3{margin:2px 0 4px;font-size:19px;line-height:1.25}
 .story p{margin:0 0 8px;font-size:15px}
+.story.pb{display:block}
+.story.pb h4{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:22px;line-height:1;margin:18px 0 8px}
+.nums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0 4px}
+.nums div{background:var(--ink);color:var(--paper);border-radius:14px;padding:10px 12px}
+.nums b{display:block;font-family:var(--display);font-weight:900;font-size:44px;line-height:.95;color:var(--lime)}
+.nums span{font-size:14px;line-height:1.3;display:block}
+.nums .wide{grid-column:1/-1;background:var(--rose-dk)}
+.nums .wide b{color:var(--paper)}
+.quotes{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.quotes li{font-family:var(--hand);font-size:24px;line-height:1.1;color:var(--rose-dk)}
+.quotes li span{display:block;font-family:inherit;font-size:20px;color:var(--ink)}
+.big{margin:12px 0 0;font-size:16px}.big b{font-family:var(--display);font-weight:900;font-size:30px;color:var(--rose-dk)}
+.boards{margin:0;padding-left:22px;display:grid;gap:8px;font-size:15px}
+.boards .top{font-size:12px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:0 8px;margin-left:4px;white-space:nowrap}
+.dothis{margin:0;padding-left:20px;display:grid;gap:4px;font-size:15px}
+.dothis a{font-weight:700;line-height:2}
+.dothis span{color:var(--muted)}
 .story .meta{font-size:14px;color:var(--muted)}
 /* Kev 29 Oct: the main action is an obvious button; a secondary one is a quiet text link beside it. */
 .story .acts{display:flex;justify-content:flex-end;align-items:center;gap:8px 16px;flex-wrap:wrap;margin-top:10px}
@@ -179,17 +196,47 @@ footer a{color:var(--ink)}
     <h2 id="h-st">Good news</h2>
     <p class="sub">Short, real, with faces. Every story ends in something you can do.</p>
     <div id="stories">
-      <article class="story" id="s-shackleford">
-        <img src="people/tim.jpg?v=1029c" alt="" width="64" height="64">
-        <div>
-          <span class="badge">What happened · Shackleford · Sat 31 Oct</span>
-          <h3>A full village hall, and 30 of us down to the farm</h3>
-          <p>About 70 people filled Shackleford Village Hall on Saturday morning for the People's Emergency Briefing, hosted by Tim and Sue. After the film we talked in pairs, then put ideas up on six theme boards. About 30 people walked on to Norney Farm Bungalow to see solar, rainwater and growing up close.</p>
-          <p>What people were drawn to most: growing and sharing food (a permaculture project, organic allotments, veg boxes), sharing skills and tools instead of everyone buying their own, and simple ways to save energy and water at home, like a £10 pump that puts bath water on the garden.</p>
-          <p>Plenty of people came from further afield. People will travel for the right thing, and that tells us something about how local "local" needs to be.</p>
-          <div class="meta">Photos and the full round-up of ideas are on their way. Want to keep going?</div>
-          <div class="acts"><a class="sec" href="hello.html#pub">Pub night, Tue 10 Nov</a><a class="btn" href="hello.html#walk">The walk, Sat 21 Nov</a></div>
+      <article class="story pb" id="s-shackleford">
+        <span class="badge">What happened · Shackleford · Sat 31 Oct</span>
+        <h3>A full hall, a farm walk, and 17 ideas on the wall</h3>
+        <p>The People's Emergency Briefing, hosted by Tim and Sue. A film, a lot of feelings, then pairs, sticky notes and a walk down to Norney Farm Bungalow to see solar, rainwater and growing up close.</p>
+        <div class="nums" role="list">
+          <div role="listitem"><b>70</b><span>people in the hall</span></div>
+          <div role="listitem"><b>30</b><span>walked on to the farm</span></div>
+          <div role="listitem"><b>5</b><span>hosts and helpers</span></div>
+          <div role="listitem"><b>17</b><span>ideas on the boards</span></div>
+          <div role="listitem" class="wide"><b>6</b><span>from Shackleford itself. Everyone else travelled, some from Hampshire. People go a long way for the right thing.</span></div>
         </div>
+
+        <h4>Lines from the film that stuck</h4>
+        <ul class="quotes">
+          <li>"Delay never pays. It always costs more."</li>
+          <li>"Sun and wind are free forever."</li>
+          <li>"Nature is the basis for all life. It's that simple."</li>
+          <li>"It's not like you can never eat meat again." <span>A bit better, not perfect. That's very us.</span></li>
+          <li>"The people and the solutions are here."</li>
+        </ul>
+        <p class="big"><b>8 in 10</b> of us want more action on climate. The will's there. The room was full of the way.</p>
+
+        <h4>What went up on the boards</h4>
+        <ol class="boards">
+          <li><b>Grow and share food</b> <span class="top">Top board</span><br>A permaculture project, organic allotments, veg boxes instead of the supermarket, a community garden, and sharing tools and skills instead of everyone buying their own.</li>
+          <li><b>Make, mend and share</b><br>How to set up a microgrid, building a tiny house, and switching your search engine.</li>
+          <li><b>Move and play</b><br>A school bike bus, getting kids out into nature in school time, and going to things as a group.</li>
+          <li><b>Save energy and water</b><br>Bath water on the garden with a cheap pump (two people wanted this one), and saving energy in social housing.</li>
+          <li><b>Meet and belong, Get out in nature</b><br>Empty. We reckon the pub and the walk are the answer. Come and prove us right.</li>
+        </ol>
+
+        <h4>Do one thing this week</h4>
+        <ul class="dothis">
+          <li><a href="hello.html#r-bugs">Learn the bath pump trick with Reiks</a></li>
+          <li><a href="resources.html#mp">Write to your MP in three steps</a> <span>(the letter's ready to copy)</span></li>
+          <li><a href="https://www.ecosia.org" target="_blank" rel="noopener" data-out="ecosia">Switch your search to Ecosia ↗</a> <span>(it puts its profits into climate action)</span></li>
+          <li><a href="https://www.surreywildlifetrust.org" target="_blank" rel="noopener" data-out="swt">See what Surrey Wildlife Trust is up to round here ↗</a></li>
+        </ul>
+
+        <p class="meta">What we learned: rows of chairs make an audience. Next time, fewer rows and more moving about. The best bit was the chat at the farm.</p>
+        <div class="acts"><a class="sec" href="hello.html#pub">Pub night, Tue 10 Nov</a><a class="btn" href="hello.html#walk">The walk, Sat 21 Nov</a></div>
       </article>
       <article class="story">
         <img src="people/ilona.jpg?v=1029" alt="" width="64" height="64">

@@ -183,11 +183,15 @@ section.sec{padding-block:20px 4px}
 .ev.onnow + .ev:not(.onnow){border-top:0;padding-top:6px}
 .ev.onnow .date{background:var(--ink)}
 .ev.onnow .badge{color:var(--ink)}
-.ev.past{opacity:.8}
+.ev.past{color:#77717c;background:#efeae3;border-radius:12px;padding:12px;border-top:0;margin-bottom:8px}
+.ev.past + .ev{border-top:0}
+.ev.past h3 button,.ev.past .meta,.ev.past .badge{color:#77717c}
+.ev.past .date{background:#cfc8bf;color:var(--paper);position:relative}
+.ev.past .date::after{content:"✓";position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:var(--moss);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700;border:2px solid var(--paper)}
+.ev.past .feel,.ev.past .tag{opacity:.6}
 .recap{margin:6px 0 0;font-size:15px}
 .recap b{color:var(--moss)}
 .recap a{font-weight:700;text-decoration-color:var(--rose);text-underline-offset:3px;white-space:nowrap}
-.ev.past .date{background:var(--muted)}
 .ev.past .badge{color:var(--muted)}
 .ev.onnow .meta{color:var(--ink)}
 a.btn{display:inline-flex;align-items:center;text-decoration:none}
@@ -771,6 +775,8 @@ function recapHTML(ev){ if(!ev.recap) return '';
 function renderEvents(){
   var mine=getJSON('vvv-going',{}), cur=EVENTS.filter(isUpcoming), past=EVENTS.filter(function(e){return isCurrent(e)&&isPast(e)});
   var list=(evShowAll?cur:cur.filter(evMatch)).concat(past), hidden=cur.length-cur.filter(evMatch).length;
+  /* Kev 31 Oct: one list in date order, so something that happened today sits at the top, clearly ticked and greyed */
+  list.sort(function(a,b){ var x=evDay(a)||'9999', y=evDay(b)||'9999'; return x<y?-1:x>y?1:0; });
   var all=$('#evAll'); all.hidden=!hidden; all.textContent=evShowAll?'Just my picks':'+ '+hidden+' more on';
   $('#events').innerHTML = list.map(function(ev){
     var done=!!mine[ev.id];
@@ -1201,6 +1207,7 @@ $('#fbForm').addEventListener('submit',function(e){
   var welcomed=store('vvv-welcomed');
   if(evById(arrivedVia)){ showConsent(); setTimeout(function(){ openEvent(arrivedVia); },250); return; }
   if(arrivedVia==='what'){ showConsent(); setTimeout(openWhat,250); return; }
+  if(learnById(arrivedVia)){ showConsent(); setTimeout(function(){ openNeighbour(arrivedVia); },250); return; } /* stories link straight to a neighbour's card */
   if(themeFromQR && themeById(themeFromQR)){ showConsent(); setTimeout(function(){ openTheme(themeFromQR); },250); return; }
   if(!welcomed && !getHome()){ setTimeout(function(){ openWelcome(false); },700); } else showConsent();
   if(arrivedVia==='feedback'){ $('#feedback').scrollIntoView(); }
