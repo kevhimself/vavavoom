@@ -80,7 +80,7 @@ GODALMING = {
  'projects': [
    ('Home & around', 'Choosing solar', 'Tim', 'Norney', 'How Tim chose his solar, battery and rain tanks, what they really save, and what he\'d do differently.'),
    ('Being well', 'Micro homes, off-grid loos and a community sauna', 'Carl', 'Green Spaces', 'Small, clever buildings, loos that need no mains, and a sauna to share. Learn by building.'),
-   ('Land & nature', 'Bug houses and vertical gardens', 'Rieks', 'Milford', 'Homes for the small wild things, and how to grow up a wall when you have no room to grow out.'),
+   ('Land & nature', 'Bug houses and vertical gardens', 'Reiks', 'Milford', 'Homes for the small wild things, and how to grow up a wall when you have no room to grow out.'),
  ],
  'more_url': 'happening.html',
  'good': [
@@ -88,9 +88,9 @@ GODALMING = {
    ('The briefing', 'Forty-odd tickets gone for 31 October. Not bad for a Saturday morning about the state of the world.'),
  ],
  'odd': ['See things a bit differently from everyone else?', 'Quietly the odd one out at the dinner party?', 'Maybe this is your place.'],
- 'faces': {'Kev': 'people/kev.jpg', 'Tim': 'people/tim.jpg', 'Carl': 'people/carl.jpg', 'Rieks': 'people/reiks.jpg', 'Ruth': 'people/ruth.jpg'},
+ 'faces': {'Kev': 'people/kev.jpg', 'Tim': 'people/tim.jpg', 'Carl': 'people/carl.jpg', 'Reiks': 'people/reiks.jpg', 'Ruth': 'people/ruth.jpg'},
  'people': [('Kev', 'Started it. Runs his home on sunshine and small computers.'), ('Tim', 'Norney Farm. Solar, rain, cider, 3D models.'), ('Sue', 'Hosts the briefings. Has the time and the questions.'),
-            ('Carl', 'Builds small, clever things. Will tell you if it\'s too silly.'), ('Rieks', 'Milford. Bug houses and walls that grow.'), ('Ruth', 'Coaching for when life shifts under your feet.')],
+            ('Carl', 'Builds small, clever things. Will tell you if it\'s too silly.'), ('Reiks', 'Milford. Bug houses and walls that grow.'), ('Ruth', 'Coaching for when life shifts under your feet.')],
  'places': [('Norney Farm', 'Land, fire, muddy boots. Where things get made.', 'roots.html'), ('The studio on the hill', 'Circles, quiet thinking, the occasional loud idea.', 'circle.html'), ('Trinkfluss', 'The clubhouse. Bastian pours, we plot.', 'nest.html')],
 }
 
