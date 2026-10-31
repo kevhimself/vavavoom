@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<base href="../">
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Va Va Voom Godalming</title>
+<meta name="description" content="Less scrolling, more doing. Small, good things with your neighbours round Godalming.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Va Va Voom Godalming">
+<meta property="og:description" content="Less scrolling, more doing. Get out, meet good people, make stuff happen, have fun.">
+<meta property="og:image" content="https://kevhimself.github.io/vavavoom/logos/vvv-share.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&display=swap">
+<style>
+/* Release Eashing. One column, phone first. Paper, ink and rose. The walk leads; everything else gathers interest. */
+:root{
+  --paper:#fbf7f2; --ink:#1c1a2b; --rose:#e8337f; --rose-dk:#c41f66; --sun:#f2c75a; --sun-soft:#fbeec8; --lime:#c9f24a;
+  --moss:#2f6b4f; --mist:#ece5dc; --muted:#4c4858;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+button,select,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+header.top{padding-top:max(14px,env(safe-area-inset-top,0px))}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.wordmark{font-family:var(--display);font-weight:900;font-size:clamp(24px,7vw,30px);white-space:nowrap;letter-spacing:.02em;word-spacing:-.12em;text-transform:uppercase;line-height:1;text-decoration:none}
+.wordmark span{color:var(--rose);margin-left:.1em}
+.whatpill{font-weight:700;font-size:15px;background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer;white-space:nowrap}
+.whatpill:hover{background:var(--rose-dk)}
+header.top{padding-bottom:12px;position:relative;z-index:5}
+.right{display:flex;align-items:center;gap:8px}
+@media (max-width:430px){ body.has-me .wordmark{font-size:clamp(20px,6vw,26px)} body.has-me .right{gap:5px} body.has-me .whatpill{padding:8px 11px;font-size:14px} }
+.me-badge{width:44px;height:44px;border-radius:50%;border:0;padding:0;background:none;cursor:pointer;flex:none}
+.me-badge svg{width:44px;height:44px;display:block}
+.me-sheet{text-align:center}
+.me-sheet svg{width:112px;height:112px;margin:4px auto 6px;display:block}
+.me-sheet .who{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:34px;line-height:1;margin:0 0 8px}
+.me-sheet p{margin:0 0 10px}
+.me-sheet .links{display:flex;flex-direction:column;gap:2px;align-items:center}
+.me-sheet .links a{font-weight:700;min-height:44px;display:inline-flex;align-items:center;text-decoration-color:var(--rose);text-underline-offset:4px}
+.whatpill{font-weight:700;font-size:15px;background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
+.burger{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);display:grid;place-items:center;cursor:pointer;padding:0}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;content:""}
+.burger span::before{position:absolute;top:-6px}.burger span::after{position:absolute;top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.menu{position:absolute;left:0;right:0;top:100%;z-index:20;padding-inline:16px}
+.menu ul{list-style:none;margin:0 auto;padding:8px;max-width:528px;background:var(--ink);color:var(--paper);border-radius:16px;box-shadow:0 10px 30px rgba(28,26,43,.25)}
+.menu a{display:block;padding:12px 14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:18px}
+.menu a:hover,.menu a[aria-current="page"]{background:rgba(251,247,242,.12)}
+.menu a[aria-current="page"]{color:var(--lime)}
+.menu small{display:block;font-weight:400;font-size:14px;opacity:.75}
+
+.acts{display:inline-flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:8px 14px;margin-left:auto}
+.tix{font-weight:700;font-size:15px;color:var(--ink);text-decoration:underline;text-decoration-color:var(--rose);text-decoration-thickness:1px;text-underline-offset:4px;white-space:nowrap}
+.av{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:.02em;flex-shrink:0}
+.av.sm{width:40px;height:40px;font-size:16px}
+.facesrow{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:14px;width:100%;padding:12px 14px;border:2px solid var(--ink);border-radius:16px}
+.facesrow .hello-faces{display:flex;flex-shrink:0;margin:0}
+.facesrow .hello-faces img{width:40px;height:40px}
+.facesrow .txt b{display:block;font-size:16px}
+.facesrow .txt span{font-size:14px;color:var(--rose-dk);font-weight:700}
+.facesrow .txt span::after{content:" →"}
+.facesrow:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.whoin{margin-top:18px;border-top:2px solid var(--mist);padding-top:14px}
+.sheeth{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:24px;line-height:1;margin:0 0 10px}
+.storycard{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:14px;align-items:center;margin-top:18px;padding:14px;border-radius:16px;background:var(--sun-soft);text-decoration:none;color:var(--ink)}
+.storycard img{width:72px;height:72px;display:block;border-radius:50%;object-fit:cover;border:3px solid var(--paper)}
+.storycard .badge{color:var(--ink)}
+.storycard b{display:block;font-size:17px;line-height:1.25;margin:2px 0}
+.storycard span.l{font-size:14px;color:var(--ink);opacity:.8}
+.storycard .go{font-size:24px;font-weight:700}
+.storycard:hover{box-shadow:inset 0 0 0 2px var(--ink)}
+
+.hero{background:var(--rose);color:var(--paper);position:relative;overflow:hidden}
+.hero .wrap{position:relative;padding-block:20px 24px}
+.birches{position:absolute;right:0;top:0;height:100%;width:120px;pointer-events:none}
+.welcome{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:15px;margin-bottom:12px;position:relative;max-width:calc(100% - 70px)}
+.homebtn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;background:var(--paper);color:var(--ink);border:0;border-radius:999px;padding:8px 8px 8px 12px;min-height:44px;cursor:pointer;box-shadow:0 2px 0 var(--ink)}
+.homebtn svg{color:var(--rose)}
+.homebtn .chg{font-size:13px;background:var(--ink);color:var(--paper);border-radius:999px;padding:4px 10px}
+.hello-faces{display:flex;margin:4px 0 12px}
+.hello-faces img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:3px solid var(--paper);margin-left:-12px;background:var(--mist)}
+.hello-faces img:first-child{margin-left:0}
+.quick{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px}
+.skip{background:none;border:0;padding:8px 4px;font-size:15px;text-decoration:underline;cursor:pointer;color:var(--muted)}
+.sug{display:flex;flex-wrap:wrap;gap:6px;margin-top:-4px}
+.sug .chip{background:var(--sun-soft);border-color:var(--ink)}
+#welcomeSheet .chip{font-size:14px;padding:6px 12px;min-height:38px}
+#welcomeSheet .quick{gap:6px}
+@media (max-height:700px){
+  .sheet{padding:14px 16px 16px}
+  .sheet p{font-size:15px;margin-bottom:10px}
+  .hello-faces img{width:42px;height:42px}
+  .hello-faces{margin-bottom:8px}
+}
+@media (min-width:420px) and (min-height:800px){
+  .sheet{padding:24px 24px 26px}
+}
+#welcomeSheet input{width:100%;border:2px solid var(--ink);border-radius:8px;padding:10px;font-size:16px;background:#fff;color:var(--ink)}
+.hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(42px,11vw,58px);line-height:.92;margin:0 0 12px;max-width:8.5em;text-wrap:balance;position:relative}
+.strap{font-weight:700;margin:0;max-width:24ch;position:relative}
+.hero h1,.strap,.aside{max-width:calc(100% - 84px)}
+.aside{font-family:var(--hand);font-size:26px;line-height:1;margin:8px 0 0;color:var(--sun);position:relative;transform:rotate(-2deg);transform-origin:left}
+
+.why{padding-block:16px;border-bottom:2px solid var(--ink)}
+.why p{margin:0}
+.exp{display:inline-block;margin-top:8px;font-size:14px;background:var(--sun);padding:2px 8px;border-radius:4px;font-weight:700}
+
+section.sec{padding-block:20px 4px}
+.sec h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:32px;line-height:1;margin:0 0 4px}
+.sub{font-size:15px;color:var(--muted);margin:0 0 14px}
+
+.ev{display:grid;grid-template-columns:62px minmax(0,1fr);gap:14px;padding:14px 12px;border-top:1px solid var(--mist)}
+.ev:first-of-type{border-top:0;padding-top:4px}
+.date{background:var(--ink);color:var(--paper);border-radius:8px;text-align:center;padding:7px 0;align-self:start;font-variant-numeric:tabular-nums}
+.date b{display:block;font-family:var(--display);font-size:30px;line-height:1}
+.date small{font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.ev.lead .date{background:var(--rose)}
+.badge{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rose-dk)}
+.ev h3{margin:2px 0 0;font-size:20px;line-height:1.2}
+.ev h3 button{all:unset;cursor:pointer;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.meta{font-size:15px;color:var(--muted);margin:4px 0 10px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.row.act{justify-content:space-between}
+.row.act .faces span{font-size:13px;white-space:nowrap}
+.row.act .btn{flex-shrink:0;padding-inline:16px}
+.row.act > .btn,.row.act > a.btn{margin-left:auto}
+.sheet .row{justify-content:flex-end}
+.whatbtn{background:none;border:0;padding:4px 0;font-weight:700;font-size:15px;color:var(--rose-dk);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.btn{font-weight:700;font-size:16px;background:var(--rose);color:var(--paper);border:0;border-radius:999px;padding:10px 20px;min-height:44px;cursor:pointer}
+.btn:hover{background:var(--rose-dk)}
+.btn.done{background:var(--paper);color:var(--rose-dk);box-shadow:inset 0 0 0 2px var(--rose)}
+.faces{display:flex;align-items:center;font-size:14px;color:var(--muted);min-width:0}
+.faces img,.faces i{width:28px;height:28px;border-radius:50%;border:2px solid var(--paper);margin-left:-8px;object-fit:cover;background:var(--mist)}
+.faces i{display:inline-grid;place-items:center;font-style:normal;font-weight:700;font-size:12px;background:var(--lime)}
+.faces > :first-child{margin-left:0}
+.faces span{margin-left:6px}
+
+.near{background:var(--mist);border-radius:12px;padding:14px;display:grid;gap:8px;margin-top:16px}
+.near b{font-size:18px}
+.near p{margin:0;font-size:15px}
+.calopts{display:flex;flex-direction:column;gap:2px;margin:8px 0 4px;padding:10px 14px;border:2px solid var(--ink);border-radius:14px;background:#fff;flex-basis:100%}
+.calopts .calq{font-size:14px;color:var(--muted);font-weight:700}
+.calopts a{font-weight:700;min-height:44px;display:flex;align-items:center;text-decoration-color:var(--rose);text-underline-offset:4px}
+.ghost{font-weight:700;font-size:15px;background:transparent;border:2px solid var(--ink);border-radius:999px;padding:8px 16px;min-height:42px;cursor:pointer;justify-self:start}
+.ghost.done{background:var(--ink);color:var(--paper)}
+
+.interest{display:grid}
+.int{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;border-top:1px solid var(--mist);padding-block:10px}
+.int:first-child{border-top:0;padding-top:0}
+.int b{display:block;font-size:17px}
+.int span{font-size:14px;color:var(--muted)}
+.int .nudge2{grid-column:1/-1;display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right;margin-top:-2px}
+.int .nudge2 .calm{font-size:14px;color:var(--muted)}
+.int .nudge2 button{all:unset;cursor:pointer;font-size:15px;font-weight:700;color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rose);text-underline-offset:4px}
+.int .nudge2 button::after{content:" →";color:var(--rose)}
+.int .nudge2 button:hover{color:var(--rose-dk)}
+.int .nudge2 button:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:4px}
+.int .nudge2 .ok{font-size:15px;font-weight:700;color:var(--muted)}
+.int .when{display:inline-block;font-style:normal;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--rose-dk);margin-bottom:2px}
+.host{color:var(--moss);font-weight:700}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.ev.onnow{background:var(--sun-soft);padding:14px 12px;border-radius:12px;border-top:0;margin-bottom:10px}
+.ev.onnow:first-of-type{padding-top:14px}
+.ev.onnow + .ev:not(.onnow){border-top:0;padding-top:6px}
+.ev.onnow .date{background:var(--ink)}
+.ev.onnow .badge{color:var(--ink)}
+.ev.past{color:#77717c;background:#efeae3;border-radius:12px;padding:12px;border-top:0;margin-bottom:8px}
+.ev.past + .ev{border-top:0}
+.ev.past h3 button,.ev.past .meta,.ev.past .badge{color:#77717c}
+.ev.past .date{background:#cfc8bf;color:var(--paper);position:relative}
+.ev.past .date::after{content:"✓";position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:var(--moss);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700;border:2px solid var(--paper)}
+.ev.past .feel,.ev.past .tag{opacity:.6}
+.recap{margin:6px 0 0;font-size:15px}
+.recap b{color:var(--moss)}
+.recap a{font-weight:700;text-decoration-color:var(--rose);text-underline-offset:3px;white-space:nowrap}
+.ev.past .badge{color:var(--muted)}
+.ev.onnow .meta{color:var(--ink)}
+a.btn{display:inline-flex;align-items:center;text-decoration:none}
+.nb{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;padding-block:14px;border-top:1px solid var(--mist)}
+.nb:first-child{border-top:0;padding-top:4px}
+.nb img{width:56px;height:56px;border-radius:50%;object-fit:cover;background:var(--mist)}
+.nb h3{margin:0;font-size:18px;line-height:1.25}
+.nb h3 button{all:unset;cursor:pointer;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.nb .meta{margin:2px 0 6px}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 6px}
+/* Kev 29 Oct: less colour. Theme tags are ink text with just a coloured border. */
+.tag{background:transparent;color:var(--ink);border:1.5px solid var(--th,var(--ink));font-size:11px;font-weight:700;border-radius:999px;padding:1px 8px;line-height:1.5}
+.stk{display:inline-block;width:26px;height:26px;vertical-align:-6px;margin-left:6px;transform:rotate(-10deg);filter:drop-shadow(2px 2px 0 rgba(34,30,25,.3))}
+.f input[aria-invalid="true"]{border-color:var(--rose-dk);box-shadow:0 0 0 3px rgba(232,51,127,.2)}
+.tile .tl{display:flex;align-items:center;gap:6px}
+.tile .stk{width:22px;height:22px;margin:0;vertical-align:0;flex-shrink:0}
+.tag.shaping{border-color:var(--muted);color:var(--muted)}
+.nb p{margin:0 0 10px;font-size:15px}
+.seeall{margin-top:6px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{all:unset;box-sizing:border-box;cursor:pointer;border-radius:14px;padding:12px 14px;min-height:68px;display:flex;flex-direction:column;justify-content:space-between;gap:6px;border:2px solid var(--ink);position:relative}
+.tile:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.tile b{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:17px;line-height:1.05;padding-right:26px}
+.tile span{font-size:13px;font-weight:700}
+/* Theme colours: one colour per topic, used on tiles, theme pages and anything tagged with a theme */
+:root{--th-move:#e8337f;--th-grow:#ff8a2a;--th-make:#2438d6;--th-homes:#e2492f;--th-talk:#f2c75a;--th-nature:#2f6b4f}
+.th-move{--th:var(--th-move);--th-ink:var(--paper)} .th-grow{--th:var(--th-grow);--th-ink:var(--ink)} .th-make{--th:var(--th-make);--th-ink:var(--paper)}
+.th-homes{--th:var(--th-homes);--th-ink:var(--paper)} .th-talk{--th:var(--th-talk);--th-ink:var(--ink)} .th-nature{--th:var(--th-nature);--th-ink:var(--paper)}
+.tile[class*="th-"]{background:var(--paper);color:var(--ink);border-color:var(--th)}
+.tile[class*="th-"].on{background:var(--th);color:var(--th-ink)}
+.tile .tick{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;border:2px solid var(--th);display:flex;align-items:center;justify-content:center;font-style:normal;line-height:0}
+.tile .tick svg{display:block}
+.tile.on .tick{background:var(--th-ink);color:var(--th);border-color:var(--th-ink)}
+.themebar{height:10px;border-radius:5px;margin:0 0 12px;background:var(--th)}
+.nudge{background:var(--mist);border-radius:14px;padding:14px 16px;margin-top:12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+.nudge b{display:block;font-size:16px}
+.nudge span{font-size:14px;color:var(--muted)}
+.nudge.saved{grid-template-columns:1fr}
+.picked{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+.picked i{font-style:normal;font-size:13px;font-weight:700;border-radius:999px;padding:4px 10px;background:var(--th);color:var(--th-ink)}
+.share{background:var(--ink);color:var(--paper);border-radius:16px;padding:20px 18px;margin-top:16px;display:grid;gap:10px}
+.share h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:30px;line-height:1;margin:0;color:var(--lime)}
+.share p{margin:0;font-size:16px}
+.share .btn{background:var(--lime);color:var(--ink);justify-self:start}
+.ways{display:grid;gap:8px;margin-top:4px}
+.way{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;font:inherit;font-weight:700;font-size:16px;background:transparent;color:var(--paper);border:2px solid rgba(251,247,242,.35);border-radius:14px;padding:12px 14px;min-height:48px;cursor:pointer}
+.way small{display:block;font-weight:400;font-size:14px;opacity:.8}
+.way::after{content:"→";color:var(--rose);font-size:20px}
+.way:hover,.way:focus-visible{border-color:var(--rose)}
+.mini{display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;align-items:center;padding-block:8px;border-top:1px solid var(--mist)}
+.mini img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.mini b{display:block;font-size:16px}
+.mini span{font-size:14px;color:var(--muted)}
+.mini button{all:unset;cursor:pointer}
+form.f select{width:100%;border:2px solid var(--ink);border-radius:8px;padding:10px;font-size:16px;background:#fff;color:var(--ink)}
+.chip{font-weight:700;font-size:15px;border:2px solid var(--ink);background:var(--paper);border-radius:999px;padding:7px 14px;min-height:40px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+.who{display:grid;gap:10px}
+.person{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;align-items:center}
+.person img{width:56px;height:56px;border-radius:50%;object-fit:cover;background:var(--mist)}
+.person b{display:block}
+.person span{font-size:15px;color:var(--muted);display:block}
+.person .plinks{font-size:14px;margin-top:2px}
+.person .plinks a{color:var(--rose-dk);font-weight:700;text-underline-offset:3px}
+.feel,.int span.feel{display:block;font-family:var(--hand);font-size:19px;line-height:1;color:var(--rose-dk);margin-top:2px}
+.tag.near,.int span.tag.near{background:var(--ink);color:var(--paper);font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;display:inline-block;margin:0 4px 2px 0}
+.ask{display:block;font-family:var(--hand);font-style:normal;font-size:22px;line-height:1.1;color:var(--rose-dk);margin-top:2px}
+.origin{margin-top:18px;background:var(--mist);border-radius:16px;padding:16px 18px}
+.origin h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:24px;line-height:1;margin:0 0 6px}
+.origin p{margin:0 0 10px;font-size:16px}
+.origin details p:last-child{margin-bottom:0}
+.origin summary{cursor:pointer;font-weight:700;color:var(--rose-dk);text-decoration:underline;text-underline-offset:3px;list-style:none;margin-bottom:2px}
+.origin summary::-webkit-details-marker{display:none}
+.origin details[open] summary{display:none}
+
+.fb{background:var(--ink);color:var(--paper);margin-top:28px}
+.fb .wrap{padding-block:22px;display:grid;gap:12px}
+.fb h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:30px;line-height:1;margin:0;color:var(--lime)}
+.fb p{margin:0;font-size:15px}
+.fb .btn{background:var(--lime);color:var(--ink);justify-self:start}
+.thanks{font-family:var(--hand);font-size:28px;color:var(--lime);line-height:1.1}
+
+form.f{display:grid;gap:12px}
+form.f label{display:grid;gap:4px;font-size:15px;font-weight:700}
+form.f input[type=text],form.f input[type=tel],form.f textarea{width:100%;border:2px solid var(--ink);border-radius:8px;padding:10px;font-size:16px;background:#fff;color:var(--ink)}
+.fb form.f input,.fb form.f textarea{border-color:transparent}
+form.f textarea{min-height:64px;resize:vertical}
+.tick{display:flex !important;grid-template-columns:none;gap:10px;align-items:flex-start;font-weight:400 !important}
+.tick input{width:22px;height:22px;margin-top:2px;flex:none;accent-color:var(--moss)}
+.err{color:var(--rose-dk);font-weight:700;font-size:14px;margin:0}
+.err:empty{display:none}
+.fb .err{color:var(--sun)}
+.trap{position:absolute;left:-5000px}
+.fine{font-size:13px;color:var(--muted);margin:0}
+.fb .fine,.fb summary{color:#bdb6cf}
+details summary{cursor:pointer;font-size:14px}
+
+footer{padding-block:18px 28px;font-size:14px;display:grid;gap:6px;color:var(--muted)}
+footer a{color:var(--ink)}
+
+/* sheets: event details, I'm in, start something */
+.scrim{position:fixed;inset:0;background:rgba(28,26,43,.55);display:flex;align-items:center;justify-content:center;z-index:20;padding:max(16px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+.sheet{background:var(--paper);width:100%;max-width:520px;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;border-radius:18px;
+  padding:18px 18px 20px;box-shadow:0 20px 50px rgba(28,26,43,.35)}
+.sheet h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(26px,8vw,34px);line-height:1;margin:0 0 6px;text-wrap:balance}
+.sheet .close{float:right;background:none;border:0;font-size:28px;line-height:1;cursor:pointer;padding:4px 8px;margin:-6px -8px 0 0}
+.facts{list-style:none;padding:0;margin:10px 0 14px;display:grid;gap:4px;font-size:16px}
+.facts b{display:inline-block;min-width:4.8em}
+.sheet p{margin:0 0 12px}
+.qr{display:flex;gap:12px;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--mist);font-size:13px;color:var(--muted)}
+.qr img{width:84px;height:84px;background:#fff}
+.done-msg{font-family:var(--hand);font-size:28px;color:var(--moss);line-height:1.1;margin:6px 0 12px}
+
+.consent{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--paper);z-index:15;border-radius:18px 18px 0 0;
+  box-shadow:0 -10px 28px rgba(28,26,43,.35),0 -2px 0 rgba(28,26,43,.15);
+  padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.consent .in{max-width:560px;margin:0 auto;font-size:16px;line-height:1.4}
+.consent p{margin:0}
+.consent .c-kick{font-family:var(--hand);font-size:24px;line-height:1.1;color:var(--lime)}
+.consent .c-name{font-size:18px;margin-top:2px}
+.consent .c-name b{color:var(--sun);white-space:nowrap}
+.consent .c-what{font-size:15px;opacity:.92;margin-top:4px}
+.consent .c-ticks{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:2px 16px}
+.consent .c-ticks li{font-size:14px;opacity:.95}
+.consent .c-ticks li::before{content:"\2713\00a0";color:var(--lime);font-weight:700}
+.sug .chip.own{border-style:dashed;font-style:italic}
+.consent .c-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.consent .c-row button{flex:1 1 0}
+.consent a{color:var(--paper);text-decoration-color:var(--lime);text-underline-offset:3px;white-space:nowrap;font-weight:700;padding:12px 0}
+.consent button{font-weight:700;border-radius:999px;padding:8px 16px;border:2px solid var(--paper);cursor:pointer;min-height:44px;background:transparent;color:var(--paper)}
+.consent .c-more{margin-top:2px;font-size:15px}
+.consent .c-thanks{font-size:18px;line-height:1.45}
+.consent .c-thanks b{color:var(--sun);white-space:nowrap}
+@media (prefers-reduced-motion:no-preference){ .sheet{animation:up .22s ease-out} @keyframes up{from{transform:translateY(12px) scale(.98);opacity:.5}} }
+.storylink{margin:14px 0 0;text-align:right;font-size:16px}.storylink a{display:inline-block;padding:10px 0;font-weight:700}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:99;background:#f2c75a;color:#1c1a2b;font:700 14px/1.3 system-ui,sans-serif;padding:8px 16px;text-align:center">Preview for the team. Not live yet. <a href="https://app.notion.com/p/40a93f7bf11a815f80f9e6414763abe3" style="color:inherit">Comments to Kev</a></div>
+
+<header class="top wrap">
+  <div class="bar">
+    <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
+    <div class="right">
+      <button class="whatpill" type="button" id="whatBtn">What is it?</button>
+      <button class="me-badge" type="button" id="meBadge" hidden aria-label="Your secret name"></button>
+      <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+  <nav class="menu" id="menu" hidden aria-label="Main">
+    <ul>
+      <li><a href="#h-on">What's on<small>Dates, places, I'm in</small></a></li>
+      <li><a href="news.html">Stories from round here<small>Good news and a tip for the week</small></a></li>
+      <li><a href="#themes">What pulls you?</a></li>
+      <li><a href="#neighbours">Learn with a neighbour<small>Coming if you want it</small></a></li>
+      <li><a href="#joinin">Join in, any way you like</a></li>
+      <li><a href="#h-who">Who's behind it</a></li>
+      <li><a href="#feedback">Tell us what you think</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero">
+  <svg class="birches" viewBox="0 0 120 300" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+    <g fill="#fbf7f2"><rect x="62" y="0" width="14" height="300"/><rect x="92" y="0" width="10" height="300"/></g>
+    <g fill="#1c1a2b"><rect x="62" y="40" width="8" height="3"/><rect x="68" y="92" width="8" height="2"/><rect x="62" y="150" width="10" height="3"/><rect x="66" y="210" width="10" height="2"/><rect x="62" y="262" width="7" height="3"/><rect x="92" y="70" width="6" height="2"/><rect x="95" y="128" width="7" height="3"/><rect x="92" y="190" width="6" height="2"/><rect x="94" y="244" width="8" height="3"/></g>
+  </svg>
+  <div class="wrap">
+    <div class="welcome">
+      <button type="button" class="homebtn" id="homeBtn"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span id="homeTxt">Where's home?</span><span class="chg" id="homeChg">Tell us</span></button>
+    </div>
+    <h1>How might we make tomorrow a little more beautiful?</h1>
+    <p class="strap">Less scrolling, more doing. Get out, meet good people, make stuff happen, have fun.</p>
+    <p class="aside">(spoiler: it starts with a walk)</p>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="why row">
+    <span class="exp" style="margin:0">Welcome to an experiment. You're one of the first brave ones.</span>
+  </div>
+
+  <section class="sec" aria-labelledby="h-on">
+    <h2 id="h-on">What's on</h2>
+    <p class="sub">To start: a pub night and a walk. Come to one, bring a friend.</p>
+    <div id="events"></div>
+    <button class="ghost seeall" type="button" id="evAll" hidden></button>
+    <div class="near" id="near" hidden>
+      <b id="nearTitle">Nothing near you yet.</b>
+      <p>Fancy being the first? Tell us what you'd start and we'll bring the know-how (and probably biscuits).</p>
+      <button class="ghost" type="button" id="startBtn">Start something here</button>
+    </div>
+  </section>
+
+
+  <section class="sec picks" aria-labelledby="h-more" id="themes">
+    <h2 id="h-more">What pulls you?</h2>
+    <p class="sub">Tap all that apply. We'll put those first.</p>
+    <div class="tiles" id="threads"></div>
+    <div class="nudge" id="nudge" hidden></div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-nb" id="neighbours">
+    <h2 id="h-nb">Learn with a neighbour</h2>
+    <p class="sub">Coming if you want it. Tap "I'm in" and once enough of you are keen, we'll set a date.</p>
+    <div id="nbList"></div>
+    <button class="ghost seeall" type="button" id="nbAll" hidden></button>
+    <p class="storylink"><a href="news.html" data-out="stories-from-neighbours">Good news from round here →</a></p>
+  </section>
+
+  <section class="sec" aria-labelledby="h-join" id="joinin">
+    <div class="share">
+      <h3 id="h-join">Join in, any way you like</h3>
+      <p>This is everyday folk from round here giving stuff a go. It doesn't have to be perfect. Try something, learn something. Showing up is plenty too.</p>
+      <div class="ways" id="ways">
+        <button class="way" type="button" data-way="run"><span>I want to run something<small>A walk, a skill, a thing you've fixed. We'll help with the rest</small></span></button>
+        <button class="way" type="button" data-way="organise"><span>I'll help out<small>Lend a hand with someone else's thing. Go on, we dare you</small></span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-who">
+    <h2 id="h-who">Who's behind it</h2>
+    <button class="facesrow" type="button" id="whoBtn"><span class="hello-faces"><img src="people/kev.jpg?v=1029c" alt=""><img src="people/tim.jpg?v=1029c" alt=""><img src="people/ruth.jpg?v=1029c" alt=""><img src="people/carl.jpg?v=1029c" alt=""><img src="people/jules.jpg?v=1029c" alt=""><img src="people/reiks.jpg?v=1029c" alt=""></span><span class="txt"><b>Kev, Tim, Carl and friends</b><span>Meet them</span></span></button>
+  </section>
+</main>
+
+<section class="fb" aria-labelledby="h-fb" id="feedback">
+  <div class="wrap">
+    <h2 id="h-fb">Tell us what you think</h2>
+    <p>Two minutes, four questions. Be honest, we can take it.</p>
+    <button class="btn" type="button" id="fbOpen" aria-expanded="false" aria-controls="fbForm">Give feedback</button>
+    <form class="f" id="fbForm" hidden novalidate>
+      <label for="q1">What three words do you come away feeling?<input id="q1" type="text" maxlength="120"></label>
+      <label for="q2">Magic wand: what one thing would you change?<textarea id="q2" maxlength="1000"></textarea></label>
+      <label for="q3">What one thing would you take out to make it better?<textarea id="q3" maxlength="1000"></textarea></label>
+      <label for="q4">What one thing didn't you understand?<textarea id="q4" maxlength="1000"></textarea></label>
+      <details>
+        <summary>Happy to tell us a bit more? (optional)</summary>
+        <div class="f" style="margin-top:10px;display:grid;gap:12px">
+          <label for="q5">Anything about you that helps us read your answers?<textarea id="q5" maxlength="1000"></textarea></label>
+          <label for="q6">Would you come along, or bring a friend?<textarea id="q6" maxlength="500"></textarea></label>
+        </div>
+      </details>
+      <input class="trap" id="fbTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="err" id="fbErr" role="alert"></p>
+      <button class="btn" type="submit">Send</button>
+      <p class="fine">No links please; they get held back. <span data-release></span></p>
+    </form>
+    <div class="thanks" id="fbThanks" hidden>Thank you, good human. You've just shaped what comes next.</div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div>Your details stay with us. Promise. <a href="privacy.html">Privacy and our data promise</a></div>
+  <div>Va Va Voom grew out of Better Men, and is part of Purpose Nation and Open Commons.</div>
+  <div><span data-release></span> · <a href="experiment.html">About this experiment: why, what and how</a> · <a href="news.html">Stories from round here</a></div>
+</footer>
+
+<div class="consent" id="consent" hidden role="region" aria-label="Help us learn">
+  <div class="in" id="cAsk">
+    <p class="c-kick">Psst. Fancy joining the experiment?</p>
+    <p class="c-name">Say yes and your secret name will be <b id="cName">a surprise</b>.</p>
+    <p class="c-what">A random code goes with your taps, so we can see what people tap and scroll and grow the right things. Your secret name pops up on our Pulse page, never your real name. <a href="privacy.html#code">What we keep</a></p>
+    <ul class="c-ticks"><li>Not your name</li><li>Typing hidden</li><li>No selling, no ads</li></ul>
+    <div class="c-row">
+      <button class="no" type="button" id="cNo">No thanks</button>
+      <button class="yes" type="button" id="cYes">Yes, I'll help</button>
+    </div>
+  </div>
+  <div class="in" id="cDone" hidden><p class="c-thanks" id="cThanks" role="status"></p><div class="c-row" id="cOkRow"><button type="button" id="cOk">Lovely</button></div></div>
+</div>
+
+<template id="whoTpl">
+  <h3 class="sheeth" id="whoHead">Who's behind it</h3>
+  <div class="who">
+      <div class="person"><img src="people/tim.jpg?v=1029c" alt="" width="56" height="56"><div><b>Tim</b><span>Innovating for a better future. As happy building a rainwater system as vibe-coding software. Hosts the walk.</span><em class="ask">Ask him about the farm</em><span class="plinks"><a href="https://norneyfarmbungalow.netlify.app/" target="_blank" rel="noopener" data-out="open-norney">Open Norney ↗</a> · <a href="https://thelandapp.com" target="_blank" rel="noopener" data-out="landapp">LandApp ↗</a></span></div></div>
+      <div class="person"><img src="people/carl.jpg?v=1029c" alt="" width="56" height="56"><div><b>Carl</b><span>Maker and builder of things, and cook for the group.</span><em class="ask">Want to know how to build it? Ask him</em><span class="plinks"><a href="https://www.spaces.green/" target="_blank" rel="noopener" data-out="greenspaces">Green Spaces Godalming ↗</a></span></div></div>
+      <div class="person"><img src="people/kev.jpg?v=1029c" alt="" width="56" height="56"><div><b>Kev</b><span>Curious and innovative. One foot in AI, one in the deeper human stuff. Hosts the circle.</span><em class="ask">Ask him about good wood</em><span class="plinks"><a href="https://www.linkedin.com/in/kevself/" target="_blank" rel="noopener" data-out="kev-linkedin">LinkedIn ↗</a> · <a href="https://valleysawmills.co.uk" target="_blank" rel="noopener" data-out="valley">Valley Sawmills ↗</a></span></div></div>
+      <div class="person"><img src="people/ruth.jpg?v=1029c" alt="" width="56" height="56"><div><b>Ruth</b><span>Coaching for when life shifts under your feet.</span><span class="plinks"><a href="https://kevhimself.github.io/RuthBlanco/" target="_blank" rel="noopener" data-out="ruth">Ruth's website ↗</a></span></div></div>
+      <div class="person"><img src="people/reiks.jpg?v=1029c" alt="" width="56" height="56"><div><b>Rieks</b><span>Facilitator and recently retired drama teacher in Milford. Bug houses, a bath pump and armchair activism.</span><em class="ask">Ask him about his photo</em></div></div>
+    </div>
+    <div class="origin">
+      <h3>So where did this start?</h3>
+      <p>Depends who you ask.</p>
+      <p><b>Maybe with three men.</b> Two years ago Tim, Carl and Kev started meeting on Monday nights. Carl and Tim cooked, often with food from the farm, and every week we asked one question: how have we been better this week? We meant to grow. We didn't, and that turned out to be the point. Three people who turn up for each other are enough to change how a week feels.</p>
+      <details>
+        <summary>Read the rest</summary>
+        <p><b>Maybe with a film.</b> At the People's Emergency Briefing in Godalming, a room full of people watched where the world has got to. We walked out with hearts racing, and nowhere to put all that energy.</p>
+        <p><b>Or maybe with the follow-up session, where so few came.</b> All that feeling in the room, and only a handful turned up for what came next. That told us something. Worry doesn't get people off the sofa. Something fun, close to home, with people you like, just might.</p>
+        <p>So that's what this is. Small, brave, good things near where you live, with the neighbours you haven't met yet. A better walk. A pint. A sauna. We're the seed, not the committee. Ideas get sorted on a walk or in the pub, and anyone can pick something up and run with it.</p>
+        <p>It's an experiment, and you're early. Come along to something and see.</p>
+      </details>
+    </div>
+</template>
+
+<div class="scrim" id="scrim" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" id="sheet"></div>
+</div>
+
+<script src="release.js"></script>
+<script src="vid.js"></script>
+<script>
+/* ---------- EDIT HERE: what's on, interest list, threads ---------- */
+var RELEASE = window.VVV_RELEASE || 'Farncombe', BUILD = window.VVV_BUILD || '';
+var EVENTS = [
+  { id:'briefing', feel:'inspired', badge:'Part 1', title:"People's Emergency Briefing", day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
+    time:'10:15am (doors 10am)', length:'About 1½ hours', where:'Shackleford Village Hall', host:'Tim and Sue', thread:'nature', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
+    done:true, keep:true, recap:'About 70 people came, and about 30 walked on to Norney Farm.', recapLink:'news.html#s-shackleford',
+    about:[
+      'A short welcome, then the 45-minute film. Here\'s where things are, plainly told. No lectures.',
+      'Then we talk. First, where you\'re at with it all: say it out loud and be heard. Then something real that\'s going on round here, and a small, doable thing you\'ve done or could do next. Kev hosts the conversations.',
+      'Finishes about 11:45, then a short walk down to Norney Farm for part 2.'
+    ],
+    bring:'Good shoes if you\'re coming on to the farm.',
+    going:[] },
+  { id:'farm', feel:'inspired', badge:'Part 2', title:'Norney Farm Bungalow visit', day:'Sat', d:'31', mon:'Oct', until:'2026-10-31', start:'', end:'',
+    time:'12pm to about 1pm', length:'About an hour', where:'Norney Farm, Shackleford', host:'Tim', thread:'homes', tickets:'https://www.tickettailor.com/events/jseverest/2441375',
+    done:true, keep:true, recap:'About 30 people came on from the village hall for the tour.', recapLink:'news.html#s-shackleford',
+    about:[
+      'A welcome at the bungalow, then a guided tour of how it all fits together: solar, water harvesting and regenerative growing, and where it\'s going next.',
+      'Then a short workshop: what would you love to learn or get stuck into here? Grafting, propagating, making, mending. Sticky notes welcome.',
+      'Come for the briefing, the farm or both. Leave when you need to.'
+    ],
+    bring:'Good shoes for the land.',
+    going:[] },
+  { id:'pub', feel:'connect', badge:'Pub night', title:'Va Va Voom at the pub', day:'Tue', d:'10', mon:'Nov', start:'2026-11-10T19:00', end:'2026-11-10T21:00',
+    time:'7pm', length:'A couple of hours', where:'The Inn on the Lake, Godalming', host:'Tim and Kev', thread:'talk',
+    about:[
+      'Dark evenings are pub evenings. Come and have a drink, meet some good people from round here, and see what a little more Va Va Voom in your life could look like, and where it might take us.',
+      'Eat first, or get food at the bar. We\'ll start at 7. Even if there are five of us, it\'ll be a good night.',
+      'Don\'t know anyone? Say so when you tap "I\'m in" and we\'ll make sure you\'re introduced.'
+    ],
+    bring:'Yourself, and a friend if you like.',
+    going:[{n:'Tim',img:'people/tim.jpg?v=1029c'},{n:'Kev',img:'people/kev.jpg?v=1029c'}] },
+  { id:'walk', feel:'connect', lead:true, badge:'Our first walk', title:'A better walk', day:'Sat', d:'21', mon:'Nov', start:'2026-11-21T10:30', end:'2026-11-21T12:45',
+    time:'10:30am to 12:45pm', length:'About 2¼ hours', where:'Puttenham Common, top car park', host:'Tim and Kev', thread:'move',
+    about:[
+      'Better walks are facilitated walks: we bring some intention to them. Each one explores a topic or theme, and we talk about how we relate to it, what it means for us, and whether there\'s something we want to do about it.',
+      'How it goes: we start with a check-in, so you\'ve met people before we set off. Along the way there are invitations for conversations, and we\'ll invite you to switch walking partners so the talk flows round the group. We close with a circle: where do we all stand, and is there an action we want to take?',
+      'Coming on your own? Brilliant. Tell us and we\'ll look out for you. Or bring someone you think would love it. Grab a coffee at the café first. All paces welcome.'
+    ],
+    bring:'Good shoes, a drink, and your curiosity.',
+    going:[{n:'Tim',img:'people/tim.jpg?v=1029c'},{n:'Kev',img:'people/kev.jpg?v=1029c'}] }
+];
+var INTEREST = [
+  { id:'surgery', feel:'connect', themes:['talk','homes'], title:'Safe, shiny and sorted with AI', what:'Bring your phone or a question: AI, staying safe online, smart home or small business. Free, tea on. We never ask for your passwords.', host:'Kev hosting', when:'Tuesday evenings, monthly' },
+  { id:'ridge', feel:'connect', themes:['move'], near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], place:'Seale', title:'A walk up the ridge and a pint', what:'Hampton Estate path to the viewpoint, then down to the Hogs Back Brewery', host:'', when:'' },
+  { id:'recsport', feel:'play', themes:['move'], near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], place:'Tongham', title:'Sport for the fun of it', what:'Ultimate frisbee on the Rec, a social run on the Blackwater Valley Path, or a ceilidh in a barn', host:'', when:'' },
+  { id:'sauna', feel:'play', themes:['move'], place:'Seale', title:'Waggon sauna sing-along', what:'Sweat, sing badly, feel brilliant', host:'', when:'January 2027' },
+  { id:'circle', feel:'connect', themes:['talk'], title:'Circle round the fire', what:'Fire, stories, proper conversation', host:'Kev hosting', when:'Early 2027' },
+  { id:'run', feel:'play', themes:['move'], title:'Social run', what:'Chatty pace, nobody left behind', host:'Kev hosting', when:'Spring 2027' },
+  { id:'make', feel:'inspired', themes:['make'], title:'Make something', what:'Get your hands dirty, learn with a neighbour', host:'Tim hosting', when:'Spring 2027' },
+  { id:'humanbit', feel:'connect', themes:['talk'], title:'Analogue Humans in a Digital World', what:'A circle on staying properly human with AI around', host:'Kev hosting', when:'Winter 2027' },
+  { id:'r-bugs', feel:'inspired', themes:['nature','grow','homes'], title:'Bug houses, vertical gardens and the bath pump', what:'Homes for small wild things, growing up a wall, bathwater for the garden', host:'Rieks hosting', when:'' },
+  { id:'r-armchair', feel:'inspired', themes:['homes','talk'], title:'Armchair activism', what:'Your bank, insurance and energy: small switches that add up', host:'Rieks hosting', when:'' },
+  { id:'r-beyond', feel:'connect', themes:['talk'], title:'Beyond the armchair', what:'What gets some people marching, and what holds others back? Still being shaped', host:'Rieks hosting', when:'' }
+];
+var NEIGHBOURS = [
+  { id:'estategarden', feel:'connect', theme:'grow', near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], title:'Grow something on a spare patch', who:'', where:'', place:'Tongham',
+    line:'A corner of green nobody uses? Plant it up with the neighbours.',
+    about:'Herbs, a few veg, wildflowers for the bees. Small, shared and easy to start. Tap "I\'m in" if you\'d join in, or start one near you and we\'ll help with the rest.' },
+  { id:'downland', feel:'connect', theme:'nature', near:['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Ash Vale','The Sands','Farnham'], title:'Volunteer days on the chalk downland', who:'the Hampton Estate', where:'Seale', place:'Seale',
+    line:'Hedge planting and scrub clearing on the Hog\'s Back slopes, usually in winter.',
+    about:'Hedge planting and scrub clearing on the Hog\'s Back slopes, usually in winter. Good company, fresh air, cake if you\'re lucky.' },
+  { id:'solar', feel:'inspired', theme:'homes', title:'Choosing solar', who:'Tim', where:'Norney', img:'people/tim.jpg?v=1029c',
+    line:'Solar, a battery and rain tanks: how he chose them and what they actually save.',
+    about:'Tim has solar, a battery and rain tanks at Norney. Find out how he chose them, what they actually save, and what he\'d do differently.' },
+  { id:'automate', feel:'inspired', theme:'homes', title:'Automating your home', who:'Kev', where:'Godalming', img:'people/kev.jpg?v=1029c',
+    line:'The simple automations that save the most money and fuss.',
+    about:'Kev runs his solar, hot water and heating with a small home computer. Learn the simple automations that save the most money and fuss.' },
+  { id:'micro', feel:'inspired', theme:'make', title:'Micro homes, off-grid loos and a community sauna', who:'Carl', where:'Green Spaces', img:'people/carl.jpg?v=1029c',
+    line:'Small, clever buildings, loos that need no mains, and a sauna to share.',
+    about:'Small, clever buildings, loos that need no mains, and a sauna to share. Come and see how they go together, and how to build them.' },
+  { id:'cider', feel:'inspired', theme:'grow', title:'Rain, gardens and cider', who:'Tim', where:'Norney', img:'people/tim.jpg?v=1029c',
+    line:'Catch the rain, grow a regenerative veg patch, turn the apple glut into cider.',
+    about:'Catch your rainwater, grow a regenerative veg patch, and turn the apple glut into cider. Tim is writing up how he does all three.' },
+  { id:'unmuddle', feel:'connect', theme:'talk', title:'Power Hour: Un-Muddle Me', who:'Ilona', where:'Godalming', img:'people/ilona.jpg?v=1029', book:'https://tidycal.com/ilonamckieva/power-hour-un-muddle-me', bookText:'Book · £130', paid:true, price:'£130',
+    line:'An hour with a local VA to un-muddle the to-do list. £130.',
+    about:'Ilona spent ten years as a PA, then went her own way and is now the right hand for small businesses round here. Book a Power Hour with her to un-muddle things. It\'s £130 for the Power Hour, and you pick a time on her booking page.' },
+  { id:'change', feel:'connect', theme:'talk', title:'Navigate change', who:'Ruth', where:'Coaching', img:'people/ruth.jpg?v=1029c', link:'https://kevhimself.github.io/RuthBlanco/', linkText:'See Ruth\'s website',
+    line:'Coaching for when life is shifting under your feet.',
+    about:'Coaching for when life is shifting under your feet, and a kind ear if you\'re worried about where things are heading.' }
+];
+var THREADS = [
+  { id:'grow', t:'Grow and share food' }, { id:'make', t:'Make, mend and share' }, { id:'nature', t:'Get out in nature' },
+  { id:'homes', t:'Save energy and water' }, { id:'move', t:'Move and play' }, { id:'talk', t:'Meet and belong' }
+];
+var NEAR_THINGS = ['Godalming','Farncombe','Milford','Busbridge','Catteshall','Binscombe'];
+var PLACES = ['Godalming','Farncombe','Milford','Busbridge','Catteshall','Binscombe','Ockford Ridge','Eashing','Hurtmore','Charterhouse',
+  'Witley','Wormley','Brook','Elstead','Shackleford','Puttenham','Compton','Peper Harow','Thursley','Hambledon','Hascombe','Hydestile','Enton',
+  'Bramley','Wonersh','Shamley Green','Blackheath','Chilworth','Shalford','Peasmarsh','Artington','Guildford','Merrow','Burpham','Onslow Village',
+  'Wood Street Village','Worplesdon','Normandy','Ash','Ash Vale','Tongham','Seale','The Sands','Runfold','Badshot Lea','Wrecclesham','Farnham',
+  'Frensham','Churt','Tilford','Rushmoor','Hindhead','Grayshott','Beacon Hill','Haslemere','Grayswood','Chiddingfold','Dunsfold','Alfold',
+  'Cranleigh','Ewhurst','Albury','Shere','Gomshall'];
+var CATCHER = 'https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec';
+var PH_KEY = 'phc_yxqNiM5WwH3EQD8sZSGEB8HDqHn6awwwuvgar5ZmdyQ6';
+/* ------------------------------------------------------------------ */
+
+function $(s,r){return (r||document).querySelector(s)}
+/* Kev 29 Oct: one word for the feeling, not a phrase. */
+var FEELS={play:'play',connect:'connection',inspired:'inspiration'};
+/* 29 Oct: Kev, James and Sam's panel: feeling off the cards (too wordy, two label systems). Data kept for the doorways test. */
+function feelHTML(x){ return ''; }
+/* Near me (Kev 29 Oct): items with a near list only show to people whose home is on it, and go first. */
+function homeIs(){ return (store('vvv-home')||'').trim().toLowerCase(); }
+function isNear(x){ return !!x.near && x.near.some(function(p){return p.toLowerCase()===homeIs()}); }
+function nearOk(x){ return !x.near || isNear(x); }
+function nearFirst(arr){ var a=arr.filter(nearOk); return a.filter(isNear).concat(a.filter(function(x){return !isNear(x)})); }
+function nearTag(x){ return isNear(x)?'<span class="tag near">Near you</span> ':''; }
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
+function getJSON(k,d){try{return JSON.parse(store(k))||d}catch(e){return d}}
+/* Kev 29 Oct: track features used, but ignore Kev, Tim and Carl. Their phones are marked as team
+   (open any page once with ?team). No personal details are kept in the page. Team taps are tagged, not dropped. */
+(function(){ var q=location.search; if(/[?&]team(=|&|$)/.test(q)) store('vvv-team','1'); if(/[?&]notteam(=|&|$)/.test(q)) store('vvv-team',''); })();
+function isTeam(){ return store('vvv-team')==='1'; }
+function send(data){
+  data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE+(BUILD?' · '+BUILD:'');
+  data.who=isTeam()?'team':'visitor'; if(data.type==='signal' && data.who==='team') data.detail='[team] '+(data.detail||'');
+  /* the experiment code (vid.js): taps only, never sent with a name, phone or email */
+  if(data.type==='signal' && window.VVV_ID){ var c=VVV_ID.code(); data.vid=c.vid; data.vk=c.vk; }
+  try{ fetch(CATCHER,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).catch(function(){}) }catch(e){}
+}
+function signal(ev,detail){ send({type:'signal',event:ev,detail:detail||''}); }
+
+/* analytics: PostHog EU, asks first, shared choice with the rest of the site */
+var PH_CHOICE='vvv-ph';
+/* Features we want counted in the sheet too (not just PostHog), for the features-used tracker. */
+var FEATURE_SIGNALS=['what is it opened','who row opened','join way picked','details left','offered to help','neighbour opened','event opened','home missing','added to calendar','shared something'];
+function track(n,p){try{ if(window.posthog&&posthog.capture) posthog.capture(n,Object.assign({release:RELEASE,build:BUILD,team:isTeam()},p||{})) }catch(e){}
+  if(FEATURE_SIGNALS.indexOf(n)>-1){ var d=p?Object.keys(p).map(function(k){return p[k]}).join(' | '):''; send({type:'signal',event:n,detail:d}); } }
+(function(){
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister identify reset get_distinct_id set_config startSessionRecording stopSessionRecording opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing get_explicit_consent_status debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init(PH_KEY,{api_host:'https://eu.i.posthog.com',defaults:'2025-05-24',cookieless_mode:'on_reject',person_profiles:'identified_only',respect_dnt:true,session_recording:{maskAllInputs:true}});
+  posthog.register({site_version:RELEASE, build:BUILD, app:'va-va-voom', team:isTeam()}); try{ if(VVV_ID.kept()) posthog.register({vvv_id:VVV_ID.kept()}); }catch(e){}
+  var c=store(PH_CHOICE), box=$('#consent');
+  if(c==='yes') posthog.opt_in_capturing(); else if(c==='no') posthog.opt_out_capturing(); else window.__askConsent=true;
+  function choose(yes){ store(PH_CHOICE,yes?'yes':'no'); try{yes?posthog.opt_in_capturing():posthog.opt_out_capturing()}catch(e){} try{VVV_ID.chose(yes)}catch(e){}
+    track('privacy choice',{choice:yes?'yes':'no'});
+    if(yes){ meetName('Welcome to the experiment. Thank you for helping us learn!'); return; }
+    $('#cAsk').hidden=true; $('#cDone').hidden=false; $('#cOkRow').hidden=true;
+    $('#cThanks').textContent='No problem. Everything still works, and we won\'t link your visits together.';
+    setTimeout(closeBar,1800); }
+  function closeBar(){ box.hidden=true; document.body.style.paddingBottom=''; }
+  /* Show someone their secret name, and keep it up until they tap Lovely. Also used once for people
+     who said yes before secret names existed, so everyone gets to meet theirs. */
+  function meetName(lead){
+    var nm=''; try{ VVV_ID.code(); nm=VVV_ID.name(); }catch(e){}
+    if(!nm) return;
+    store('vvv-named','1');
+    $('#cAsk').hidden=true; $('#cDone').hidden=false; $('#cOkRow').hidden=false;
+    $('#cThanks').innerHTML=esc(lead)+'<br>Meet your secret name: <b>'+esc(nm)+'</b>. Spot yourself on <a href="pulse.html">the Pulse</a> after the next refresh.';
+    box.hidden=false; document.body.style.paddingBottom=(box.offsetHeight+8)+'px';
+  }
+  $('#cYes').onclick=function(){choose(true)}; $('#cNo').onclick=function(){choose(false)}; $('#cOk').onclick=function(){ closeBar(); showMeBadge(); };
+  if(c==='yes' && store('vvv-named')!=='1') setTimeout(function(){ meetName('You\'re already helping the experiment. Thank you!'); },1500);
+})();
+
+/* where did they come from? QR codes link to hello.html#walk, #t-move, #qr */
+var arrivedVia = (location.hash||'').replace('#','');
+if(arrivedVia){ signal('arrived', arrivedVia); track('arrived',{via:arrivedVia}); }
+
+/* ---------- home and the welcome ---------- */
+var me = getJSON('vvv-me',{});
+/* Your secret name, as a little animal badge in the header. Tap it to see your name again.
+   Only shown to people who said yes; worked out on this phone, never sent. */
+function showMeBadge(){
+  var b=$('#meBadge'); if(!b) return;
+  var nm=''; try{ nm=VVV_ID.kept()?VVV_ID.name():''; }catch(e){}
+  if(!nm){ b.hidden=true; document.body.classList.remove('has-me'); return; }
+  var p=VVV_ID.parts(); b.innerHTML=VVV_ID.badge(p[1],p[0]); b.setAttribute('aria-label','Your secret name: '+nm); b.hidden=false; document.body.classList.add('has-me');
+}
+function openMe(){
+  var nm=VVV_ID.name(), p=VVV_ID.parts();
+  openSheet('<div class="me-sheet">'+VVV_ID.badge(p[1],p[0])+'<h2 id="sheetTitle" class="who">'+esc(nm)+'</h2>'+
+    '<p>That\'s your secret name in the experiment. It lives on this phone or laptop, and it\'s never your real name.</p>'+
+    '<div class="links"><a href="pulse.html">Spot yourself on the Pulse</a><a href="privacy.html#code">What we keep, or forget my name</a></div></div>');
+  track('secret name opened');
+}
+function showConsent(){ if(window.__askConsent){ window.__askConsent=false; var b=$('#consent'); try{ $('#cName').textContent=VVV_ID.name(); }catch(e){} b.hidden=false; document.body.style.paddingBottom=(b.offsetHeight+8)+'px'; } }
+function getHome(){ return (store('vvv-home')||'').trim(); }
+function setWelcome(){
+  var h=getHome();
+  $('#homeTxt').innerHTML = h ? 'Near <b>'+esc(h)+'</b>' : "Where's home?";
+  $('#homeChg').textContent = h ? 'Change' : 'Tell us';
+  $('#homeBtn').setAttribute('aria-label', h ? 'Home: '+h+'. Change' : "Tell us where home is");
+  var near=$('#near');
+  var hl=(h||'').toLowerCase(), hasLocal = NEAR_THINGS.map(function(x){return x.toLowerCase()}).indexOf(hl)>-1 ||
+    EVENTS.some(function(e){return isUpcoming(e) && (e.where||'').toLowerCase().indexOf(hl)>-1}) ||
+    INTEREST.concat(NEIGHBOURS).some(function(x){return isNear(x)});
+  if(h && !hasLocal){
+    near.hidden=false; $('#nearTitle').textContent='Nothing in '+h+' yet.';
+  } else near.hidden=true;
+}
+function setHome(h){
+  h=(h||'').trim(); if(!h) return;
+  store('vvv-home',h); setWelcome(); signal('home',h); track('home chosen',{home:h});
+  try{ renderInterest(); renderNeighbours(); renderTiles(); }catch(e){}
+}
+function openWelcome(fromButton){
+  openSheet('<div id="welcomeSheet">'+
+    '<div class="hello-faces"><img src="people/kev.jpg?v=1029c" alt=""><img src="people/tim.jpg?v=1029c" alt=""><img src="people/ruth.jpg?v=1029c" alt=""><img src="people/carl.jpg?v=1029c" alt=""><img src="people/jules.jpg?v=1029c" alt=""><img src="people/reiks.jpg?v=1029c" alt=""></div>'+
+    '<h2 id="sheetTitle">Hello, good human!</h2>'+
+    '<p>We\'re Kev, Tim and Carl, with Ruth, Jules, Rieks and friends, and we\'re very glad you\'re here. Where\'s home? We\'ll show you what\'s happening on your doorstep.</p>'+
+    '<div class="quick">'+['Godalming','Farncombe','Milford','Witley','Shackleford','Elstead','Bramley','Guildford','Farnham','Haslemere','Cranleigh'].map(function(p){return '<button class="chip" type="button" data-home="'+p+'">'+p+'</button>'}).join('')+'</div>'+
+    '<form class="f" id="homeForm" novalidate><label for="homeIn">Somewhere else? Type your town or village'+
+    '<input id="homeIn" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Start typing, e.g. Tongham" aria-describedby="homeHint" aria-controls="placeSug" value="'+esc(fromButton?getHome():'')+'"></label>'+
+    '<div class="sug" id="placeSug" role="listbox" aria-label="Places near Godalming" hidden></div>'+
+    '<p class="err" id="homeErr" role="alert"></p><p class="fine" id="homeHint">Anywhere within about 15 miles. Not listed? Just type it.</p>'+
+    '<div class="row"><button class="btn" type="submit">Show me what\'s on</button><button class="skip" type="button" data-skip>I\'ll just have a nose around</button></div></form></div>');
+  setTimeout(function(){ var q=sheet.querySelector('.chip'); if(q) q.focus(); },60);
+  function done(){ store('vvv-welcomed','1'); }
+  sheetOnClose=function(){ done(); if(!fromButton){ signal('welcome','skipped'); track('welcome skipped'); } showConsent(); };
+  sheet.onclick=function(e){
+    var q=e.target.closest('[data-home]');
+    if(q){ setHome(q.getAttribute('data-home')); closeSheet(); }
+    if(e.target.closest('[data-skip]')) closeSheet();
+  };
+  var hin=$('#homeIn'), sug=$('#placeSug');
+  function suggest(){
+    var q=hin.value.trim().toLowerCase(); if(!q){ sug.hidden=true; sug.innerHTML=''; return; }
+    var starts=PLACES.filter(function(p){return p.toLowerCase().indexOf(q)===0});
+    var has=PLACES.filter(function(p){var i=p.toLowerCase().indexOf(q); return i>0});
+    var list=starts.concat(has).slice(0,6);
+    var exact=PLACES.some(function(p){return p.toLowerCase()===q});
+    if(list.length===1 && list[0].toLowerCase()===q) list=[];
+    /* Kev 31 Oct: if their place isn't listed, offer what they typed as a choice of its own. */
+    var typed=hin.value.trim();
+    sug.innerHTML=list.map(function(p){return '<button type="button" role="option" class="chip" data-home="'+esc(p)+'">'+esc(p)+'</button>'}).join('')+
+      (exact||typed.length<2?'':'<button type="button" role="option" class="chip own" data-home="'+esc(typed)+'">Not listed? Use \u201c'+esc(typed)+'\u201d</button>');
+    sug.hidden=!sug.innerHTML;
+  }
+  hin.addEventListener('input',suggest);
+  hin.addEventListener('focus',function(){ if(hin.value){ hin.dataset.prev=hin.value; hin.placeholder=hin.value; hin.value=''; suggest(); } });
+  hin.addEventListener('input',function(){ hin.removeAttribute('aria-invalid'); var er=$('#homeErr'); if(er) er.textContent=''; });
+  /* Kev 29 Oct: an empty box gets a clear message, not silence. A home they already had still counts. */
+  $('#homeForm').addEventListener('submit',function(e){ e.preventDefault(); var v=$('#homeIn').value.trim()||($('#homeIn').dataset.prev||'');
+    if(v){ var f=sheetOnClose; sheetOnClose=null; setHome(v); done(); closeSheet(); showConsent(); }
+    else { hin.setAttribute('aria-invalid','true'); $('#homeErr').textContent='Tap a place above, or type your town or village here.'; hin.focus(); track('home missing'); } });
+}
+setWelcome();
+$('#homeBtn').addEventListener('click',function(){ openWelcome(true); });
+
+/* ---------- events ---------- */
+/* Kev 29 Oct: fade an event as soon as it's happened, take it down 1 week after (then it goes to the archive). */
+function isoDay(t){ return t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0'); }
+function isPast(ev){ if(ev.done) return true; var d=(ev.until||ev.start||'').slice(0,10); return !!d && d<isoDay(new Date()); }
+function isCurrent(ev){ if(ev.keep) return true; var d=(ev.until||ev.start||'').slice(0,10); if(!d) return true; var t=new Date(); t.setDate(t.getDate()-7); return d>=isoDay(t); }
+function isUpcoming(ev){ return isCurrent(ev) && !isPast(ev); }
+function facesHTML(ev){
+  if(!ev.going.length) return '';
+  var g=ev.going.slice(), mine=getJSON('vvv-going',{});
+  var names=g.map(function(x){return x.n});
+  if(mine[ev.id] && me.show && me.name) names=names.concat(['you']);
+  var html=g.map(function(x){return '<img src="'+esc(x.img)+'" alt="" width="28" height="28">'}).join('');
+  if(mine[ev.id]) html+='<i aria-hidden="true">'+esc((me.name||'Y')[0].toUpperCase())+'</i>';
+  var line = mine[ev.id] ? (names.length>1? 'You, '+names.filter(function(n){return n!=='you'}).join(', ')+' are in' : "You're in")
+                         : (names.length>2? names.slice(0,-1).join(', ')+' and '+names.slice(-1)+' are in' : names.join(' and ')+(names.length>1?' are in':' is in'));
+  return html+'<span>'+esc(line)+'</span>';
+}
+/* Kev 29 Oct: if an event has a ticket link, it comes before "I'm in". */
+function inButton(ev,done,attr){
+  return '<span class="acts">'+(ev.tickets?'<a class="tix" href="'+esc(ev.tickets)+'" target="_blank" rel="noopener" data-tix="'+ev.id+'">Ticket Tailor ↗</a>':'')+
+    '<button class="btn'+(done?' done':'')+'" type="button" '+attr+'="'+ev.id+'">'+(done?"You're in ✓":"I'm in")+'</button></span>';
+}
+document.addEventListener('click',function(e){ var t=e.target.closest('[data-tix]'); if(t){ signal('tickets',t.getAttribute('data-tix')); track('tickets clicked',{event:t.getAttribute('data-tix')}); } });
+var evShowAll=false;
+function evDay(ev){ return (ev.until||ev.start||'').slice(0,10); }
+function daysAway(ev){ var d=evDay(ev); if(!d) return 99; var t=new Date(); t.setHours(0,0,0,0); return Math.round((new Date(d+'T00:00:00')-t)/864e5); }
+function thisWeek(ev){ var n=daysAway(ev); return n>=0 && n<=7; }
+function badgeFor(ev){
+  if(isPast(ev)) return 'This happened ✓';
+  if(!thisWeek(ev)) return ev.badge||'';
+  var n=daysAway(ev), tag=n===0?'Today':n===1?'Tomorrow':'Coming this week';
+  return tag+(ev.badge?' · '+ev.badge:'');
+}
+function evMatch(ev){ return thisWeek(ev) || typeof picked!=='function' || picked(ev.thread); }
+function recapHTML(ev){ if(!ev.recap) return '';
+  return '<p class="recap"><b>✓ It happened.</b> '+esc(ev.recap)+(ev.recapLink?' <a href="'+esc(ev.recapLink)+'">What came out of it</a>':'')+'</p>'; }
+function renderEvents(){
+  var mine=getJSON('vvv-going',{}), cur=EVENTS.filter(isUpcoming), past=EVENTS.filter(function(e){return isCurrent(e)&&isPast(e)});
+  var list=(evShowAll?cur:cur.filter(evMatch)).concat(past), hidden=cur.length-cur.filter(evMatch).length;
+  /* Kev 31 Oct: one list in date order, so something that happened today sits at the top, clearly ticked and greyed */
+  list.sort(function(a,b){ var x=evDay(a)||'9999', y=evDay(b)||'9999'; return x<y?-1:x>y?1:0; });
+  var all=$('#evAll'); all.hidden=!hidden; all.textContent=evShowAll?'Just my picks':'+ '+hidden+' more on';
+  $('#events').innerHTML = list.map(function(ev){
+    var done=!!mine[ev.id];
+    var gone=isPast(ev);
+    return '<article class="ev'+(gone?' past':(ev.lead?' lead':'')+(thisWeek(ev)?' onnow':''))+'" id="ev-'+ev.id+'">'+
+      '<div class="date" aria-hidden="true"><small>'+ev.day+'</small><b>'+ev.d+'</b><small>'+ev.mon+'</small></div>'+
+      '<div style="min-width:0">'+(badgeFor(ev)?'<span class="badge">'+esc(badgeFor(ev))+'</span>':'')+
+      '<h3><button type="button" data-open="'+ev.id+'">'+esc(ev.title)+'</button></h3>'+
+      '<div class="meta">'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.time)+' · '+esc(ev.where)+' · with '+esc(ev.host)+'</div>'+feelHTML(ev)+
+      (gone?recapHTML(ev):'<div class="row act"><span class="faces">'+facesHTML(ev)+'</span>'+inButton(ev,done,'data-in')+'</div>')+'</div></article>';
+  }).join('');
+}
+renderEvents();
+$('#evAll').addEventListener('click',function(){ evShowAll=!evShowAll; renderEvents(); });
+$('#events').addEventListener('click',function(e){
+  var o=e.target.closest('[data-open]'), i=e.target.closest('[data-in]');
+  if(o) openEvent(o.getAttribute('data-open'));
+  if(i) imIn(i.getAttribute('data-in'));
+});
+
+/* ---------- sheets ---------- */
+var scrim=$('#scrim'), sheet=$('#sheet'), lastFocus=null, sheetOnClose=null;
+function openSheet(html){
+  lastFocus=document.activeElement; sheetOnClose=null; sheet.innerHTML='<button class="close" type="button" aria-label="Close">×</button>'+html;
+  scrim.hidden=false; document.documentElement.style.overflow='hidden';
+  setTimeout(function(){ var f=sheet.querySelector('input,textarea,.btn'); (f||sheet.querySelector('.close')).focus(); },40);
+}
+function closeSheet(){ if(sheetOnClose){ var f=sheetOnClose; sheetOnClose=null; f(); } scrim.hidden=true; document.documentElement.style.overflow=''; if(lastFocus) try{lastFocus.focus()}catch(e){} }
+scrim.addEventListener('click',function(e){ if(e.target===scrim||e.target.closest('.close')) closeSheet(); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!scrim.hidden) closeSheet(); });
+function evById(id){ for(var i=0;i<EVENTS.length;i++) if(EVENTS[i].id===id) return EVENTS[i]; }
+
+function openEvent(id){
+  var ev=evById(id); if(!ev) return;
+  var done=!!getJSON('vvv-going',{})[id], gone=isPast(ev);
+  openSheet('<span class="badge">'+esc(badgeFor(ev)||'What\'s on')+'</span><h2 id="sheetTitle">'+esc(ev.title)+'</h2>'+
+    '<ul class="facts"><li><b>When</b> '+esc(ev.day+' '+ev.d+' '+ev.mon+', '+ev.time)+'</li>'+
+    (ev.length?'<li><b>How long</b> '+esc(ev.length)+'</li>':'')+
+    '<li><b>Where</b> '+esc(ev.where)+'</li><li><b>With</b> '+esc(ev.host)+'</li><li><b>Bring</b> '+esc(ev.bring)+'</li></ul>'+
+    (gone?recapHTML(ev):'')+ev.about.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+
+    (gone?'':'<div class="row">'+inButton(ev,done,'data-sin')+
+    (ev.start?'<button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button>':'')+'</div>')+
+    (ev.tickets||gone?'':'<div class="qr"><img src="qr/'+id+'.svg" alt="QR code for this event" width="84" height="84"><span>Scan to share this event. It opens straight here.</span></div>'));
+  track('event opened',{event:id});
+  sheet.onclick=function(e){
+    var b=e.target.closest('[data-sin]'), c=e.target.closest('[data-cal]');
+    if(b) imIn(b.getAttribute('data-sin'));
+    if(c) addCal(c.getAttribute('data-cal'),c);
+  };
+}
+
+/* Kev 29 Oct: "I'm in" counts you straight away, then always offers to take your details (optional). */
+function detailsForm(o){
+  return '<form class="f" id="dtForm" novalidate>'+
+    '<label for="dtName">Your first name<input id="dtName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="dtContact">Mobile or email<input id="dtContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    (o.showName?'<label class="tick" for="dtShow"><input id="dtShow" type="checkbox"'+(me.show?' checked':'')+'><span>Show my first name to others going</span></label>':'')+
+    (o.dare?'<label class="tick" for="dtHelp"><input id="dtHelp" type="checkbox"><span>I\'d help make it happen. Go on, dare me</span></label>':'')+
+    '<input class="trap" id="dtTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="dtErr" role="alert"></p>'+
+    '<div class="row"><button class="skip" type="button" data-close>No thanks</button><button class="btn" type="submit">Keep me posted</button></div>'+
+    '<p class="fine">Optional. Only Kev and the host see your details. <a href="privacy.html">Privacy</a></p></form>';
+}
+function readDetails(){
+  var n=$('#dtName').value.trim(), c=$('#dtContact').value.trim(), err=$('#dtErr');
+  if(!n){ err.textContent='Please add your first name, or tap No thanks.'; $('#dtName').focus(); return null; }
+  if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address.'; $('#dtContact').focus(); return null; }
+  me={name:n,contact:c,show:$('#dtShow')?$('#dtShow').checked:!!me.show}; store('vvv-me',JSON.stringify(me));
+  return {name:n, contact:c, isEmail:c.indexOf('@')>-1, help:!!($('#dtHelp')&&$('#dtHelp').checked), trap:$('#dtTrap').value};
+}
+function imIn(id){
+  var ev=evById(id), mine=getJSON('vvv-going',{});
+  if(mine[id]){ openEvent(id); return; }
+  mine[id]=Date.now(); store('vvv-going',JSON.stringify(mine));
+  signal('in','event: '+id+' | '+getHome()); track("i'm in",{event:id, via:arrivedVia||'page'});
+  renderEvents();
+  openSheet('<span class="badge">You\'re in ✓</span><h2 id="sheetTitle">'+esc(ev.title)+'</h2>'+
+    '<p>See you on '+esc(ev.day+' '+ev.d+' '+ev.mon)+'. Leave your details and '+esc(ev.host)+' can let you know if plans change.</p>'+
+    detailsForm({showName:true})+
+    (ev.start?'<p style="margin:8px 0 0"><button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button></p>':''));
+  sheet.onclick=function(e){
+    var c=e.target.closest('[data-cal]'); if(c) addCal(c.getAttribute('data-cal'),c);
+    if(e.target.closest('[data-close]')) closeSheet();
+  };
+  $('#dtForm').addEventListener('submit',function(e){
+    e.preventDefault(); var d=readDetails(); if(!d) return;
+    send({type:'signup', name:d.name, email:d.isEmail?d.contact:'', phone:d.isEmail?'':d.contact,
+          where:getHome(), fit:'in', thread:'event: '+id, bring:'Show first name: '+(me.show?'yes':'no'), website:d.trap});
+    track('details left',{item:'event: '+id}); renderEvents();
+    openSheet('<h2 id="sheetTitle">Lovely, '+esc(d.name)+'.</h2><p class="done-msg">'+esc(ev.host)+' will drop you a message before the day. Bring your curiosity.</p>'+
+      '<div class="row">'+(ev.start?'<button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button>':'')+'<button class="btn" type="button" data-close>Done</button></div>');
+  });
+}
+/* Kev 31 Oct: the blob download did nothing on some phones. Offer the usual choices instead:
+   Google and Outlook open their own add-event page; Apple and everything else get a real .ics file (cal/<id>.ics, made by tools/build_cal.js). */
+function calLinks(ev,id){
+  function g(s){return s.replace(/[-:]/g,'')+'00'}
+  var details='With '+ev.host+'. Details: '+location.origin+location.pathname+'#'+id, title=/va va voom/i.test(ev.title)?ev.title:ev.title+' (Va Va Voom)';
+  var google='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+'&dates='+g(ev.start)+'/'+g(ev.end)+
+    '&ctz=Europe/London&location='+encodeURIComponent(ev.where)+'&details='+encodeURIComponent(details);
+  var outlook='https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject='+encodeURIComponent(title)+
+    '&startdt='+ev.start+':00&enddt='+ev.end+':00&location='+encodeURIComponent(ev.where)+'&body='+encodeURIComponent(details);
+  var ics='cal/'+id+'.ics';
+  return [['Google Calendar',google,1],['Apple Calendar (iPhone, iPad, Mac)',ics,0],['Outlook',outlook,1],['Something else (calendar file)',ics,0]];
+}
+function addCal(id,btn){
+  var ev=evById(id); if(!ev||!ev.start) return;
+  if(btn && btn.nextElementSibling && btn.nextElementSibling.classList.contains('calopts')){ var o=btn.nextElementSibling; o.hidden=!o.hidden; btn.setAttribute('aria-expanded',String(!o.hidden)); return; }
+  var box=document.createElement('div'); box.className='calopts'; box.setAttribute('role','group'); box.setAttribute('aria-label','Add to which calendar?');
+  box.innerHTML='<span class="calq">Which calendar?</span>'+calLinks(ev,id).map(function(l){
+    return '<a href="'+esc(l[1])+'"'+(l[2]?' target="_blank" rel="noopener"':'')+' data-calto="'+esc(l[0])+'">'+esc(l[0])+(l[2]?' ↗':'')+'</a>'; }).join('');
+  box.addEventListener('click',function(e){ var a=e.target.closest('[data-calto]'); if(a){ track('added to calendar',{event:id,calendar:a.getAttribute('data-calto')}); signal('calendar',id); } });
+  if(btn){ btn.setAttribute('aria-expanded','true'); btn.insertAdjacentElement('afterend',box); box.querySelector('a').focus(); }
+}
+
+/* ---------- learn with a neighbour (neighbours and coming items, one list) ---------- */
+var keen=getJSON('vvv-keen',{}), nbMine=getJSON('vvv-nb',{}), nbShowAll=false;
+var PEOPLE_IMG={Ilona:'people/ilona.jpg?v=1029',Kev:'people/kev.jpg?v=1029c',Tim:'people/tim.jpg?v=1029c',Carl:'people/carl.jpg?v=1029c',Rieks:'people/reiks.jpg?v=1029c',Ruth:'people/ruth.jpg?v=1029c'};
+/* Kev 29 Oct: no photo? Up to two initials, with a colour for each place. */
+var LOC_COLOURS={godalming:'#1f9e8f',farncombe:'#4a6fd1',milford:'#4f8a3c',busbridge:'#9a5bb5',tongham:'#7b4fb8',seale:'#c47a1e',puttenham:'#b5546a',norney:'#8a6d3b',shackleford:'#8a6d3b',farnham:'#2f7fa3',witley:'#5d8f2f',elstead:'#a8613a',bramley:'#3f8f7a',guildford:'#6b5fb0'};
+function placeColour(p){ p=(p||'Godalming').toLowerCase(); if(LOC_COLOURS[p]) return LOC_COLOURS[p];
+  var pal=['#1f9e8f','#7b4fb8','#c47a1e','#2f7fa3','#b5546a','#4f8a3c'], h=0; for(var i=0;i<p.length;i++) h=(h*31+p.charCodeAt(i))>>>0; return pal[h%pal.length]; }
+function initials(t){ var w=String(t||'').replace(/[^A-Za-z\s'-]/g,' ').split(/\s+/).filter(function(x){return x && !/^(a|an|the|and|of|on|in|up|for|to)$/i.test(x)}); return w.slice(0,2).map(function(x){return x[0].toUpperCase()}).join(''); }
+function avatarHTML(it,cls){
+  if(it.img) return '<img class="'+(cls||'')+'" src="'+esc(it.img)+'" alt="" width="56" height="56">';
+  var named = it.who && !/^(a |an |someone)/i.test(it.who);
+  var txt = initials(named ? it.who : (it.place || it.title));
+  return '<span class="av '+(cls||'')+'" style="background:'+placeColour(it.place)+'" aria-hidden="true">'+esc(txt)+'</span>';
+}
+function learnItems(){
+  var nb=NEIGHBOURS.map(function(n){ return {kind:'nb', id:n.id, title:n.title, who:n.who, where:n.where, place:n.place||n.where, img:n.img||PEOPLE_IMG[n.who], line:n.line, about:n.about, themes:nbThemes(n), near:n.near, link:n.link, linkText:n.linkText, book:n.book, bookText:n.bookText, ask:n.ask, shaping:n.shaping}; });
+  var it=INTEREST.map(function(x){ var who=(x.host||'').replace(/ hosting$/,''); return {kind:'int', id:x.id, title:x.title, who:who, where:'', place:x.place, img:PEOPLE_IMG[who], when:x.when, line:x.what, about:x.what, themes:x.themes||[], near:x.near}; });
+  /* mix neighbours and coming items so both show in the first few */
+  var mix=[]; for(var i=0;i<Math.max(nb.length,it.length);i++){ if(nb[i]) mix.push(nb[i]); if(it[i]) mix.push(it[i]); }
+  return nearFirst(mix);
+}
+function learnById(id){ return learnItems().filter(function(x){return x.id===id})[0]; }
+function isIn(it){ return it.kind==='nb' ? !!nbMine[it.id] : !!keen[it.id]; }
+function setIn(it,on){ var m=it.kind==='nb'?nbMine:keen; if(on) m[it.id]=Date.now(); else delete m[it.id]; store(it.kind==='nb'?'vvv-nb':'vvv-keen',JSON.stringify(m)); }
+function nbBtn(it){ var d=isIn(it); return '<button class="'+(d?'btn done':'btn')+'" type="button" data-nbin="'+it.id+'">'+(d?'You\'re in ✓':"I'm in")+'</button>'; }
+var STK={"grow": "<path d=\"M8 54 Q32 46 56 54 L56 60 L8 60 Z\" fill=\"#9a6a45\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/><path d=\"M32 52 V30\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linecap=\"round\"/><path d=\"M32 34 C18 34 12 24 12 14 C24 14 32 20 32 34 Z\" fill=\"#7cc04a\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/><path d=\"M32 30 C40 30 50 24 52 12 C40 12 32 18 32 30 Z\" fill=\"#c9f24a\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/>", "move": "<path d=\"M36 3 L12 36 H29 L23 61 L52 24 H34 Z\" fill=\"#e8337f\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/><path d=\"M33 10 L20 29\" stroke=\"#fff\" stroke-width=\"2.5\" stroke-linecap=\"round\" opacity=\".7\"/>", "talk": "<path d=\"M32 56 C10 40 4 28 8 18 C12 8 26 8 32 19 C38 8 52 8 56 18 C60 28 54 40 32 56 Z\" fill=\"#ee5a6f\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/><path d=\"M15 20 q3 -6 9 -5\" stroke=\"#fff\" stroke-width=\"2.5\" fill=\"none\" stroke-linecap=\"round\" opacity=\".75\"/>", "nature": "<path d=\"M32 4 C40 18 52 30 52 42 C52 53 43 60 32 60 C21 60 12 53 12 42 C12 30 24 18 32 4 Z\" fill=\"#5aa9e6\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/><path d=\"M22 40 q0 -8 6 -12\" stroke=\"#fff\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" opacity=\".8\"/>", "homes": "<path d=\"M32 60 C16 60 10 48 14 36 C17 27 24 24 22 10 C34 16 38 26 36 34 C40 30 42 26 41 20 C50 28 54 38 52 46 C50 55 42 60 32 60 Z\" fill=\"#f2a13a\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/><path d=\"M32 56 C25 56 22 50 24 44 C26 39 30 38 30 32 C37 37 40 43 38 49 C37 53 35 56 32 56 Z\" fill=\"#ffd95a\" stroke=\"#221e19\" stroke-width=\"2.5\"/>", "make": "<path d=\"M16 50 L38 28\" stroke=\"#221e19\" stroke-width=\"10\" stroke-linecap=\"round\"/><path d=\"M16 50 L38 28\" stroke=\"#c98a4b\" stroke-width=\"5\" stroke-linecap=\"round\"/><path d=\"M30 16 L44 8 L56 20 L48 34 Z\" fill=\"#5aa9e6\" stroke=\"#221e19\" stroke-width=\"3.5\" stroke-linejoin=\"round\"/>"};
+/* Kev 29 Oct: graffiti sticker at the end of the title instead of a theme tag. Name kept for screen readers. */
+function stkHTML(t){ var th=THREADS.filter(function(x){return x.id===t})[0]; return STK[t]?'<svg class="stk" viewBox="0 0 64 64" aria-hidden="true">'+STK[t]+'</svg>'+(th?'<span class="sr"> ('+esc(th.t)+')</span>':''):''; }
+function tagsHTML(n){ return '<div class="tags">'+(n.shaping?'<span class="tag shaping">Still being shaped</span>':'')+(n.themes||nbThemes(n)).map(function(t){ var th=THREADS.filter(function(x){return x.id===t})[0]; return th?'<span class="tag th-'+t+'">'+esc(th.t)+'</span>':''; }).join('')+'</div>'; }
+function metaLine(it){ var bits=[]; if(it.when) bits.push(esc(it.when)); if(it.who) bits.push('with '+esc(it.who)); if(it.where) bits.push(esc(it.where)); return nearTag(it)+bits.join(' · '); }
+function renderNeighbours(){
+  var all=learnItems();
+  var mineFirst=all.filter(function(n){return isNear(n) || typeof picked!=='function' || n.themes.some(picked)});
+  var rest=all.filter(function(n){return mineFirst.indexOf(n)===-1});
+  var list=nbShowAll?mineFirst.concat(rest):mineFirst.slice(0,4);
+  if(!list.length) list=all.slice(0,4);
+  $('#nbList').innerHTML=list.map(function(n){
+    return '<article class="nb">'+avatarHTML(n)+'<div style="min-width:0">'+
+      '<h3><button type="button" data-nb="'+n.id+'">'+esc(n.title)+'</button>'+stkHTML(n.themes[0])+'</h3>'+
+      '<div class="meta">'+metaLine(n)+'</div><p>'+esc(n.line)+'</p><div class="row act">'+(n.shaping?'<span class="tag shaping">Still being shaped</span>':'')+'<span class="acts">'+(n.book?'<a class="tix" href="'+esc(n.book)+'" target="_blank" rel="noopener" data-out="book-'+n.id+'">'+esc(n.bookText||'Book')+' ↗</a>':'')+nbBtn(n)+'</span></div></div></article>';
+  }).join('');
+  var b=$('#nbAll'); b.hidden=all.length<=list.length && !nbShowAll; b.textContent=nbShowAll?'Show fewer':'See all '+all.length;
+}
+function renderInterest(){ renderNeighbours(); }
+renderNeighbours();
+$('#nbAll').addEventListener('click',function(){ nbShowAll=!nbShowAll; renderNeighbours(); if(!nbShowAll) $('#neighbours').scrollIntoView({block:'start'}); });
+$('#nbList').addEventListener('click',function(e){
+  var o=e.target.closest('[data-nb]'), i=e.target.closest('[data-nbin]');
+  if(o) openNeighbour(o.getAttribute('data-nb'));
+  if(i) nbInterested(i.getAttribute('data-nbin'));
+});
+function openNeighbour(id){
+  var n=learnById(id); if(!n) return;
+  openSheet('<span class="badge">Learn with a neighbour</span><h2 id="sheetTitle">'+esc(n.title)+'</h2>'+
+    '<div class="mini" style="border-top:0">'+avatarHTML(n,'sm')+'<div><b>'+(n.who?'With '+esc(n.who):'Looking for a host')+'</b><span>'+esc(n.where||n.when||'')+'</span></div></div>'+
+    '<p>'+esc(n.about)+'</p>'+(n.ask?'<p class="ask" style="margin:0 0 10px">'+esc(n.ask)+'</p>':'')+(n.link?'<p style="margin:0 0 10px"><a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+esc(n.linkText||'Their website')+' ↗</a></p>':'')+
+    (n.book?'<p class="fine">Book a time directly with '+esc(n.who)+'. Tap "I\'m in" if you\'d rather hear about a group session.</p>':'<p class="fine">No date yet. Say you\'re in and we\'ll set one once enough of you are keen.</p>')+
+    '<div class="row">'+(isIn(n)?'<button class="skip" type="button" data-out-of="'+n.id+'">Not for me after all</button>':'')+(n.book?'<a class="tix" href="'+esc(n.book)+'" target="_blank" rel="noopener" data-out="book-'+n.id+'">'+esc(n.bookText||'Book')+' ↗</a>':'')+nbBtn(n)+'</div>');
+  track('neighbour opened',{neighbour:id});
+  sheet.onclick=function(e){
+    var i=e.target.closest('[data-nbin]'); if(i) nbInterested(i.getAttribute('data-nbin'));
+    var x=e.target.closest('[data-out-of]'); if(x){ setIn(n,false); signal('interest removed',n.id+' | '+getHome()); renderNeighbours(); closeSheet(); }
+  };
+}
+function nbInterested(id){
+  var n=learnById(id); if(!n) return;
+  if(isIn(n)){ openNeighbour(id); return; }
+  setIn(n,true); signal('interest',id+' | '+getHome()); track('neighbour interested',{neighbour:id});
+  renderNeighbours();
+  openSheet('<span class="badge">You\'re in ✓</span><h2 id="sheetTitle">'+esc(n.title)+'</h2>'+
+    '<p>Want to hear when there\'s a date? Leave your details. Showing up is plenty: no strings, no homework.</p>'+detailsForm({dare:true}));
+  sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
+  $('#dtForm').addEventListener('submit',function(e){
+    e.preventDefault(); var d=readDetails(); if(!d) return;
+    send({type:'signup',name:d.name,email:d.isEmail?d.contact:'',phone:d.isEmail?'':d.contact,where:getHome(),fit:d.help?'In, will help':'In, tell me when',thread:'learn: '+id,website:d.trap});
+    if(d.help) send({type:'project',way:'organise',title:'Help make it happen: '+n.title,what:'',lead:d.name,thread:id,where:getHome(),name:d.name,email:d.contact,ok:'No',website:d.trap});
+    track('details left',{item:'learn: '+id, help:d.help});
+    openSheet('<h2 id="sheetTitle">'+(d.help?'Dare accepted, ':'Lovely, ')+esc(d.name)+'.</h2><p class="done-msg">'+(d.help?'We\'ll be in touch. And if life gets busy, showing up is still plenty.':'We\'ll tell you when there\'s a date.')+'</p><div class="row"><button class="btn" type="button" data-close>Done</button></div>');
+    sheet.onclick=function(ev){ if(ev.target.closest('[data-close]')) closeSheet(); };
+  });
+}
+function withContact(title, intro, done, always){
+  if(!always && me.name && me.contact){ done(''); return; }
+  openSheet('<h2 id="sheetTitle">'+title+'</h2><p>'+intro+'</p>'+
+    '<form class="f" id="ctForm" novalidate>'+
+    '<label for="ctName">Your first name<input id="ctName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="ctContact">Mobile or email<input id="ctContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    '<input class="trap" id="ctTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="ctErr" role="alert"></p><button class="btn" type="submit">Count me in</button>'+
+    '<p class="fine">Only Kev and the person sharing see your details. <a href="privacy.html">Privacy</a></p></form>');
+  $('#ctForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#ctName').value.trim(), c=$('#ctContact').value.trim(), err=$('#ctErr');
+    if(!n){ err.textContent='Please add your first name.'; return; }
+    if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address.'; return; }
+    me={name:n,contact:c,show:!!me.show}; store('vvv-me',JSON.stringify(me)); done($('#ctTrap').value);
+  });
+}
+
+/* ---------- themes: pick what pulls you, then a light profile ---------- */
+var pulls=getJSON('vvv-pulls',{});
+var profile=getJSON('vvv-profile',{});
+var themeFromQR=(arrivedVia.indexOf('t-')===0)?arrivedVia.slice(2):'';
+function themeById(id){ for(var i=0;i<THREADS.length;i++) if(THREADS[i].id===id) return THREADS[i]; }
+function nbThemes(n){ return n.themes||[n.theme]; }
+function themeItems(id){
+  return { nb:NEIGHBOURS.filter(nearOk).filter(function(n){return nbThemes(n).indexOf(id)>-1}), ev:EVENTS.filter(function(e){return e.thread===id && isUpcoming(e)}) };
+}
+function pickList(){ if(!pulls) return []; return THREADS.filter(function(t){return pulls[t.id]}).map(function(t){return t.id}); }
+function picked(id){ return !pickList().length || !!pulls[id]; }
+function renderTiles(){
+  $('#threads').innerHTML=THREADS.map(function(t){
+    var it=themeItems(t.id), n=it.nb.length+it.ev.length+INTEREST.filter(nearOk).filter(function(x){return (x.themes||[]).indexOf(t.id)>-1}).length, on=!!pulls[t.id];
+    var line=n? (n+(n===1?' thing':' things')+' round here') : 'Nothing yet';
+    return '<button class="tile th-'+t.id+(on?' on':'')+'" type="button" data-theme="'+t.id+'" aria-pressed="'+on+'"><b>'+esc(t.t)+'</b><span class="tl"><svg class="stk" viewBox="0 0 64 64" aria-hidden="true">'+(STK[t.id]||'')+'</svg>'+line+'</span><i class="tick" aria-hidden="true">'+(on?'<svg viewBox="0 0 16 16" width="12" height="12"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>':'')+'</i></button>';
+  }).join('');
+}
+function renderNudge(){
+  var box=$('#nudge'), list=pickList();
+  if(!list.length){ box.hidden=true; return; }
+  box.hidden=false;
+  if(profile.saved && me.name){
+    box.className='nudge saved';
+    box.innerHTML='<div><b>Saved for you, '+esc(me.name)+' ✓</b><span>We\'ll tell you when something new turns up for your picks.</span></div>';
+  } else {
+    box.className='nudge';
+    box.innerHTML='<div><b>Want us to remember this?</b><span>Save your picks and we\'ll tell you when something new turns up.</span></div><button class="btn" type="button" id="saveBtn">Save</button>';
+  }
+}
+var profTimer=null;
+function sendProfile(trap){
+  var isEmail=(me.contact||'').indexOf('@')>-1;
+  send({type:'signup',name:me.name,email:isEmail?me.contact:'',phone:isEmail?'':me.contact,where:getHome(),fit:'Profile',
+        thread:'picks: '+pickList().join(', '),bring:'Tell me when new things match: '+(profile.notify?'yes':'no'),website:trap||''});
+}
+function togglePick(id){
+  var on=!pulls[id]; if(on) pulls[id]=1; else delete pulls[id];
+  store('vvv-pulls',JSON.stringify(pulls));
+  renderTiles(); renderEvents(); renderNeighbours(); renderNudge();
+  signal(on?'thread':'thread removed',id); track(on?'theme picked':'theme unpicked',{thread:id, picks:pickList().length});
+  if(profile.saved && me.name){ clearTimeout(profTimer); profTimer=setTimeout(function(){ sendProfile(''); track('profile updated'); },1500); }
+}
+function openProfile(){
+  var chips=pickList().map(function(id){ return '<i class="th-'+id+'">'+esc(themeById(id).t)+'</i>'; }).join('');
+  openSheet('<h2 id="sheetTitle">Save your picks</h2>'+
+    '<p>So next time you land straight on the things you care about, and we can tell you when something new turns up.</p>'+
+    '<div class="picked">'+chips+'</div>'+
+    '<form class="f" id="pfForm" novalidate>'+
+    '<label for="pfName">Your first name<input id="pfName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="pfContact">Mobile or email<input id="pfContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    '<label for="pfHome">Where\'s home?<input id="pfHome" type="text" maxlength="60" value="'+esc(getHome())+'"></label>'+
+    '<label class="tick" for="pfNotify"><input id="pfNotify" type="checkbox" checked><span>Tell me when something new matches my picks</span></label>'+
+    '<input class="trap" id="pfTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="pfErr" role="alert"></p><button class="btn" type="submit">Save my picks</button>'+
+    '<p class="fine">No password, no account. Only Kev and the hosts see your details. <a href="privacy.html">Privacy</a></p></form>');
+  track('profile opened',{picks:pickList().length});
+  $('#pfForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#pfName').value.trim(), c=$('#pfContact').value.trim(), h=$('#pfHome').value.trim(), err=$('#pfErr');
+    if(!n){ err.textContent='Please add your first name.'; $('#pfName').focus(); return; }
+    if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address.'; $('#pfContact').focus(); return; }
+    me={name:n,contact:c,show:!!me.show}; store('vvv-me',JSON.stringify(me));
+    if(h && h!==getHome()){ store('vvv-home',h); setWelcome(); }
+    profile={saved:Date.now(),notify:$('#pfNotify').checked}; store('vvv-profile',JSON.stringify(profile));
+    sendProfile($('#pfTrap').value); track('profile saved',{picks:pickList().length,notify:profile.notify});
+    renderNudge();
+    openSheet('<h2 id="sheetTitle">Saved, '+esc(me.name)+'!</h2><p class="done-msg">Your picks come first from now on.</p><p>Change them any time: just tap the tiles.</p><div class="row"><button class="ghost" type="button" data-close>Done</button></div>');
+    sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
+  });
+}
+renderTiles(); renderNudge(); renderEvents(); renderNeighbours();
+$('#threads').addEventListener('click',function(e){ var b=e.target.closest('[data-theme]'); if(b) togglePick(b.getAttribute('data-theme')); });
+$('#nudge').addEventListener('click',function(e){ if(e.target.closest('#saveBtn')) openProfile(); });
+function openTheme(id){
+  if(!themeById(id)) return;
+  if(!pulls[id]) togglePick(id);
+  $('#themes').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ---------- know something? share it ---------- */
+var WAYS={
+  run:{h:'Run something',p:'A walk you love, a skill, a special place, a thing you\'ve fixed. It doesn\'t need to be polished. Tell us, and we\'ll help you put it out there.',q:'What would you like to run?',ph:'A walk, a skill, a special place…'},
+  help:{h:'Get help running something',p:'Got an idea but not sure how to make it happen? Tell us, and we\'ll help with the bits you\'d rather not do alone.',q:'What\'s the idea?',ph:'A repair café, a seed swap, a walk…'},
+  organise:{h:'Help organise',p:'Good with lists, keys, kettles or people? Tell us what you\'d enjoy and we\'ll match you with someone giving something a go.',q:'What would you enjoy helping with?',ph:'Booking a room, making tea, spreading the word…'}
+};
+function openShare(theme,way){
+  var w=WAYS[way]||WAYS.run;
+  var opts='<option value="">Not sure</option>'+THREADS.map(function(t){return '<option value="'+t.id+'"'+(t.id===theme?' selected':'')+'>'+esc(t.t)+'</option>'}).join('');
+  openSheet('<h2 id="sheetTitle">'+w.h+'</h2>'+
+    '<p>'+w.p+'</p>'+
+    '<form class="f" id="shForm" novalidate>'+
+    '<label for="shTitle">'+w.q+'<input id="shTitle" type="text" maxlength="120" placeholder="'+w.ph+'"></label>'+
+    '<label for="shWhat">Tell us a bit more<textarea id="shWhat" maxlength="1000"></textarea></label>'+
+    '<label for="shTheme">Which theme fits best?<select id="shTheme">'+opts+'</select></label>'+
+    '<label for="shName">Your first name<input id="shName" type="text" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="shContact">Mobile or email<input id="shContact" type="text" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    '<label class="tick" for="shOk"><input id="shOk" type="checkbox"><span>Happy for us to put your first name with it on the site</span></label>'+
+    '<input class="trap" id="shTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="shErr" role="alert"></p><button class="btn" type="submit">Send it</button>'+
+    '<p class="fine">We check everything before it goes up. No web links please. <a href="privacy.html">Privacy</a></p></form>');
+  $('#shForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){return $('#'+id).value.trim()}, err=$('#shErr');
+    if(!v('shTitle')||!v('shWhat')){ err.textContent='Tell us what it is and a little more about it.'; return; }
+    if(!v('shName')||!v('shContact')){ err.textContent='We need your first name and a way to reach you.'; return; }
+    if(/https?:\/\/|www\./i.test(v('shTitle')+' '+v('shWhat'))){ err.textContent='Please take out any web links, then send.'; return; }
+    me={name:v('shName'),contact:v('shContact'),show:!!me.show}; store('vvv-me',JSON.stringify(me));
+    send({type:'project',way:way||'run',title:v('shTitle'),what:v('shWhat'),lead:v('shName'),thread:v('shTheme'),where:getHome(),name:v('shName'),email:v('shContact'),ok:$('#shOk').checked?'Yes':'No',website:v('shTrap')});
+    track('shared something',{thread:v('shTheme'),way:way||'run'});
+    openSheet('<h2 id="sheetTitle">Brilliant. Proper good human, you.</h2><p class="done-msg">We\'ll be in touch soon.</p><button class="ghost" type="button" data-close>Done</button>');
+    sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
+  });
+}
+$('#ways').addEventListener('click',function(e){
+  var b=e.target.closest('[data-way]'); if(!b) return; var way=b.getAttribute('data-way');
+  track('join way picked',{way:way});
+  if(way==='organise'){ openHelpOut(); return; }
+  openShare('',way);
+});
+/* Help out: a dare, so keep it short. Name, contact, one optional line. */
+function openHelpOut(){
+  openSheet('<span class="badge">Go on, we dare you</span><h2 id="sheetTitle">Help out</h2>'+
+    '<p>Good with lists, keys, kettles or people? No experience needed, and do as much or as little as you like.</p>'+
+    '<form class="f" id="hoForm" novalidate>'+
+    '<label for="hoName">Your first name<input id="hoName" type="text" autocomplete="given-name" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="hoContact">Mobile or email<input id="hoContact" type="text" autocomplete="email" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    '<label for="hoWhat">Anything you\'d enjoy? (optional)<input id="hoWhat" type="text" maxlength="200" placeholder="Booking a room, making tea, telling friends…"></label>'+
+    '<input class="trap" id="hoTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="hoErr" role="alert"></p><div class="row"><button class="btn" type="submit">Dare accepted</button></div>'+
+    '<p class="fine">Only Kev and the host see your details. <a href="privacy.html">Privacy</a></p></form>');
+  $('#hoForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#hoName').value.trim(), c=$('#hoContact').value.trim(), err=$('#hoErr');
+    if(!n){ err.textContent='Please add your first name.'; return; }
+    if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address.'; return; }
+    me={name:n,contact:c,show:!!me.show}; store('vvv-me',JSON.stringify(me));
+    send({type:'project',way:'organise',title:'Help out',what:$('#hoWhat').value.trim(),lead:n,thread:'',where:getHome(),name:n,email:c,ok:'No',website:$('#hoTrap').value});
+    track('offered to help',{item:'general'});
+    openSheet('<h2 id="sheetTitle">You\'re a star, '+esc(n)+'.</h2><p class="done-msg">We\'ll be in touch. And if life gets busy, showing up is still plenty.</p><div class="row"><button class="btn" type="button" data-close>Done</button></div>');
+    sheet.onclick=function(ev){ if(ev.target.closest('[data-close]')) closeSheet(); };
+  });
+}
+function openWhat(toWho){ toWho = toWho===true;
+  openSheet('<h2 id="sheetTitle">What is Va Va Voom?</h2>'+
+    '<p><b>Everyday folk from round here, giving stuff a go.</b> It\'s not about doing it perfectly or getting it right. It\'s about trying something out and learning something on the way.</p>'+
+    '<p><b>Start small, start local, start together.</b> Good walks and pub nights, a question worth talking about, and neighbours you didn\'t know you had. Plus things to do and people to learn from, close to home.</p>'+
+    '<p><b>It\'s for you if</b> you\'d rather do something than talk about it, you want to meet the neighbours you haven\'t met yet, you like your purpose with a bit of fun, and small and brave sounds better than big and worthy. Not sure? Come once and see.</p>'+
+    '<p><b>Join in any way you like.</b> Run something, help out, or just show up.</p>'+
+    '<p>Started by Kev, Tim and Carl. It\'s an experiment, and you\'re one of the first.</p>'+
+    '<div class="row"><button class="btn" type="button" data-whaton>Show me what\'s on</button></div>'+
+    '<div class="whoin">'+$('#whoTpl').innerHTML+'</div>');
+  track('what is it opened');
+  if(toWho) setTimeout(function(){ var h=$('#whoHead'); if(h){ sheet.scrollTop=h.offsetTop-16; } },60);
+  sheet.onclick=function(e){ if(e.target.closest('[data-whaton]')){ closeSheet(); $('#h-on').scrollIntoView({behavior:'smooth',block:'start'}); } };
+}
+$('#whatBtn').addEventListener('click',function(){ openWhat(false); });
+$('#meBadge').addEventListener('click',openMe); showMeBadge();
+$('#whoBtn').addEventListener('click',function(){ openWhat(true); track('who row opened'); });
+document.querySelectorAll('[data-release]').forEach(function(el){ el.textContent='Release '+RELEASE+(BUILD?' · '+BUILD:''); });
+
+/* ---------- menu ---------- */
+var burger=$('#burger'), menu=$('#menu');
+function setMenu(open){ menu.hidden=!open; burger.setAttribute('aria-expanded',open); if(open){ var a=menu.querySelector('a'); if(a) a.focus(); track('menu opened'); } }
+burger.addEventListener('click',function(){ setMenu(menu.hidden); });
+menu.addEventListener('click',function(e){ if(e.target.closest('a')) setMenu(false); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!menu.hidden){ setMenu(false); burger.focus(); } });
+document.addEventListener('click',function(e){ if(!menu.hidden && !e.target.closest('#menu') && !e.target.closest('#burger')) setMenu(false); });
+document.addEventListener('click',function(e){ if(e.target.closest('[data-stories]')) track('stories panel clicked'); var o=e.target.closest('[data-out]'); if(o){ signal('outbound',o.getAttribute('data-out')); track('outbound',{to:o.getAttribute('data-out')}); } });
+
+/* ---------- start something near me ---------- */
+$('#startBtn').addEventListener('click',function(){
+  var h=(store('vvv-home')||'your patch');
+  openSheet('<h2 id="sheetTitle">Start something in '+esc(h)+'</h2>'+
+    '<p>You don\'t have to lead it. Tell us what you know or love, and we\'ll do the boring setting-up bit.</p>'+
+    '<form class="f" id="stForm" novalidate>'+
+    '<label for="stWhat">What would you start? A walk you know, a skill, a special place…<textarea id="stWhat" maxlength="800"></textarea></label>'+
+    '<label for="stName">Your first name<input id="stName" type="text" maxlength="60" value="'+esc(me.name||'')+'"></label>'+
+    '<label for="stContact">Mobile or email<input id="stContact" type="text" maxlength="120" value="'+esc(me.contact||'')+'"></label>'+
+    '<input class="trap" id="stTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<p class="err" id="stErr" role="alert"></p><button class="btn" type="submit">Send</button>'+
+    '<p class="fine"><a href="privacy.html">Privacy</a></p></form>');
+  $('#stForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var w=$('#stWhat').value.trim(), n=$('#stName').value.trim(), c=$('#stContact').value.trim(), err=$('#stErr');
+    if(!w){ err.textContent='Tell us a little about what you\'d start.'; return; }
+    if(!n||!c){ err.textContent='We need your first name and a way to reach you.'; return; }
+    var isEmail=c.indexOf('@')>-1;
+    send({type:'signup',name:n,email:isEmail?c:'',phone:isEmail?'':c,where:getHome(),fit:'Start something',thread:'start: '+(getHome()),voom:w,website:$('#stTrap').value});
+    track('start something',{home:getHome()});
+    openSheet('<h2 id="sheetTitle">Brilliant. Proper good human, you.</h2><p class="done-msg">We\'ll be in touch soon.</p><button class="ghost" type="button" data-close>Done</button>');
+    sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
+  });
+});
+
+/* ---------- feedback: Three words and a wand ---------- */
+$('#fbOpen').addEventListener('click',function(){ var f=$('#fbForm'); f.hidden=false; this.hidden=true; this.setAttribute('aria-expanded','true');
+  $('#q1').focus({preventScroll:true}); setTimeout(function(){ $('#feedback').scrollIntoView({behavior:'smooth',block:'start'}); },30); track('feedback opened'); });
+$('#fbForm details').addEventListener('toggle',function(){ if(this.open) this.scrollIntoView({behavior:'smooth',block:'start'}); });
+$('#fbForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var v=function(id){return $('#'+id).value.trim()};
+  if(!(v('q1')+v('q2')+v('q3')+v('q4')+v('q5')+v('q6'))){ $('#fbErr').textContent='Add an answer to at least one question.'; return; }
+  var all=[v('q1'),v('q2'),v('q3'),v('q4'),v('q5'),v('q6')].join(' ');
+  if(/https?:\/\/|www\./i.test(all)){ $('#fbErr').textContent='Please take out any web links, then send.'; return; }
+  var other=['Didn\'t understand: '+v('q4'), 'About me: '+v('q5'), 'Would come: '+v('q6'), 'Home: '+(getHome())].join(' | ');
+  send({type:'feedback',felt:v('q1'),onething:v('q2'),turnoff:v('q3'),drawn:'',other:other,name:me.name||'',email:'',website:$('#fbTrap').value});
+  track('feedback sent',{release:RELEASE});
+  $('#fbForm').hidden=true; $('#fbThanks').hidden=false; $('#feedback').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+/* deep links from QR codes */
+(function(){
+  var welcomed=store('vvv-welcomed');
+  if(evById(arrivedVia)){ showConsent(); setTimeout(function(){ openEvent(arrivedVia); },250); return; }
+  if(arrivedVia==='what'){ showConsent(); setTimeout(openWhat,250); return; }
+  if(learnById(arrivedVia)){ showConsent(); setTimeout(function(){ openNeighbour(arrivedVia); },250); return; } /* stories link straight to a neighbour's card */
+  if(themeFromQR && themeById(themeFromQR)){ showConsent(); setTimeout(function(){ openTheme(themeFromQR); },250); return; }
+  if(!welcomed && !getHome()){ setTimeout(function(){ openWelcome(false); },700); } else showConsent();
+  if(arrivedVia==='feedback'){ $('#feedback').scrollIntoView(); }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<base href="../">
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stories from round here · Va Va Voom</title>
+<meta name="description" content="Good news, small brave things, and a tip for the week, from round Godalming.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Stories from round here · Va Va Voom">
+<meta property="og:description" content="Good news, small brave things, and a tip for the week.">
+<meta property="og:image" content="https://kevhimself.github.io/vavavoom/logos/vvv-share.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&display=swap">
+<style>
+/* Stories from round here. Same paper, ink and rose as hello.html. */
+:root{
+  --paper:#fbf7f2; --ink:#1c1a2b; --rose:#e8337f; --rose-dk:#c41f66; --sun:#f2c75a; --sun-soft:#fbeec8; --lime:#c9f24a;
+  --moss:#2f6b4f; --mist:#ece5dc; --muted:#4c4858;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+
+header.top{padding-top:max(14px,env(safe-area-inset-top,0px));padding-bottom:12px;position:relative}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.wordmark{font-family:var(--display);font-weight:900;font-size:clamp(24px,7vw,30px);white-space:nowrap;letter-spacing:.02em;word-spacing:-.12em;text-transform:uppercase;line-height:1;text-decoration:none}
+.wordmark span{color:var(--rose);margin-left:.1em}
+.right{display:flex;align-items:center;gap:8px}
+.whatpill{font-weight:700;font-size:15px;background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
+.burger{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);display:grid;place-items:center;cursor:pointer;padding:0}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;content:""}
+.burger span::before{position:absolute;top:-6px}.burger span::after{position:absolute;top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.menu{position:absolute;left:0;right:0;top:100%;z-index:20;padding-inline:16px}
+.menu ul{list-style:none;margin:0 auto;padding:8px;max-width:528px;background:var(--ink);color:var(--paper);border-radius:16px;box-shadow:0 10px 30px rgba(28,26,43,.25)}
+.menu a{display:block;padding:12px 14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:18px}
+.menu a:hover,.menu a[aria-current="page"]{background:rgba(251,247,242,.12)}
+.menu a[aria-current="page"]{color:var(--lime)}
+.menu small{display:block;font-weight:400;font-size:14px;opacity:.75}
+
+.hero{background:var(--rose);color:var(--paper)}
+.hero .wrap{padding-block:20px 22px}
+.hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:44px;line-height:.95;margin:0 0 8px}
+.hero p{margin:0;font-weight:700}
+.near{display:inline-block;margin-top:10px;font-size:14px;font-weight:700;background:var(--paper);color:var(--ink);border-radius:999px;padding:4px 12px}
+
+section.sec{padding-block:22px 4px}
+.sec h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:32px;line-height:1;margin:0 0 4px}
+.sub{font-size:15px;color:var(--muted);margin:0 0 14px}
+.badge{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rose-dk)}
+
+.tip{background:var(--sun-soft);border-radius:18px;padding:18px;display:grid;gap:12px}
+.tip .head{display:grid;grid-template-columns:80px minmax(0,1fr);gap:14px;align-items:center}
+.tip .face{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--paper);display:block}
+.tip .head .thumb{width:96px;height:96px;display:block;border-radius:50%;object-fit:cover;border:3px solid var(--paper)}
+.tip .photo{width:100%;height:auto;display:block;border-radius:12px}
+.avatar{width:64px;height:64px;border-radius:50%;background:var(--rose);color:var(--paper);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:26px}
+.tip .badge{color:var(--ink)}
+.tip h3{margin:2px 0 0;font-size:22px;line-height:1.15}
+.tip .by{font-size:15px;margin:0}
+.tip ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.tip li{background:var(--paper);border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.4}
+.tip li b{display:block}
+.credit{font-family:var(--hand);font-size:26px;line-height:1.1;margin:6px 0 0;color:var(--rose-dk)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.btn{font-weight:700;font-size:16px;background:var(--rose);color:var(--paper);border:0;border-radius:999px;padding:10px 20px;min-height:44px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.btn:hover{background:var(--rose-dk)}
+.btn.done{background:var(--paper);color:var(--rose-dk);box-shadow:inset 0 0 0 2px var(--rose)}
+.link{font-weight:700;font-size:15px;color:var(--ink);text-underline-offset:3px}
+
+.story{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;padding-block:16px;border-top:1px solid var(--mist)}
+.story:first-child{border-top:0;padding-top:4px}
+.story img{width:64px;height:64px;border-radius:50%;object-fit:cover;background:var(--mist)}
+.faces{position:relative;width:64px;height:64px}
+.story .faces img{position:absolute;width:38px;height:38px;border:2px solid var(--paper)}
+.story .faces img:nth-child(1){left:13px;top:0}.story .faces img:nth-child(2){left:0;top:26px}.story .faces img:nth-child(3){left:26px;top:26px}
+.story h3{margin:2px 0 4px;font-size:19px;line-height:1.25}
+.story p{margin:0 0 8px;font-size:15px}
+.story.pb{display:block}
+.story.pb h4{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:22px;line-height:1;margin:18px 0 8px}
+.nums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0 4px}
+.nums div{background:var(--ink);color:var(--paper);border-radius:14px;padding:10px 12px}
+.nums b{display:block;font-family:var(--display);font-weight:900;font-size:44px;line-height:.95;color:var(--lime)}
+.nums span{font-size:14px;line-height:1.3;display:block}
+.nums .wide{grid-column:1/-1;background:var(--rose-dk)}
+.nums .wide b{color:var(--paper)}
+.nextup{font-size:15px;font-weight:700;margin:8px 0 0}.nextup a{text-decoration-color:var(--rose);text-underline-offset:4px;line-height:2}
+.mpbox{background:var(--sun-soft);border-radius:16px;padding:14px 16px;margin:14px 0 4px}
+.mpbox > b{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:22px;line-height:1;display:block}
+.mpbox p{margin:6px 0 8px;font-size:15px}
+.mpbox .go{font-weight:700;display:inline-block;padding:8px 0;min-height:44px;text-decoration-color:var(--rose);text-underline-offset:4px}
+.quotes{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.quotes li{font-family:var(--hand);font-size:24px;line-height:1.1;color:var(--rose-dk)}
+.quotes li span{display:block;font-family:inherit;font-size:20px;color:var(--ink)}
+.big{margin:12px 0 0;font-size:16px}.big b{font-family:var(--display);font-weight:900;font-size:30px;color:var(--rose-dk)}
+.boards{margin:0;padding-left:22px;display:grid;gap:8px;font-size:15px}
+.boards .top{font-size:12px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:0 8px;margin-left:4px;white-space:nowrap}
+.dothis{margin:0;padding-left:20px;display:grid;gap:4px;font-size:15px}
+.dothis a{font-weight:700;line-height:2}
+.dothis span{color:var(--muted)}
+.story .meta{font-size:14px;color:var(--muted)}
+/* Kev 29 Oct: the main action is an obvious button; a secondary one is a quiet text link beside it. */
+.story .acts{display:flex;justify-content:flex-end;align-items:center;gap:8px 16px;flex-wrap:wrap;margin-top:10px}
+.story .acts .btn{min-height:40px;padding:8px 16px;font-size:15px}
+.story .acts .sec{font-weight:700;font-size:14px;color:var(--ink);text-decoration:underline;text-decoration-color:var(--rose);text-underline-offset:4px}
+
+.tell{background:var(--ink);color:var(--paper);border-radius:16px;padding:20px 18px;margin-top:18px;display:grid;gap:10px}
+.tell h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:28px;line-height:1;margin:0;color:var(--lime)}
+.tell p{margin:0}
+.f{display:grid;gap:12px}
+.f label{display:grid;gap:4px;font-weight:700;font-size:15px}
+.f input,.f textarea{width:100%;border:2px solid var(--paper);border-radius:10px;padding:10px 12px;background:var(--paper);color:var(--ink);font-weight:400}
+.f textarea{min-height:110px;resize:vertical}
+.tell .btn{background:var(--lime);color:var(--ink);justify-self:start}
+.err{color:var(--lime);margin:0;font-weight:700;min-height:0}
+.trap{position:absolute;left:-9999px}
+.fine{font-size:13px;opacity:.8;margin:0}
+.thanks{font-family:var(--hand);font-size:28px;color:var(--lime);margin:0}
+
+footer{padding-block:24px 28px;font-size:14px;display:grid;gap:6px;color:var(--muted)}
+footer a{color:var(--ink)}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:99;background:#f2c75a;color:#1c1a2b;font:700 14px/1.3 system-ui,sans-serif;padding:8px 16px;text-align:center">Preview for the team. Not live yet. <a href="https://app.notion.com/p/40a93f7bf11a815f80f9e6414763abe3" style="color:inherit">Comments to Kev</a></div>
+
+<header class="top wrap">
+  <div class="bar">
+    <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
+    <div class="right">
+      <a class="whatpill" href="hello.html#what">What is it?</a>
+      <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+  <nav class="menu" id="menu" hidden aria-label="Main">
+    <ul>
+      <li><a href="hello.html#h-on">What's on<small>Dates, places, I'm in</small></a></li>
+      <li><a href="news.html" aria-current="page">Stories from round here<small>Good news and a tip for the week</small></a></li>
+      <li><a href="hello.html#themes">What pulls you?</a></li>
+      <li><a href="hello.html#neighbours">Learn with a neighbour<small>Coming if you want it</small></a></li>
+      <li><a href="hello.html#joinin">Join in, any way you like</a></li>
+      <li><a href="hello.html#h-who">Who's behind it</a></li>
+      <li><a href="hello.html#feedback">Tell us what you think</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Stories from round here</h1>
+    <p>Good news, small brave things, and a tip for the week.</p>
+    <span class="near" id="near" hidden></span>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="sec" aria-labelledby="h-tip">
+    <h2 id="h-tip">Tip of the week</h2>
+    <p class="sub">One good thing near you, and how to get the most from it.</p>
+    <article class="tip">
+      <img class="photo" src="img/waggon-sauna.jpg" alt="The Waggon Sauna: a timber waggon with big windows, in a clearing in the woods at the Hampton Estate" width="1298" height="690" loading="lazy">
+      <div class="head">
+        <img class="face" src="img/elenid.jpg?v=1029b" alt="Elenid Coleman" width="80" height="80">
+        <div>
+          <span class="badge">Treat yourself this winter</span>
+          <h3>Meet Elenid, and the Waggon Sauna</h3>
+        </div>
+      </div>
+      <p class="by">From textile designer to sauna host, Elenid Coleman curates a thoughtfully designed experience: a wood-fired sauna in a waggon on a woodland walk at the Hampton Estate, Seale. It has a huge window onto the trees, and bucket and woodland showers to cool off. The waggon was built from Hampton's own timber.</p>
+      <p class="credit">Tips from Kev &amp; Jules, we've been and it was rather lovely</p>
+      <ul>
+        <li><b>Go with friends.</b> The Trailblazer pass works out at about £16 a session instead of £20.</li>
+        <li><b>Make it a gathering.</b> A private session fits about ten. That's our sauna sing-along idea: sweat, sing badly, feel brilliant.</li>
+        <li><b>Like it hot?</b> Take the corner seat. Then the bucket. Then do it again.</li>
+        <li><b>Times change with the seasons.</b> Check the booking page before you go.</li>
+      </ul>
+      <div class="row">
+        <a class="link" href="https://www.thewaggonsauna.co.uk/" target="_blank" rel="noopener" data-out="sauna">Book a session ↗</a>
+        <button class="btn" type="button" id="saunaIn" aria-pressed="false">I'm in for a sing-along</button>
+      </div>
+    </article>
+  </section>
+
+  <section class="sec" aria-labelledby="h-st">
+    <h2 id="h-st">Good news</h2>
+    <p class="sub">Short, real, with faces. Every story ends in something you can do.</p>
+    <div id="stories">
+      <article class="story pb" id="s-shackleford">
+        <span class="badge">What happened · Shackleford · Sat 31 Oct</span>
+        <h3>A full hall, a farm walk, and 17 ideas on the wall</h3>
+        <p>The People's Emergency Briefing, hosted by Tim and Sue. A film, a lot of feelings, then pairs, sticky notes and a walk down to Norney Farm Bungalow to see solar, rainwater and growing up close.</p>
+        <div class="nums" role="list">
+          <div role="listitem"><b>70</b><span>people in the hall</span></div>
+          <div role="listitem"><b>30</b><span>walked on to the farm</span></div>
+          <div role="listitem"><b>5</b><span>hosts and helpers</span></div>
+          <div role="listitem"><b>17</b><span>ideas on the boards</span></div>
+          <div role="listitem" class="wide"><b>6</b><span>from Shackleford itself. Everyone else travelled, some from Hampshire. People go a long way for the right thing.</span></div>
+        </div>
+        <p class="nextup">Next: <a href="hello.html#pub">pub night, Tue 10 Nov</a> · <a href="hello.html#walk">the walk, Sat 21 Nov</a></p>
+
+        <div class="mpbox">
+          <b>The brave, useful one: tell your MP</b>
+          <p>Live in Godalming, Shackleford, Puttenham or Tongham? Your MP is <b>Sir Jeremy Hunt</b> (Godalming and Ash). When we checked on Saturday, he wasn't on the Parliamentary Call for a televised climate and nature briefing yet. Five minutes, a letter that's ready to copy, one line in your own words. Live somewhere else? Your postcode finds yours.</p>
+          <a class="go" href="resources.html#mp">Write to your MP in three steps →</a>
+        </div>
+
+        <h4>Lines from the film that stuck</h4>
+        <ul class="quotes">
+          <li>"Delay never pays. It always costs more."</li>
+          <li>"Sun and wind are free forever."</li>
+          <li>"Nature is the basis for all life. It's that simple."</li>
+          <li>"It's not like you can never eat meat again." <span>A bit better, not perfect. That's very us.</span></li>
+          <li>"The people and the solutions are here."</li>
+        </ul>
+        <p class="big"><b>8 in 10</b> of us want more action on climate, the film said. The will's there. The room was full of the way.</p>
+
+        <h4>What went up on the boards</h4>
+        <ol class="boards">
+          <li><b>Grow and share food</b> <span class="top">Top board</span><br>A permaculture project, organic allotments, veg boxes instead of the supermarket, a community garden, and sharing tools and skills instead of everyone buying their own.</li>
+          <li><b>Make, mend and share</b><br>How to set up a microgrid, building a tiny house, and switching your search engine.</li>
+          <li><b>Move and play</b><br>A school bike bus, getting kids out into nature in school time, and going to things as a group.</li>
+          <li><b>Save energy and water</b><br>Bath water on the garden with a cheap pump (two people wanted this one), and saving energy in social housing.</li>
+          <li><b>Meet and belong, Get out in nature</b><br>Empty. We reckon the pub and the walk are the answer. Come and prove us right.</li>
+        </ol>
+        <p class="meta">What happens to the 17 ideas? We'll pick two and put them on the diary. Want to help make one happen? <a href="hello.html#joinin">Tell us</a>.</p>
+
+        <h4>Do one thing this week</h4>
+        <ul class="dothis">
+          <li><a href="hello.html#r-bugs">Learn the bath pump trick with Reiks</a></li>
+          <li><a href="https://www.ecosia.org" target="_blank" rel="noopener" data-out="ecosia">Switch your search to Ecosia ↗</a> <span>(it puts its profits into climate action)</span></li>
+          <li><a href="https://www.surreywildlifetrust.org" target="_blank" rel="noopener" data-out="swt">See what Surrey Wildlife Trust is up to round here ↗</a></li>
+        </ul>
+
+        <p class="meta">What we learned: rows of chairs make an audience. Next time, fewer rows and more moving about. The best bit was the chat at the farm.</p>
+        <div class="acts"><a class="sec" href="hello.html#pub">Pub night, Tue 10 Nov</a><a class="btn" href="hello.html#walk">The walk, Sat 21 Nov</a></div>
+      </article>
+      <article class="story">
+        <img src="people/ilona.jpg?v=1029" alt="" width="64" height="64">
+        <div>
+          <span class="badge">Good human · Godalming</span>
+          <h3>Ilona, the VA putting an engine under local business</h3>
+          <p>After ten years as a PA, Ilona went her own way. She walked into pretty much every shop in Godalming, said what she was doing, and was fully booked within a month. Now she's the flexible right hand for small businesses round here, and she joins the dots between them. She's just been on the Trinkfluss Wines podcast with Bastian and Matteo from Take One Studio.</p>
+          <div class="acts"><a class="sec" href="https://tidycal.com/ilonamckieva/power-hour-un-muddle-me" target="_blank" rel="noopener" data-out="ilona-powerhour">Her Power Hour (£130) ↗</a><a class="btn" href="https://podcastaddict.com/podcast/7023038" target="_blank" rel="noopener" data-out="trinkfluss-podcast">Listen to the podcast ↗</a></div>
+        </div>
+      </article>
+      <article class="story">
+        <img src="people/reiks.jpg" alt="" width="64" height="64">
+        <div>
+          <span class="badge">Small brave thing · Milford</span>
+          <h3>A £10 pump and a bath's worth of water for the garden</h3>
+          <p>Rieks spent a tenner on a little pump. In summer, the bath water goes into a tank instead of down the drain, and waters the garden. No several-grand system needed.</p>
+          <div class="meta">Your turn: what's one small thing you've done, or could do this month?</div><div class="acts"><a class="btn" href="#tell">Tell us</a></div>
+        </div>
+      </article>
+      <article class="story">
+        <img src="people/tim.jpg" alt="" width="64" height="64">
+        <div>
+          <span class="badge">This Saturday · Shackleford</span>
+          <h3>From the briefing to the farm</h3>
+          <p>A film, a proper conversation about where we're all at, then down to Norney Farm Bungalow to see solar, rain harvesting and regenerative growing working together.</p>
+          <div class="acts"><a class="btn" href="hello.html#briefing">See the details</a></div>
+        </div>
+      </article>
+      <article class="story">
+        <div class="faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/carl.jpg" alt=""></div>
+        <div>
+          <span class="badge">How it started · Godalming</span>
+          <h3>Three men, Monday nights, one question</h3>
+          <p>Good food, big conversations, and the question we always ask: how have we been better this week? Now we're opening the door, starting with a pub night and a walk.</p>
+          <div class="acts"><a class="btn" href="hello.html#walk">Come on the walk</a></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="tell" id="tell">
+      <h3>Got a story from round here?</h3>
+      <p>Something good, a small brave thing, a person worth knowing. Tell us and we'll help share it.</p>
+      <form class="f" id="tellForm" novalidate>
+        <label for="tTitle">What's the story, in a line?<input id="tTitle" type="text" maxlength="120"></label>
+        <label for="tWhat">Tell us a bit more<textarea id="tWhat" maxlength="1500"></textarea></label>
+        <label for="tName">Your first name<input id="tName" type="text" autocomplete="given-name" maxlength="60"></label>
+        <label for="tContact">Mobile or email<input id="tContact" type="text" autocomplete="email" maxlength="120"></label>
+        <input class="trap" id="tTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="err" id="tErr" role="alert"></p>
+        <button class="btn" type="submit">Send it</button>
+        <p class="fine">We check everything before it goes up. No web links please. <a href="privacy.html">Privacy</a></p>
+      </form>
+      <p class="thanks" id="tThanks" hidden>Brilliant. We'll be in touch.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div><a href="hello.html">Back to what's on</a> · <a href="privacy.html">Privacy and our data promise</a></div>
+  <div>Va Va Voom grew out of Better Men, and is part of Purpose Nation and Open Commons.</div>
+  <div>Stories from round here · made by neighbours, not committees</div>
+</footer>
+
+<script src="release.js"></script>
+<script src="vid.js"></script>
+<script>
+var RELEASE = window.VVV_RELEASE || 'Farncombe', BUILD = window.VVV_BUILD || '';
+var CATCHER='https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec';
+function $(s){return document.querySelector(s)}
+function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
+function getJSON(k,d){try{return JSON.parse(store(k))||d}catch(e){return d}}
+/* Kev 29 Oct: track features used, but ignore Kev, Tim and Carl. Their phones are marked as team
+   (open any page once with ?team). No personal details are kept in the page. Team taps are tagged, not dropped. */
+(function(){ var q=location.search; if(/[?&]team(=|&|$)/.test(q)) store('vvv-team','1'); if(/[?&]notteam(=|&|$)/.test(q)) store('vvv-team',''); })();
+function isTeam(){ return store('vvv-team')==='1'; }
+function send(data){
+  data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE+(BUILD?' · '+BUILD:'');
+  data.who=isTeam()?'team':'visitor'; if(data.type==='signal' && data.who==='team') data.detail='[team] '+(data.detail||'');
+  /* the experiment code (vid.js): taps only, never sent with a name, phone or email */
+  if(data.type==='signal' && window.VVV_ID){ var c=VVV_ID.code(); data.vid=c.vid; data.vk=c.vk; }
+  try{ fetch(CATCHER,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).catch(function(){}) }catch(e){}
+}
+function track(n,p){try{ if(window.posthog&&posthog.capture) posthog.capture(n,Object.assign({release:RELEASE},p||{})) }catch(e){}}
+send({type:'signal',event:'stories opened',detail:(location.hash||'').replace('#','')});
+
+/* menu */
+var burger=$('#burger'), menu=$('#menu');
+function setMenu(open){ menu.hidden=!open; burger.setAttribute('aria-expanded',open); if(open){ var a=menu.querySelector('a'); if(a) a.focus(); } }
+burger.addEventListener('click',function(){ setMenu(menu.hidden); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!menu.hidden){ setMenu(false); burger.focus(); } });
+document.addEventListener('click',function(e){ if(!menu.hidden && !e.target.closest('#menu') && !e.target.closest('#burger')) setMenu(false); });
+
+/* where's home */
+var home=(store('vvv-home')||'').trim();
+if(home){ $('#near').textContent='Near '+home; $('#near').hidden=false; }
+
+/* sauna sing-along interest: shares the same list as hello.html */
+var keen=getJSON('vvv-keen',{}), sb=$('#saunaIn');
+function paint(){ var on=!!keen.sauna; sb.classList.toggle('done',on); sb.setAttribute('aria-pressed',on); sb.textContent=on?"You're in ✓":"I'm in for a sing-along"; }
+paint();
+sb.addEventListener('click',function(){
+  var on=!keen.sauna; if(on) keen.sauna=1; else delete keen.sauna; store('vvv-keen',JSON.stringify(keen)); paint();
+  send({type:'signal',event:on?'interest':'interest removed',detail:'sauna | '+home+' | stories'}); track(on?'interest':'interest removed',{item:'sauna',from:'stories'});
+});
+document.addEventListener('click',function(e){ var o=e.target.closest('[data-out]'); if(o) send({type:'signal',event:'outbound',detail:o.getAttribute('data-out')}); });
+
+/* tell us a story */
+var me=getJSON('vvv-me',{});
+if(me.name) $('#tName').value=me.name; if(me.contact) $('#tContact').value=me.contact;
+$('#tellForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var v=function(id){return $('#'+id).value.trim()}, err=$('#tErr');
+  if(!v('tTitle')||!v('tWhat')){ err.textContent='Tell us the story in a line, and a bit more.'; return; }
+  if(!v('tName')||!v('tContact')){ err.textContent='We need your first name and a way to reach you.'; return; }
+  if(/https?:\/\/|www\./i.test(v('tTitle')+' '+v('tWhat'))){ err.textContent='Please take out any web links, then send.'; return; }
+  store('vvv-me',JSON.stringify({name:v('tName'),contact:v('tContact'),show:!!me.show}));
+  send({type:'project',title:v('tTitle'),what:v('tWhat'),lead:v('tName'),thread:'story',where:home,name:v('tName'),email:v('tContact'),ok:'Ask first',website:v('tTrap')});
+  track('story sent');
+  $('#tellForm').hidden=true; $('#tThanks').hidden=false;
+});
+</script>
+</body>
+</html>

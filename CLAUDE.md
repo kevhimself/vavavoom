@@ -35,6 +35,12 @@ https://app.notion.com/p/40893f7bf11a8182bc6dcf1ef52242ea
 - Release name visible on every page (release.js); every submission tagged with it.
 - Team (Kev, Tim, Carl) excluded from usage numbers via ?team.
 
+## Check with Kev before anything goes live (Kev, 31 Oct 2026)
+- Ask Kev before pushing a visible change to main: "live now, or preview for the team first?"
+- Preview route: commit to a branch (e.g. preview-<topic>), copy the changed pages into preview/ with `<base href="../">`,
+  noindex and a yellow "Preview for the team" strip, and send Kev the preview/ link. Merge the branch only after the team approves.
+- Fixes to something already broken, and hidden pages Kev asked for directly, can still go straight live if he says so.
+
 ## Before every release
 - `python3 tools/check_links.py` must pass: every link on a live page goes to a current page and every #anchor exists.
   Old looks (v-*.html, simple*.html, happening.html...) are only linked from built.html's gallery.
