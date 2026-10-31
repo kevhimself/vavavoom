@@ -1,18 +1,18 @@
 {
- "updated": "2026-10-31T07:41",
+ "updated": "2026-10-31T08:46",
  "since": "2026-10-28",
  "counts": {
-  "visitors": 9,
-  "visits": 22,
+  "visitors": 10,
+  "visits": 23,
   "im_in": 2,
   "signups": 0,
   "signups_in": 0,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 8,
+  "story_visits": 9,
   "helpers": 4,
   "returning": 0,
-  "visits_known": 10
+  "visits_known": 11
  },
  "threads": [
   {
@@ -116,7 +116,7 @@
   {
    "id": "move",
    "title": "Moving and play",
-   "n": 3,
+   "n": 4,
    "items": [
     {
      "id": "walk",
@@ -268,7 +268,9 @@
    "animal": "Wren",
    "visits": 1,
    "back": false,
-   "threads": []
+   "threads": [
+    "move"
+   ]
   },
   {
    "name": "Plucky Swift 90",
@@ -277,9 +279,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "homes",
+    "make",
     "grow",
-    "make"
+    "homes"
    ]
   },
   {
