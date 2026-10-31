@@ -402,7 +402,7 @@ var NEIGHBOURS = [
   { id:'cider', theme:'grow', title:'Rain, gardens and cider', who:'Tim', where:'Norney', img:'people/tim.jpg',
     line:'Catch the rain, grow a regenerative veg patch, turn the apple glut into cider.',
     about:'Catch your rainwater, grow a regenerative veg patch, and turn the apple glut into cider. Tim is writing up how he does all three.' },
-  { id:'bugs', theme:'nature', title:'Bug houses and vertical gardens', who:'Reiks', where:'Milford', img:'people/reiks.jpg',
+  { id:'bugs', theme:'nature', title:'Bug houses and vertical gardens', who:'Rieks', where:'Milford', img:'people/reiks.jpg',
     line:'Homes for the small wild things, and growing up a wall when there\'s no room to grow out.',
     about:'Make homes for the small wild things, and grow up a wall when you have no room to grow out.' },
   { id:'change', theme:'talk', title:'Navigate change', who:'Ruth', where:'Coaching', img:'people/ruth.jpg', link:'https://kevhimself.github.io/RuthBlanco/', linkText:'See Ruth\'s website',
@@ -471,7 +471,7 @@ function openWelcome(fromButton){
   openSheet('<div id="welcomeSheet">'+
     '<div class="hello-faces"><img src="people/kev.jpg" alt=""><img src="people/tim.jpg" alt=""><img src="people/carl.jpg" alt=""><img src="people/reiks.jpg" alt=""></div>'+
     '<h2 id="sheetTitle">Hello, good human!</h2>'+
-    '<p>We\'re Kev, Tim, Carl and Reiks, and we\'re very glad you\'re here. Where\'s home? We\'ll show you what\'s happening on your doorstep.</p>'+
+    '<p>We\'re Kev, Tim, Carl and Rieks, and we\'re very glad you\'re here. Where\'s home? We\'ll show you what\'s happening on your doorstep.</p>'+
     '<div class="quick">'+['Tongham','Seale','Puttenham','Badshot Lea','Runfold','Ash','Farnham','Aldershot','Guildford','Godalming'].map(function(p){return '<button class="chip" type="button" data-home="'+p+'">'+p+'</button>'}).join('')+'</div>'+
     '<form class="f" id="homeForm" novalidate><label for="homeIn">Somewhere else? Type your town or village'+
     '<input id="homeIn" list="placeList" autocomplete="off" value="'+esc(fromButton?getHome():'')+'"></label><datalist id="placeList">'+opts+'</datalist>'+
@@ -749,7 +749,7 @@ function openWhat(){
   openSheet('<h2 id="sheetTitle">What is Va Va Voom?</h2>'+
     '<p><b>Our answer: start small, start local, start together.</b> One good walk a month, a question worth talking about, and neighbours you didn\'t know you had. Plus things to do and people to learn from, close to home.</p>'+
     '<p><b>It\'s for you if</b> you\'d rather do something than talk about it, you want to meet the neighbours you haven\'t met yet, you like your purpose with a bit of fun, and small and brave sounds better than big and worthy. Not sure? Come once and see.</p>'+
-    '<p>New here or been here forever, off the feed or on it: this is where you find out what\'s on and do something worthwhile with the neighbours, even if you won\'t be here forever. Started by Kev, Tim and Carl, with Reiks, round the hill in Godalming.</p>'+
+    '<p>New here or been here forever, off the feed or on it: this is where you find out what\'s on and do something worthwhile with the neighbours, even if you won\'t be here forever. Started by Kev, Tim and Carl, with Rieks, round the hill in Godalming.</p>'+
     '<div class="row"><button class="btn" type="button" data-whaton>Show me what\'s on</button></div>');
   track('what is it opened');
   sheet.onclick=function(e){ if(e.target.closest('[data-whaton]')){ closeSheet(); $('#h-on').scrollIntoView({behavior:'smooth',block:'start'}); } };
