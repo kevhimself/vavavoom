@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Try-out events · Va Va Voom</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Atkinson+Hyperlegible:wght@400;700&family=Caveat:wght@600&display=swap">
+<style>
+:root{--paper:#fbf7f2;--ink:#1c1a2b;--rose:#e8337f;--rose-dk:#c41f66;--sun:#f2c75a;--mist:#ece5dc;--muted:#4c4858;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;--hand:"Caveat","Comic Sans MS",cursive;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.5 "Atkinson Hyperlegible",system-ui,sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px))}
+a{color:inherit;text-decoration-color:var(--rose);text-underline-offset:4px}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+header{padding:max(14px,env(safe-area-inset-top,0px)) 0 4px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.wordmark{font-family:var(--display);font-weight:900;font-size:clamp(24px,7vw,30px);text-transform:uppercase;line-height:1;text-decoration:none;white-space:nowrap}
+.wordmark span{color:var(--rose);margin-left:.1em}
+.quiet{font-weight:700;font-size:15px;min-height:44px;display:inline-flex;align-items:center}
+h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(40px,12vw,64px);line-height:.95;margin:18px 0 8px}
+h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:28px;line-height:1;margin:30px 0 4px;color:var(--rose-dk)}
+.lede{font-size:18px;margin:0 0 4px}
+.hand{font-family:var(--hand);font-size:22px;color:var(--rose-dk);margin:4px 0 0}
+.src{font-size:15px;color:var(--muted);margin:0 0 8px}
+.card{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:14px 16px;margin:12px 0}
+.card h3{margin:0 0 2px;font-size:19px;line-height:1.25}
+.card .when{font-weight:700;font-size:15px}
+.card .meta{font-size:15px;color:var(--muted)}
+.card p{margin:6px 0 0}
+.tag{display:inline-block;font-size:13px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:0 8px;margin-right:4px}
+.tag.mine{border-color:var(--rose)}
+.acts{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:6px 16px;margin-top:10px}
+.acts a.ext{font-weight:700;font-size:15px;min-height:44px;display:inline-flex;align-items:center}
+.btn{background:var(--rose);color:#fff;border:0;border-radius:999px;font:inherit;font-weight:700;padding:10px 20px;min-height:44px;cursor:pointer}
+.btn[aria-pressed="true"]{background:var(--ink)}
+.team{display:flex;gap:16px;justify-content:flex-end;border-top:1px dashed #cfc6bb;margin-top:10px;padding-top:4px}
+.team button{background:none;border:0;font:inherit;font-size:15px;font-weight:700;text-decoration:underline;text-decoration-color:var(--rose);text-underline-offset:4px;min-height:44px;cursor:pointer;color:var(--ink)}
+.team button[aria-pressed="true"]{color:var(--rose-dk);text-decoration:none}
+.card.no{opacity:.5}
+form{background:var(--mist);border-radius:16px;padding:14px 16px;margin:12px 0}
+label{display:block;font-weight:700;font-size:15px;margin:10px 0 2px}
+input,textarea{width:100%;font:inherit;padding:10px 12px;border:2px solid var(--ink);border-radius:10px;background:#fff}
+textarea{min-height:70px}
+.err{color:var(--rose-dk);font-weight:700;font-size:15px;min-height:1.5em;margin:6px 0 0}
+.fine{font-size:14px;color:var(--muted)}
+footer{margin-top:36px;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
+  <a class="quiet" href="hello.html#h-on">What's on</a>
+</header>
+
+<main>
+  <h1>Try-out events</h1>
+  <p class="lede">A hidden shelf of good things round here, run by other local folk. We try them here first. The ones people like go on the main page.</p>
+  <p class="hand">Tap "I'm in" on anything you'd go to.</p>
+
+  <div id="list"></div>
+
+  <h2>Add one</h2>
+  <p class="src">Spotted something good? Pop it in. It shows here on your phone straight away and comes to Kev to check.</p>
+  <form id="add" novalidate>
+    <label for="f-title">What is it?</label><input id="f-title" maxlength="120">
+    <label for="f-when">When?</label><input id="f-when" maxlength="80" placeholder="e.g. Sat 7 Nov, 10am">
+    <label for="f-where">Where?</label><input id="f-where" maxlength="80">
+    <label for="f-price">Price</label><input id="f-price" maxlength="40" placeholder="e.g. Free, £5, £22+">
+    <label for="f-link">Link to book or find out more</label><input id="f-link" type="url" maxlength="300" placeholder="https://">
+    <label for="f-why">Why it's a Va Va Voom thing (optional)</label><textarea id="f-why" maxlength="300"></textarea>
+    <p class="err" id="f-err" role="alert"></p>
+    <div class="acts"><button class="btn" type="submit">Add it</button></div>
+    <p class="fine">Only Kev sees what you add until it's checked. Please only add public events, not anyone's private details. <a href="privacy.html">Privacy</a></p>
+  </form>
+</main>
+
+<footer><span data-release></span> · Not on the main menu, on purpose. Dates, prices and places are from each organiser's own page: always check there before you go.</footer>
+</div>
+
+<script src="release.js"></script>
+<script>
+var RELEASE=window.VVV_RELEASE||'', BUILD=window.VVV_BUILD||'';
+var CATCHER='https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec';
+
+/* ---------- EDIT HERE. Sources checked 31 Oct 2026. Only public events, no individuals' names. ----------
+   To push one to the main page: copy it into EVENTS (or the neighbour list) in hello.html, then delete it here. */
+var SOURCES = {
+  burrow:   { name:'The Burrow', where:'Frensham (woodland, on private land)', site:'https://theburrowfarnham.co.uk/' },
+  trink:    { name:'Trinkfluss Wines', where:'Godalming', site:'https://www.trinkflusswines.co.uk/collections/events' },
+  newhouse: { name:'New House Art Space', where:'Fays Passage, Guildford', site:'https://newhouse.art/whats-on' }
+};
+var TRY = [
+  { id:'nh-drawday', src:'newhouse', title:'Drink & Draw: Day of the Dead', when:'Sat 7 Nov', price:'See their page', what:'Drawing for any level, coffee included.', link:'https://newhouse.art/events-listing/drink-and-draw-day-of-the-dead' },
+  { id:'trink-judgement', src:'trink', title:'The Judgement of Godalming', when:'Thu 5 Nov', price:'£55', what:'A themed wine tasting at the shop.', link:'https://www.trinkflusswines.co.uk/products/04-11-2026-the-judgement-of-godalming' },
+  { id:'burrow-breath', src:'burrow', title:'A woodland breathwork afternoon', when:'November, 1pm to 5pm (date on their page)', price:'£16+', what:'Singing, movement, a sharing circle and 90 minutes of guided breathwork with live music. No experience needed.', link:'https://events.humanitix.com/the-human-gathering-exhale-a-woodland-breathwork-experience-for-anyone-who-misses-the-feeling-of-ease' },
+  { id:'nh-games', src:'newhouse', title:'Board games night', when:'Thu 19 Nov', price:'See their page', what:'Board games at the art space.', link:'https://newhouse.art/events-listing/board-games-night-nov-26' },
+  { id:'nh-ecodecor', src:'newhouse', title:'Eco festive decor and wrapping workshop', when:'Sun 22 Nov', price:'See their page', what:'Make sustainable winter decorations.', link:'https://newhouse.art/events-listing/eco-festive-decor-workshop' },
+  { id:'burrow-wreaths', src:'burrow', title:'Wreaths in the woods', when:'2pm to 4pm (date on their page)', price:'£22+', what:'Forage and make a wreath round a fire, with spiced apple juice and mince pies. No experience needed.', link:'https://events.humanitix.com/wreaths-in-the-woods-crafting-and-conversation-llqyd2br' },
+  { id:'nh-wreath', src:'newhouse', title:'Festive wreath making', when:'Mon 23 Nov or Thu 26 Nov', price:'See their page', what:'Make your own wreath the traditional, sustainable way.', link:'https://newhouse.art/events-listing/wreath-making-workshop-lily-and-myrtle-1' },
+  { id:'nh-coffee', src:'newhouse', title:'Guildford Coffee Club: a year of coffee', when:'Sun 29 Nov', price:'See their page', what:'The local coffee club marks its first year.', link:'https://newhouse.art/events-listing/guildford-coffee-club-november-26' },
+  { id:'trink-winemaker', src:'trink', title:'Winemaker tasting', when:'Tue 1 Dec', price:'£35', what:'A tasting with visiting winemakers.', link:'https://www.trinkflusswines.co.uk/products/01-12-2026-wine-tasting-with-philip-rosa-lardot' },
+  { id:'burrow-fireside', src:'burrow', title:'A fireside gathering', when:'December, 7pm to 9pm (date on their page)', price:'£6', what:'Guided conversation round a fire on a topic shared in advance. Bring a snack to share. Spaces are limited.', link:'https://events.humanitix.com/a-fireside-gathering-december-2026' },
+  { id:'trink-vinyl', src:'trink', title:'Wine & vinyl Christmas special', when:'Wed 9 Dec', price:'£18', what:'Wine and records at the shop.', link:'https://www.trinkflusswines.co.uk/products/09-12-2026-wine-vinyl-christmas-special' },
+  { id:'nh-folk', src:'newhouse', title:'Guildford Folk Club', when:'First Wednesday of the month, 7:30pm to 10pm', price:'Free', what:'A monthly folk music night. Check their page for the next one.', link:'https://newhouse.art/guildford-folk-club' },
+  { id:'nh-knit', src:'newhouse', title:'Knit social', when:'First Sunday of the month, 10am to 11:30am', price:'£5', what:'Bring your knitting and natter. Check their page for the next one.', link:'https://newhouse.art/knit-social' },
+  { id:'nh-writers', src:'newhouse', title:'Writers saloon', when:'Third Saturday of the month, 10am to 12pm', price:'Free', what:'A morning for local writers. Check their page for the next one.', link:'https://newhouse.art/writers-saloon' }
+];
+
+function store(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
+function getJSON(k,d){ try{ return JSON.parse(store(k))||d; }catch(e){ return d; } }
+function isTeam(){ return store('vvv-team')==='1'; }
+if(/[?&]team\b/.test(location.search)) store('vvv-team','1');
+function send(data){
+  data.version=RELEASE+(BUILD?' · '+BUILD:''); data.page='tryout';
+  if(isTeam()){ data.who='team'; if(data.detail) data.detail='[team] '+data.detail; }
+  try{ fetch(CATCHER,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).catch(function(){}) }catch(e){}
+}
+function signal(ev,detail){ send({type:'signal',event:ev,detail:detail||''}); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]}); }
+function safeUrl(u){ return /^https:\/\//.test(u||'')?u:''; }
+
+var mine=getJSON('vvv-tryout-mine',[]), ins=getJSON('vvv-tryout-in',{}), verdicts=getJSON('vvv-tryout-verdict',{});
+
+function card(t,isMine){
+  var s=SOURCES[t.src]||{name:'Added by you',where:t.where||''};
+  var link=safeUrl(t.link), v=verdicts[t.id];
+  return '<article class="card'+(v==='no'?' no':'')+'" data-id="'+esc(t.id)+'">'+
+    (isMine?'<span class="tag mine">Your draft, waiting for Kev</span>':'')+
+    '<h3>'+esc(t.title)+'</h3>'+
+    '<div class="when">'+esc(t.when)+'</div>'+
+    '<div class="meta">'+esc(s.name)+(s.where||t.where?' · '+esc(t.where||s.where):'')+' · '+esc(t.price)+'</div>'+
+    (t.what?'<p>'+esc(t.what)+'</p>':'')+
+    '<div class="acts">'+(link?'<a class="ext" href="'+esc(link)+'" target="_blank" rel="noopener">Book or find out more ↗</a>':'')+
+      '<button class="btn" type="button" data-in="'+esc(t.id)+'" aria-pressed="'+(ins[t.id]?'true':'false')+'">'+(ins[t.id]?'I\'m in ✓':'I\'m in')+'</button></div>'+
+    (isTeam()?'<div class="team"><button type="button" data-v="push" aria-pressed="'+(v==='push')+'">Push to main page</button><button type="button" data-v="no" aria-pressed="'+(v==='no')+'">Not for us</button></div>':'')+
+  '</article>';
+}
+function render(){
+  var html='';
+  mine.forEach(function(t){ html+=card(t,true); });
+  var bySrc={}; TRY.forEach(function(t){ (bySrc[t.src]=bySrc[t.src]||[]).push(t); });
+  Object.keys(SOURCES).forEach(function(k){
+    if(!bySrc[k]) return; var s=SOURCES[k];
+    html+='<h2>'+esc(s.name)+'</h2><p class="src">'+esc(s.where)+' · <a href="'+esc(s.site)+'" target="_blank" rel="noopener">Their full list ↗</a></p>';
+    bySrc[k].forEach(function(t){ html+=card(t,false); });
+  });
+  document.getElementById('list').innerHTML=html;
+}
+document.getElementById('list').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  var c=b.closest('.card'), id=c.getAttribute('data-id');
+  if(b.hasAttribute('data-in')){
+    if(ins[id]) return; ins[id]=1; store('vvv-tryout-in',JSON.stringify(ins));
+    signal('tryout in', id);
+  } else if(b.hasAttribute('data-v')){
+    var v=b.getAttribute('data-v'); verdicts[id]=v; store('vvv-tryout-verdict',JSON.stringify(verdicts));
+    signal('tryout verdict', v+': '+id);
+  }
+  render();
+});
+document.getElementById('add').addEventListener('submit',function(e){
+  e.preventDefault();
+  function val(id){ return document.getElementById(id).value.trim(); }
+  var t={ id:'mine-'+Date.now().toString(36), title:val('f-title'), when:val('f-when'), where:val('f-where'), price:val('f-price')||'Not sure', link:val('f-link'), what:val('f-why') };
+  var err=document.getElementById('f-err');
+  if(!t.title){ err.textContent='Give it a name, so we know what it is.'; document.getElementById('f-title').focus(); return; }
+  if(!t.when){ err.textContent='When is it? Even "most Saturdays" helps.'; document.getElementById('f-when').focus(); return; }
+  if(t.link && !safeUrl(t.link)){ err.textContent='The link needs to start with https://'; document.getElementById('f-link').focus(); return; }
+  err.textContent='';
+  mine.unshift(t); store('vvv-tryout-mine',JSON.stringify(mine));
+  signal('tryout added', JSON.stringify(t));
+  this.reset(); render(); window.scrollTo({top:document.getElementById('list').offsetTop-10,behavior:'smooth'});
+});
+document.querySelectorAll('[data-release]').forEach(function(el){ el.textContent='Release '+RELEASE+(BUILD?' · '+BUILD:''); });
+render();
+</script>
+</body>
+</html>

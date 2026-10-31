@@ -3,7 +3,7 @@
 Run from the repo root: python3 tools/check_links.py   (exit 1 if anything is wrong)
 Old looks (v-*.html, simple*.html, happening.html...) may only be linked from built.html's gallery."""
 import re, sys, os
-CURRENT = ['hello.html','news.html','experiment.html','built.html','privacy.html','pulse.html','index.html']
+CURRENT = ['hello.html','news.html','experiment.html','built.html','privacy.html','pulse.html','tryout.html','index.html']
 GALLERY_OK = {'built.html'}          # the "looks we tried" gallery may link old versions
 EXTRA_OK = {'circle.html'}           # the Rabbit Hole, a deliberate easter egg from the Pulse
 JS_HASHES = {'hello.html': {'what','feedback','qr'}}  # opened by script, not by an id
