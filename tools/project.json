@@ -1,5 +1,5 @@
 {
- "_how": "Update on every release: add Kev's time for the sitting (measured from his message times in the chat, plus 10 minutes per sitting), refresh 'people' from the sheet, then run python3 tools/build_stats.py. Releases, versions and dates come from git and gate.js.",
+ "_how": "Update on every release: add Kev's time for the sitting (measured from his message times in the chat, plus 10 minutes per sitting), refresh 'people' from the sheet, then run python3 tools/build_stats.py. Releases, versions and dates come from git and gate.js. Tag each sitting with its release so the page can show hours per release.",
  "sittings": [
   {
    "date": "2026-10-20",
@@ -34,20 +34,34 @@
   {
    "date": "2026-10-29",
    "hours": 3.4,
-   "what": "Releases Eashing and Farncombe: policies and processes index, join in any way, near you for Tongham, simplify review with James and Sam's panel (page from 6½ to about 4 screens), I'm in always offers details, graffiti stickers, photos on coloured backgrounds, Ilona's Power Hour, About this experiment, this page's looks and vote"
+   "what": "Releases Eashing and Farncombe: policies and processes index, join in any way, near you for Tongham, simplify review with James and Sam's panel (page from 6½ to about 4 screens), I'm in always offers details, graffiti stickers, photos on coloured backgrounds, Ilona's Power Hour, About this experiment, this page's looks and vote",
+   "release": "Farncombe"
+  },
+  {
+   "date": "2026-10-30",
+   "hours": 4.1,
+   "what": "Release Godalming, day 1: the Pulse (who's visiting, counts only), secret animal names for neighbours who help, Verified commits, consent tracker, design patterns, link check, invites and consent messages, Kev's bio, a quiet link to Stories",
+   "release": "Godalming"
+  },
+  {
+   "date": "2026-10-31",
+   "hours": 0.9,
+   "what": "Release Godalming, day 2: My picks (hidden): local events from The Burrow, Trinkfluss and New House, score For me / Maybe / Not for me, learns what you like, distance and when filters, preference model write-up",
+   "release": "Godalming"
   }
  ],
  "people": {
-  "as_of": "2026-10-29",
+  "as_of": "2026-10-31",
   "let_in": 6,
   "let_in_note": "Unique emails through the gate (Access tab), including Kev. The new hello page has no gate, so its visitors aren't counted here",
   "in_person_tests": 3,
   "in_person_note": "Carl (Better Men, 24 October), Tim and Rieks",
   "feedback_forms": 0,
-  "signups": 0,
+  "signups": 1,
   "board_posts": 0,
   "personas": 9,
-  "personas_note": "Nikki & James, Gill, Imogen & Dominic, plus Carl, Sue and Tim as personas (simulated panels, not real visitors)"
+  "personas_note": "Nikki & James, Gill, Imogen & Dominic, plus Carl, Sue and Tim as personas (simulated panels, not real visitors)",
+  "signups_note": "Real sign-ups on the Sign-ups tab (one, from the team, 30 October)"
  },
  "team": [
   [
@@ -275,6 +289,11 @@
    "Farncombe",
    "29 October",
    "Simpler page, details after I'm in, stickers, About this experiment, trust fixes"
+  ],
+  [
+   "Godalming",
+   "31 October",
+   "The Pulse and secret names, consent tracking, design rules and link checks, My picks: a hidden page that learns what you like"
   ]
  ]
 }

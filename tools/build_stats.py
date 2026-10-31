@@ -29,9 +29,14 @@ today = datetime.date.today().isoformat()
 def d(s):
     return datetime.date.fromisoformat(s).strftime('%-d %B')
 
+rel_hours = {}
+for s in P['sittings']:
+    if s.get('release'): rel_hours[s['release']] = rel_hours.get(s['release'], 0) + s['hours']
+this_rel = round(rel_hours.get(release, 0), 1)
 stats = [
-    (f'{hours:g}', 'hours of Kev\'s time'),
+    (f'{round(hours,1):g}', 'hours of Kev\'s time'),
     (str((datetime.date.today()-datetime.date.fromisoformat(first)).days+1), 'days since it started'),
+    (f'{this_rel:g}', f'hours on this release ({release})'),
     (str(len(P.get('releases',[]))), 'named releases'),
     (str(len(pv)), 'versions of the page'),
     (str(pp['let_in']), 'people let in so far'),
@@ -40,7 +45,7 @@ stats = [
 
 rows = ''.join(f'<tr><td>{E(d(s["date"]))}</td><td>{s["hours"]:g}h</td><td>{E(s["what"])}</td></tr>' for s in P['sittings'])
 vers = ''.join(f'<li><a href="{E(f)}">{E(n)}</a> <span>{E(d(dt))}</span></li>' for f, n, dt in pv)
-rels = ''.join(f'<li><span>{E(dt)}</span> <b>{E(n)}</b>: {E(w)}</li>' for n, dt, w in reversed(P.get('releases', [])))
+rels = ''.join(f'<li><span>{E(dt)}</span> <b>{E(n)}</b>{(" · " + format(round(rel_hours[n],1), "g") + "h") if n in rel_hours else ""}: {E(w)}</li>' for n, dt, w in reversed(P.get('releases', [])))
 rel = ''.join(f'<li><span>{E(t)}</span> {E(m)}</li>' for t, m in log[:15])
 
 page = f'''<!doctype html>
