@@ -1,24 +1,24 @@
 {
- "updated": "2026-10-30T12:00",
+ "updated": "2026-10-31T07:40",
  "since": "2026-10-28",
  "counts": {
-  "visitors": 10,
-  "visits": 12,
+  "visitors": 9,
+  "visits": 21,
   "im_in": 2,
   "signups": 0,
   "signups_in": 0,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 7,
-  "helpers": 0,
+  "story_visits": 8,
+  "helpers": 3,
   "returning": 0,
-  "visits_known": 0
+  "visits_known": 9
  },
  "threads": [
   {
    "id": "grow",
    "title": "Growing and food",
-   "n": 6,
+   "n": 7,
    "items": [
     {
      "id": "farm",
@@ -46,7 +46,7 @@
   {
    "id": "make",
    "title": "Making and mending",
-   "n": 3,
+   "n": 4,
    "items": [
     {
      "id": "make",
@@ -88,7 +88,7 @@
   {
    "id": "homes",
    "title": "Warm homes, energy",
-   "n": 3,
+   "n": 5,
    "items": [
     {
      "id": "r-armchair",
@@ -158,7 +158,7 @@
   {
    "id": "talk",
    "title": "Meeting and talking",
-   "n": 4,
+   "n": 5,
    "items": [
     {
      "id": "briefing",
@@ -223,17 +223,17 @@
   {
    "id": "grow",
    "title": "Growing and food",
-   "n": 6
+   "n": 7
   },
   {
    "id": "talk",
    "title": "Meeting and talking",
-   "n": 4
+   "n": 5
   },
   {
-   "id": "make",
-   "title": "Making and mending",
-   "n": 3
+   "id": "homes",
+   "title": "Warm homes, energy",
+   "n": 5
   }
  ],
  "top_items": [
@@ -253,5 +253,34 @@
    "n": 2
   }
  ],
- "crew": []
+ "crew": [
+  {
+   "name": "Curious Hare 29",
+   "adj": "Curious",
+   "animal": "Hare",
+   "visits": 1,
+   "back": false,
+   "threads": []
+  },
+  {
+   "name": "Plucky Swift 90",
+   "adj": "Plucky",
+   "animal": "Swift",
+   "visits": 1,
+   "back": false,
+   "threads": [
+    "grow",
+    "homes",
+    "make"
+   ]
+  },
+  {
+   "name": "Sunny Kestrel 73",
+   "adj": "Sunny",
+   "animal": "Kestrel",
+   "visits": 1,
+   "back": false,
+   "threads": []
+  }
+ ]
 }
