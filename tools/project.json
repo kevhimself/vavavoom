@@ -295,5 +295,19 @@
    "31 October",
    "The Pulse and secret names, consent tracking, design rules and link checks, My picks: a hidden page that learns what you like"
   ]
+ ],
+ "costs": [
+  [
+   "Domain: vavavoom.town (Cloudflare)",
+   21.11,
+   "a year",
+   "31 Oct 2026"
+  ],
+  [
+   "Hosting (GitHub Pages), responses sheet, visit counting (free tiers)",
+   0,
+   "",
+   ""
+  ]
  ]
 }

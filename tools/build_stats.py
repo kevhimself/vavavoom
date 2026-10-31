@@ -37,6 +37,7 @@ stats = [
     (f'{round(hours,1):g}', 'hours of Kev\'s time'),
     (str((datetime.date.today()-datetime.date.fromisoformat(first)).days+1), 'days since it started'),
     (f'{this_rel:g}', f'hours on this release ({release})'),
+    ('£' + format(sum(c[1] for c in P.get('costs', [])), '.0f'), 'a year to run (just the web address)'),
     (str(len(P.get('releases',[]))), 'named releases'),
     (str(len(pv)), 'versions of the page'),
     (str(pp['let_in']), 'people let in so far'),
