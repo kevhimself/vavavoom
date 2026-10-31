@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>Try-out events · Va Va Voom</title>
+<title>My picks · Va Va Voom</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Atkinson+Hyperlegible:wght@400;700&family=Caveat:wght@600&display=swap">
 <style>
-:root{--paper:#fbf7f2;--ink:#1c1a2b;--rose:#e8337f;--rose-dk:#c41f66;--sun:#f2c75a;--mist:#ece5dc;--muted:#4c4858;
+:root{--paper:#fbf7f2;--ink:#1c1a2b;--rose:#e8337f;--rose-dk:#c41f66;--sun:#f2c75a;--mist:#ece5dc;--muted:#4c4858;--line:#cfc6bb;
   --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;--hand:"Caveat","Comic Sans MS",cursive;color-scheme:light}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.5 "Atkinson Hyperlegible",system-ui,sans-serif}
@@ -20,31 +20,55 @@ header{padding:max(14px,env(safe-area-inset-top,0px)) 0 4px;display:flex;justify
 .wordmark span{color:var(--rose);margin-left:.1em}
 .quiet{font-weight:700;font-size:15px;min-height:44px;display:inline-flex;align-items:center}
 h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(40px,12vw,64px);line-height:.95;margin:18px 0 8px}
-h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:28px;line-height:1;margin:30px 0 4px;color:var(--rose-dk)}
+h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:26px;line-height:1;margin:28px 0 6px;color:var(--rose-dk)}
 .lede{font-size:18px;margin:0 0 4px}
 .hand{font-family:var(--hand);font-size:22px;color:var(--rose-dk);margin:4px 0 0}
-.src{font-size:15px;color:var(--muted);margin:0 0 8px}
+.muted{color:var(--muted);font-size:15px}
+.panel{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:14px 16px;margin:14px 0}
+.panel.soft{background:var(--mist);border-color:var(--mist)}
+.me{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;align-items:center}
+.me svg{width:52px;height:52px}
+.me b{font-size:19px;display:block;line-height:1.2}
+.linkbtn{background:none;border:0;padding:0;font:inherit;font-size:15px;font-weight:700;color:var(--ink);text-decoration:underline;text-decoration-color:var(--rose);text-underline-offset:4px;cursor:pointer;min-height:44px}
+.inkbtn{background:var(--ink);color:#fff;border:0;border-radius:999px;font:inherit;font-weight:700;padding:10px 20px;min-height:44px;cursor:pointer}
+.btn{background:var(--rose);color:#fff;border:0;border-radius:999px;font:inherit;font-weight:700;padding:10px 20px;min-height:44px;cursor:pointer}
+.btn[aria-pressed="true"]{background:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.right{justify-content:flex-end}
+label{display:block;font-weight:700;font-size:15px;margin:10px 0 2px}
+input,textarea{width:100%;font:inherit;padding:10px 12px;border:2px solid var(--ink);border-radius:10px;background:#fff}
+textarea{min-height:64px}
+.err{color:var(--rose-dk);font-weight:700;font-size:15px;min-height:1.4em;margin:6px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.chip{background:#fff;border:2px solid var(--ink);border-radius:999px;font:inherit;font-size:15px;font-weight:700;padding:6px 12px;min-height:44px;cursor:pointer;color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+.fgroup{margin:6px 0 2px}
+.fgroup > span{font-size:14px;font-weight:700;color:var(--muted);display:block;margin-bottom:2px}
+.learn ul{margin:6px 0 0;padding-left:20px}
+.learn .more{color:#1d6b4a;font-weight:700}.learn .less{color:var(--rose-dk);font-weight:700}
 .card{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:14px 16px;margin:12px 0}
+.card.no{opacity:.55}
 .card h3{margin:0 0 2px;font-size:19px;line-height:1.25}
 .card .when{font-weight:700;font-size:15px}
 .card .meta{font-size:15px;color:var(--muted)}
 .card p{margin:6px 0 0}
-.tag{display:inline-block;font-size:13px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:0 8px;margin-right:4px}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.tag{font-size:13px;font-weight:700;border:2px solid var(--line);border-radius:999px;padding:0 8px;line-height:1.7}
 .tag.mine{border-color:var(--rose)}
+.why{font-size:15px;margin-top:8px;font-weight:700;color:#1d6b4a}
+.why.neg{color:var(--rose-dk)}
 .acts{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:6px 16px;margin-top:10px}
 .acts a.ext{font-weight:700;font-size:15px;min-height:44px;display:inline-flex;align-items:center}
-.btn{background:var(--rose);color:#fff;border:0;border-radius:999px;font:inherit;font-weight:700;padding:10px 20px;min-height:44px;cursor:pointer}
-.btn[aria-pressed="true"]{background:var(--ink)}
-.team{display:flex;gap:16px;justify-content:flex-end;border-top:1px dashed #cfc6bb;margin-top:10px;padding-top:4px}
-.team button{background:none;border:0;font:inherit;font-size:15px;font-weight:700;text-decoration:underline;text-decoration-color:var(--rose);text-underline-offset:4px;min-height:44px;cursor:pointer;color:var(--ink)}
+.score{border-top:1px dashed var(--line);margin-top:12px;padding-top:8px}
+.score .q{font-size:15px;font-weight:700;margin:0 0 2px}
+.reason{margin-top:6px}
+.reason input{margin-top:6px}
+.team{display:flex;gap:16px;justify-content:flex-end;border-top:1px dashed var(--line);margin-top:10px;padding-top:4px}
 .team button[aria-pressed="true"]{color:var(--rose-dk);text-decoration:none}
-.card.no{opacity:.5}
-form{background:var(--mist);border-radius:16px;padding:14px 16px;margin:12px 0}
-label{display:block;font-weight:700;font-size:15px;margin:10px 0 2px}
-input,textarea{width:100%;font:inherit;padding:10px 12px;border:2px solid var(--ink);border-radius:10px;background:#fff}
-textarea{min-height:70px}
-.err{color:var(--rose-dk);font-weight:700;font-size:15px;min-height:1.5em;margin:6px 0 0}
+details.pile summary{font-weight:700;cursor:pointer;min-height:44px;display:flex;align-items:center}
+form.add{background:var(--mist);border-radius:16px;padding:14px 16px;margin:12px 0}
 .fine{font-size:14px;color:var(--muted)}
+.empty{padding:18px 0;color:var(--muted)}
 footer{margin-top:36px;font-size:14px;color:var(--muted)}
 </style>
 </head>
@@ -56,126 +80,404 @@ footer{margin-top:36px;font-size:14px;color:var(--muted)}
 </header>
 
 <main>
-  <h1>Try-out events</h1>
-  <p class="lede">A hidden shelf of good things round here, run by other local folk. We try them here first. The ones people like go on the main page.</p>
-  <p class="hand">Tap "I'm in" on anything you'd go to.</p>
+  <h1>My picks</h1>
+  <p class="lede">Good things round here, run by other local folk. Tell us what's for you and what isn't, and the list learns what you like.</p>
+  <p class="hand">Not on the main page yet. That's the point.</p>
+
+  <section class="panel" id="you" aria-label="You"></section>
+
+  <section aria-labelledby="h-filter">
+    <h2 id="h-filter">Find something</h2>
+    <details class="panel soft" id="fbox"><summary class="linkbtn" id="fsum" style="display:flex;align-items:center"></summary><div id="filters"></div></details>
+  </section>
+
+  <section class="panel soft learn" id="learn" aria-live="polite"></section>
 
   <div id="list"></div>
 
   <h2>Add one</h2>
-  <p class="src">Spotted something good? Pop it in. It shows here on your phone straight away and comes to Kev to check.</p>
-  <form id="add" novalidate>
+  <p class="muted">Spotted something good? Pop it in. It shows here straight away, joins your picks, and comes to Kev to check.</p>
+  <form class="add" id="add" novalidate>
     <label for="f-title">What is it?</label><input id="f-title" maxlength="120">
-    <label for="f-when">When?</label><input id="f-when" maxlength="80" placeholder="e.g. Sat 7 Nov, 10am">
-    <label for="f-where">Where?</label><input id="f-where" maxlength="80">
+    <label for="f-date">Date (if there is one)</label><input id="f-date" type="date">
+    <label for="f-time">Start time (if you know it)</label><input id="f-time" type="time">
+    <label for="f-where">Where?</label><input id="f-where" maxlength="80" list="placeList" placeholder="e.g. Farnham">
     <label for="f-price">Price</label><input id="f-price" maxlength="40" placeholder="e.g. Free, £5, £22+">
     <label for="f-link">Link to book or find out more</label><input id="f-link" type="url" maxlength="300" placeholder="https://">
-    <label for="f-why">Why it's a Va Va Voom thing (optional)</label><textarea id="f-why" maxlength="300"></textarea>
+    <div class="fgroup"><span>What kind of thing? (tap any)</span><div class="chips" id="f-kinds"></div></div>
+    <label for="f-why">Why it caught your eye (optional)</label><textarea id="f-why" maxlength="300"></textarea>
     <p class="err" id="f-err" role="alert"></p>
-    <div class="acts"><button class="btn" type="submit">Add it</button></div>
-    <p class="fine">Only Kev sees what you add until it's checked. Please only add public events, not anyone's private details. <a href="privacy.html">Privacy</a></p>
+    <div class="acts"><button class="inkbtn" type="submit">Add it</button></div>
+    <p class="fine">Only Kev sees what you add until it's checked. Public events only, please, not anyone's private details. <a href="privacy.html">Privacy</a></p>
   </form>
+  <datalist id="placeList"></datalist>
 </main>
 
-<footer><span data-release></span> · Not on the main menu, on purpose. Dates, prices and places are from each organiser's own page: always check there before you go.</footer>
+<footer><span data-release></span> · Not on the main menu, on purpose. Dates, prices and places come from each organiser's own page: check there before you go. Distances are rough, as the crow flies.</footer>
 </div>
 
 <script src="release.js"></script>
+<script src="vid.js"></script>
 <script>
 var RELEASE=window.VVV_RELEASE||'', BUILD=window.VVV_BUILD||'';
 var CATCHER='https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec';
 
-/* ---------- EDIT HERE. Sources checked 31 Oct 2026. Only public events, no individuals' names. ----------
-   To push one to the main page: copy it into EVENTS (or the neighbour list) in hello.html, then delete it here. */
-var SOURCES = {
-  burrow:   { name:'The Burrow', where:'Frensham (woodland, on private land)', site:'https://theburrowfarnham.co.uk/' },
-  trink:    { name:'Trinkfluss Wines', where:'Godalming', site:'https://www.trinkflusswines.co.uk/collections/events' },
-  newhouse: { name:'New House Art Space', where:'Fays Passage, Guildford', site:'https://newhouse.art/whats-on' }
+/* ================= EDIT HERE =================
+   The preference model is written up in docs/preference-model.md. Keep the tag lists in step with it.
+   Sources checked 31 Oct 2026. Public events only; individuals' names left out of titles (consent rule).
+   To push one to the main page: copy it into EVENTS in hello.html, then delete it here. */
+var TAGS = {
+  theme:   { move:'Moving', grow:'Growing', make:'Making', homes:'Homes and energy', talk:'Talking', nature:'Nature', eat:'Food and drink', culture:'Music, art and words' },
+  feel:    { play:'Playful', connect:'Meeting people', inspired:'Inspiring' },
+  flavour: { slow:'Slow and gentle', deep:'Deep and meaningful', lively:'Lively and social', hands:'Hands-on', learn:'Learn something' },
+  setting: { outdoors:'Outdoors', indoors:'Indoors' }
 };
+var SOURCES = {
+  burrow:   { name:'The Burrow', where:'Frensham', ll:[51.164,-0.790], site:'https://theburrowfarnham.co.uk/' },
+  trink:    { name:'Trinkfluss Wines', where:'Godalming', ll:[51.1858,-0.6149], site:'https://www.trinkflusswines.co.uk/collections/events' },
+  newhouse: { name:'New House Art Space', where:'Guildford', ll:[51.2373,-0.5780], site:'https://newhouse.art/whats-on' }
+};
+/* date: one-off (YYYY-MM-DD). rule: repeats {nth:1-4, dow:0 Sun..6 Sat}. No date or rule = "date on their page".
+   start/end: 24h. cost: number in £, 0 = free, null = not known. */
 var TRY = [
-  { id:'nh-drawday', src:'newhouse', title:'Drink & Draw: Day of the Dead', when:'Sat 7 Nov', price:'See their page', what:'Drawing for any level, coffee included.', link:'https://newhouse.art/events-listing/drink-and-draw-day-of-the-dead' },
-  { id:'trink-judgement', src:'trink', title:'The Judgement of Godalming', when:'Thu 5 Nov', price:'£55', what:'A themed wine tasting at the shop.', link:'https://www.trinkflusswines.co.uk/products/04-11-2026-the-judgement-of-godalming' },
-  { id:'burrow-breath', src:'burrow', title:'A woodland breathwork afternoon', when:'November, 1pm to 5pm (date on their page)', price:'£16+', what:'Singing, movement, a sharing circle and 90 minutes of guided breathwork with live music. No experience needed.', link:'https://events.humanitix.com/the-human-gathering-exhale-a-woodland-breathwork-experience-for-anyone-who-misses-the-feeling-of-ease' },
-  { id:'nh-games', src:'newhouse', title:'Board games night', when:'Thu 19 Nov', price:'See their page', what:'Board games at the art space.', link:'https://newhouse.art/events-listing/board-games-night-nov-26' },
-  { id:'nh-ecodecor', src:'newhouse', title:'Eco festive decor and wrapping workshop', when:'Sun 22 Nov', price:'See their page', what:'Make sustainable winter decorations.', link:'https://newhouse.art/events-listing/eco-festive-decor-workshop' },
-  { id:'burrow-wreaths', src:'burrow', title:'Wreaths in the woods', when:'2pm to 4pm (date on their page)', price:'£22+', what:'Forage and make a wreath round a fire, with spiced apple juice and mince pies. No experience needed.', link:'https://events.humanitix.com/wreaths-in-the-woods-crafting-and-conversation-llqyd2br' },
-  { id:'nh-wreath', src:'newhouse', title:'Festive wreath making', when:'Mon 23 Nov or Thu 26 Nov', price:'See their page', what:'Make your own wreath the traditional, sustainable way.', link:'https://newhouse.art/events-listing/wreath-making-workshop-lily-and-myrtle-1' },
-  { id:'nh-coffee', src:'newhouse', title:'Guildford Coffee Club: a year of coffee', when:'Sun 29 Nov', price:'See their page', what:'The local coffee club marks its first year.', link:'https://newhouse.art/events-listing/guildford-coffee-club-november-26' },
-  { id:'trink-winemaker', src:'trink', title:'Winemaker tasting', when:'Tue 1 Dec', price:'£35', what:'A tasting with visiting winemakers.', link:'https://www.trinkflusswines.co.uk/products/01-12-2026-wine-tasting-with-philip-rosa-lardot' },
-  { id:'burrow-fireside', src:'burrow', title:'A fireside gathering', when:'December, 7pm to 9pm (date on their page)', price:'£6', what:'Guided conversation round a fire on a topic shared in advance. Bring a snack to share. Spaces are limited.', link:'https://events.humanitix.com/a-fireside-gathering-december-2026' },
-  { id:'trink-vinyl', src:'trink', title:'Wine & vinyl Christmas special', when:'Wed 9 Dec', price:'£18', what:'Wine and records at the shop.', link:'https://www.trinkflusswines.co.uk/products/09-12-2026-wine-vinyl-christmas-special' },
-  { id:'nh-folk', src:'newhouse', title:'Guildford Folk Club', when:'First Wednesday of the month, 7:30pm to 10pm', price:'Free', what:'A monthly folk music night. Check their page for the next one.', link:'https://newhouse.art/guildford-folk-club' },
-  { id:'nh-knit', src:'newhouse', title:'Knit social', when:'First Sunday of the month, 10am to 11:30am', price:'£5', what:'Bring your knitting and natter. Check their page for the next one.', link:'https://newhouse.art/knit-social' },
-  { id:'nh-writers', src:'newhouse', title:'Writers saloon', when:'Third Saturday of the month, 10am to 12pm', price:'Free', what:'A morning for local writers. Check their page for the next one.', link:'https://newhouse.art/writers-saloon' }
+  { id:'nh-drawday', src:'newhouse', title:'Drink & Draw: Day of the Dead', date:'2026-11-07', start:'10:00', end:'16:30', price:'See their page', cost:null,
+    what:'Drawing for any level, with coffee and a loose theme. Morning (10 to 1) or afternoon (1:30 to 4:30).', link:'https://newhouse.art/events-listing/drink-and-draw-day-of-the-dead',
+    theme:['make','culture'], feel:'play', flavour:['hands','slow'], setting:'indoors' },
+  { id:'trink-judgement', src:'trink', title:'The Judgement of Godalming', date:'2026-11-05', start:'', price:'£55', cost:55,
+    what:'A themed wine tasting at the shop. Time on their page.', link:'https://www.trinkflusswines.co.uk/products/04-11-2026-the-judgement-of-godalming',
+    theme:['eat'], feel:'connect', flavour:['learn','lively'], setting:'indoors' },
+  { id:'burrow-breath', src:'burrow', title:'A woodland breathwork afternoon', start:'13:00', end:'17:00', when:'November (date on their page)', price:'£16+', cost:16,
+    what:'Singing, movement, a sharing circle and 90 minutes of guided breathwork with live music. No experience needed.', link:'https://events.humanitix.com/the-human-gathering-exhale-a-woodland-breathwork-experience-for-anyone-who-misses-the-feeling-of-ease',
+    theme:['nature','talk'], feel:'inspired', flavour:['slow','deep'], setting:'outdoors' },
+  { id:'nh-games', src:'newhouse', title:'Board games night', date:'2026-11-19', start:'17:00', end:'20:30', price:'£5 (£20 for 5)', cost:5,
+    what:'A night of board games and nostalgia.', link:'https://newhouse.art/events-listing/board-games-night-nov-26',
+    theme:['talk'], feel:'play', flavour:['lively'], setting:'indoors' },
+  { id:'nh-ecodecor', src:'newhouse', title:'Eco festive decor and wrapping workshop', date:'2026-11-22', start:'11:00', end:'12:30', price:'See their page', cost:null,
+    what:'Make your own sustainable decorations for the winter festivities.', link:'https://newhouse.art/events-listing/eco-festive-decor-workshop',
+    theme:['make'], feel:'play', flavour:['hands'], setting:'indoors' },
+  { id:'burrow-wreaths', src:'burrow', title:'Wreaths in the woods', start:'14:00', end:'16:00', when:'Date on their page', price:'£22+', cost:22,
+    what:'Forage and make a wreath round a fire, with spiced apple juice and mince pies. No experience needed.', link:'https://events.humanitix.com/wreaths-in-the-woods-crafting-and-conversation-llqyd2br',
+    theme:['make','nature'], feel:'connect', flavour:['hands','slow'], setting:'outdoors' },
+  { id:'nh-wreath', src:'newhouse', title:'Festive wreath making', date:'2026-11-23', start:'18:30', end:'20:30', price:'See their page', cost:null,
+    what:'Make your own wreath the traditional, sustainable way. A second session runs on Thu 26 Nov.', link:'https://newhouse.art/events-listing/wreath-making-workshop-lily-and-myrtle-1',
+    theme:['make'], feel:'play', flavour:['hands'], setting:'indoors' },
+  { id:'nh-coffee', src:'newhouse', title:'Guildford Coffee Club: a year of coffee', date:'2026-11-29', start:'11:00', end:'13:00', price:'No tickets needed', cost:null,
+    what:'A relaxed Sunday get-together: sit down, talk, and have a coffee.', link:'https://newhouse.art/events-listing/guildford-coffee-club-november-26',
+    theme:['talk','eat'], feel:'connect', flavour:['slow'], setting:'indoors' },
+  { id:'trink-winemaker', src:'trink', title:'Winemaker tasting', date:'2026-12-01', start:'', price:'£35', cost:35,
+    what:'A tasting with visiting winemakers. Time on their page.', link:'https://www.trinkflusswines.co.uk/products/01-12-2026-wine-tasting-with-philip-rosa-lardot',
+    theme:['eat'], feel:'connect', flavour:['learn'], setting:'indoors' },
+  { id:'burrow-fireside', src:'burrow', title:'A fireside gathering', start:'19:00', end:'21:00', when:'December (date on their page)', price:'£6', cost:6,
+    what:'Guided conversation round a fire on a topic shared in advance. Bring a snack to share. Spaces are limited.', link:'https://events.humanitix.com/a-fireside-gathering-december-2026',
+    theme:['talk','nature'], feel:'connect', flavour:['deep','slow'], setting:'outdoors' },
+  { id:'trink-vinyl', src:'trink', title:'Wine & vinyl Christmas special', date:'2026-12-09', start:'', price:'£18', cost:18,
+    what:'Wine and records at the shop. Time on their page.', link:'https://www.trinkflusswines.co.uk/products/09-12-2026-wine-vinyl-christmas-special',
+    theme:['eat','culture'], feel:'play', flavour:['lively'], setting:'indoors' },
+  { id:'nh-folk', src:'newhouse', title:'Guildford Folk Club', rule:{nth:1,dow:3}, start:'19:30', end:'22:00', price:'Free', cost:0,
+    what:'A monthly folk music night. First Wednesday of the month: check their page for the next one.', link:'https://newhouse.art/guildford-folk-club',
+    theme:['culture'], feel:'connect', flavour:['lively'], setting:'indoors' },
+  { id:'nh-knit', src:'newhouse', title:'Knit social', rule:{nth:1,dow:0}, start:'10:00', end:'11:30', price:'£5', cost:5,
+    what:'Bring your knitting and natter. First Sunday of the month.', link:'https://newhouse.art/knit-social',
+    theme:['make','talk'], feel:'connect', flavour:['slow','hands'], setting:'indoors' },
+  { id:'nh-writers', src:'newhouse', title:'Writers saloon', rule:{nth:3,dow:6}, start:'10:00', end:'12:00', price:'Free', cost:0,
+    what:'A morning for local writers. Third Saturday of the month.', link:'https://newhouse.art/writers-saloon',
+    theme:['culture'], feel:'inspired', flavour:['learn','slow'], setting:'indoors' }
 ];
+/* Rough centres of home places (same list as the front page), for distances only. Never sent anywhere. */
+var PLACE_LL = {Godalming:[51.1858,-0.6149],Farncombe:[51.196,-0.604],Milford:[51.170,-0.650],Busbridge:[51.176,-0.606],Catteshall:[51.188,-0.600],Binscombe:[51.199,-0.618],
+ 'Ockford Ridge':[51.180,-0.630],Eashing:[51.183,-0.645],Hurtmore:[51.195,-0.637],Charterhouse:[51.194,-0.627],Witley:[51.150,-0.645],Wormley:[51.140,-0.645],Brook:[51.135,-0.665],
+ Elstead:[51.182,-0.708],Shackleford:[51.198,-0.662],Puttenham:[51.224,-0.665],Compton:[51.215,-0.629],'Peper Harow':[51.188,-0.660],Thursley:[51.150,-0.710],Hambledon:[51.143,-0.623],
+ Hascombe:[51.150,-0.570],Hydestile:[51.160,-0.600],Enton:[51.160,-0.640],Bramley:[51.196,-0.559],Wonersh:[51.200,-0.540],'Shamley Green':[51.185,-0.520],Blackheath:[51.207,-0.525],
+ Chilworth:[51.215,-0.525],Shalford:[51.213,-0.567],Peasmarsh:[51.215,-0.580],Artington:[51.223,-0.581],Guildford:[51.2362,-0.5704],Merrow:[51.245,-0.530],Burpham:[51.258,-0.548],
+ 'Onslow Village':[51.234,-0.600],'Wood Street Village':[51.250,-0.640],Worplesdon:[51.272,-0.610],Normandy:[51.255,-0.675],Ash:[51.249,-0.723],'Ash Vale':[51.270,-0.723],
+ Tongham:[51.232,-0.733],Seale:[51.226,-0.705],'The Sands':[51.215,-0.730],Runfold:[51.220,-0.750],'Badshot Lea':[51.227,-0.758],Wrecclesham:[51.200,-0.815],Farnham:[51.215,-0.799],
+ Frensham:[51.164,-0.790],Churt:[51.135,-0.770],Tilford:[51.183,-0.752],Rushmoor:[51.160,-0.760],Hindhead:[51.115,-0.735],Grayshott:[51.110,-0.755],'Beacon Hill':[51.115,-0.720],
+ Haslemere:[51.089,-0.712],Grayswood:[51.100,-0.690],Chiddingfold:[51.113,-0.630],Dunsfold:[51.115,-0.570],Alfold:[51.095,-0.520],Cranleigh:[51.141,-0.488],Ewhurst:[51.153,-0.443],
+ Albury:[51.223,-0.489],Shere:[51.220,-0.465],Gomshall:[51.219,-0.445]};
+/* ================= end of EDIT HERE ================= */
 
-function store(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
-function getJSON(k,d){ try{ return JSON.parse(store(k))||d; }catch(e){ return d; } }
+function store(k,v){ try{ if(v===undefined) return localStorage.getItem(k); if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v); }catch(e){ return null; } }
+function getJSON(k,d){ try{ var v=JSON.parse(store(k)); return v==null?d:v; }catch(e){ return d; } }
+function putJSON(k,v){ store(k,JSON.stringify(v)); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]}); }
+function safeUrl(u){ return /^https:\/\//.test(u||'')?u:''; }
+(function(){ var q=location.search; if(/[?&]team(=|&|$)/.test(q)) store('vvv-team','1'); if(/[?&]notteam(=|&|$)/.test(q)) store('vvv-team',''); })();
 function isTeam(){ return store('vvv-team')==='1'; }
-if(/[?&]team\b/.test(location.search)) store('vvv-team','1');
+
+/* ---------- You: a secret name, no password ----------
+   Your picks live under a random code on this phone (vvv-picks-id). It's separate from the "help us learn" yes on the
+   front page, so starting your picks doesn't switch on anything else. The name is made from the code, the same way as vid.js. */
+var ADJ=['Brave','Sunny','Curious','Merry','Nimble','Gentle','Bold','Cheery','Swift','Jolly','Plucky','Kind','Dapper','Breezy','Spry','Mellow'];
+var ANIMAL=['Badger','Otter','Kingfisher','Hedgehog','Owl','Heron','Fox','Hare','Wren','Robin','Dormouse','Newt','Swift','Vole','Kestrel','Mole'];
+function nameFor(code){ if(!code) return ''; var h=parseInt(code.slice(1,9),16)||0, adj=ADJ[h%16], an=ANIMAL[(h>>>4)%16]; if(adj===an) adj='Merry'; return adj+' '+an+' '+(((h>>>8)%98)+2); }
+function freshCode(){ var a=new Uint8Array(6); try{ crypto.getRandomValues(a); }catch(e){ for(var i=0;i<6;i++) a[i]=Math.random()*256; } return 'k'+Array.prototype.map.call(a,function(b){return ('0'+b.toString(16)).slice(-2)}).join(''); }
+function myCode(){ return store('vvv-picks-id')||''; }
+function startPicks(code){
+  var c=code || (window.VVV_ID && VVV_ID.kept && VVV_ID.kept()) || freshCode();
+  store('vvv-picks-id',c); signal('picks started', code?'code from another phone':'new'); render();
+}
+function homeName(){ return (store('vvv-home')||'').trim(); }
+function homeLL(){ var g=getJSON('vvv-picks-geo',null); if(g&&g.length===2) return g; var h=homeName(); for(var k in PLACE_LL){ if(k.toLowerCase()===h.toLowerCase()) return PLACE_LL[k]; } return null; }
+
 function send(data){
-  data.version=RELEASE+(BUILD?' · '+BUILD:''); data.page='tryout';
-  if(isTeam()){ data.who='team'; if(data.detail) data.detail='[team] '+data.detail; }
+  data.page='tryout'; data.when=new Date().toISOString(); data.version=RELEASE+(BUILD?' · '+BUILD:'');
+  data.who=isTeam()?'team':'visitor'; if(data.type==='signal' && data.who==='team') data.detail='[team] '+(data.detail||'');
+  var c=myCode(); if(c){ data.vid=c; data.vk='kept'; }
   try{ fetch(CATCHER,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).catch(function(){}) }catch(e){}
 }
 function signal(ev,detail){ send({type:'signal',event:ev,detail:detail||''}); }
-function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]}); }
-function safeUrl(u){ return /^https:\/\//.test(u||'')?u:''; }
 
-var mine=getJSON('vvv-tryout-mine',[]), ins=getJSON('vvv-tryout-in',{}), verdicts=getJSON('vvv-tryout-verdict',{});
+/* ---------- dates ---------- */
+var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function today(){ var d=new Date(); d.setHours(0,0,0,0); return d; }
+function parseDay(s){ var p=(s||'').split('-'); return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null; }
+function nthDow(y,m,nth,dow){ var d=new Date(y,m,1); var add=(dow-d.getDay()+7)%7; d.setDate(1+add+7*(nth-1)); return d.getMonth()===m?d:null; }
+function nextDate(t){
+  var t0=today();
+  if(t.date){ var d=parseDay(t.date); return d && d>=t0 ? d : 'past'; }
+  if(t.rule){ for(var i=0;i<3;i++){ var y=t0.getFullYear(), m=t0.getMonth()+i; var d2=nthDow(y+Math.floor(m/12),m%12,t.rule.nth,t.rule.dow); if(d2&&d2>=t0) return d2; } }
+  return null;
+}
+function fmtDay(d){ return DOW[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()]; }
+function fmtTime(s){ if(!s) return ''; var p=s.split(':'), h=+p[0], m=p[1]; return (h%12||12)+(m!=='00'?':'+m:'')+(h<12?'am':'pm'); }
+function slot(t){ if(!t.start) return ''; return (+t.start.split(':')[0])>=17?'evening':'day'; }
+function weekendRange(){ var t=today(), d=t.getDay(); var sat=new Date(t); sat.setDate(t.getDate()+((6-d+7)%7)); if(d===0){ sat.setDate(t.getDate()-1); } var sun=new Date(sat); sun.setDate(sat.getDate()+1); return [d===0?t:sat,sun]; }
 
-function card(t,isMine){
-  var s=SOURCES[t.src]||{name:'Added by you',where:t.where||''};
-  var link=safeUrl(t.link), v=verdicts[t.id];
-  return '<article class="card'+(v==='no'?' no':'')+'" data-id="'+esc(t.id)+'">'+
-    (isMine?'<span class="tag mine">Your draft, waiting for Kev</span>':'')+
-    '<h3>'+esc(t.title)+'</h3>'+
-    '<div class="when">'+esc(t.when)+'</div>'+
-    '<div class="meta">'+esc(s.name)+(s.where||t.where?' · '+esc(t.where||s.where):'')+' · '+esc(t.price)+'</div>'+
-    (t.what?'<p>'+esc(t.what)+'</p>':'')+
-    '<div class="acts">'+(link?'<a class="ext" href="'+esc(link)+'" target="_blank" rel="noopener">Book or find out more ↗</a>':'')+
-      '<button class="btn" type="button" data-in="'+esc(t.id)+'" aria-pressed="'+(ins[t.id]?'true':'false')+'">'+(ins[t.id]?'I\'m in ✓':'I\'m in')+'</button></div>'+
-    (isTeam()?'<div class="team"><button type="button" data-v="push" aria-pressed="'+(v==='push')+'">Push to main page</button><button type="button" data-v="no" aria-pressed="'+(v==='no')+'">Not for us</button></div>':'')+
+/* ---------- distance (rough, as the crow flies) ---------- */
+function miles(a,b){ var R=3959, r=Math.PI/180, dl=(b[0]-a[0])*r, dn=(b[1]-a[1])*r; var x=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin(dn/2)*Math.sin(dn/2); return 2*R*Math.asin(Math.sqrt(x)); }
+function distOf(t){ var h=homeLL(), s=SOURCES[t.src], ll=(s&&s.ll)||t.ll; if(!h||!ll) return null; return miles(h,ll); }
+function distBand(m){ return m==null?'':m<3?'near':m<8?'mid':'far'; }
+function distText(m){
+  if(m==null) return ''; var road=m*1.3;
+  if(m<0.6) return 'On your doorstep';
+  if(m<1.3) return 'About '+Math.max(5,Math.round(road/3*60/5)*5)+' min walk';
+  return 'About '+Math.round(m)+' mile'+(Math.round(m)===1?'':'s')+' · '+Math.max(5,Math.round(road/22*60/5)*5)+' min by car';
+}
+function costBand(c){ return c==null?'':c===0?'free':c<20?'under20':'over20'; }
+
+/* ---------- the preference model (docs/preference-model.md) ----------
+   Every event carries tags. Each score teaches every tag on that event:
+   For me = +1, Maybe = +0.3, Not for me = -1. A reason nudges one practical tag a bit more.
+   A tag's weight = total / (times seen + 1), so one score never decides everything.
+   Match = sum of the weights of an event's tags. */
+var SCORE={yes:1,maybe:0.3,no:-1};
+var REASONS=[{k:'far',t:'Too far',tag:'dist'},{k:'time',t:'Wrong time',tag:'slot'},{k:'price',t:'Too pricey',tag:'cost'},{k:'thing',t:'Not my thing'},{k:'love',t:'Love this kind of thing'},{k:'friends',t:'Would go with a friend'},{k:'new',t:'Something new for me'}];
+var TAG_LABEL={ 'slot:day':'Daytime','slot:evening':'Evenings','wk:weekend':'Weekends','wk:weekday':'Weekdays','cost:free':'Free things','cost:under20':'Under £20','cost:over20':'£20 and up',
+  'dist:near':'Close to home','dist:mid':'A short drive','dist:far':'Further afield' };
+['theme','feel','flavour','setting'].forEach(function(g){ for(var k in TAGS[g]) TAG_LABEL[g+':'+k]=TAGS[g][k]; });
+function tagsOf(t){
+  var out=[]; (t.theme||[]).forEach(function(x){out.push('theme:'+x)}); if(t.feel) out.push('feel:'+t.feel);
+  (t.flavour||[]).forEach(function(x){out.push('flavour:'+x)}); if(t.setting) out.push('setting:'+t.setting);
+  var s=slot(t); if(s) out.push('slot:'+s);
+  var d=nextDate(t); if(d && d!=='past') out.push('wk:'+((d.getDay()===0||d.getDay()===6)?'weekend':'weekday'));
+  var cb=costBand(t.cost); if(cb) out.push('cost:'+cb);
+  var db=distBand(distOf(t)); if(db) out.push('dist:'+db);
+  return out;
+}
+var scores=getJSON('vvv-picks',{}); /* id -> {s:'yes'|'maybe'|'no', reasons:[], why:'', tags:[], at} */
+function weights(){
+  var tot={}, n={};
+  Object.keys(scores).forEach(function(id){ var sc=scores[id], v=SCORE[sc.s]; if(v==null) return;
+    (sc.tags||[]).forEach(function(tg){ tot[tg]=(tot[tg]||0)+v; n[tg]=(n[tg]||0)+1; });
+    (sc.reasons||[]).forEach(function(rk){ var r=REASONS.filter(function(x){return x.k===rk})[0]; if(!r||!r.tag) return;
+      (sc.tags||[]).forEach(function(tg){ if(tg.indexOf(r.tag+':')===0){ tot[tg]=(tot[tg]||0)-0.5; } }); });
+  });
+  var w={}; for(var k in tot) w[k]=tot[k]/(n[k]+1); return w;
+}
+function match(t,w){ var m=0, plus=[], minus=[]; tagsOf(t).forEach(function(tg){ var x=w[tg]||0; m+=x; if(x>=0.25) plus.push([x,tg]); if(x<=-0.25) minus.push([x,tg]); });
+  plus.sort(function(a,b){return b[0]-a[0]}); minus.sort(function(a,b){return a[0]-b[0]}); return {m:m,plus:plus,minus:minus}; }
+function scoredCount(){ return Object.keys(scores).length; }
+
+/* ---------- filters ---------- */
+var F=getJSON('vvv-picks-filters',{when:'any',time:'any',dist:'any',sort:'best',free:false});
+var FILTERS=[
+  {k:'when',label:'When',opts:[['any','Any time'],['weekend','This weekend'],['week','Next 7 days'],['month','Next 30 days']]},
+  {k:'time',label:'Time of day',opts:[['any','Any'],['day','Daytime'],['evening','Evenings']]},
+  {k:'dist',label:'How far',opts:[['any','Anywhere'],['5','Within 5 miles'],['10','Within 10 miles']]},
+  {k:'sort',label:'Order',opts:[['best','Best for me'],['soon','Soonest'],['near','Nearest']]}
+];
+function passes(t){
+  var d=nextDate(t); if(d==='past') return false;
+  if(F.when!=='any'){ if(!d) return false; var t0=today(), end=new Date(t0);
+    if(F.when==='weekend'){ var r=weekendRange(); if(d<r[0]||d>r[1]) return false; }
+    else { end.setDate(t0.getDate()+(F.when==='week'?6:29)); if(d>end) return false; } }
+  if(F.time!=='any' && slot(t)!==F.time) return false;
+  if(F.dist!=='any'){ var m=distOf(t); if(m==null||m>+F.dist) return false; }
+  if(F.free && t.cost!==0) return false;
+  return true;
+}
+function renderFilters(){
+  var h=FILTERS.map(function(g){ return '<div class="fgroup"><span id="fl-'+g.k+'">'+g.label+'</span><div class="chips" role="group" aria-labelledby="fl-'+g.k+'">'+
+    g.opts.map(function(o){ return '<button type="button" class="chip" data-f="'+g.k+'" data-v="'+o[0]+'" aria-pressed="'+(F[g.k]===o[0])+'">'+o[1]+'</button>'; }).join('')+'</div></div>'; }).join('');
+  h+='<div class="fgroup"><span>Price</span><div class="chips"><button type="button" class="chip" data-f="free" data-v="1" aria-pressed="'+!!F.free+'">Free only</button></div></div>';
+  var bits=FILTERS.map(function(g){ return g.opts.filter(function(o){return o[0]===F[g.k]})[0][1]; }); if(F.free) bits.push('Free only');
+  document.getElementById('fsum').textContent='Filters: '+bits.join(' · ');
+  if(F.dist!=='any' && !homeLL()) h+='<p class="muted">Add where home is (above) to use distance.</p>';
+  document.getElementById('filters').innerHTML=h;
+}
+document.getElementById('filters').addEventListener('click',function(e){
+  var b=e.target.closest('[data-f]'); if(!b) return; var k=b.getAttribute('data-f');
+  if(k==='free') F.free=!F.free; else F[k]=b.getAttribute('data-v');
+  putJSON('vvv-picks-filters',F); signal('picks filter', k+'='+(k==='free'?F.free:F[k])); render();
+});
+
+/* ---------- you panel ---------- */
+var editingHome=false;
+function renderYou(){
+  var c=myCode(), el=document.getElementById('you'), h=homeName(), geo=getJSON('vvv-picks-geo',null);
+  var homeBit = editingHome || (!h && !geo) ?
+      '<label for="homeIn">Where\'s home?</label><input id="homeIn" list="placeList" value="'+esc(h)+'" placeholder="Start typing, e.g. Godalming" autocomplete="off">'+
+      '<p class="err" id="homeErr" role="alert"></p><div class="row right"><button type="button" class="linkbtn" id="useGeo">Use where I am now</button><button type="button" class="inkbtn" id="saveHome">Save</button></div>'+
+      '<p class="fine">Only used on this phone to show how far things are. Never sent to us.</p>'
+    : '<p class="muted" style="margin:6px 0 0">Home: <b style="display:inline;font-size:inherit">'+esc(geo?'where you were when you set it':h)+'</b> · <button type="button" class="linkbtn" id="editHome">Change</button></p>';
+  if(!c){
+    el.innerHTML='<b style="font-size:19px">Save your picks</b><p style="margin:4px 0 0">We\'ll give you a secret name, like Curious Otter 23. Your picks stay together under it, so the list can learn what you like. No password, no email.</p>'+
+      '<div class="row right" style="margin-top:8px"><button type="button" class="linkbtn" id="haveCode">I have a code from another phone</button><button type="button" class="inkbtn" id="start">Start my picks</button></div>'+
+      '<div id="codeBox" hidden><label for="codeIn">Your code</label><input id="codeIn" maxlength="13" placeholder="k followed by 12 letters and numbers" autocapitalize="off" spellcheck="false"><p class="err" id="codeErr" role="alert"></p><div class="row right"><button type="button" class="inkbtn" id="useCode">Use this code</button></div></div>'+
+      homeBit;
+  } else {
+    var n=nameFor(c).split(' '), sc=scoredCount();
+    el.innerHTML='<div class="me">'+(window.VVV_ID&&VVV_ID.badge?VVV_ID.badge(n[1],n[0]):'')+'<div><b>'+esc(nameFor(c))+'</b><span class="muted">'+(sc?sc+' pick'+(sc===1?'':'s')+' so far':'Your picks start here')+'</span></div></div>'+
+      homeBit+
+      '<details style="margin-top:4px"><summary class="linkbtn" style="display:inline-flex;align-items:center">Use your picks on another phone</summary><p class="fine" style="margin:4px 0">Type this code on the other phone: <b style="font-family:monospace;font-size:16px;color:var(--ink)">'+esc(c)+'</b>. Your secret name comes with it. Your scores so far stay on this phone, and we keep a copy, so we can bring them across if you ask.</p>'+
+      '<button type="button" class="linkbtn" id="forget">Forget me on this phone</button></details>';
+  }
+}
+document.getElementById('you').addEventListener('click',function(e){
+  var t=e.target.closest('button'); if(!t) return;
+  if(t.id==='start') startPicks();
+  if(t.id==='haveCode'){ document.getElementById('codeBox').hidden=false; document.getElementById('codeIn').focus(); }
+  if(t.id==='useCode'){ var v=document.getElementById('codeIn').value.trim().toLowerCase();
+    if(!/^k[0-9a-f]{12}$/.test(v)){ document.getElementById('codeErr').textContent='That doesn\'t look right. It\'s a k, then 12 letters and numbers.'; return; } startPicks(v); }
+  if(t.id==='editHome'){ editingHome=true; render(); var i=document.getElementById('homeIn'); if(i) i.focus(); }
+  if(t.id==='saveHome'){ var v2=document.getElementById('homeIn').value.trim(), ok=null;
+    for(var k in PLACE_LL){ if(k.toLowerCase()===v2.toLowerCase()) ok=k; }
+    if(!ok){ document.getElementById('homeErr').textContent=v2?'We don\'t know '+v2+' yet. Pick the nearest place from the list.':'Type where home is, then pick it from the list.'; return; }
+    store('vvv-home',ok); store('vvv-picks-geo',null); editingHome=false; render(); }
+  if(t.id==='useGeo'){ var err=document.getElementById('homeErr');
+    if(!navigator.geolocation){ err.textContent='This phone can\'t share where it is. Type your place instead.'; return; }
+    err.textContent='Finding you…';
+    navigator.geolocation.getCurrentPosition(function(p){ putJSON('vvv-picks-geo',[+p.coords.latitude.toFixed(3),+p.coords.longitude.toFixed(3)]); editingHome=false; render(); },
+      function(){ err.textContent='We couldn\'t get your location. Type your place instead.'; },{timeout:10000,maximumAge:600000}); }
+  if(t.id==='forget'){ store('vvv-picks-id',null); store('vvv-picks',null); scores={}; render(); }
+});
+
+/* ---------- learning panel ---------- */
+function renderLearn(){
+  var el=document.getElementById('learn'), n=scoredCount();
+  if(n<3){ el.innerHTML='<b>What we\'re learning about you</b><p style="margin:4px 0 0">Score '+(3-n)+' more and we\'ll start sorting the list your way. "For me", "Maybe" or "Not for me" on any card below.</p>'; return; }
+  var w=weights(), arr=Object.keys(w).map(function(k){return [w[k],k]}).filter(function(x){return TAG_LABEL[x[1]]});
+  var more=arr.filter(function(x){return x[0]>=0.25}).sort(function(a,b){return b[0]-a[0]}).slice(0,4);
+  var less=arr.filter(function(x){return x[0]<=-0.25}).sort(function(a,b){return a[0]-b[0]}).slice(0,4);
+  var c={yes:0,maybe:0,no:0}; Object.keys(scores).forEach(function(id){ c[scores[id].s]=(c[scores[id].s]||0)+1; });
+  el.innerHTML='<b>What we\'re learning about you</b><p class="muted" style="margin:2px 0 0">'+c.yes+' for me · '+c.maybe+' maybe · '+c.no+' not for me</p><ul>'+
+    (more.length?'<li><span class="more">More of:</span> '+more.map(function(x){return esc(TAG_LABEL[x[1]])}).join(', ')+'</li>':'')+
+    (less.length?'<li><span class="less">Less of:</span> '+less.map(function(x){return esc(TAG_LABEL[x[1]])}).join(', ')+'</li>':'')+
+    (!more.length&&!less.length?'<li>No clear pattern yet. Keep going.</li>':'')+'</ul>';
+}
+
+/* ---------- cards ---------- */
+var mine=getJSON('vvv-tryout-mine',[]), ins=getJSON('vvv-tryout-in',{}), verdicts=getJSON('vvv-tryout-verdict',{}), openWhy={};
+function allEvents(){ return mine.map(function(t){ t.mine=true; return t; }).concat(TRY); }
+function whenText(t){
+  var d=nextDate(t), time=t.start?fmtTime(t.start)+(t.end?' to '+fmtTime(t.end):''):'';
+  if(d && d!=='past') return fmtDay(d)+(t.rule?' (next one)':'')+(time?', '+time:'');
+  return (t.when||'Date to check')+(time&&!(t.when||'').match(/\d(am|pm)/)?', '+time:'');
+}
+function card(t,w){
+  var s=SOURCES[t.src]||{name:'Added by you',where:t.where||''}, link=safeUrl(t.link), v=verdicts[t.id], sc=scores[t.id], m=distOf(t);
+  var mm=match(t,w), why='';
+  if(scoredCount()>=3 && !sc){
+    if(mm.plus.length) why='<div class="why">Because you like: '+mm.plus.slice(0,2).map(function(x){return esc(TAG_LABEL[x[1]]||'')}).join(', ')+'</div>';
+    else if(mm.minus.length) why='<div class="why neg">Maybe not: '+esc(TAG_LABEL[mm.minus[0][1]]||'')+'</div>';
+  }
+  var tags=tagsOf(t).filter(function(tg){return /^(theme|feel|flavour|setting):/.test(tg)}).map(function(tg){return '<span class="tag">'+esc(TAG_LABEL[tg])+'</span>'}).join('');
+  var scoreUI='<div class="score"><p class="q" id="q-'+esc(t.id)+'">Is this for you?</p><div class="chips" role="group" aria-labelledby="q-'+esc(t.id)+'">'+
+    [['yes','For me'],['maybe','Maybe'],['no','Not for me']].map(function(o){ return '<button type="button" class="chip" data-score="'+o[0]+'" aria-pressed="'+(!!sc&&sc.s===o[0])+'">'+o[1]+'</button>'; }).join('')+'</div>'+
+    (sc && openWhy[t.id] ? '<div class="reason"><p class="q" style="margin-top:4px">Why? (optional, helps it learn)</p><div class="chips">'+
+      REASONS.map(function(r){ return '<button type="button" class="chip" data-reason="'+r.k+'" aria-pressed="'+((sc.reasons||[]).indexOf(r.k)>-1)+'">'+r.t+'</button>'; }).join('')+'</div>'+
+      '<label for="why-'+esc(t.id)+'" class="muted" style="font-weight:400">Anything else?</label><input id="why-'+esc(t.id)+'" data-whytext maxlength="300" value="'+esc(sc.why||'')+'">'+
+      '<div class="row right"><button type="button" class="linkbtn" data-done>Done</button></div></div>'
+     : (sc ? '<div class="row right"><button type="button" class="linkbtn" data-openwhy>'+(sc.why||(sc.reasons||[]).length?'Change why':'Say why')+'</button></div>' : ''))+
+    '</div>';
+  return '<article class="card'+(v==='no'||(sc&&sc.s==='no')?' no':'')+'" data-id="'+esc(t.id)+'">'+
+    (t.mine?'<span class="tag mine">Added by you, waiting for Kev</span>':'')+
+    '<h3>'+esc(t.title)+'</h3><div class="when">'+esc(whenText(t))+'</div>'+
+    '<div class="meta">'+esc(s.name)+(t.where||s.where?' · '+esc(t.where||s.where):'')+' · '+esc(t.price)+(m!=null?'<br>'+esc(distText(m)):'')+'</div>'+
+    (t.what?'<p>'+esc(t.what)+'</p>':'')+(tags?'<div class="tags">'+tags+'</div>':'')+why+
+    '<div class="acts">'+(link?'<a class="ext" href="'+esc(link)+'" target="_blank" rel="noopener" data-out>Book or find out more ↗</a>':'')+
+      '<button class="btn" type="button" data-in aria-pressed="'+(!!ins[t.id])+'">'+(ins[t.id]?'I\'m in ✓':'I\'m in')+'</button></div>'+
+    scoreUI+
+    (isTeam()?'<div class="team"><button type="button" class="linkbtn" data-v="push" aria-pressed="'+(v==='push')+'">Push to main page</button><button type="button" class="linkbtn" data-v="no" aria-pressed="'+(v==='no')+'">Not for us</button></div>':'')+
   '</article>';
 }
-function render(){
-  var html='';
-  mine.forEach(function(t){ html+=card(t,true); });
-  var bySrc={}; TRY.forEach(function(t){ (bySrc[t.src]=bySrc[t.src]||[]).push(t); });
-  Object.keys(SOURCES).forEach(function(k){
-    if(!bySrc[k]) return; var s=SOURCES[k];
-    html+='<h2>'+esc(s.name)+'</h2><p class="src">'+esc(s.where)+' · <a href="'+esc(s.site)+'" target="_blank" rel="noopener">Their full list ↗</a></p>';
-    bySrc[k].forEach(function(t){ html+=card(t,false); });
+function renderList(){
+  var w=weights(), list=allEvents().filter(passes);
+  var sortBy = F.sort==='best' && scoredCount()<3 ? 'soon' : F.sort;
+  function dkey(t){ var d=nextDate(t); return d&&d!=='past'?d.getTime():9e15; }
+  list.sort(function(a,b){
+    if(sortBy==='best'){ var x=match(b,w).m-match(a,w).m; if(Math.abs(x)>0.01) return x; }
+    if(sortBy==='near'){ var da=distOf(a), db=distOf(b); if(da!=null||db!=null) return (da==null?999:da)-(db==null?999:db); }
+    return dkey(a)-dkey(b);
   });
-  document.getElementById('list').innerHTML=html;
+  /* a card you've just scored stays put until you're done saying why */
+  function settled(t){ return scores[t.id] && !openWhy[t.id]; }
+  var fresh=list.filter(function(t){return !settled(t)}), done=list.filter(function(t){return settled(t)&&scores[t.id].s!=='no'}), nope=list.filter(function(t){return settled(t)&&scores[t.id].s==='no'});
+  var h='';
+  if(!list.length) h='<p class="empty">Nothing matches those filters. Try "Any time" or "Anywhere".</p>';
+  h+=fresh.map(function(t){return card(t,w)}).join('');
+  if(done.length) h+='<h2>Your yes and maybe</h2>'+done.map(function(t){return card(t,w)}).join('');
+  if(nope.length) h+='<details class="pile"><summary>Not for me ('+nope.length+')</summary>'+nope.map(function(t){return card(t,w)}).join('')+'</details>';
+  document.getElementById('list').innerHTML=h;
+  if(sortBy!==F.sort) document.getElementById('list').insertAdjacentHTML('afterbegin','<p class="muted">Sorted by date until you\'ve scored 3.</p>');
 }
+function eventById(id){ return allEvents().filter(function(t){return t.id===id})[0]; }
+function sendScore(id){ var sc=scores[id], t=eventById(id); if(!sc||!t) return;
+  signal('pick', JSON.stringify({id:id,title:t.title,s:sc.s,reasons:sc.reasons||[],why:sc.why||'',tags:sc.tags,dist:distBand(distOf(t)),filters:F})); }
 document.getElementById('list').addEventListener('click',function(e){
-  var b=e.target.closest('button'); if(!b) return;
-  var c=b.closest('.card'), id=c.getAttribute('data-id');
-  if(b.hasAttribute('data-in')){
-    if(ins[id]) return; ins[id]=1; store('vvv-tryout-in',JSON.stringify(ins));
-    signal('tryout in', id);
-  } else if(b.hasAttribute('data-v')){
-    var v=b.getAttribute('data-v'); verdicts[id]=v; store('vvv-tryout-verdict',JSON.stringify(verdicts));
-    signal('tryout verdict', v+': '+id);
+  var b=e.target.closest('button,a[data-out]'); if(!b) return; var c=b.closest('.card'); if(!c) return; var id=c.getAttribute('data-id');
+  if(b.hasAttribute('data-out')){ signal('tryout link', id); return; }
+  if(b.hasAttribute('data-in')){ if(ins[id]) return; ins[id]=1; putJSON('vvv-tryout-in',ins); signal('tryout in', id); }
+  else if(b.hasAttribute('data-score')){
+    if(!myCode()){ var y=document.getElementById('you'); y.scrollIntoView({behavior:'smooth',block:'center'}); y.insertAdjacentHTML('afterbegin','<p class="err" role="alert" style="margin:0 0 6px">Start your picks first, so they\'re saved together.</p>'); return; }
+    var s=b.getAttribute('data-score'), t=eventById(id), prev=scores[id]||{};
+    scores[id]={s:s,reasons:prev.reasons||[],why:prev.why||'',tags:tagsOf(t),at:new Date().toISOString()};
+    putJSON('vvv-picks',scores); openWhy[id]=true; sendScore(id);
   }
+  else if(b.hasAttribute('data-reason')){ var r=b.getAttribute('data-reason'), sc=scores[id], i=sc.reasons.indexOf(r); if(i>-1) sc.reasons.splice(i,1); else sc.reasons.push(r); putJSON('vvv-picks',scores); }
+  else if(b.hasAttribute('data-openwhy')){ openWhy[id]=true; }
+  else if(b.hasAttribute('data-done')){ var inp=c.querySelector('[data-whytext]'); if(inp){ scores[id].why=inp.value.trim().slice(0,300); putJSON('vvv-picks',scores); } openWhy[id]=false; sendScore(id); }
+  else if(b.hasAttribute('data-v')){ var v=b.getAttribute('data-v'); verdicts[id]=v; putJSON('vvv-tryout-verdict',verdicts); signal('tryout verdict', v+': '+id); }
+  else return;
   render();
+  var again=document.querySelector('.card[data-id="'+id+'"]'); if(again && !again.closest('details:not([open])')){ var r2=again.getBoundingClientRect(); if(r2.top<0||r2.top>innerHeight) again.scrollIntoView({block:'center'}); }
 });
+
+/* ---------- add one ---------- */
+var kinds=[];
+function renderKinds(){ var h=''; for(var k in TAGS.theme) h+='<button type="button" class="chip" data-kind="theme:'+k+'" aria-pressed="'+(kinds.indexOf('theme:'+k)>-1)+'">'+TAGS.theme[k]+'</button>';
+  for(var f in TAGS.flavour) h+='<button type="button" class="chip" data-kind="flavour:'+f+'" aria-pressed="'+(kinds.indexOf('flavour:'+f)>-1)+'">'+TAGS.flavour[f]+'</button>';
+  document.getElementById('f-kinds').innerHTML=h; }
+document.getElementById('f-kinds').addEventListener('click',function(e){ var b=e.target.closest('[data-kind]'); if(!b) return; var k=b.getAttribute('data-kind'), i=kinds.indexOf(k); if(i>-1) kinds.splice(i,1); else kinds.push(k); renderKinds(); });
 document.getElementById('add').addEventListener('submit',function(e){
   e.preventDefault();
   function val(id){ return document.getElementById(id).value.trim(); }
-  var t={ id:'mine-'+Date.now().toString(36), title:val('f-title'), when:val('f-when'), where:val('f-where'), price:val('f-price')||'Not sure', link:val('f-link'), what:val('f-why') };
-  var err=document.getElementById('f-err');
-  if(!t.title){ err.textContent='Give it a name, so we know what it is.'; document.getElementById('f-title').focus(); return; }
-  if(!t.when){ err.textContent='When is it? Even "most Saturdays" helps.'; document.getElementById('f-when').focus(); return; }
-  if(t.link && !safeUrl(t.link)){ err.textContent='The link needs to start with https://'; document.getElementById('f-link').focus(); return; }
-  err.textContent='';
-  mine.unshift(t); store('vvv-tryout-mine',JSON.stringify(mine));
-  signal('tryout added', JSON.stringify(t));
-  this.reset(); render(); window.scrollTo({top:document.getElementById('list').offsetTop-10,behavior:'smooth'});
+  var err=document.getElementById('f-err'), title=val('f-title'), date=val('f-date'), time=val('f-time'), link=val('f-link');
+  if(!title){ err.textContent='Give it a name, so we know what it is.'; document.getElementById('f-title').focus(); return; }
+  if(link && !safeUrl(link)){ err.textContent='The link needs to start with https://'; document.getElementById('f-link').focus(); return; }
+  var where=val('f-where'), ll=null; for(var k in PLACE_LL){ if(k.toLowerCase()===where.toLowerCase()) ll=PLACE_LL[k]; }
+  var t={ id:'mine-'+Date.now().toString(36), title:title, date:date||'', start:time||'', when:date?'':'Date to check', where:where, ll:ll, price:val('f-price')||'Price to check', cost:null, link:link, what:val('f-why'),
+    theme:kinds.filter(function(x){return x.indexOf('theme:')===0}).map(function(x){return x.slice(6)}), flavour:kinds.filter(function(x){return x.indexOf('flavour:')===0}).map(function(x){return x.slice(8)}) };
+  var p=(t.price.match(/£\s*(\d+)/)||[])[1]; if(/free/i.test(t.price)) t.cost=0; else if(p) t.cost=+p;
+  err.textContent=''; mine.unshift(t); putJSON('vvv-tryout-mine',mine);
+  var copy={}; for(var x in t) if(x!=='mine') copy[x]=t[x]; signal('tryout added', JSON.stringify(copy));
+  this.reset(); kinds=[]; renderKinds(); render(); document.querySelector('.card[data-id="'+t.id+'"]').scrollIntoView({behavior:'smooth',block:'center'});
 });
+
+function render(){ renderYou(); renderFilters(); renderLearn(); renderList(); }
+document.getElementById('placeList').innerHTML=Object.keys(PLACE_LL).map(function(p){return '<option value="'+esc(p)+'">'}).join('');
 document.querySelectorAll('[data-release]').forEach(function(el){ el.textContent='Release '+RELEASE+(BUILD?' · '+BUILD:''); });
-render();
+renderKinds(); render();
 </script>
 </body>
 </html>
