@@ -9,12 +9,12 @@ CODES = [
     ('walk', 'A better walk', 'Event: opens straight to I\'m in', '#walk'),
     ('pub', 'Va Va Voom at the pub', 'Event: opens straight to I\'m in', '#pub'),
     ('feedback', 'Tell us what you think', 'Feedback', '#feedback'),
-    ('t-grow', 'Growing and food', 'Theme', '#t-grow'),
-    ('t-make', 'Making and mending', 'Theme', '#t-make'),
-    ('t-nature', 'Nature and the Wey', 'Theme', '#t-nature'),
-    ('t-homes', 'Warm homes, energy', 'Theme', '#t-homes'),
-    ('t-move', 'Moving and play', 'Theme', '#t-move'),
-    ('t-talk', 'Meeting and talking', 'Theme', '#t-talk'),
+    ('t-grow', 'Grow and share food', 'Theme', '#t-grow'),
+    ('t-make', 'Make, mend and share', 'Theme', '#t-make'),
+    ('t-nature', 'Get out in nature', 'Theme', '#t-nature'),
+    ('t-homes', 'Save energy and water', 'Theme', '#t-homes'),
+    ('t-move', 'Move and play', 'Theme', '#t-move'),
+    ('t-talk', 'Meet and belong', 'Theme', '#t-talk'),
 ]
 root = os.path.join(os.path.dirname(__file__), '..')
 os.makedirs(os.path.join(root, 'qr'), exist_ok=True)
