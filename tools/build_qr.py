@@ -3,7 +3,7 @@ Writes qr/<id>.svg and qr.html (a print sheet). Run: python3 tools/build_qr.py
 Edit the lists below to match EVENTS and THREADS in hello.html."""
 import os, qrcode, qrcode.image.svg
 
-BASE = 'https://kevhimself.github.io/vavavoom/hello.html'
+BASE = 'https://vavavoom.town/hello.html'
 CODES = [
     ('qr', 'Va Va Voom', 'The front page', ''),
     ('walk', 'A better walk', 'Event: opens straight to I\'m in', '#walk'),
