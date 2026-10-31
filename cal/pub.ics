@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Va Va Voom//Godalming//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:pub-202611101900@vavavoom.town
+DTSTAMP:20261031T084935Z
+DTSTART:20261110T190000Z
+DTEND:20261110T210000Z
+SUMMARY:Va Va Voom at the pub
+LOCATION:The Inn on the Lake\, Godalming
+DESCRIPTION:With Tim and Kev. Details: https://vavavoom.town/hello.html#pub
+URL:https://vavavoom.town/hello.html#pub
+END:VEVENT
+END:VCALENDAR

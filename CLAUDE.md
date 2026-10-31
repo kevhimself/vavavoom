@@ -32,6 +32,7 @@ https://app.notion.com/p/40893f7bf11a8182bc6dcf1ef52242ea
 - `python3 tools/check_links.py` must pass: every link on a live page goes to a current page and every #anchor exists.
   Old looks (v-*.html, simple*.html, happening.html...) are only linked from built.html's gallery.
   New live page? Add it to CURRENT in the script.
+- Changed a dated event in EVENTS? Run `node tools/build_cal.js` so its calendar file (cal/<id>.ics) matches.
 
 ## Git
 Another session may edit this folder: `git pull --rebase` first, commit only your files.

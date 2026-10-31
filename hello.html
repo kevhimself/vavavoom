@@ -156,6 +156,9 @@ section.sec{padding-block:20px 4px}
 .near{background:var(--mist);border-radius:12px;padding:14px;display:grid;gap:8px;margin-top:16px}
 .near b{font-size:18px}
 .near p{margin:0;font-size:15px}
+.calopts{display:flex;flex-direction:column;gap:2px;margin:8px 0 4px;padding:10px 14px;border:2px solid var(--ink);border-radius:14px;background:#fff;flex-basis:100%}
+.calopts .calq{font-size:14px;color:var(--muted);font-weight:700}
+.calopts a{font-weight:700;min-height:44px;display:flex;align-items:center;text-decoration-color:var(--rose);text-underline-offset:4px}
 .ghost{font-weight:700;font-size:15px;background:transparent;border:2px solid var(--ink);border-radius:999px;padding:8px 16px;min-height:42px;cursor:pointer;justify-self:start}
 .ghost.done{background:var(--ink);color:var(--paper)}
 
@@ -808,7 +811,7 @@ function openEvent(id){
   sheet.onclick=function(e){
     var b=e.target.closest('[data-sin]'), c=e.target.closest('[data-cal]');
     if(b) imIn(b.getAttribute('data-sin'));
-    if(c) addCal(c.getAttribute('data-cal'));
+    if(c) addCal(c.getAttribute('data-cal'),c);
   };
 }
 
@@ -842,7 +845,7 @@ function imIn(id){
     detailsForm({showName:true})+
     (ev.start?'<p style="margin:8px 0 0"><button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button></p>':''));
   sheet.onclick=function(e){
-    var c=e.target.closest('[data-cal]'); if(c) addCal(c.getAttribute('data-cal'));
+    var c=e.target.closest('[data-cal]'); if(c) addCal(c.getAttribute('data-cal'),c);
     if(e.target.closest('[data-close]')) closeSheet();
   };
   $('#dtForm').addEventListener('submit',function(e){
@@ -854,16 +857,26 @@ function imIn(id){
       '<div class="row">'+(ev.start?'<button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button>':'')+'<button class="btn" type="button" data-close>Done</button></div>');
   });
 }
-function addCal(id){
+/* Kev 31 Oct: the blob download did nothing on some phones. Offer the usual choices instead:
+   Google and Outlook open their own add-event page; Apple and everything else get a real .ics file (cal/<id>.ics, made by tools/build_cal.js). */
+function calLinks(ev,id){
+  function g(s){return s.replace(/[-:]/g,'')+'00'}
+  var details='With '+ev.host+'. Details: '+location.origin+location.pathname+'#'+id, title=/va va voom/i.test(ev.title)?ev.title:ev.title+' (Va Va Voom)';
+  var google='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+'&dates='+g(ev.start)+'/'+g(ev.end)+
+    '&ctz=Europe/London&location='+encodeURIComponent(ev.where)+'&details='+encodeURIComponent(details);
+  var outlook='https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject='+encodeURIComponent(title)+
+    '&startdt='+ev.start+':00&enddt='+ev.end+':00&location='+encodeURIComponent(ev.where)+'&body='+encodeURIComponent(details);
+  var ics='cal/'+id+'.ics';
+  return [['Google Calendar',google,1],['Apple Calendar (iPhone, iPad, Mac)',ics,0],['Outlook',outlook,1],['Something else (calendar file)',ics,0]];
+}
+function addCal(id,btn){
   var ev=evById(id); if(!ev||!ev.start) return;
-  function f(s){return s.replace(/[-:]/g,'')+'00'}
-  var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Va Va Voom//Godalming//EN','BEGIN:VEVENT',
-    'UID:'+id+'-'+ev.start.replace(/\D/g,'')+'@vavavoom','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z',
-    'DTSTART;TZID=Europe/London:'+f(ev.start),'DTEND;TZID=Europe/London:'+f(ev.end),
-    'SUMMARY:'+ev.title+' (Va Va Voom)','LOCATION:'+ev.where,'DESCRIPTION:With '+ev.host+'. '+location.origin+location.pathname+'#'+id,
-    'END:VEVENT','END:VCALENDAR'].join('\r\n');
-  var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'})); a.download='va-va-voom-'+id+'.ics';
-  document.body.appendChild(a); a.click(); a.remove(); track('added to calendar',{event:id});
+  if(btn && btn.nextElementSibling && btn.nextElementSibling.classList.contains('calopts')){ var o=btn.nextElementSibling; o.hidden=!o.hidden; btn.setAttribute('aria-expanded',String(!o.hidden)); return; }
+  var box=document.createElement('div'); box.className='calopts'; box.setAttribute('role','group'); box.setAttribute('aria-label','Add to which calendar?');
+  box.innerHTML='<span class="calq">Which calendar?</span>'+calLinks(ev,id).map(function(l){
+    return '<a href="'+esc(l[1])+'"'+(l[2]?' target="_blank" rel="noopener"':'')+' data-calto="'+esc(l[0])+'">'+esc(l[0])+(l[2]?' ↗':'')+'</a>'; }).join('');
+  box.addEventListener('click',function(e){ var a=e.target.closest('[data-calto]'); if(a){ track('added to calendar',{event:id,calendar:a.getAttribute('data-calto')}); signal('calendar',id); } });
+  if(btn){ btn.setAttribute('aria-expanded','true'); btn.insertAdjacentElement('afterend',box); box.querySelector('a').focus(); }
 }
 
 /* ---------- learn with a neighbour (neighbours and coming items, one list) ---------- */

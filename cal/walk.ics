@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Va Va Voom//Godalming//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:walk-202611211030@vavavoom.town
+DTSTAMP:20261031T084935Z
+DTSTART:20261121T103000Z
+DTEND:20261121T124500Z
+SUMMARY:A better walk (Va Va Voom)
+LOCATION:Puttenham Common\, top car park
+DESCRIPTION:With Tim and Kev. Details: https://vavavoom.town/hello.html#walk
+URL:https://vavavoom.town/hello.html#walk
+END:VEVENT
+END:VCALENDAR
