@@ -296,7 +296,8 @@ footer a{color:var(--ink)}
 .qr img{width:84px;height:84px;background:#fff}
 .done-msg{font-family:var(--hand);font-size:28px;color:var(--moss);line-height:1.1;margin:6px 0 12px}
 
-.consent{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--paper);z-index:15;
+.consent{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--paper);z-index:15;border-radius:18px 18px 0 0;
+  box-shadow:0 -10px 28px rgba(28,26,43,.35),0 -2px 0 rgba(28,26,43,.15);
   padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .consent .in{max-width:560px;margin:0 auto;font-size:16px;line-height:1.4}
 .consent p{margin:0}
@@ -307,6 +308,7 @@ footer a{color:var(--ink)}
 .consent .c-ticks{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:2px 16px}
 .consent .c-ticks li{font-size:14px;opacity:.95}
 .consent .c-ticks li::before{content:"\2713\00a0";color:var(--lime);font-weight:700}
+.sug .chip.own{border-style:dashed;font-style:italic}
 .consent .c-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
 .consent .c-row button{flex:1 1 0}
 .consent a{color:var(--paper);text-decoration-color:var(--lime);text-underline-offset:3px;white-space:nowrap;font-weight:700;padding:12px 0}
@@ -446,8 +448,8 @@ footer a{color:var(--ink)}
     <p class="c-what">A random code goes with your taps, so we can see what people tap and scroll and grow the right things. Your secret name pops up on our Pulse page, never your real name. <a href="privacy.html#code">What we keep</a></p>
     <ul class="c-ticks"><li>Not your name</li><li>Typing hidden</li><li>No selling, no ads</li></ul>
     <div class="c-row">
-      <button class="yes" type="button" id="cYes">Yes, I'll help</button>
       <button class="no" type="button" id="cNo">No thanks</button>
+      <button class="yes" type="button" id="cYes">Yes, I'll help</button>
     </div>
   </div>
   <div class="in" id="cDone" hidden><p class="c-thanks" id="cThanks" role="status"></p><div class="c-row" id="cOkRow"><button type="button" id="cOk">Lovely</button></div></div>
@@ -703,9 +705,13 @@ function openWelcome(fromButton){
     var starts=PLACES.filter(function(p){return p.toLowerCase().indexOf(q)===0});
     var has=PLACES.filter(function(p){var i=p.toLowerCase().indexOf(q); return i>0});
     var list=starts.concat(has).slice(0,6);
+    var exact=PLACES.some(function(p){return p.toLowerCase()===q});
     if(list.length===1 && list[0].toLowerCase()===q) list=[];
-    sug.innerHTML=list.map(function(p){return '<button type="button" role="option" class="chip" data-home="'+esc(p)+'">'+esc(p)+'</button>'}).join('');
-    sug.hidden=!list.length;
+    /* Kev 31 Oct: if their place isn't listed, offer what they typed as a choice of its own. */
+    var typed=hin.value.trim();
+    sug.innerHTML=list.map(function(p){return '<button type="button" role="option" class="chip" data-home="'+esc(p)+'">'+esc(p)+'</button>'}).join('')+
+      (exact||typed.length<2?'':'<button type="button" role="option" class="chip own" data-home="'+esc(typed)+'">Not listed? Use \u201c'+esc(typed)+'\u201d</button>');
+    sug.hidden=!sug.innerHTML;
   }
   hin.addEventListener('input',suggest);
   hin.addEventListener('focus',function(){ if(hin.value){ hin.dataset.prev=hin.value; hin.placeholder=hin.value; hin.value=''; suggest(); } });
