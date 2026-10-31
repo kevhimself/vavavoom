@@ -119,9 +119,12 @@ section.sec{padding-block:22px 4px}
 .big{margin:12px 0 0;font-size:16px}.big b{font-family:var(--display);font-weight:900;font-size:30px;color:var(--rose-dk)}
 .boards{margin:0;padding-left:22px;display:grid;gap:8px;font-size:15px}
 .boards .top{font-size:12px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:0 8px;margin-left:4px;white-space:nowrap}
-.dothis{margin:0;padding-left:20px;display:grid;gap:4px;font-size:15px}
-.dothis a{font-weight:700;line-height:2}
-.dothis span{color:var(--muted)}
+.dothis{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.dothis a{display:block;background:#fff;border:2px solid var(--ink);border-radius:12px;padding:10px 14px;text-decoration:none;min-height:44px}
+.dothis a b{display:block;font-size:16px}
+.dothis a span{display:block;font-size:14px;color:var(--muted);font-weight:400}
+
+
 .story .meta{font-size:14px;color:var(--muted)}
 /* Kev 29 Oct: the main action is an obvious button; a secondary one is a quiet text link beside it. */
 .story .acts{display:flex;justify-content:flex-end;align-items:center;gap:8px 16px;flex-wrap:wrap;margin-top:10px}
@@ -251,15 +254,15 @@ footer a{color:var(--ink)}
         <figure class="pic"><img src="img/shackleford/farm.jpg?v=1031" alt="About thirty people in the sunshine at Norney Farm, listening to a tour" width="1000" height="750" loading="lazy"><figcaption>Then out into the sun at Norney Farm</figcaption></figure>
         <div class="pics2">
           <figure class="pic"><img src="img/shackleford/farm-tim.jpg?v=1031" alt="Tim talking to the group under the bunting" width="700" height="700" loading="lazy"><figcaption>Tim showing people round</figcaption></figure>
-          <figure class="pic"><img src="img/shackleford/farm-kev.jpg?v=1031" alt="Kev talking with people in the garden" width="700" height="700" loading="lazy"><figcaption>Kev, deep in it</figcaption></figure>
+          <figure class="pic"><img src="img/shackleford/farm-kevin.jpg?v=1031" alt="Kevin talking with people in the garden" width="700" height="700" loading="lazy"><figcaption>Kevin, deep in it</figcaption></figure>
         </div>
         <p class="meta">What happens to the 17 ideas? We'll pick two and put them on the diary. Want to help make one happen? <a href="hello.html#joinin">Tell us</a>.</p>
 
         <h4>Do one thing this week</h4>
         <ul class="dothis">
-          <li><a href="hello.html#r-bugs">Learn the bath pump trick with Reiks</a></li>
-          <li><a href="https://www.ecosia.org" target="_blank" rel="noopener" data-out="ecosia">Switch your search to Ecosia ↗</a> <span>(it puts its profits into climate action)</span></li>
-          <li><a href="https://www.surreywildlifetrust.org" target="_blank" rel="noopener" data-out="swt">See what Surrey Wildlife Trust is up to round here ↗</a></li>
+          <li><a href="hello.html#r-bugs"><b>Learn the bath pump trick</b><span>With Reiks, on the front page</span></a></li>
+          <li><a href="https://www.ecosia.org" target="_blank" rel="noopener" data-out="ecosia"><b>Switch your search to Ecosia ↗</b><span>It puts its profits into climate action</span></a></li>
+          <li><a href="https://www.surreywildlifetrust.org" target="_blank" rel="noopener" data-out="swt"><b>See what Surrey Wildlife Trust is up to ↗</b><span>Nature projects round here</span></a></li>
         </ul>
 
         <p class="meta">What we learned: rows of chairs make an audience. Next time, fewer rows and more moving about. The best bit was the chat at the farm.</p>
