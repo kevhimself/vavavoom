@@ -1,30 +1,30 @@
 {
- "updated": "2026-10-31T08:46",
+ "updated": "2026-11-01T08:48",
  "since": "2026-10-28",
  "counts": {
-  "visitors": 10,
-  "visits": 23,
-  "im_in": 2,
-  "signups": 0,
+  "visitors": 14,
+  "visits": 64,
+  "im_in": 3,
+  "signups": 2,
   "signups_in": 0,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 9,
-  "helpers": 4,
+  "story_visits": 27,
+  "helpers": 9,
   "returning": 0,
-  "visits_known": 11
+  "visits_known": 52
  },
  "threads": [
   {
    "id": "grow",
    "title": "Growing and food",
-   "n": 7,
+   "n": 10,
    "items": [
     {
      "id": "farm",
      "kind": "event",
      "title": "Norney Farm Bungalow visit",
-     "n": 1,
+     "n": 3,
      "im_in": 1
     },
     {
@@ -46,7 +46,7 @@
   {
    "id": "make",
    "title": "Making and mending",
-   "n": 4,
+   "n": 5,
    "items": [
     {
      "id": "make",
@@ -67,7 +67,7 @@
   {
    "id": "nature",
    "title": "Nature and the Wey",
-   "n": 3,
+   "n": 5,
    "items": [
     {
      "id": "r-bugs",
@@ -88,7 +88,7 @@
   {
    "id": "homes",
    "title": "Warm homes, energy",
-   "n": 5,
+   "n": 8,
    "items": [
     {
      "id": "r-armchair",
@@ -101,7 +101,7 @@
      "id": "solar",
      "kind": "project",
      "title": "Choosing solar",
-     "n": 0,
+     "n": 1,
      "im_in": 0
     },
     {
@@ -116,14 +116,14 @@
   {
    "id": "move",
    "title": "Moving and play",
-   "n": 4,
+   "n": 6,
    "items": [
     {
      "id": "walk",
      "kind": "event",
      "title": "A better walk",
-     "n": 0,
-     "im_in": 0
+     "n": 5,
+     "im_in": 1
     },
     {
      "id": "ridge",
@@ -158,20 +158,20 @@
   {
    "id": "talk",
    "title": "Meeting and talking",
-   "n": 5,
+   "n": 7,
    "items": [
     {
      "id": "briefing",
      "kind": "event",
      "title": "People's Emergency Briefing",
-     "n": 2,
+     "n": 3,
      "im_in": 1
     },
     {
      "id": "pub",
      "kind": "event",
      "title": "Va Va Voom at the pub",
-     "n": 2,
+     "n": 6,
      "im_in": 0
     },
     {
@@ -223,37 +223,57 @@
   {
    "id": "grow",
    "title": "Growing and food",
-   "n": 7
-  },
-  {
-   "id": "talk",
-   "title": "Meeting and talking",
-   "n": 5
+   "n": 10
   },
   {
    "id": "homes",
    "title": "Warm homes, energy",
-   "n": 5
+   "n": 8
+  },
+  {
+   "id": "talk",
+   "title": "Meeting and talking",
+   "n": 7
   }
  ],
  "top_items": [
   {
+   "id": "pub",
+   "title": "Va Va Voom at the pub",
+   "n": 6
+  },
+  {
+   "id": "walk",
+   "title": "A better walk",
+   "n": 5
+  },
+  {
    "id": "circle",
    "title": "Circle round the fire",
    "n": 3
-  },
-  {
-   "id": "sauna",
-   "title": "Waggon sauna sing-along",
-   "n": 3
-  },
-  {
-   "id": "make",
-   "title": "Make something",
-   "n": 2
   }
  ],
  "crew": [
+  {
+   "name": "Cheery Robin 52",
+   "adj": "Cheery",
+   "animal": "Robin",
+   "visits": 3,
+   "back": false,
+   "threads": [
+    "grow"
+   ]
+  },
+  {
+   "name": "Merry Fox 11",
+   "adj": "Merry",
+   "animal": "Fox",
+   "visits": 3,
+   "back": false,
+   "threads": [
+    "move"
+   ]
+  },
   {
    "name": "Curious Hare 29",
    "adj": "Curious",
@@ -263,6 +283,18 @@
    "threads": []
   },
   {
+   "name": "Jolly Owl 9",
+   "adj": "Jolly",
+   "animal": "Owl",
+   "visits": 1,
+   "back": false,
+   "threads": [
+    "nature",
+    "homes",
+    "talk"
+   ]
+  },
+  {
    "name": "Merry Wren 24",
    "adj": "Merry",
    "animal": "Wren",
@@ -270,6 +302,16 @@
    "back": false,
    "threads": [
     "move"
+   ]
+  },
+  {
+   "name": "Nimble Owl 48",
+   "adj": "Nimble",
+   "animal": "Owl",
+   "visits": 1,
+   "back": false,
+   "threads": [
+    "homes"
    ]
   },
   {
@@ -287,6 +329,14 @@
   {
    "name": "Sunny Kestrel 73",
    "adj": "Sunny",
+   "animal": "Kestrel",
+   "visits": 1,
+   "back": false,
+   "threads": []
+  },
+  {
+   "name": "Swift Kestrel 67",
+   "adj": "Swift",
    "animal": "Kestrel",
    "visits": 1,
    "back": false,
