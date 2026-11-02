@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-01T08:48",
+ "updated": "2026-11-02T08:48",
  "since": "2026-10-28",
  "counts": {
   "visitors": 14,
-  "visits": 64,
+  "visits": 82,
   "im_in": 3,
   "signups": 2,
   "signups_in": 0,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 27,
+  "story_visits": 38,
   "helpers": 9,
-  "returning": 0,
-  "visits_known": 52
+  "returning": 1,
+  "visits_known": 70
  },
  "threads": [
   {
@@ -122,7 +122,7 @@
      "id": "walk",
      "kind": "event",
      "title": "A better walk",
-     "n": 5,
+     "n": 7,
      "im_in": 1
     },
     {
@@ -171,7 +171,7 @@
      "id": "pub",
      "kind": "event",
      "title": "Va Va Voom at the pub",
-     "n": 6,
+     "n": 7,
      "im_in": 0
     },
     {
@@ -238,14 +238,14 @@
  ],
  "top_items": [
   {
-   "id": "pub",
-   "title": "Va Va Voom at the pub",
-   "n": 6
-  },
-  {
    "id": "walk",
    "title": "A better walk",
-   "n": 5
+   "n": 7
+  },
+  {
+   "id": "pub",
+   "title": "Va Va Voom at the pub",
+   "n": 7
   },
   {
    "id": "circle",
@@ -275,6 +275,16 @@
    ]
   },
   {
+   "name": "Nimble Owl 48",
+   "adj": "Nimble",
+   "animal": "Owl",
+   "visits": 2,
+   "back": true,
+   "threads": [
+    "homes"
+   ]
+  },
+  {
    "name": "Curious Hare 29",
    "adj": "Curious",
    "animal": "Hare",
@@ -289,9 +299,9 @@
    "visits": 1,
    "back": false,
    "threads": [
+    "talk",
     "nature",
-    "homes",
-    "talk"
+    "homes"
    ]
   },
   {
@@ -305,25 +315,15 @@
    ]
   },
   {
-   "name": "Nimble Owl 48",
-   "adj": "Nimble",
-   "animal": "Owl",
-   "visits": 1,
-   "back": false,
-   "threads": [
-    "homes"
-   ]
-  },
-  {
    "name": "Plucky Swift 90",
    "adj": "Plucky",
    "animal": "Swift",
    "visits": 1,
    "back": false,
    "threads": [
+    "homes",
     "make",
-    "grow",
-    "homes"
+    "grow"
    ]
   },
   {
