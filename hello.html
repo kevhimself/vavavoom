@@ -99,6 +99,8 @@ header.top{padding-bottom:12px;position:relative;z-index:5}
 .hello-faces img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:3px solid var(--paper);margin-left:-12px;background:var(--mist)}
 .hello-faces img:first-child{margin-left:0}
 .quick{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px}
+.away{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:0 0 12px;font-size:14px;line-height:1.35}
+#welcomeSheet .away-chip{border-style:dashed;background:var(--sun-soft);min-height:44px}
 .skip{background:none;border:0;padding:8px 4px;font-size:15px;text-decoration:underline;cursor:pointer;color:var(--muted)}
 .sug{display:flex;flex-wrap:wrap;gap:6px;margin-top:-4px}
 .sug .chip{background:var(--sun-soft);border-color:var(--ink)}
@@ -580,6 +582,8 @@ var THREADS = [
   { id:'grow', t:'Grow and share food' }, { id:'make', t:'Make, mend and share' }, { id:'nature', t:'Get out in nature' },
   { id:'homes', t:'Save energy and water' }, { id:'move', t:'Move and play' }, { id:'talk', t:'Meet and belong' }
 ];
+/* Kev 2 Nov: visitors from outside the area are welcome. 'Further afield' keeps their interest apart from local interest. */
+var AWAY = 'Further afield';
 var NEAR_THINGS = ['Godalming','Farncombe','Milford','Busbridge','Catteshall','Binscombe'];
 var PLACES = ['Godalming','Farncombe','Milford','Busbridge','Catteshall','Binscombe','Ockford Ridge','Eashing','Hurtmore','Charterhouse',
   'Witley','Wormley','Brook','Elstead','Shackleford','Puttenham','Compton','Peper Harow','Thursley','Hambledon','Hascombe','Hydestile','Enton',
@@ -599,7 +603,7 @@ function feelHTML(x){ return ''; }
 /* Near me (Kev 29 Oct): items with a near list only show to people whose home is on it, and go first. */
 function homeIs(){ return (store('vvv-home')||'').trim().toLowerCase(); }
 function isNear(x){ return !!x.near && x.near.some(function(p){return p.toLowerCase()===homeIs()}); }
-function nearOk(x){ return !x.near || isNear(x); }
+function nearOk(x){ return !x.near || isNear(x) || homeIs()===AWAY.toLowerCase(); }
 function nearFirst(arr){ var a=arr.filter(nearOk); return a.filter(isNear).concat(a.filter(function(x){return !isNear(x)})); }
 function nearTag(x){ return isNear(x)?'<span class="tag near">Near you</span> ':''; }
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
@@ -674,22 +678,25 @@ function openMe(){
 }
 function showConsent(){ if(window.__askConsent){ window.__askConsent=false; var b=$('#consent'); try{ $('#cName').textContent=VVV_ID.name(); }catch(e){} b.hidden=false; document.body.style.paddingBottom=(b.offsetHeight+8)+'px'; } }
 function getHome(){ return (store('vvv-home')||'').trim(); }
+function homeArea(h){ h=(h||'').toLowerCase(); if(!h) return ''; if(h===AWAY.toLowerCase()) return 'further afield';
+  return PLACES.some(function(p){return p.toLowerCase()===h}) ? 'local' : 'typed'; }
 function setWelcome(){
   var h=getHome();
-  $('#homeTxt').innerHTML = h ? 'Near <b>'+esc(h)+'</b>' : "Where's home?";
+  var away = h && h.toLowerCase()===AWAY.toLowerCase();
+  $('#homeTxt').innerHTML = away ? 'From <b>further afield</b>' : h ? 'Near <b>'+esc(h)+'</b>' : "Where's home?";
   $('#homeChg').textContent = h ? 'Change' : 'Tell us';
   $('#homeBtn').setAttribute('aria-label', h ? 'Home: '+h+'. Change' : "Tell us where home is");
   var near=$('#near');
   var hl=(h||'').toLowerCase(), hasLocal = NEAR_THINGS.map(function(x){return x.toLowerCase()}).indexOf(hl)>-1 ||
     EVENTS.some(function(e){return isUpcoming(e) && (e.where||'').toLowerCase().indexOf(hl)>-1}) ||
     INTEREST.concat(NEIGHBOURS).some(function(x){return isNear(x)});
-  if(h && !hasLocal){
+  if(h && !hasLocal && !away){
     near.hidden=false; $('#nearTitle').textContent='Nothing in '+h+' yet.';
   } else near.hidden=true;
 }
 function setHome(h){
   h=(h||'').trim(); if(!h) return;
-  store('vvv-home',h); setWelcome(); signal('home',h); track('home chosen',{home:h});
+  store('vvv-home',h); setWelcome(); signal('home',h+' | '+homeArea(h)); track('home chosen',{home:h, area:homeArea(h)});
   try{ renderInterest(); renderNeighbours(); renderTiles(); }catch(e){}
 }
 function openWelcome(fromButton){
@@ -698,10 +705,11 @@ function openWelcome(fromButton){
     '<h2 id="sheetTitle">Hello, good human!</h2>'+
     '<p>We\'re Kev, Tim and Carl, with Ruth, Jules, Rieks and friends, and we\'re very glad you\'re here. Where\'s home? We\'ll show you what\'s happening on your doorstep.</p>'+
     '<div class="quick">'+['Godalming','Farncombe','Milford','Witley','Shackleford','Elstead','Bramley','Guildford','Farnham','Haslemere','Cranleigh'].map(function(p){return '<button class="chip" type="button" data-home="'+p+'">'+p+'</button>'}).join('')+'</div>'+
+    '<p class="away"><button class="chip away-chip" type="button" data-home="'+AWAY+'">I\'m from further afield</button><span>Not local? You\'re very welcome. We\'ll show you everything.</span></p>'+
     '<form class="f" id="homeForm" novalidate><label for="homeIn">Somewhere else? Type your town or village'+
     '<input id="homeIn" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Start typing, e.g. Tongham" aria-describedby="homeHint" aria-controls="placeSug" value="'+esc(fromButton?getHome():'')+'"></label>'+
     '<div class="sug" id="placeSug" role="listbox" aria-label="Places near Godalming" hidden></div>'+
-    '<p class="err" id="homeErr" role="alert"></p><p class="fine" id="homeHint">Anywhere within about 15 miles. Not listed? Just type it.</p>'+
+    '<p class="err" id="homeErr" role="alert"></p><p class="fine" id="homeHint">Anywhere within about 15 miles. Not listed? Just type it. Further away? Tap \u201cfurther afield\u201d above.</p>'+
     '<div class="row"><button class="btn" type="submit">Show me what\'s on</button><button class="skip" type="button" data-skip>I\'ll just have a nose around</button></div></form></div>');
   setTimeout(function(){ var q=sheet.querySelector('.chip'); if(q) q.focus(); },60);
   function done(){ store('vvv-welcomed','1'); }
