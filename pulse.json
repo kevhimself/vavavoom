@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-03T08:48",
+ "updated": "2026-11-04T08:47",
  "since": "2026-10-28",
  "counts": {
-  "visitors": 14,
-  "visits": 90,
+  "visitors": 15,
+  "visits": 95,
   "im_in": 4,
   "signups": 3,
   "signups_in": 1,
   "neighbours_gate": 3,
   "posts": 0,
   "story_visits": 40,
-  "helpers": 9,
+  "helpers": 10,
   "returning": 1,
-  "visits_known": 78
+  "visits_known": 83
  },
  "threads": [
   {
@@ -171,7 +171,7 @@
      "id": "pub",
      "kind": "event",
      "title": "Va Va Voom at the pub",
-     "n": 10,
+     "n": 11,
      "im_in": 1
     },
     {
@@ -240,7 +240,7 @@
   {
    "id": "pub",
    "title": "Va Va Voom at the pub",
-   "n": 10
+   "n": 11
   },
   {
    "id": "walk",
@@ -299,9 +299,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "grow",
-    "homes",
-    "talk"
+    "talk",
+    "nature",
+    "grow"
    ]
   },
   {
@@ -313,6 +313,14 @@
    "threads": [
     "move"
    ]
+  },
+  {
+   "name": "Plucky Newt 57",
+   "adj": "Plucky",
+   "animal": "Newt",
+   "visits": 1,
+   "back": false,
+   "threads": []
   },
   {
    "name": "Plucky Swift 90",
