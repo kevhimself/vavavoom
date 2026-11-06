@@ -1,24 +1,24 @@
 {
- "updated": "2026-11-05T08:47",
+ "updated": "2026-11-06T08:48",
  "since": "2026-10-28",
  "counts": {
   "visitors": 15,
-  "visits": 96,
+  "visits": 99,
   "im_in": 5,
-  "signups": 3,
+  "signups": 4,
   "signups_in": 1,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 40,
+  "story_visits": 41,
   "helpers": 10,
-  "returning": 1,
-  "visits_known": 84
+  "returning": 2,
+  "visits_known": 87
  },
  "threads": [
   {
    "id": "grow",
    "title": "Growing and food",
-   "n": 10,
+   "n": 11,
    "items": [
     {
      "id": "farm",
@@ -46,7 +46,7 @@
   {
    "id": "make",
    "title": "Making and mending",
-   "n": 5,
+   "n": 6,
    "items": [
     {
      "id": "make",
@@ -67,7 +67,7 @@
   {
    "id": "nature",
    "title": "Nature and the Wey",
-   "n": 5,
+   "n": 6,
    "items": [
     {
      "id": "r-bugs",
@@ -88,7 +88,7 @@
   {
    "id": "homes",
    "title": "Warm homes, energy",
-   "n": 8,
+   "n": 9,
    "items": [
     {
      "id": "r-armchair",
@@ -116,7 +116,7 @@
   {
    "id": "move",
    "title": "Moving and play",
-   "n": 6,
+   "n": 7,
    "items": [
     {
      "id": "walk",
@@ -158,7 +158,7 @@
   {
    "id": "talk",
    "title": "Meeting and talking",
-   "n": 7,
+   "n": 8,
    "items": [
     {
      "id": "briefing",
@@ -223,17 +223,17 @@
   {
    "id": "grow",
    "title": "Growing and food",
-   "n": 10
+   "n": 11
   },
   {
    "id": "homes",
    "title": "Warm homes, energy",
-   "n": 8
+   "n": 9
   },
   {
    "id": "talk",
    "title": "Meeting and talking",
-   "n": 7
+   "n": 8
   }
  ],
  "top_items": [
@@ -255,6 +255,16 @@
  ],
  "crew": [
   {
+   "name": "Merry Fox 11",
+   "adj": "Merry",
+   "animal": "Fox",
+   "visits": 4,
+   "back": true,
+   "threads": [
+    "move"
+   ]
+  },
+  {
    "name": "Cheery Robin 52",
    "adj": "Cheery",
    "animal": "Robin",
@@ -262,16 +272,6 @@
    "back": false,
    "threads": [
     "grow"
-   ]
-  },
-  {
-   "name": "Merry Fox 11",
-   "adj": "Merry",
-   "animal": "Fox",
-   "visits": 3,
-   "back": false,
-   "threads": [
-    "move"
    ]
   },
   {
@@ -299,9 +299,9 @@
    "visits": 1,
    "back": false,
    "threads": [
+    "talk",
     "homes",
-    "nature",
-    "grow"
+    "nature"
    ]
   },
   {
@@ -329,9 +329,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "homes",
+    "make",
     "grow",
-    "make"
+    "homes"
    ]
   },
   {
