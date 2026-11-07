@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-06T08:48",
+ "updated": "2026-11-07T08:47",
  "since": "2026-10-28",
  "counts": {
   "visitors": 15,
-  "visits": 99,
+  "visits": 105,
   "im_in": 5,
   "signups": 4,
   "signups_in": 1,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 41,
+  "story_visits": 46,
   "helpers": 10,
   "returning": 2,
-  "visits_known": 87
+  "visits_known": 93
  },
  "threads": [
   {
@@ -164,7 +164,7 @@
      "id": "briefing",
      "kind": "event",
      "title": "People's Emergency Briefing",
-     "n": 3,
+     "n": 4,
      "im_in": 1
     },
     {
@@ -248,9 +248,9 @@
    "n": 9
   },
   {
-   "id": "circle",
-   "title": "Circle round the fire",
-   "n": 3
+   "id": "briefing",
+   "title": "People's Emergency Briefing",
+   "n": 4
   }
  ],
  "crew": [
@@ -300,8 +300,8 @@
    "back": false,
    "threads": [
     "talk",
-    "homes",
-    "nature"
+    "grow",
+    "homes"
    ]
   },
   {
@@ -329,8 +329,8 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "make",
     "grow",
+    "make",
     "homes"
    ]
   },
