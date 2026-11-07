@@ -192,6 +192,11 @@ section.sec{padding-block:20px 4px}
 .ev.past .date::after{content:"✓";position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:var(--moss);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700;border:2px solid var(--paper)}
 .ev.past .feel,.ev.past .tag{opacity:.6}
 .recap{margin:6px 0 0;font-size:15px}
+.evarch{margin:14px 0 0;border-top:1px solid #ddd5cb;padding-top:6px}
+.evarch summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center;gap:6px;color:var(--muted)}
+.evarch .ev.past{margin-top:6px}
+.evarch summary::before{content:"\25B8";font-size:14px}
+.evarch[open] summary::before{content:"\25BE"}
 .recap b{color:var(--moss)}
 .recap a{font-weight:700;text-decoration-color:var(--rose);text-underline-offset:3px;white-space:nowrap}
 .ev.past .badge{color:var(--muted)}
@@ -333,7 +338,6 @@ footer a{color:var(--ink)}
 </style>
 </head>
 <body>
-
 <header class="top wrap">
   <div class="bar">
     <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
@@ -381,6 +385,7 @@ footer a{color:var(--ink)}
     <p class="sub">To start: a pub night and a walk. Come to one, bring a friend.</p>
     <div id="events"></div>
     <button class="ghost seeall" type="button" id="evAll" hidden></button>
+    <details class="evarch" id="evArch" hidden><summary>Been and done <span id="evArchN"></span></summary><div id="evArchList"></div></details>
     <div class="near" id="near" hidden>
       <b id="nearTitle">Nothing near you yet.</b>
       <p>Fancy being the first? Tell us what you'd start and we'll bring the know-how (and probably biscuits).</p>
@@ -781,10 +786,12 @@ function evMatch(ev){ return thisWeek(ev) || typeof picked!=='function' || picke
 function recapHTML(ev){ if(!ev.recap) return '';
   return '<p class="recap"><b>✓ It happened.</b> '+esc(ev.recap)+(ev.recapLink?' <a href="'+esc(ev.recapLink)+'">What came out of it</a>':'')+'</p>'; }
 function renderEvents(){
-  var mine=getJSON('vvv-going',{}), cur=EVENTS.filter(isUpcoming), past=EVENTS.filter(function(e){return isCurrent(e)&&isPast(e)});
-  var list=(evShowAll?cur:cur.filter(evMatch)).concat(past), hidden=cur.length-cur.filter(evMatch).length;
-  /* Kev 31 Oct: one list in date order, so something that happened today sits at the top, clearly ticked and greyed */
-  list.sort(function(a,b){ var x=evDay(a)||'9999', y=evDay(b)||'9999'; return x<y?-1:x>y?1:0; });
+  var mine=getJSON('vvv-going',{}), cur=EVENTS.filter(isUpcoming), past=EVENTS.filter(isPast);
+  var list=(evShowAll?cur:cur.filter(evMatch)), hidden=cur.length-cur.filter(evMatch).length;
+  /* Kev 7 Nov: what's coming sits at the top, in date order. Anything that has happened moves to "Been and done" below,
+     newest first, ticked and greyed, with its "What came out of it" link. */
+  function byDay(a,b){ var x=evDay(a)||'9999', y=evDay(b)||'9999'; return x<y?-1:x>y?1:0; }
+  list.sort(byDay); past.sort(function(a,b){ return byDay(b,a); });
   var all=$('#evAll'); all.hidden=!hidden; all.textContent=evShowAll?'Just my picks':'+ '+hidden+' more on';
   $('#events').innerHTML = list.map(function(ev){
     var done=!!mine[ev.id];
@@ -796,9 +803,17 @@ function renderEvents(){
       '<div class="meta">'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.time)+' · '+esc(ev.where)+' · with '+esc(ev.host)+'</div>'+feelHTML(ev)+
       (gone?recapHTML(ev):'<div class="row act"><span class="faces">'+facesHTML(ev)+'</span>'+inButton(ev,done,'data-in')+'</div>')+'</div></article>';
   }).join('');
+  var ar=$('#evArch'); ar.hidden=!past.length; $('#evArchN').textContent='('+past.length+')';
+  $('#evArchList').innerHTML=past.map(function(ev){
+    return '<article class="ev past" id="ev-'+ev.id+'"><div class="date" aria-hidden="true"><small>'+ev.day+'</small><b>'+ev.d+'</b><small>'+ev.mon+'</small></div>'+
+      '<div style="min-width:0"><h3><button type="button" data-open="'+ev.id+'">'+esc(ev.title)+'</button></h3>'+
+      '<div class="meta">'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.where)+'</div>'+recapHTML(ev)+'</div></article>';
+  }).join('');
 }
 renderEvents();
 $('#evAll').addEventListener('click',function(){ evShowAll=!evShowAll; renderEvents(); });
+$('#evArchList').addEventListener('click',function(e){ var o=e.target.closest('[data-open]'); if(o) openEvent(o.getAttribute('data-open')); });
+$('#evArch').addEventListener('toggle',function(){ if(this.open) track('been and done opened'); });
 $('#events').addEventListener('click',function(e){
   var o=e.target.closest('[data-open]'), i=e.target.closest('[data-in]');
   if(o) openEvent(o.getAttribute('data-open'));
