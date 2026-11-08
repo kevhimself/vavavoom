@@ -534,8 +534,8 @@ var EVENTS = [
     ],
     bring:'Yourself, and a friend if you like.',
     going:[{n:'Tim',img:'people/tim.jpg?v=1029c'},{n:'Kev',img:'people/kev.jpg?v=1029c'}] },
-  { id:'walk', feel:'connect', lead:true, badge:'Our first walk', title:'A better walk', day:'Sat', d:'21', mon:'Nov', start:'2026-11-21T10:30', end:'2026-11-21T12:45',
-    time:'10:30am to 12:45pm', length:'About 2¼ hours', where:'Puttenham Common, top car park', host:'Tim and Kev', thread:'move',
+  { id:'walk', feel:'connect', lead:true, badge:'Our first walk', title:'A better walk', day:'Sat', d:'21', mon:'Nov', start:'2026-11-21T10:30', end:'2026-11-21T13:00',
+    time:'10:30am', length:'2 to 2½ hours', where:'Puttenham Common, top car park', host:'Tim and Kev', thread:'move',
     about:[
       'Better walks are facilitated walks: we bring some intention to them. Each one explores a topic or theme, and we talk about how we relate to it, what it means for us, and whether there\'s something we want to do about it.',
       'How it goes: we start with a check-in, so you\'ve met people before we set off. Along the way there are invitations for conversations, and we\'ll invite you to switch walking partners so the talk flows round the group. We close with a circle: where do we all stand, and is there an action we want to take?',
@@ -800,7 +800,7 @@ function renderEvents(){
       '<div class="date" aria-hidden="true"><small>'+ev.day+'</small><b>'+ev.d+'</b><small>'+ev.mon+'</small></div>'+
       '<div style="min-width:0">'+(badgeFor(ev)?'<span class="badge">'+esc(badgeFor(ev))+'</span>':'')+
       '<h3><button type="button" data-open="'+ev.id+'">'+esc(ev.title)+'</button></h3>'+
-      '<div class="meta">'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.time)+' · '+esc(ev.where)+' · with '+esc(ev.host)+'</div>'+feelHTML(ev)+
+      '<div class="meta">'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.time)+(ev.length?' · '+esc(ev.length):'')+' · '+esc(ev.where)+' · with '+esc(ev.host)+'</div>'+feelHTML(ev)+
       (gone?recapHTML(ev):'<div class="row act"><span class="faces">'+facesHTML(ev)+'</span>'+inButton(ev,done,'data-in')+'</div>')+'</div></article>';
   }).join('');
   var ar=$('#evArch'); ar.hidden=!past.length; $('#evArchN').textContent='('+past.length+')';
@@ -945,8 +945,12 @@ var STK={"grow": "<path d=\"M8 54 Q32 46 56 54 L56 60 L8 60 Z\" fill=\"#9a6a45\"
 function stkHTML(t){ var th=THREADS.filter(function(x){return x.id===t})[0]; return STK[t]?'<svg class="stk" viewBox="0 0 64 64" aria-hidden="true">'+STK[t]+'</svg>'+(th?'<span class="sr"> ('+esc(th.t)+')</span>':''):''; }
 function tagsHTML(n){ return '<div class="tags">'+(n.shaping?'<span class="tag shaping">Still being shaped</span>':'')+(n.themes||nbThemes(n)).map(function(t){ var th=THREADS.filter(function(x){return x.id===t})[0]; return th?'<span class="tag th-'+t+'">'+esc(th.t)+'</span>':''; }).join('')+'</div>'; }
 function metaLine(it){ var bits=[]; if(it.when) bits.push(esc(it.when)); if(it.who) bits.push('with '+esc(it.who)); if(it.where) bits.push(esc(it.where)); return nearTag(it)+bits.join(' · '); }
+/* Policy (Kev 8 Nov, from Bastian): the front page stays affordable. Anything over FRONT_MAX per person lives elsewhere
+   (a story, or a page of local services), still reachable by its own link. */
+var FRONT_MAX=20;
+function frontOk(n){ var p=parseFloat(String(n.price||'').replace(/[^0-9.]/g,'')); return !p || p<=FRONT_MAX; }
 function renderNeighbours(){
-  var all=learnItems();
+  var all=learnItems().filter(frontOk);
   var mineFirst=all.filter(function(n){return isNear(n) || typeof picked!=='function' || n.themes.some(picked)});
   var rest=all.filter(function(n){return mineFirst.indexOf(n)===-1});
   var list=nbShowAll?mineFirst.concat(rest):mineFirst.slice(0,4);
