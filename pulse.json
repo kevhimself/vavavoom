@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-07T08:47",
+ "updated": "2026-11-08T08:48",
  "since": "2026-10-28",
  "counts": {
   "visitors": 15,
-  "visits": 105,
-  "im_in": 5,
+  "visits": 110,
+  "im_in": 6,
   "signups": 4,
   "signups_in": 1,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 46,
+  "story_visits": 49,
   "helpers": 10,
   "returning": 2,
-  "visits_known": 93
+  "visits_known": 98
  },
  "threads": [
   {
@@ -122,8 +122,8 @@
      "id": "walk",
      "kind": "event",
      "title": "A better walk",
-     "n": 9,
-     "im_in": 2
+     "n": 10,
+     "im_in": 3
     },
     {
      "id": "ridge",
@@ -245,7 +245,7 @@
   {
    "id": "walk",
    "title": "A better walk",
-   "n": 9
+   "n": 10
   },
   {
    "id": "briefing",
@@ -258,7 +258,7 @@
    "name": "Merry Fox 11",
    "adj": "Merry",
    "animal": "Fox",
-   "visits": 4,
+   "visits": 5,
    "back": true,
    "threads": [
     "move"
@@ -299,9 +299,9 @@
    "visits": 1,
    "back": false,
    "threads": [
+    "homes",
     "talk",
-    "grow",
-    "homes"
+    "nature"
    ]
   },
   {
@@ -329,9 +329,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "grow",
     "make",
-    "homes"
+    "homes",
+    "grow"
    ]
   },
   {
