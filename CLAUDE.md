@@ -22,6 +22,8 @@ https://app.notion.com/p/40893f7bf11a8182bc6dcf1ef52242ea
 - No emails, phone numbers or addresses in public files. Only the PostHog key and catcher URL are public.
 - "I'm in" counts first; details are always optional. Every form says who sees details and links privacy.html.
 - Paid things: price on the card, ticket/booking link before "I'm in".
+- Inclusive front page (Kev 8 Nov 2026, from Bastian's feedback): nothing over £20 a person on the front page.
+  Pricier things (services, courses) live on their own page or in a story, still linkable. Making money is fine: say where it goes.
 - Don't make things up: prices, dates and quotes need a source. No crisis or activist framing.
 - Past events fade at once, come down a week later.
 
