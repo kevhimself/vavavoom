@@ -117,6 +117,8 @@ section.sec{padding-block:22px 4px}
 .heard h4{margin:0 0 4px}
 .heard p{margin:0 0 6px;font-size:15px}
 .heard a{font-weight:700;display:inline-block;padding:8px 0;min-height:44px;text-underline-offset:4px}
+.seeds{margin:0 0 12px;padding-left:20px;display:grid;gap:8px}
+.seeds li{line-height:1.45}
 .quotes{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 .quotes li{font-family:var(--hand);font-size:24px;line-height:1.1;color:var(--rose-dk)}
 .quotes li span{display:block;font-family:inherit;font-size:20px;color:var(--ink)}
@@ -154,7 +156,6 @@ footer a{color:var(--ink)}
 </head>
 <body>
 <div style="position:sticky;top:0;z-index:99;background:#f2c75a;color:#1c1a2b;font:700 14px/1.3 system-ui,sans-serif;padding:8px 16px;text-align:center">Preview for the team. Not live yet. <a href="https://app.notion.com/p/40a93f7bf11a815f80f9e6414763abe3" style="color:inherit">Comments to Kev</a></div>
-
 <header class="top wrap">
   <div class="bar">
     <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
@@ -217,11 +218,38 @@ footer a{color:var(--ink)}
     <h2 id="h-st">Good news</h2>
     <p class="sub">Short, real, with faces. Every story ends in something you can do.</p>
     <div id="stories">
+      <article class="story pb" id="s-pub">
+        <span class="badge">What happened · The Inn on the Lake · Tue 10 Nov</span>
+        <h3>Five of us, one question, a table full of seeds</h3>
+        <figure class="pic"><img src="img/pub/postits.jpg?v=1110" alt="Green sticky notes laid out on a pub table in a web: home and regen in the middle, with learn, gather, local and fun around them" width="800" height="1000" loading="lazy"><figcaption>Our web of post-its. Everything ended up circling home.</figcaption></figure>
+        <p>We started with one question: <b>what makes Godalming and around feel like home?</b> What's missing, what would we love more of, and what could we actually do about it, together?</p>
+        <p>Five of us pulled up chairs, Tim and Kev plus three neighbours. Between us, a lifetime round here, 17 years, and one. Every post-it we wrote drifted to the middle of the table, to <b>home</b>. Right next to it, <b>regen</b>: what regenerative farming does for soil, and what it might do for us, and for here.</p>
+
+        <h4>The seeds</h4>
+        <ul class="seeds">
+          <li><b>Local, with our own flavour.</b> A market where the farms come to us, and local places joining the dots: Trinkfluss, Record Corner, Gram.</li>
+          <li><b>Learn at the farm.</b> Sausages, cider, grafting, and helping Tim grow. And learn round here: trees, foraging, grounding, nature, and Godalming's own story.</li>
+          <li><b>Live a bit cleaner.</b> Our bodies, our food, our homes and gardens, buying local as we go.</li>
+          <li><b>Gather well.</b> One thing inside and one thing outside, every month. Soulful soup and talk. How we winter: a bit of ritual, wreath making, no shoulds. Car sharing to get there.</li>
+          <li><b>Fun, obviously.</b> A January party. Possibly a ceilidh. Definitely more people.</li>
+        </ul>
+        <p>The thread through all of it: good conversation that leads to real change round here. Nobody decided anything tonight. We were sowing seeds.</p>
+
+        <h4>Do one thing this week</h4>
+        <ul class="dothis">
+          <li><a href="hello.html#walk"><b>Come on the walk, Sat 21 Nov</b><span>Puttenham Common, 2 to 2½ hours</span></a></li>
+          <li><a href="hello.html#joinin"><b>Pick a seed to water</b><span>Tell us which one you'd help grow</span></a></li>
+          <li><a href="hello.html#themes"><b>Tap what pulls you</b><span>So we know what to plant first</span></a></li>
+        </ul>
+
+        <p class="meta">What we learned: a small table works. Five people, a pad of post-its and one good question filled the evening.</p>
+        <div class="acts"><a class="btn" href="hello.html#walk">The walk, Sat 21 Nov</a></div>
+      </article>
       <article class="story pb" id="s-shackleford">
         <span class="badge">What happened · Shackleford · Sat 31 Oct</span>
         <h3>A full hall, a farm walk, and 17 ideas on the wall</h3>
         <figure class="pic"><img src="img/shackleford/hall.jpg?v=1031" alt="A packed village hall, rows of people watching the film on a big screen" width="1000" height="563" loading="lazy"><figcaption>A full hall for the film</figcaption></figure>
-        <p>The People's Emergency Briefing, hosted by Tim and Sue. A film, a lot of feelings, then pairs, sticky notes and a walk down to Norney Farm Bungalow to see solar, rainwater and growing up close.</p>
+        <p>The People's Emergency Briefing, hosted by Tim and Sue. A film, a lot of feelings, then pairs, sticky notes and a walk down to <a href="https://norneyfarmbungalow.netlify.app/" target="_blank" rel="noopener" data-out="open-norney">Norney Farm Bungalow ↗</a> to see solar, rainwater and growing up close.</p>
         <div class="nums" role="list">
           <div role="listitem"><b>69</b><span>people in the hall</span></div>
           <div role="listitem"><b>31</b><span>walked on to the farm</span></div>
@@ -266,6 +294,7 @@ footer a{color:var(--ink)}
           <figure class="pic"><img src="img/shackleford/farm-tim.jpg?v=1031" alt="Tim talking to the group under the bunting" width="700" height="700" loading="lazy"><figcaption>Tim showing people round</figcaption></figure>
           <figure class="pic"><img src="img/shackleford/farm-kevin.jpg?v=1031" alt="Kevin talking with people in the garden" width="700" height="700" loading="lazy"><figcaption>Kevin, deep in it</figcaption></figure>
         </div>
+        <p class="meta">Curious about the farm? Tim runs it as an open project, with a live energy dashboard, a blog and guides: <a href="https://norneyfarmbungalow.netlify.app/" target="_blank" rel="noopener" data-out="open-norney-2">Open Norney ↗</a></p>
         <p class="meta">What happens to the 17 ideas? We'll pick two and put them on the diary. Want to help make one happen? <a href="hello.html#joinin">Tell us</a>.</p>
 
         <h4>Do one thing this week</h4>
