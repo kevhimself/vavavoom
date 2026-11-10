@@ -1,24 +1,24 @@
 {
- "updated": "2026-11-09T08:46",
+ "updated": "2026-11-10T08:45",
  "since": "2026-10-28",
  "counts": {
-  "visitors": 16,
-  "visits": 123,
-  "im_in": 6,
-  "signups": 5,
-  "signups_in": 1,
+  "visitors": 17,
+  "visits": 130,
+  "im_in": 7,
+  "signups": 7,
+  "signups_in": 2,
   "neighbours_gate": 3,
   "posts": 0,
   "story_visits": 52,
   "helpers": 10,
   "returning": 2,
-  "visits_known": 111
+  "visits_known": 118
  },
  "threads": [
   {
    "id": "grow",
    "title": "Growing and food",
-   "n": 11,
+   "n": 12,
    "items": [
     {
      "id": "farm",
@@ -38,7 +38,7 @@
      "id": "cider",
      "kind": "project",
      "title": "Rain, gardens and cider",
-     "n": 0,
+     "n": 1,
      "im_in": 0
     }
    ]
@@ -46,7 +46,7 @@
   {
    "id": "make",
    "title": "Making and mending",
-   "n": 6,
+   "n": 7,
    "items": [
     {
      "id": "make",
@@ -171,8 +171,8 @@
      "id": "pub",
      "kind": "event",
      "title": "Va Va Voom at the pub",
-     "n": 14,
-     "im_in": 1
+     "n": 16,
+     "im_in": 2
     },
     {
      "id": "circle",
@@ -223,7 +223,7 @@
   {
    "id": "grow",
    "title": "Growing and food",
-   "n": 11
+   "n": 12
   },
   {
    "id": "homes",
@@ -240,7 +240,7 @@
   {
    "id": "pub",
    "title": "Va Va Voom at the pub",
-   "n": 14
+   "n": 16
   },
   {
    "id": "walk",
@@ -299,9 +299,9 @@
    "visits": 1,
    "back": false,
    "threads": [
+    "talk",
     "homes",
-    "nature",
-    "talk"
+    "grow"
    ]
   },
   {
@@ -329,9 +329,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "grow",
+    "make",
     "homes",
-    "make"
+    "grow"
    ]
   },
   {
