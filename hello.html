@@ -382,10 +382,10 @@ footer a{color:var(--ink)}
 
   <section class="sec" aria-labelledby="h-on">
     <h2 id="h-on">What's on</h2>
-    <p class="sub">To start: a pub night and a walk. Come to one, bring a friend.</p>
+    <p class="sub">Next up: a walk on Puttenham Common. Come along, bring a friend.</p>
     <div id="events"></div>
     <button class="ghost seeall" type="button" id="evAll" hidden></button>
-    <details class="evarch" id="evArch" hidden><summary>Been and done <span id="evArchN"></span></summary><div id="evArchList"></div></details>
+    <details class="evarch" id="evArch" open hidden><summary>Been and done <span id="evArchN"></span></summary><div id="evArchList"></div></details>
     <div class="near" id="near" hidden>
       <b id="nearTitle">Nothing near you yet.</b>
       <p>Fancy being the first? Tell us what you'd start and we'll bring the know-how (and probably biscuits).</p>
@@ -527,6 +527,7 @@ var EVENTS = [
     going:[] },
   { id:'pub', feel:'connect', badge:'Pub night', title:'Va Va Voom at the pub', day:'Tue', d:'10', mon:'Nov', start:'2026-11-10T19:00', end:'2026-11-10T21:00',
     time:'7pm', length:'A couple of hours', where:'The Inn on the Lake, Godalming', host:'Tim and Kev', thread:'talk',
+    done:true, keep:true, recap:'Five of us, one question and a table full of post-its: what makes round here feel like home?', recapLink:'news.html#s-pub',
     about:[
       'Dark evenings are pub evenings. Come and have a drink, meet some good people from round here, and see what a little more Va Va Voom in your life could look like, and where it might take us.',
       'Eat first, or get food at the bar. We\'ll start at 7. Even if there are five of us, it\'ll be a good night.',
@@ -776,9 +777,11 @@ var evShowAll=false;
 function evDay(ev){ return (ev.until||ev.start||'').slice(0,10); }
 function daysAway(ev){ var d=evDay(ev); if(!d) return 99; var t=new Date(); t.setHours(0,0,0,0); return Math.round((new Date(d+'T00:00:00')-t)/864e5); }
 function thisWeek(ev){ var n=daysAway(ev); return n>=0 && n<=7; }
+/* Kev 11 Nov: make the next thing to join obvious. */
+function isNextUp(ev){ var up=EVENTS.filter(isUpcoming).sort(function(a,b){ return (evDay(a)||'9999')<(evDay(b)||'9999')?-1:1; }); return up.length && up[0].id===ev.id; }
 function badgeFor(ev){
   if(isPast(ev)) return 'This happened ✓';
-  if(!thisWeek(ev)) return ev.badge||'';
+  if(!thisWeek(ev)) return isNextUp(ev) ? 'Next up'+(ev.badge?' · '+ev.badge:'') : (ev.badge||'');
   var n=daysAway(ev), tag=n===0?'Today':n===1?'Tomorrow':'Coming this week';
   return tag+(ev.badge?' · '+ev.badge:'');
 }
