@@ -194,6 +194,7 @@ section.sec{padding-block:20px 4px}
 .ev.past .date::after{content:"✓";position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:var(--moss);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700;border:2px solid var(--paper)}
 .ev.past .feel,.ev.past .tag{opacity:.6}
 .recap{margin:6px 0 0;font-size:15px}
+.evline{margin:6px 0 0;font-size:15px;line-height:1.4}
 .evarch{margin:14px 0 0;border-top:1px solid #ddd5cb;padding-top:6px}
 .evarch summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center;gap:6px;color:var(--muted)}
 .evarch .ev.past{margin-top:6px}
@@ -373,7 +374,7 @@ footer a{color:var(--ink)}
       <button type="button" class="homebtn" id="homeBtn"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span id="homeTxt">Where's home?</span><span class="chg" id="homeChg">Tell us</span></button>
     </div>
     <h1>How might we make tomorrow a little more beautiful?</h1>
-    <p class="strap">Less scrolling, more doing. Get out, meet good people, make stuff happen, have fun.</p>
+    <p class="strap">Find your people round here, and do something that matters.</p>
     <p class="aside">(spoiler: it starts with a walk)</p>
   </div>
 </div>
@@ -385,10 +386,10 @@ footer a{color:var(--ink)}
 
   <section class="sec" aria-labelledby="h-on">
     <h2 id="h-on">What's on</h2>
-    <p class="sub">To start: a pub night and a walk. Come to one, bring a friend.</p>
+    <p class="sub">Next up: a walk on Puttenham Common. Come along, bring a friend.</p>
     <div id="events"></div>
     <button class="ghost seeall" type="button" id="evAll" hidden></button>
-    <details class="evarch" id="evArch" hidden><summary>Been and done <span id="evArchN"></span></summary><div id="evArchList"></div></details>
+    <details class="evarch" id="evArch" open hidden><summary>Been and done <span id="evArchN"></span></summary><div id="evArchList"></div></details>
     <div class="near" id="near" hidden>
       <b id="nearTitle">Nothing near you yet.</b>
       <p>Fancy being the first? Tell us what you'd start and we'll bring the know-how (and probably biscuits).</p>
@@ -530,6 +531,7 @@ var EVENTS = [
     going:[] },
   { id:'pub', feel:'connect', badge:'Pub night', title:'Va Va Voom at the pub', day:'Tue', d:'10', mon:'Nov', start:'2026-11-10T19:00', end:'2026-11-10T21:00',
     time:'7pm', length:'A couple of hours', where:'The Inn on the Lake, Godalming', host:'Tim and Kev', thread:'talk',
+    done:true, keep:true, recap:'Five of us, one question and a table full of post-its: what makes round here feel like home?', recapLink:'news.html#s-pub',
     about:[
       'Dark evenings are pub evenings. Come and have a drink, meet some good people from round here, and see what a little more Va Va Voom in your life could look like, and where it might take us.',
       'Eat first, or get food at the bar. We\'ll start at 7. Even if there are five of us, it\'ll be a good night.',
@@ -538,13 +540,31 @@ var EVENTS = [
     bring:'Yourself, and a friend if you like.',
     going:[{n:'Tim',img:'people/tim.jpg?v=1029c'},{n:'Kev',img:'people/kev.jpg?v=1029c'}] },
   { id:'walk', feel:'connect', lead:true, badge:'Our first walk', title:'A better walk', day:'Sat', d:'21', mon:'Nov', start:'2026-11-21T10:30', end:'2026-11-21T13:00',
-    time:'10:30am', length:'2 to 2½ hours', where:'Puttenham Common, top car park', host:'Tim and Kev', thread:'move',
+    time:'10:30am', length:'2 to 2½ hours', where:'Norney Farm, Shackleford', host:'Tim and Kev', thread:'move',
+    line:'An intentional walk: good company, a question to explore, and time to reflect together at the end.',
+    book:{cap:15, meet:'We start and finish at Norney Farm, Shackleford. We\'ll send exact directions and parking before the day.'},
     about:[
-      'Better walks are facilitated walks: we bring some intention to them. Each one explores a topic or theme, and we talk about how we relate to it, what it means for us, and whether there\'s something we want to do about it.',
-      'How it goes: we start with a check-in, so you\'ve met people before we set off. Along the way there are invitations for conversations, and we\'ll invite you to switch walking partners so the talk flows round the group. We close with a circle: where do we all stand, and is there an action we want to take?',
-      'Coming on your own? Brilliant. Tell us and we\'ll look out for you. Or bring someone you think would love it. Grab a coffee at the café first. All paces welcome.'
+      'An intentional walk: good company, a question to explore, and time to reflect together at the end.',
+      'This walk\'s question: who are we round here, and what do we want this place to feel like?',
+      'How it goes: we meet at the farm and say hello, so you\'ve met people before we set off. Along the way there are invitations to talk, and to swap walking partners. We finish back at the farm, indoors if it\'s wet, to share what\'s stirred.',
+      'Kids and dogs welcome. Just know this is a walk about real conversation, so come ready for that and you\'ll get the most out of it.',
+      'Our tip: we pass a tea and coffee truck on the way. Bring a bit of money for a drink or a cake. The cakes are great.',
+      'Small group, up to 15, so please book your place.'
     ],
-    bring:'Good shoes, a drink, and your curiosity.',
+    bring:'A bottle of water (our one golden rule), shoes you don\'t mind getting muddy, a waterproof and warm layers.',
+    going:[{n:'Tim',img:'people/tim.jpg?v=1029c'},{n:'Kev',img:'people/kev.jpg?v=1029c'}] },
+  { id:'wreath', feel:'play', badge:'Winter making', title:'Wreath making at the farm', day:'Sat', d:'5', mon:'Dec', start:'2026-12-05T11:00', end:'2026-12-05T15:30',
+    time:'11am', length:'Until about dusk', where:'Norney Farm, Shackleford', host:'Tim and Kev', thread:'make',
+    line:'Forage the woods, make a wreath for your door, and mark the turn into winter together.',
+    book:{cap:15, meet:'At Norney Farm, Shackleford. We\'ll send exact directions and parking before the day.'},
+    about:[
+      'Forage the woods, make a wreath for your door, and mark the turn into winter together.',
+      'How it goes: we open in a circle, then walk into the woods to forage natural treasures for our wreaths. Back at the farm: warm drinks, a shared lunch, an afternoon of making and chat by the fire, and we close in a circle.',
+      'If it\'s wet, the making happens indoors, so it\'s on whatever the weather. Kids welcome.',
+      'The question to hold: how do we want to winter, together?',
+      'Cost: to be confirmed, free or a small contribution towards bases and wire. Small group, up to 15, so please book your place.'
+    ],
+    bring:'Something to share for lunch (low-waste if you can), cake if you\'re feeling bakey, a bottle of water, warm clothes, secateurs if you have them, and ribbons or bits and bobs for your wreath.',
     going:[{n:'Tim',img:'people/tim.jpg?v=1029c'},{n:'Kev',img:'people/kev.jpg?v=1029c'}] }
 ];
 var INTEREST = [
@@ -579,9 +599,8 @@ var NEIGHBOURS = [
   { id:'cider', feel:'inspired', theme:'grow', title:'Rain, gardens and cider', who:'Tim', where:'Norney', img:'people/tim.jpg?v=1029c',
     line:'Catch the rain, grow a regenerative veg patch, turn the apple glut into cider.',
     about:'Catch your rainwater, grow a regenerative veg patch, and turn the apple glut into cider. Tim is writing up how he does all three.' },
-  { id:'unmuddle', feel:'connect', theme:'talk', title:'Power Hour: Un-Muddle Me', who:'Ilona', where:'Godalming', img:'people/ilona.jpg?v=1029', book:'https://tidycal.com/ilonamckieva/power-hour-un-muddle-me', bookText:'Book a time', paid:true, price:'£130',
-    /* Kev 7 Nov: a big price tag on the card felt funky. Price stays in the details and on her booking page. */
-    line:'An hour with a local VA to un-muddle the to-do list.',
+  { id:'unmuddle', feel:'connect', theme:'talk', title:'Power Hour: Un-Muddle Me', who:'Ilona', where:'Godalming', img:'people/ilona.jpg?v=1029', book:'https://tidycal.com/ilonamckieva/power-hour-un-muddle-me', bookText:'Book · £130', paid:true, price:'£130',
+    line:'An hour with a local VA to un-muddle the to-do list. £130.',
     about:'Ilona spent ten years as a PA, then went her own way and is now the right hand for small businesses round here. Book a Power Hour with her to un-muddle things. It\'s £130 for the Power Hour, and you pick a time on her booking page.' },
   { id:'change', feel:'connect', theme:'talk', title:'Navigate change', who:'Ruth', where:'Coaching', img:'people/ruth.jpg?v=1029c', link:'https://kevhimself.github.io/RuthBlanco/', linkText:'See Ruth\'s website',
     line:'Coaching for when life is shifting under your feet.',
@@ -780,9 +799,11 @@ var evShowAll=false;
 function evDay(ev){ return (ev.until||ev.start||'').slice(0,10); }
 function daysAway(ev){ var d=evDay(ev); if(!d) return 99; var t=new Date(); t.setHours(0,0,0,0); return Math.round((new Date(d+'T00:00:00')-t)/864e5); }
 function thisWeek(ev){ var n=daysAway(ev); return n>=0 && n<=7; }
+/* Kev 11 Nov: make the next thing to join obvious. */
+function isNextUp(ev){ var up=EVENTS.filter(isUpcoming).sort(function(a,b){ return (evDay(a)||'9999')<(evDay(b)||'9999')?-1:1; }); return up.length && up[0].id===ev.id; }
 function badgeFor(ev){
   if(isPast(ev)) return 'This happened ✓';
-  if(!thisWeek(ev)) return ev.badge||'';
+  if(!thisWeek(ev)) return isNextUp(ev) ? 'Next up'+(ev.badge?' · '+ev.badge:'') : (ev.badge||'');
   var n=daysAway(ev), tag=n===0?'Today':n===1?'Tomorrow':'Coming this week';
   return tag+(ev.badge?' · '+ev.badge:'');
 }
@@ -804,7 +825,7 @@ function renderEvents(){
       '<div class="date" aria-hidden="true"><small>'+ev.day+'</small><b>'+ev.d+'</b><small>'+ev.mon+'</small></div>'+
       '<div style="min-width:0">'+(badgeFor(ev)?'<span class="badge">'+esc(badgeFor(ev))+'</span>':'')+
       '<h3><button type="button" data-open="'+ev.id+'">'+esc(ev.title)+'</button></h3>'+
-      '<div class="meta">'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.time)+(ev.length?' · '+esc(ev.length):'')+' · '+esc(ev.where)+' · with '+esc(ev.host)+'</div>'+feelHTML(ev)+
+      '<div class="meta">'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.time)+(ev.length?' · '+esc(ev.length):'')+' · '+esc(ev.where)+' · with '+esc(ev.host)+'</div>'+(ev.line&&!gone?'<p class="evline">'+esc(ev.line)+'</p>':'')+feelHTML(ev)+
       (gone?recapHTML(ev):'<div class="row act"><span class="faces">'+facesHTML(ev)+'</span>'+inButton(ev,done,'data-in')+'</div>')+'</div></article>';
   }).join('');
   var ar=$('#evArch'); ar.hidden=!past.length; $('#evArchN').textContent='('+past.length+')';
@@ -864,19 +885,45 @@ function detailsForm(o){
     (o.dare?'<label class="tick" for="dtHelp"><input id="dtHelp" type="checkbox"><span>I\'d help make it happen. Go on, dare me</span></label>':'')+
     '<input class="trap" id="dtTrap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
     '<p class="err" id="dtErr" role="alert"></p>'+
-    '<div class="row"><button class="skip" type="button" data-close>No thanks</button><button class="btn" type="submit">Keep me posted</button></div>'+
-    '<p class="fine">Optional. Only Kev and the host see your details. <a href="privacy.html">Privacy</a></p></form>';
+    '<div class="row"><button class="skip" type="button" data-close>'+(o.book?'Not now':'No thanks')+'</button><button class="btn" type="submit">'+(o.book?'Book my place':'Keep me posted')+'</button></div>'+
+    '<p class="fine">'+(o.book?'Needed to book, so we can send directions and a reminder.':'Optional.')+' Only Kev and the host see your details. <a href="privacy.html">Privacy</a></p></form>';
 }
 function readDetails(){
   var n=$('#dtName').value.trim(), c=$('#dtContact').value.trim(), err=$('#dtErr');
-  if(!n){ err.textContent='Please add your first name, or tap No thanks.'; $('#dtName').focus(); return null; }
+  if(!n){ err.textContent='Please add your first name.'; $('#dtName').focus(); return null; }
   if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address.'; $('#dtContact').focus(); return null; }
   me={name:n,contact:c,show:$('#dtShow')?$('#dtShow').checked:!!me.show}; store('vvv-me',JSON.stringify(me));
   return {name:n, contact:c, isEmail:c.indexOf('@')>-1, help:!!($('#dtHelp')&&$('#dtHelp').checked), trap:$('#dtTrap').value};
 }
+/* Kev 11 Nov: some events are booked, not just tapped: name and contact needed, small group, a clear "You're booked". */
+function bookIn(id){
+  var ev=evById(id);
+  track('booking opened',{event:id, via:arrivedVia||'page'});
+  openSheet('<span class="badge">Book your place</span><h2 id="sheetTitle">'+esc(ev.title)+'</h2>'+
+    '<p>'+esc(ev.day+' '+ev.d+' '+ev.mon)+' · '+esc(ev.time)+(ev.length?' · '+esc(ev.length):'')+'</p>'+
+    '<p>'+esc(ev.line||'')+' Small group, up to '+ev.book.cap+'.</p>'+
+    detailsForm({showName:true, book:true}));
+  sheet.onclick=function(e){ if(e.target.closest('[data-close]')) closeSheet(); };
+  $('#dtForm').addEventListener('submit',function(e){
+    e.preventDefault(); var d=readDetails(); if(!d) return;
+    var mine=getJSON('vvv-going',{}); mine[id]=Date.now(); store('vvv-going',JSON.stringify(mine));
+    signal('in','event: '+id+' | booked | '+getHome()); track("i'm in",{event:id, booked:true, via:arrivedVia||'page'});
+    send({type:'signup', name:d.name, email:d.isEmail?d.contact:'', phone:d.isEmail?'':d.contact,
+          where:getHome(), fit:'booked', thread:'event: '+id, bring:'Show first name: '+(me.show?'yes':'no'), website:d.trap});
+    renderEvents();
+    openSheet('<span class="badge">You\'re booked ✓</span><h2 id="sheetTitle">See you there, '+esc(d.name)+'.</h2>'+
+      '<p><b>'+esc(ev.title)+'</b>, '+esc(ev.day+' '+ev.d+' '+ev.mon)+', '+esc(ev.time)+(ev.length?' ('+esc(ev.length)+')':'')+'.</p>'+
+      '<p><b>Where:</b> '+esc(ev.book.meet)+'</p>'+
+      '<p><b>Bring:</b> '+esc(ev.bring)+'</p>'+
+      '<p class="fine">We\'ll send a reminder a few days before, with the weather, and another on the morning.</p>'+
+      '<div class="row">'+(ev.start?'<button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button>':'')+'<button class="btn" type="button" data-close>Done</button></div>');
+    sheet.onclick=function(e){ var c=e.target.closest('[data-cal]'); if(c) addCal(c.getAttribute('data-cal'),c); if(e.target.closest('[data-close]')) closeSheet(); };
+  });
+}
 function imIn(id){
   var ev=evById(id), mine=getJSON('vvv-going',{});
   if(mine[id]){ openEvent(id); return; }
+  if(ev.book){ bookIn(id); return; }
   mine[id]=Date.now(); store('vvv-going',JSON.stringify(mine));
   signal('in','event: '+id+' | '+getHome()); track("i'm in",{event:id, via:arrivedVia||'page'});
   renderEvents();
@@ -949,8 +996,12 @@ var STK={"grow": "<path d=\"M8 54 Q32 46 56 54 L56 60 L8 60 Z\" fill=\"#9a6a45\"
 function stkHTML(t){ var th=THREADS.filter(function(x){return x.id===t})[0]; return STK[t]?'<svg class="stk" viewBox="0 0 64 64" aria-hidden="true">'+STK[t]+'</svg>'+(th?'<span class="sr"> ('+esc(th.t)+')</span>':''):''; }
 function tagsHTML(n){ return '<div class="tags">'+(n.shaping?'<span class="tag shaping">Still being shaped</span>':'')+(n.themes||nbThemes(n)).map(function(t){ var th=THREADS.filter(function(x){return x.id===t})[0]; return th?'<span class="tag th-'+t+'">'+esc(th.t)+'</span>':''; }).join('')+'</div>'; }
 function metaLine(it){ var bits=[]; if(it.when) bits.push(esc(it.when)); if(it.who) bits.push('with '+esc(it.who)); if(it.where) bits.push(esc(it.where)); return nearTag(it)+bits.join(' · '); }
+/* Policy (Kev 8 Nov, from Bastian): the front page stays affordable. Anything over FRONT_MAX per person lives elsewhere
+   (a story, or a page of local services), still reachable by its own link. */
+var FRONT_MAX=20;
+function frontOk(n){ var p=parseFloat(String(n.price||'').replace(/[^0-9.]/g,'')); return !p || p<=FRONT_MAX; }
 function renderNeighbours(){
-  var all=learnItems();
+  var all=learnItems().filter(frontOk);
   var mineFirst=all.filter(function(n){return isNear(n) || typeof picked!=='function' || n.themes.some(picked)});
   var rest=all.filter(function(n){return mineFirst.indexOf(n)===-1});
   var list=nbShowAll?mineFirst.concat(rest):mineFirst.slice(0,4);
