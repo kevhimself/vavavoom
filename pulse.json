@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-10T08:45",
+ "updated": "2026-11-11T08:48",
  "since": "2026-10-28",
  "counts": {
-  "visitors": 17,
-  "visits": 130,
-  "im_in": 7,
-  "signups": 7,
+  "visitors": 18,
+  "visits": 146,
+  "im_in": 8,
+  "signups": 8,
   "signups_in": 2,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 52,
-  "helpers": 10,
+  "story_visits": 60,
+  "helpers": 11,
   "returning": 2,
-  "visits_known": 118
+  "visits_known": 134
  },
  "threads": [
   {
@@ -122,8 +122,8 @@
      "id": "walk",
      "kind": "event",
      "title": "A better walk",
-     "n": 10,
-     "im_in": 3
+     "n": 11,
+     "im_in": 4
     },
     {
      "id": "ridge",
@@ -143,7 +143,7 @@
      "id": "sauna",
      "kind": "idea",
      "title": "Waggon sauna sing-along",
-     "n": 5,
+     "n": 6,
      "im_in": 0
     },
     {
@@ -245,12 +245,12 @@
   {
    "id": "walk",
    "title": "A better walk",
-   "n": 10
+   "n": 11
   },
   {
    "id": "sauna",
    "title": "Waggon sauna sing-along",
-   "n": 5
+   "n": 6
   }
  ],
  "crew": [
@@ -300,7 +300,7 @@
    "back": false,
    "threads": [
     "talk",
-    "homes",
+    "nature",
     "grow"
    ]
   },
@@ -313,6 +313,14 @@
    "threads": [
     "move"
    ]
+  },
+  {
+   "name": "Nimble Robin 35",
+   "adj": "Nimble",
+   "animal": "Robin",
+   "visits": 1,
+   "back": false,
+   "threads": []
   },
   {
    "name": "Plucky Newt 57",
@@ -329,9 +337,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "make",
+    "grow",
     "homes",
-    "grow"
+    "make"
    ]
   },
   {
