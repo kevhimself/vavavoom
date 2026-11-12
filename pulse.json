@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-11T08:48",
+ "updated": "2026-11-12T08:46",
  "since": "2026-10-28",
  "counts": {
   "visitors": 18,
-  "visits": 146,
+  "visits": 161,
   "im_in": 8,
   "signups": 8,
   "signups_in": 2,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 60,
-  "helpers": 11,
+  "story_visits": 70,
+  "helpers": 12,
   "returning": 2,
-  "visits_known": 134
+  "visits_known": 149
  },
  "threads": [
   {
@@ -116,7 +116,7 @@
   {
    "id": "move",
    "title": "Moving and play",
-   "n": 7,
+   "n": 8,
    "items": [
     {
      "id": "walk",
@@ -164,7 +164,7 @@
      "id": "briefing",
      "kind": "event",
      "title": "People's Emergency Briefing",
-     "n": 4,
+     "n": 6,
      "im_in": 1
     },
     {
@@ -248,8 +248,8 @@
    "n": 11
   },
   {
-   "id": "sauna",
-   "title": "Waggon sauna sing-along",
+   "id": "briefing",
+   "title": "People's Emergency Briefing",
    "n": 6
   }
  ],
@@ -285,6 +285,16 @@
    ]
   },
   {
+   "name": "Breezy Kingfisher 48",
+   "adj": "Breezy",
+   "animal": "Kingfisher",
+   "visits": 1,
+   "back": false,
+   "threads": [
+    "move"
+   ]
+  },
+  {
    "name": "Curious Hare 29",
    "adj": "Curious",
    "animal": "Hare",
@@ -299,9 +309,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "talk",
+    "grow",
     "nature",
-    "grow"
+    "homes"
    ]
   },
   {
@@ -337,9 +347,9 @@
    "visits": 1,
    "back": false,
    "threads": [
+    "make",
     "grow",
-    "homes",
-    "make"
+    "homes"
    ]
   },
   {
