@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-12T08:46",
+ "updated": "2026-11-13T08:45",
  "since": "2026-10-28",
  "counts": {
   "visitors": 18,
-  "visits": 161,
-  "im_in": 8,
-  "signups": 8,
-  "signups_in": 2,
+  "visits": 166,
+  "im_in": 9,
+  "signups": 9,
+  "signups_in": 3,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 70,
+  "story_visits": 73,
   "helpers": 12,
   "returning": 2,
-  "visits_known": 149
+  "visits_known": 154
  },
  "threads": [
   {
@@ -122,8 +122,8 @@
      "id": "walk",
      "kind": "event",
      "title": "A better walk",
-     "n": 11,
-     "im_in": 4
+     "n": 13,
+     "im_in": 5
     },
     {
      "id": "ridge",
@@ -245,7 +245,7 @@
   {
    "id": "walk",
    "title": "A better walk",
-   "n": 11
+   "n": 13
   },
   {
    "id": "briefing",
@@ -309,9 +309,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "grow",
-    "nature",
-    "homes"
+    "homes",
+    "talk",
+    "grow"
    ]
   },
   {
@@ -347,9 +347,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "make",
+    "homes",
     "grow",
-    "homes"
+    "make"
    ]
   },
   {
