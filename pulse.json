@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-13T08:45",
+ "updated": "2026-11-14T08:45",
  "since": "2026-10-28",
  "counts": {
   "visitors": 18,
-  "visits": 166,
+  "visits": 171,
   "im_in": 9,
   "signups": 9,
   "signups_in": 3,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 73,
+  "story_visits": 74,
   "helpers": 12,
   "returning": 2,
-  "visits_known": 154
+  "visits_known": 159
  },
  "threads": [
   {
@@ -309,8 +309,8 @@
    "visits": 1,
    "back": false,
    "threads": [
+    "nature",
     "homes",
-    "talk",
     "grow"
    ]
   },
@@ -347,8 +347,8 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "homes",
     "grow",
+    "homes",
     "make"
    ]
   },
