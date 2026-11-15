@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14T08:45",
+ "updated": "2026-11-15T08:45",
  "since": "2026-10-28",
  "counts": {
   "visitors": 18,
@@ -309,9 +309,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "nature",
     "homes",
-    "grow"
+    "talk",
+    "nature"
    ]
   },
   {
@@ -347,9 +347,9 @@
    "visits": 1,
    "back": false,
    "threads": [
+    "make",
     "grow",
-    "homes",
-    "make"
+    "homes"
    ]
   },
   {
