@@ -542,7 +542,7 @@ var EVENTS = [
   { id:'walk', feel:'connect', lead:true, badge:'Our first walk', title:'A better walk', day:'Sat', d:'21', mon:'Nov', start:'2026-11-21T10:30', end:'2026-11-21T13:00',
     time:'10:30am', length:'2 to 2½ hours', where:'Norney Farm, Shackleford', host:'Tim and Kev', thread:'move',
     line:'An intentional walk: fresh air, good company and a question to explore. We start with a quick check-in and finish with what we want to take forward.',
-    book:{cap:15, meet:'We start and finish at Norney Farm, Shackleford Road, Godalming GU8 6AE. Head through the gate to Tim\'s bungalow. Plenty of room to park, or lift share.'},
+    book:{cap:15, meet:'We start and finish at Norney Farm, Shackleford Road, Godalming GU8 6AE. Head through the gate to Tim\'s bungalow. Plenty of room to park, or lift share.', map:'https://maps.app.goo.gl/L4V9EKVTucGjTF3q7'},
     about:[
       'An intentional walk. It\'s as much about the walk and being out in nature as it is about the conversation: fresh air, good company and a question to explore.',
       'Where: we start and finish at Norney Farm, Shackleford Road, Godalming GU8 6AE. Head through the gate to Tim\'s bungalow. Plenty of room to park, or lift share. By train: Godalming station.',
@@ -864,7 +864,7 @@ function openEvent(id){
   openSheet('<span class="badge">'+esc(badgeFor(ev)||'What\'s on')+'</span><h2 id="sheetTitle">'+esc(ev.title)+'</h2>'+
     '<ul class="facts"><li><b>When</b> '+esc(ev.day+' '+ev.d+' '+ev.mon+', '+ev.time)+'</li>'+
     (ev.length?'<li><b>How long</b> '+esc(ev.length)+'</li>':'')+
-    '<li><b>Where</b> '+esc(ev.where)+'</li><li><b>With</b> '+esc(ev.host)+'</li><li><b>Bring</b> '+esc(ev.bring)+'</li></ul>'+
+    '<li><b>Where</b> '+esc(ev.where)+(ev.book&&ev.book.map?' · <a href="'+esc(ev.book.map)+'" target="_blank" rel="noopener">Map pin ↗</a>':'')+'</li><li><b>With</b> '+esc(ev.host)+'</li><li><b>Bring</b> '+esc(ev.bring)+'</li></ul>'+
     (gone?recapHTML(ev):'')+ev.about.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')+
     (gone?'':'<div class="row">'+inButton(ev,done,'data-sin')+
     (ev.start?'<button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button>':'')+'</div>')+
@@ -914,7 +914,7 @@ function bookIn(id){
     renderEvents();
     openSheet('<span class="badge">You\'re booked ✓</span><h2 id="sheetTitle">See you there, '+esc(d.name)+'.</h2>'+
       '<p><b>'+esc(ev.title)+'</b>, '+esc(ev.day+' '+ev.d+' '+ev.mon)+', '+esc(ev.time)+(ev.length?' ('+esc(ev.length)+')':'')+'.</p>'+
-      '<p><b>Where:</b> '+esc(ev.book.meet)+'</p>'+
+      '<p><b>Where:</b> '+esc(ev.book.meet)+(ev.book.map?' <a href="'+esc(ev.book.map)+'" target="_blank" rel="noopener">Open the map pin ↗</a>':'')+'</p>'+
       '<p><b>Bring:</b> '+esc(ev.bring)+'</p>'+
       '<p class="fine">We\'ll send a reminder a few days before, with the weather, and another on the morning.</p>'+
       '<div class="row">'+(ev.start?'<button class="ghost" type="button" data-cal="'+id+'">Add to calendar</button>':'')+'<button class="btn" type="button" data-close>Done</button></div>');
