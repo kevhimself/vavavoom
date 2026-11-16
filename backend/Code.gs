@@ -30,6 +30,7 @@ function doPost(e) {
         clean(d.voom), clean(d.five_easy), clean(d.bring), clean(d.experiment),
         clean(d.five_grow), clean(d.cool), clean(d.thread), clean(d.page), '', clean(d.version), clean(d.who || '')
       ]);
+      if (d.fit === 'booked') sendBookingEmail(ss, d, now);
     } else if (d.type === 'board') {
       ss.getSheetByName('Board').appendRow([
         now, clean(d.level), clean(d.thread), clean(d.tag), clean(d.post),
@@ -63,6 +64,46 @@ function doPost(e) {
     lock.releaseLock();
   }
   return ok();
+}
+
+// Kev 16 Nov: when someone books an event with an email address, send a simple "You're booked" email.
+// The words live in the private "Booking emails" tab (Event id, Subject, Body with {name}, Send? Yes/No),
+// so no address sits in this public file. One email per person per event, at most 40 a day. Logged in Comms.
+const BOOKING_EMAILS_PER_DAY = 40;
+function sendBookingEmail(ss, d, now) {
+  try {
+    const to = String(d.email || '').trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) return;
+    const id = String(d.thread || '').replace(/^event:\s*/, '').trim();
+    const tab = ss.getSheetByName('Booking emails');
+    if (!id || !tab) return;
+    const tpl = tab.getDataRange().getValues().slice(1)
+      .filter(function (r) { return String(r[0]).trim() === id && /^yes$/i.test(String(r[3]).trim()); })[0];
+    if (!tpl) return;
+    const comms = ss.getSheetByName('Comms');
+    const already = comms.getDataRange().getValues().some(function (r) {
+      return String(r[2]).trim().toLowerCase() === to.toLowerCase() && String(r[4]) === 'booked: ' + id;
+    });
+    if (already) return;
+    const cache = CacheService.getScriptCache(), dayKey = 'mail' + Utilities.formatDate(now, 'Europe/London', 'yyyyMMdd');
+    const n = Number(cache.get(dayKey) || 0) + 1;
+    cache.put(dayKey, String(n), 21600);
+    if (n > BOOKING_EMAILS_PER_DAY) return;
+    const name = clean(d.name).replace(/^'/, '').split(/\s+/)[0] || 'there';
+    const subject = String(tpl[1]);
+    MailApp.sendEmail({ to: to, subject: subject, body: String(tpl[2]).replace(/\{name\}/g, name), name: 'Va Va Voom' });
+    comms.appendRow([now, name, to, 'Booking confirmation', 'booked: ' + id, 'Va Va Voom (automatic)', 'Email', subject, 'Sent', 'Website', 'Sent automatically when they booked']);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+// Run this once from the editor (select it, then Run) to send the email to anyone who booked before it was switched on.
+function sendMissedBookingEmails() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  ss.getSheetByName('Sign-ups').getDataRange().getValues().slice(1).forEach(function (r) {
+    if (String(r[5]) === 'booked') sendBookingEmail(ss, { name: r[1], email: r[3], thread: r[12] }, new Date());
+  });
 }
 
 // The first line of defence. The Watcher does the thoughtful checking later.
