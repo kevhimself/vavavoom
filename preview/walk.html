@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<base href="../">
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A better walk · Va Va Voom</title>
+<meta name="description" content="An intentional walk from Norney Farm, Shackleford. Sat 21 Nov, 10:30am. Free, up to 15, book your place.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="A better walk · Va Va Voom">
+<meta property="og:description" content="Fresh air, good company and a question to explore. Sat 21 Nov from Norney Farm. Free, book your place.">
+<meta property="og:image" content="https://kevhimself.github.io/vavavoom/logos/vvv-share.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&display=swap">
+<style>
+/* Kev 16 Nov: a formal event gets its own page: the details in categories, and a free ticket (name and contact needed).
+   The front-page card stays short: where, how long, a line about it, and a link here. */
+:root{
+  --paper:#fbf7f2; --ink:#1c1a2b; --rose:#e8337f; --rose-dk:#c41f66; --sun:#f2c75a; --sun-soft:#fbeec8;
+  --moss:#2f6b4f; --mist:#ece5dc; --muted:#4c4858;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-underline-offset:3px}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+header.top{padding-block:14px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.wordmark{font-family:var(--display);font-weight:900;font-size:clamp(24px,7vw,30px);white-space:nowrap;text-transform:uppercase;line-height:1;text-decoration:none;word-spacing:-.12em}
+.wordmark span{color:var(--rose);margin-left:.1em}
+.back{font-weight:700;font-size:15px;min-height:44px;display:inline-flex;align-items:center;text-decoration-color:var(--rose)}
+
+.hero{background:var(--rose);color:var(--paper)}
+.hero .wrap{padding-block:20px 24px}
+.badge{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.hero .badge{color:var(--paper);background:var(--ink);border-radius:999px;padding:4px 10px;display:inline-block}
+.hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(46px,13vw,64px);line-height:.92;margin:10px 0 8px}
+.hero .lede{font-weight:700;margin:0 0 14px;max-width:32ch}
+.keyfacts{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:4px;font-size:16px}
+.keyfacts b{display:inline-block;min-width:5.2em}
+.hero .row{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px 16px}
+.hero .ghostlink{font-weight:700;font-size:15px;color:var(--paper);text-decoration-color:var(--sun);min-height:44px;display:inline-flex;align-items:center}
+.btn{font-weight:700;font-size:16px;background:var(--rose);color:var(--paper);border:0;border-radius:999px;padding:10px 22px;min-height:44px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.btn:hover{background:var(--rose-dk)}
+.hero .btn{background:var(--paper);color:var(--rose-dk);box-shadow:0 2px 0 var(--ink)}
+.hero .btn:hover{background:var(--sun-soft)}
+.btn.done{background:var(--paper);color:var(--rose-dk);box-shadow:inset 0 0 0 2px var(--rose)}
+
+nav.jump{border-bottom:2px solid var(--ink);background:var(--paper);position:sticky;top:0;z-index:10}
+nav.jump ul{list-style:none;margin:0 auto;padding:8px 16px;display:flex;gap:6px;overflow-x:auto;max-width:560px;scrollbar-width:none}
+nav.jump a{display:inline-flex;align-items:center;min-height:40px;padding:0 12px;border:2px solid var(--ink);border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
+nav.jump a:hover{background:var(--sun-soft)}
+.preview-on nav.jump{top:37px}
+
+section.cat{padding-block:22px 6px;border-bottom:2px solid var(--mist);scroll-margin-top:70px}
+section.cat:last-of-type{border-bottom:0}
+h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:30px;line-height:1;margin:0 0 12px}
+h2 .k{font-family:var(--hand);font-weight:600;text-transform:none;color:var(--rose-dk);font-size:24px;display:block;margin-bottom:2px}
+section.cat p{margin:0 0 12px}
+dl.facts{margin:0 0 14px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px}
+dl.facts dt{font-weight:700}
+dl.facts dd{margin:0}
+.steps{margin:0 0 14px;padding:0;list-style:none;display:grid;gap:10px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start}
+.steps li::before{counter-increment:s;content:counter(s);width:34px;height:34px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font-weight:700;font-size:15px}
+.steps b{display:block}
+ul.bring{margin:0 0 14px;padding-left:20px}
+ul.bring li{margin-bottom:4px}
+.golden{background:var(--sun-soft);border-radius:12px;padding:10px 14px;margin:0 0 14px}
+.maplinks{display:flex;flex-wrap:wrap;gap:4px 18px;margin:0 0 14px}
+.maplinks a{font-weight:700;min-height:44px;display:inline-flex;align-items:center;text-decoration-color:var(--rose)}
+.todo{background:var(--sun);border-radius:6px;padding:1px 6px;font-size:14px;font-weight:700}
+
+details.faq{border:2px solid var(--ink);border-radius:12px;margin:0 0 8px;background:#fff}
+details.faq summary{cursor:pointer;list-style:none;padding:12px 44px 12px 14px;font-weight:700;min-height:44px;position:relative}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";position:absolute;right:14px;top:8px;font-size:24px;line-height:1.2;color:var(--rose-dk)}
+details.faq[open] summary::after{content:"–"}
+details.faq p{margin:0;padding:0 14px 12px}
+
+.hosts{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 14px}
+.host{display:flex;align-items:center;gap:10px}
+.host img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid #fff;background:var(--mist)}
+
+#book{background:var(--sun-soft);border-radius:18px;padding:18px 16px 14px;margin:18px 0 26px;border-bottom:0}
+form.f{display:grid;gap:12px}
+form.f label{display:grid;gap:4px;font-size:15px;font-weight:700}
+form.f input[type=text]{width:100%;border:2px solid var(--ink);border-radius:8px;padding:10px;font-size:16px;background:#fff;color:var(--ink)}
+form.f input[aria-invalid="true"]{border-color:var(--rose-dk);box-shadow:0 0 0 3px rgba(232,51,127,.2)}
+.tick{display:flex !important;gap:10px;align-items:flex-start;font-weight:400 !important}
+.tick input{width:22px;height:22px;margin-top:2px;flex:none;accent-color:var(--moss)}
+.trap{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.err{color:var(--rose-dk);font-weight:700;font-size:14px;margin:0}
+.err:empty{display:none}
+.f .row{display:flex;justify-content:flex-end}
+.fine{font-size:14px;color:var(--muted);margin:4px 0 0}
+.ghost{font-weight:700;font-size:15px;background:transparent;border:2px solid var(--ink);border-radius:999px;padding:8px 16px;min-height:44px;cursor:pointer}
+.calopts{display:grid;gap:2px;margin-top:8px}
+.calopts a{font-weight:700;min-height:44px;display:inline-flex;align-items:center;text-decoration-color:var(--rose)}
+.booked h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:28px;line-height:1;margin:4px 0 10px}
+.booked p{margin:0 0 10px}
+
+footer{padding-block:20px 40px;font-size:14px;color:var(--muted);display:grid;gap:6px;border-top:2px solid var(--ink)}
+</style>
+</head>
+<body class="preview-on">
+<div style="position:sticky;top:0;z-index:99;background:#f2c75a;color:#1c1a2b;font:700 14px/1.3 system-ui,sans-serif;padding:8px 16px;text-align:center">Preview for the team. Not live yet. <a href="https://app.notion.com/p/40a93f7bf11a8118813edce24da06b41" style="color:inherit">Comments to Kev</a></div>
+
+<header class="top wrap">
+  <a class="wordmark" href="hello.html">Va Va <span>Voom</span></a>
+  <a class="back" href="preview/hello.html#events">← What's on</a>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <span class="badge">Our first walk · Free</span>
+    <h1>A better walk</h1>
+    <p class="lede">An intentional walk: fresh air, good company and a question to explore.</p>
+    <ul class="keyfacts">
+      <li><b>When</b> Sat 21 Nov, 10:30am</li>
+      <li><b>How long</b> 2 to 2½ hours</li>
+      <li><b>Where</b> Norney Farm, Shackleford</li>
+      <li><b>With</b> Tim and Kev</li>
+      <li><b>Places</b> Up to 15, free</li>
+    </ul>
+    <div class="row">
+      <a class="ghostlink" href="#faq">Questions?</a>
+      <a class="btn" href="#book" id="heroBook">Get your free ticket</a>
+    </div>
+  </div>
+</div>
+
+<nav class="jump" aria-label="On this page">
+  <ul>
+    <li><a href="#what">What it is</a></li>
+    <li><a href="#where">Getting there</a></li>
+    <li><a href="#how">How it goes</a></li>
+    <li><a href="#bring">What to bring</a></li>
+    <li><a href="#faq">Questions</a></li>
+    <li><a href="#book">Book</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+<section class="cat" id="what">
+  <h2><span class="k">What it is</span>A walk with a bit of intention</h2>
+  <p>It's as much about the walk and being out in nature as it is about the conversation. We walk, we notice, and we talk about something that matters round here.</p>
+  <p><b>This walk's question:</b> who are we round here, and what do we want this place to feel like?</p>
+  <dl class="facts">
+    <dt>When</dt><dd>Saturday 21 November, 10:30am</dd>
+    <dt>How long</dt><dd>2 to 2½ hours, back by about 1pm</dd>
+    <dt>Cost</dt><dd>Free. Bring a bit of money if you fancy a drink or cake on the way.</dd>
+    <dt>Group</dt><dd>Small, up to 15</dd>
+  </dl>
+</section>
+
+<section class="cat" id="where">
+  <h2><span class="k">Where and getting there</span>Norney Farm, Shackleford</h2>
+  <dl class="facts">
+    <dt>Address</dt><dd>Norney Farm, Shackleford Road, Godalming GU8 6AE</dd>
+    <dt>Then</dt><dd>Head through the gate to Tim's bungalow. That's where we meet, start and finish.</dd>
+    <dt>Parking</dt><dd>Plenty of room to park at the farm. Or lift share: say so when you book.</dd>
+    <dt>By train</dt><dd>The nearest station is Godalming. Mention it when you book and we'll try to match you with a lift.</dd>
+    <dt>what3words</dt><dd><span class="todo">Kev to add</span></dd>
+  </dl>
+  <div class="maplinks">
+    <a href="https://maps.app.goo.gl/L4V9EKVTucGjTF3q7" target="_blank" rel="noopener" data-track="map pin">Open the map pin ↗</a>
+  </div>
+</section>
+
+<section class="cat" id="how">
+  <h2><span class="k">How it goes</span>Check in, walk, take something forward</h2>
+  <ol class="steps">
+    <li><span><b>Tea, coffee and a check-in</b>We start at the farm with a warm drink and a quick check-in, so you've met people before we set off.</span></li>
+    <li><span><b>The walk</b>Out into the countryside at a gentle pace. Along the way there are invitations to talk, and to swap walking partners. Quiet is fine too.</span></li>
+    <li><span><b>A stop for cake</b>We pass a tea and coffee truck on the way. The cakes are great.</span></li>
+    <li><span><b>Closing</b>Back at the farm (indoors if it's wet) we close our time together and share what we want to take forward.</span></li>
+  </ol>
+</section>
+
+<section class="cat" id="bring">
+  <h2><span class="k">What to bring</span>Dress for a muddy field</h2>
+  <p class="golden"><b>Our one golden rule:</b> bring a bottle of water.</p>
+  <ul class="bring">
+    <li>Shoes or boots you don't mind getting muddy</li>
+    <li>A waterproof and warm layers</li>
+    <li>A bit of money for a drink or a cake at the truck</li>
+    <li>Your curiosity</li>
+  </ul>
+</section>
+
+<section class="cat" id="faq">
+  <h2><span class="k">Questions</span>Good to know</h2>
+  <details class="faq"><summary>Can I bring my dog?</summary><p>Yes, dogs are welcome.</p></details>
+  <details class="faq"><summary>Can I bring my kids?</summary><p>Yes, kids are welcome. Just know it's an intentional walk: come ready to walk, notice and talk, and you'll all get the most out of it.</p></details>
+  <details class="faq"><summary>I'm coming on my own. Is that OK?</summary><p>Very much so. The check-in at the start means you've met everyone before we set off.</p></details>
+  <details class="faq"><summary>What if it rains?</summary><p>Come dressed for it. If it's wet, we close indoors at the farm. If plans change, everyone booked gets a message that morning.</p></details>
+  <details class="faq"><summary>How far and how hard is it?</summary><p>A gentle pace over 2 to 2½ hours, with stops. Expect mud. If you have any access needs, tell us when you book and we'll talk it through.</p></details>
+  <details class="faq"><summary>Does it cost anything?</summary><p>No, it's free. The only spend is a drink or cake at the truck, if you want one.</p></details>
+  <details class="faq"><summary>Why do I need to book?</summary><p>It's a small group, up to 15, and booking means we can send you directions and a reminder, and let you know if anything changes.</p></details>
+  <details class="faq"><summary>Can't make it after booking?</summary><p>No problem. Reply to your reminder and let us know, so someone else can have your place.</p></details>
+</section>
+
+<section class="cat" id="hosts">
+  <h2><span class="k">Who's hosting</span>Tim and Kev</h2>
+  <div class="hosts">
+    <span class="host"><img src="people/tim.jpg?v=1029c" alt="" width="56" height="56"><b>Tim</b></span>
+    <span class="host"><img src="people/kev.jpg?v=1029c" alt="" width="56" height="56"><b>Kev</b></span>
+  </div>
+  <p>Tim's farm is our starting point. <a href="preview/hello.html">More about Va Va Voom</a></p>
+</section>
+
+<section class="cat" id="book" aria-labelledby="bookH">
+  <div id="bookForm">
+    <h2 id="bookH"><span class="k">Book your place</span>Get your free ticket</h2>
+    <p>Sat 21 Nov · 10:30am · 2 to 2½ hours · Norney Farm. Up to 15 places.</p>
+    <form class="f" id="dtForm" novalidate>
+      <label for="dtName">Your first name<input id="dtName" type="text" autocomplete="given-name" maxlength="60"></label>
+      <label for="dtContact">Mobile or email<input id="dtContact" type="text" autocomplete="email" maxlength="120"></label>
+      <label class="tick" for="dtLift"><input id="dtLift" type="checkbox"><span>I'd like a lift, or can offer one</span></label>
+      <label class="tick" for="dtShow"><input id="dtShow" type="checkbox"><span>Show my first name to others going</span></label>
+      <input class="trap" id="dtTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="err" id="dtErr" role="alert"></p>
+      <div class="row"><button class="btn" type="submit">Book my free place</button></div>
+      <p class="fine">Needed to book, so we can send directions and a reminder. Only Kev and the hosts see your details. <a href="privacy.html">Privacy</a></p>
+    </form>
+  </div>
+  <div class="booked" id="booked" hidden aria-live="polite">
+    <span class="badge" style="color:var(--rose-dk)">You're booked ✓</span>
+    <h3 id="bookedH">See you there.</h3>
+    <p><b>A better walk</b>, Sat 21 Nov, 10:30am (2 to 2½ hours).</p>
+    <p><b>Where:</b> Norney Farm, Shackleford Road, Godalming GU8 6AE. Through the gate to Tim's bungalow. <a href="https://maps.app.goo.gl/L4V9EKVTucGjTF3q7" target="_blank" rel="noopener">Map pin ↗</a></p>
+    <p><b>Bring:</b> a bottle of water, muddy shoes, a waterproof and warm layers.</p>
+    <p class="fine">We'll send a reminder a few days before, with the weather, and another on the morning.</p>
+    <p><button class="ghost" type="button" id="calBtn" aria-expanded="false">Add to calendar</button></p>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer class="wrap">
+  <div>Your details stay with us. Promise. <a href="privacy.html">Privacy and our data promise</a></div>
+  <div><span data-release></span> · <a href="news.html">Stories from round here</a></div>
+</footer>
+
+<script src="release.js"></script>
+<script>
+var EV = { id:'walk', title:'A better walk', start:'2026-11-21T10:30', end:'2026-11-21T13:00', host:'Tim and Kev',
+  where:'Norney Farm, Shackleford Road, Godalming GU8 6AE' };
+var RELEASE = window.VVV_RELEASE||'', BUILD = window.VVV_BUILD||'';
+var CATCHER = 'https://script.google.com/macros/s/AKfycbyRAgr3130xITAA6iyjVouv8fAEkjJDU-hABex8n5-UtUJEpENeIrRMFek_PGe7re7o/exec';
+function $(s){return document.querySelector(s)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
+function getJSON(k,d){try{return JSON.parse(store(k))||d}catch(e){return d}}
+(function(){ var q=location.search; if(/[?&]team(=|&|$)/.test(q)) store('vvv-team','1'); })();
+function isTeam(){ return store('vvv-team')==='1'; }
+function send(data){
+  data.page=location.pathname; data.when=new Date().toISOString(); data.version=RELEASE+(BUILD?' · '+BUILD:'');
+  data.who=isTeam()?'team':'visitor'; if(data.type==='signal' && data.who==='team') data.detail='[team] '+(data.detail||'');
+  try{ fetch(CATCHER,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}).catch(function(){}) }catch(e){}
+}
+function signal(ev,detail){ send({type:'signal',event:ev,detail:detail||''}); }
+document.querySelectorAll('[data-release]').forEach(function(n){ n.textContent='Release: '+RELEASE; });
+
+var me=getJSON('vvv-me',{}), home=store('vvv-home')||'';
+$('#dtName').value=me.name||''; $('#dtContact').value=me.contact||''; $('#dtShow').checked=!!me.show;
+
+function showBooked(name){
+  $('#bookForm').hidden=true; $('#booked').hidden=false;
+  if(name) $('#bookedH').textContent='See you there, '+name+'.';
+  var hb=$('#heroBook'); hb.textContent="You're booked ✓"; hb.classList.add('done');
+}
+if(getJSON('vvv-going',{}).walk && getJSON('vvv-booked',{}).walk) showBooked(me.name);
+signal('walk page opened', (location.hash||'').replace('#','')||'page');
+
+$('#dtForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var n=$('#dtName').value.trim(), c=$('#dtContact').value.trim(), err=$('#dtErr');
+  $('#dtName').removeAttribute('aria-invalid'); $('#dtContact').removeAttribute('aria-invalid');
+  if(!n){ err.textContent='Please add your first name.'; $('#dtName').setAttribute('aria-invalid','true'); $('#dtName').focus(); return; }
+  if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^[+\d][\d\s()-]{8,}$/.test(c))){ err.textContent='Please add a mobile number or an email address, so we can send directions.'; $('#dtContact').setAttribute('aria-invalid','true'); $('#dtContact').focus(); return; }
+  err.textContent='';
+  var show=$('#dtShow').checked, lift=$('#dtLift').checked, isEmail=c.indexOf('@')>-1;
+  me={name:n,contact:c,show:show}; store('vvv-me',JSON.stringify(me));
+  var going=getJSON('vvv-going',{}); going.walk=Date.now(); store('vvv-going',JSON.stringify(going));
+  var bk=getJSON('vvv-booked',{}); bk.walk=Date.now(); store('vvv-booked',JSON.stringify(bk));
+  signal('in','event: walk | booked | walk page | '+home);
+  send({type:'signup', name:n, email:isEmail?c:'', phone:isEmail?'':c, where:home, fit:'booked', thread:'event: walk',
+        bring:'Show first name: '+(show?'yes':'no')+(lift?' | Lift: wants or offers one':''), website:$('#dtTrap').value});
+  showBooked(n);
+  $('#booked').scrollIntoView({block:'start'});
+});
+
+/* Same calendar choices as the front page: Google and Outlook open their own page, Apple and others get cal/walk.ics. */
+$('#calBtn').addEventListener('click',function(){
+  var b=this, nx=b.nextElementSibling;
+  if(nx){ nx.hidden=!nx.hidden; b.setAttribute('aria-expanded',String(!nx.hidden)); return; }
+  function g(s){return s.replace(/[-:]/g,'')+'00'}
+  var t=EV.title+' (Va Va Voom)', d='With '+EV.host+'. Details: '+location.origin+location.pathname;
+  var links=[['Google Calendar','https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(t)+'&dates='+g(EV.start)+'/'+g(EV.end)+'&ctz=Europe/London&location='+encodeURIComponent(EV.where)+'&details='+encodeURIComponent(d),1],
+    ['Apple Calendar (iPhone, iPad, Mac)','cal/walk.ics',0],
+    ['Outlook','https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject='+encodeURIComponent(t)+'&startdt='+EV.start+':00&enddt='+EV.end+':00&location='+encodeURIComponent(EV.where)+'&body='+encodeURIComponent(d),1],
+    ['Something else (calendar file)','cal/walk.ics',0]];
+  var box=document.createElement('div'); box.className='calopts'; box.setAttribute('role','group'); box.setAttribute('aria-label','Add to which calendar?');
+  box.innerHTML=links.map(function(l){ return '<a href="'+esc(l[1])+'"'+(l[2]?' target="_blank" rel="noopener"':'')+'>'+esc(l[0])+(l[2]?' ↗':'')+'</a>'; }).join('');
+  box.addEventListener('click',function(){ signal('calendar','walk'); });
+  b.setAttribute('aria-expanded','true'); b.insertAdjacentElement('afterend',box);
+});
+document.addEventListener('click',function(e){ var a=e.target.closest('[data-track]'); if(a) signal(a.getAttribute('data-track'),'walk'); });
+</script>
+</body>
+</html>

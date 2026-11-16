@@ -386,7 +386,7 @@ footer a{color:var(--ink)}
 
   <section class="sec" aria-labelledby="h-on">
     <h2 id="h-on">What's on</h2>
-    <p class="sub">Next up: a walk on Puttenham Common. Come along, bring a friend.</p>
+    <p class="sub">Next up: a walk from Norney Farm, Shackleford. Come along, bring a friend.</p>
     <div id="events"></div>
     <button class="ghost seeall" type="button" id="evAll" hidden></button>
     <details class="evarch" id="evArch" open hidden><summary>Been and done <span id="evArchN"></span></summary><div id="evArchList"></div></details>
@@ -541,7 +541,7 @@ var EVENTS = [
     going:[{n:'Tim',img:'people/tim.jpg?v=1029c'},{n:'Kev',img:'people/kev.jpg?v=1029c'}] },
   { id:'walk', feel:'connect', lead:true, badge:'Our first walk', title:'A better walk', day:'Sat', d:'21', mon:'Nov', start:'2026-11-21T10:30', end:'2026-11-21T13:00',
     time:'10:30am', length:'2 to 2½ hours', where:'Norney Farm, Shackleford', host:'Tim and Kev', thread:'move',
-    line:'An intentional walk: fresh air, good company and a question to explore. We start with a quick check-in and finish with what we want to take forward.',
+    line:'An intentional walk from the farm: fresh air, good company and a question to explore. Free, up to 15.', page:'preview/walk.html',
     book:{cap:15, meet:'We start and finish at Norney Farm, Shackleford Road, Godalming GU8 6AE. Head through the gate to Tim\'s bungalow. Plenty of room to park, or lift share.', map:'https://maps.app.goo.gl/L4V9EKVTucGjTF3q7'},
     about:[
       'An intentional walk. It\'s as much about the walk and being out in nature as it is about the conversation: fresh air, good company and a question to explore.',
@@ -792,6 +792,8 @@ function facesHTML(ev){
 }
 /* Kev 29 Oct: if an event has a ticket link, it comes before "I'm in". */
 function inButton(ev,done,attr){
+  /* Kev 16 Nov: dated, formal events get a free ticket on their own page. "I'm in" stays for ideas and interest. */
+  if(ev.page){ var bk=getJSON('vvv-booked',{})[ev.id]; return '<span class="acts"><a class="btn'+(bk?' done':'')+'" href="'+esc(ev.page)+(bk?'#book':'')+'" data-page="'+ev.id+'">'+(bk?"You're booked ✓":'Get your free ticket')+'</a></span>'; }
   return '<span class="acts">'+(ev.tickets?'<a class="tix" href="'+esc(ev.tickets)+'" target="_blank" rel="noopener" data-tix="'+ev.id+'">Ticket Tailor ↗</a>':'')+
     '<button class="btn'+(done?' done':'')+'" type="button" '+attr+'="'+ev.id+'">'+(done?"You're in ✓":"I'm in")+'</button></span>';
 }
@@ -860,6 +862,7 @@ function evById(id){ for(var i=0;i<EVENTS.length;i++) if(EVENTS[i].id===id) retu
 
 function openEvent(id){
   var ev=evById(id); if(!ev) return;
+  if(ev.page && !isPast(ev)){ track('event opened',{event:id, page:true}); location.href=ev.page; return; }
   var done=!!getJSON('vvv-going',{})[id], gone=isPast(ev);
   openSheet('<span class="badge">'+esc(badgeFor(ev)||'What\'s on')+'</span><h2 id="sheetTitle">'+esc(ev.title)+'</h2>'+
     '<ul class="facts"><li><b>When</b> '+esc(ev.day+' '+ev.d+' '+ev.mon+', '+ev.time)+'</li>'+
@@ -924,6 +927,7 @@ function bookIn(id){
 function imIn(id){
   var ev=evById(id), mine=getJSON('vvv-going',{});
   if(mine[id]){ openEvent(id); return; }
+  if(ev.page){ location.href=ev.page+'#book'; return; }
   if(ev.book){ bookIn(id); return; }
   mine[id]=Date.now(); store('vvv-going',JSON.stringify(mine));
   signal('in','event: '+id+' | '+getHome()); track("i'm in",{event:id, via:arrivedVia||'page'});
