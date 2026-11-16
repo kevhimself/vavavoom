@@ -46,9 +46,12 @@ header.top{padding-block:14px 12px;display:flex;align-items:center;justify-conte
 .badge{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 .hero .badge{color:var(--paper);background:var(--ink);border-radius:999px;padding:4px 10px;display:inline-block}
 .hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(46px,13vw,64px);line-height:.92;margin:10px 0 8px}
+.call{background:var(--paper);color:var(--ink);border-radius:16px;padding:14px 16px 16px;margin:6px 0 14px;box-shadow:0 3px 0 var(--ink)}
+.call .k{font-family:var(--hand);font-weight:600;font-size:24px;line-height:1;color:var(--rose-dk);display:block;margin-bottom:6px}
+.call .ctx{margin:0 0 8px;font-size:16px}
+.call .q{margin:0;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(26px,7.5vw,34px);line-height:1}
 .hero .lede{font-weight:700;margin:0 0 14px;max-width:32ch}
-.keyfacts{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:4px;font-size:16px}
-.keyfacts b{display:inline-block;min-width:5.2em}
+.hero .when{margin:0 0 14px;font-size:16px}
 .hero .row{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px 16px}
 .hero .ghostlink{font-weight:700;font-size:15px;color:var(--paper);text-decoration-color:var(--sun);min-height:44px;display:inline-flex;align-items:center}
 .btn{font-weight:700;font-size:16px;background:var(--rose);color:var(--paper);border:0;border-radius:999px;padding:10px 22px;min-height:44px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
@@ -57,13 +60,12 @@ header.top{padding-block:14px 12px;display:flex;align-items:center;justify-conte
 .hero .btn:hover{background:var(--sun-soft)}
 .btn.done{background:var(--paper);color:var(--rose-dk);box-shadow:inset 0 0 0 2px var(--rose)}
 
-nav.jump{border-bottom:2px solid var(--ink);background:var(--paper);position:sticky;top:0;z-index:10}
-nav.jump ul{list-style:none;margin:0 auto;padding:8px 16px;display:flex;gap:6px;overflow-x:auto;max-width:560px;scrollbar-width:none}
+nav.jump{border-bottom:2px solid var(--ink);background:var(--paper)}
+nav.jump ul{list-style:none;margin:0 auto;padding:10px 16px;display:flex;flex-wrap:wrap;gap:6px;max-width:560px}
 nav.jump a{display:inline-flex;align-items:center;min-height:40px;padding:0 12px;border:2px solid var(--ink);border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
 nav.jump a:hover{background:var(--sun-soft)}
-.preview-on nav.jump{top:37px}
 
-section.cat{padding-block:22px 6px;border-bottom:2px solid var(--mist);scroll-margin-top:70px}
+section.cat{padding-block:22px 6px;border-bottom:2px solid var(--mist);scroll-margin-top:48px}
 section.cat:last-of-type{border-bottom:0}
 h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:30px;line-height:1;margin:0 0 12px}
 h2 .k{font-family:var(--hand);font-weight:600;text-transform:none;color:var(--rose-dk);font-size:24px;display:block;margin-bottom:2px}
@@ -127,14 +129,13 @@ footer{padding-block:20px 40px;font-size:14px;color:var(--muted);display:grid;ga
   <div class="wrap">
     <span class="badge">Our first walk · Free</span>
     <h1>A better walk</h1>
-    <p class="lede">An intentional walk: fresh air, good company and a question to explore.</p>
-    <ul class="keyfacts">
-      <li><b>When</b> Sat 21 Nov, 10:30am</li>
-      <li><b>How long</b> 2 to 2½ hours</li>
-      <li><b>Where</b> Norney Farm, Shackleford</li>
-      <li><b>With</b> Tim and Kev</li>
-      <li><b>Places</b> Up to 15, free</li>
-    </ul>
+    <div class="call">
+      <span class="k">This walk's question</span>
+      <p class="ctx">As we head into the darker months, odd times when things feel a little less sure, and the busy run-up to Christmas&hellip;</p>
+      <p class="q">What do we need, as ourselves and as members of this community?</p>
+    </div>
+    <p class="lede">An intentional walk to explore it: fresh air, good company and good conversation.</p>
+    <p class="when">Sat 21 Nov · 10:30am · 2 to 2½ hours · Norney Farm, Shackleford</p>
     <div class="row">
       <a class="ghostlink" href="#faq">Questions?</a>
       <a class="btn" href="#book" id="heroBook">Get your free ticket</a>
@@ -158,7 +159,7 @@ footer{padding-block:20px 40px;font-size:14px;color:var(--muted);display:grid;ga
 <section class="cat" id="what">
   <h2><span class="k">What it is</span>A walk with a bit of intention</h2>
   <p>It's as much about the walk and being out in nature as it is about the conversation. We walk, we notice, and we talk about something that matters round here.</p>
-  <p><b>This walk's question:</b> who are we round here, and what do we want this place to feel like?</p>
+  <p>We walk with one question: <b>what do we need, as ourselves and as members of this community?</b> Three prompts along the way help us open it up, explore it, and think about what we could do about it together. At the end we pick what we want to carry forward.</p>
   <dl class="facts">
     <dt>When</dt><dd>Saturday 21 November, 10:30am</dd>
     <dt>How long</dt><dd>2 to 2½ hours, back by about 1pm</dd>
@@ -321,6 +322,13 @@ $('#calBtn').addEventListener('click',function(){
   box.addEventListener('click',function(){ signal('calendar','walk'); });
   b.setAttribute('aria-expanded','true'); b.insertAdjacentElement('afterend',box);
 });
+/* The page has <base href> (needed for the preview), which makes "#what" point at the home page. Keep in-page links in the page. */
+document.addEventListener('click',function(e){ var a=e.target.closest('a[href^="#"]'); if(!a) return;
+  var t=document.getElementById(a.getAttribute('href').slice(1)); if(!t) return;
+  e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); try{ history.replaceState(null,'',location.pathname+location.search+a.getAttribute('href')); }catch(_){}
+  if(a.getAttribute('href')==='#book') setTimeout(function(){ var n=document.getElementById('dtName'); if(n && !document.getElementById('bookForm').hidden) n.focus({preventScroll:true}); },400);
+});
+window.addEventListener('load',function(){ if(location.hash){ var t0=document.getElementById(location.hash.slice(1)); if(t0) setTimeout(function(){ t0.scrollIntoView({block:'start',behavior:'instant'}); },60); } });
 document.addEventListener('click',function(e){ var a=e.target.closest('[data-track]'); if(a) signal(a.getAttribute('data-track'),'walk'); });
 </script>
 </body>
