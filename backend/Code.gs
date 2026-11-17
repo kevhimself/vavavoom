@@ -91,7 +91,9 @@ function sendBookingEmail(ss, d, now) {
     if (n > BOOKING_EMAILS_PER_DAY) return;
     const name = clean(d.name).replace(/^'/, '').split(/\s+/)[0] || 'there';
     const subject = String(tpl[1]);
-    const msg = { to: to, subject: subject, body: String(tpl[2]).replace(/\{name\}/g, name), name: 'Va Va Voom' };
+    const text = String(tpl[2]).replace(/\{name\}/g, name);
+    // **words** in the sheet become bold in the email; the plain-text copy just drops the stars.
+    const msg = { to: to, subject: subject, body: text.replace(/\*\*/g, ''), htmlBody: toHtml(text), name: 'Va Va Voom' };
     const replyTo = String(tpl[5] || '').trim(); // column F: replies go to the shared inbox, not the script owner's own
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo)) msg.replyTo = replyTo;
     MailApp.sendEmail(msg);
@@ -99,6 +101,15 @@ function sendBookingEmail(ss, d, now) {
   } catch (err) {
     console.error(err);
   }
+}
+
+// Plain text from the sheet to simple, safe email HTML: bold, links and line breaks only.
+function toHtml(t) {
+  const esc = String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.5;color:#1c1a2b">' +
+    esc.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')
+       .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" style="color:#c41f66">$1</a>')
+       .replace(/\n/g, '<br>') + '</div>';
 }
 
 // Run this once from the editor (select it, then Run) to send the email to anyone who booked before it was switched on.
