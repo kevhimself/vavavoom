@@ -67,7 +67,7 @@ function doPost(e) {
 }
 
 // Kev 16 Nov: when someone books an event with an email address, send a simple "You're booked" email.
-// The words live in the private "Booking emails" tab (Event id, Subject, Body with {name}, Send? Yes/No),
+// The words live in the private "Booking emails" tab (Event id, Subject, Body with {name}, Send? Yes/No, Notes, Reply-to),
 // so no address sits in this public file. One email per person per event, at most 40 a day. Logged in Comms.
 const BOOKING_EMAILS_PER_DAY = 40;
 function sendBookingEmail(ss, d, now) {
@@ -91,7 +91,10 @@ function sendBookingEmail(ss, d, now) {
     if (n > BOOKING_EMAILS_PER_DAY) return;
     const name = clean(d.name).replace(/^'/, '').split(/\s+/)[0] || 'there';
     const subject = String(tpl[1]);
-    MailApp.sendEmail({ to: to, subject: subject, body: String(tpl[2]).replace(/\{name\}/g, name), name: 'Va Va Voom' });
+    const msg = { to: to, subject: subject, body: String(tpl[2]).replace(/\{name\}/g, name), name: 'Va Va Voom' };
+    const replyTo = String(tpl[5] || '').trim(); // column F: replies go to the shared inbox, not the script owner's own
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo)) msg.replyTo = replyTo;
+    MailApp.sendEmail(msg);
     comms.appendRow([now, name, to, 'Booking confirmation', 'booked: ' + id, 'Va Va Voom (automatic)', 'Email', subject, 'Sent', 'Website', 'Sent automatically when they booked']);
   } catch (err) {
     console.error(err);
