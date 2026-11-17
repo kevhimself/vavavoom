@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Va Va Voom//Godalming//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:wreath-202612051100@vavavoom.town
+DTSTAMP:20261117T174721Z
+DTSTART:20261205T110000Z
+DTEND:20261205T153000Z
+SUMMARY:Wreath making at the farm (Va Va Voom)
+LOCATION:Norney Farm\, Shackleford
+DESCRIPTION:With Tim and Kev. Details: https://vavavoom.town/hello.html#wreath
+URL:https://vavavoom.town/hello.html#wreath
+END:VEVENT
+END:VCALENDAR
