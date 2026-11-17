@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-16T08:46",
+ "updated": "2026-11-17T08:45",
  "since": "2026-10-28",
  "counts": {
   "visitors": 19,
-  "visits": 178,
-  "im_in": 9,
-  "signups": 10,
-  "signups_in": 3,
+  "visits": 190,
+  "im_in": 11,
+  "signups": 12,
+  "signups_in": 5,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 76,
+  "story_visits": 78,
   "helpers": 13,
-  "returning": 2,
-  "visits_known": 166
+  "returning": 3,
+  "visits_known": 177
  },
  "threads": [
   {
@@ -122,8 +122,8 @@
      "id": "walk",
      "kind": "event",
      "title": "A better walk",
-     "n": 14,
-     "im_in": 5
+     "n": 20,
+     "im_in": 7
     },
     {
      "id": "ridge",
@@ -171,7 +171,7 @@
      "id": "pub",
      "kind": "event",
      "title": "Va Va Voom at the pub",
-     "n": 19,
+     "n": 21,
      "im_in": 2
     },
     {
@@ -240,12 +240,12 @@
   {
    "id": "pub",
    "title": "Va Va Voom at the pub",
-   "n": 19
+   "n": 21
   },
   {
    "id": "walk",
    "title": "A better walk",
-   "n": 14
+   "n": 20
   },
   {
    "id": "briefing",
@@ -275,24 +275,24 @@
    ]
   },
   {
+   "name": "Brave Mole 75",
+   "adj": "Brave",
+   "animal": "Mole",
+   "visits": 2,
+   "back": true,
+   "threads": [
+    "talk",
+    "grow",
+    "homes"
+   ]
+  },
+  {
    "name": "Nimble Owl 48",
    "adj": "Nimble",
    "animal": "Owl",
    "visits": 2,
    "back": true,
    "threads": [
-    "homes"
-   ]
-  },
-  {
-   "name": "Brave Mole 75",
-   "adj": "Brave",
-   "animal": "Mole",
-   "visits": 1,
-   "back": false,
-   "threads": [
-    "grow",
-    "talk",
     "homes"
    ]
   },
@@ -321,9 +321,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "nature",
-    "homes",
-    "talk"
+    "talk",
+    "grow",
+    "nature"
    ]
   },
   {
@@ -359,8 +359,8 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "grow",
     "make",
+    "grow",
     "homes"
    ]
   },
