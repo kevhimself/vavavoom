@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-17T08:45",
+ "updated": "2026-11-18T08:46",
  "since": "2026-10-28",
  "counts": {
   "visitors": 19,
-  "visits": 190,
-  "im_in": 11,
-  "signups": 12,
+  "visits": 199,
+  "im_in": 12,
+  "signups": 13,
   "signups_in": 5,
   "neighbours_gate": 3,
   "posts": 0,
@@ -122,8 +122,8 @@
      "id": "walk",
      "kind": "event",
      "title": "A better walk",
-     "n": 20,
-     "im_in": 7
+     "n": 21,
+     "im_in": 8
     },
     {
      "id": "ridge",
@@ -238,14 +238,14 @@
  ],
  "top_items": [
   {
-   "id": "pub",
-   "title": "Va Va Voom at the pub",
+   "id": "walk",
+   "title": "A better walk",
    "n": 21
   },
   {
-   "id": "walk",
-   "title": "A better walk",
-   "n": 20
+   "id": "pub",
+   "title": "Va Va Voom at the pub",
+   "n": 21
   },
   {
    "id": "briefing",
@@ -281,9 +281,9 @@
    "visits": 2,
    "back": true,
    "threads": [
-    "talk",
     "grow",
-    "homes"
+    "homes",
+    "talk"
    ]
   },
   {
@@ -321,9 +321,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "talk",
     "grow",
-    "nature"
+    "homes",
+    "talk"
    ]
   },
   {
