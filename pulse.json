@@ -1,24 +1,24 @@
 {
- "updated": "2026-11-19T08:46",
+ "updated": "2026-11-20T08:46",
  "since": "2026-10-28",
  "counts": {
   "visitors": 19,
-  "visits": 211,
+  "visits": 218,
   "im_in": 14,
-  "signups": 15,
+  "signups": 18,
   "signups_in": 5,
   "neighbours_gate": 3,
   "posts": 0,
-  "story_visits": 78,
+  "story_visits": 80,
   "helpers": 13,
-  "returning": 3,
-  "visits_known": 182
+  "returning": 4,
+  "visits_known": 188
  },
  "threads": [
   {
    "id": "grow",
    "title": "Growing and food",
-   "n": 14,
+   "n": 16,
    "items": [
     {
      "id": "farm",
@@ -46,20 +46,20 @@
   {
    "id": "make",
    "title": "Making and mending",
-   "n": 7,
+   "n": 9,
    "items": [
     {
      "id": "make",
      "kind": "idea",
      "title": "Make something",
-     "n": 3,
+     "n": 4,
      "im_in": 0
     },
     {
      "id": "micro",
      "kind": "project",
      "title": "Micro homes, off-grid loos and a community sauna",
-     "n": 0,
+     "n": 1,
      "im_in": 0
     }
    ]
@@ -67,13 +67,13 @@
   {
    "id": "nature",
    "title": "Nature and the Wey",
-   "n": 8,
+   "n": 10,
    "items": [
     {
      "id": "r-bugs",
      "kind": "idea",
      "title": "Bug houses, vertical gardens and the bath pump",
-     "n": 0,
+     "n": 1,
      "im_in": 0
     },
     {
@@ -88,13 +88,13 @@
   {
    "id": "homes",
    "title": "Warm homes, energy",
-   "n": 10,
+   "n": 12,
    "items": [
     {
      "id": "r-armchair",
      "kind": "idea",
      "title": "Armchair activism",
-     "n": 0,
+     "n": 1,
      "im_in": 0
     },
     {
@@ -116,7 +116,7 @@
   {
    "id": "move",
    "title": "Moving and play",
-   "n": 9,
+   "n": 11,
    "items": [
     {
      "id": "walk",
@@ -158,13 +158,13 @@
   {
    "id": "talk",
    "title": "Meeting and talking",
-   "n": 9,
+   "n": 11,
    "items": [
     {
      "id": "briefing",
      "kind": "event",
      "title": "People's Emergency Briefing",
-     "n": 6,
+     "n": 7,
      "im_in": 1
     },
     {
@@ -192,14 +192,14 @@
      "id": "humanbit",
      "kind": "idea",
      "title": "Analogue Humans in a Digital World",
-     "n": 0,
+     "n": 1,
      "im_in": 0
     },
     {
      "id": "r-beyond",
      "kind": "idea",
      "title": "Beyond the armchair",
-     "n": 0,
+     "n": 1,
      "im_in": 0
     },
     {
@@ -223,17 +223,17 @@
   {
    "id": "grow",
    "title": "Growing and food",
-   "n": 14
+   "n": 16
   },
   {
    "id": "homes",
    "title": "Warm homes, energy",
-   "n": 10
+   "n": 12
   },
   {
    "id": "talk",
    "title": "Meeting and talking",
-   "n": 9
+   "n": 11
   }
  ],
  "top_items": [
@@ -250,7 +250,7 @@
   {
    "id": "briefing",
    "title": "People's Emergency Briefing",
-   "n": 6
+   "n": 7
   }
  ],
  "crew": [
@@ -271,9 +271,9 @@
    "visits": 3,
    "back": true,
    "threads": [
+    "homes",
     "grow",
-    "talk",
-    "homes"
+    "talk"
    ]
   },
   {
@@ -295,6 +295,14 @@
    "threads": [
     "homes"
    ]
+  },
+  {
+   "name": "Nimble Robin 35",
+   "adj": "Nimble",
+   "animal": "Robin",
+   "visits": 2,
+   "back": true,
+   "threads": []
   },
   {
    "name": "Breezy Kingfisher 48",
@@ -321,9 +329,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "grow",
-    "talk",
-    "nature"
+    "homes",
+    "nature",
+    "grow"
    ]
   },
   {
@@ -335,14 +343,6 @@
    "threads": [
     "move"
    ]
-  },
-  {
-   "name": "Nimble Robin 35",
-   "adj": "Nimble",
-   "animal": "Robin",
-   "visits": 1,
-   "back": false,
-   "threads": []
   },
   {
    "name": "Plucky Newt 57",
@@ -359,9 +359,9 @@
    "visits": 1,
    "back": false,
    "threads": [
+    "homes",
     "grow",
-    "make",
-    "homes"
+    "make"
    ]
   },
   {
