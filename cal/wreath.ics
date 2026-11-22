@@ -5,12 +5,12 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:wreath-202612051100@vavavoom.town
-DTSTAMP:20261117T174721Z
+DTSTAMP:20261122T184054Z
 DTSTART:20261205T110000Z
-DTEND:20261205T153000Z
+DTEND:20261205T150000Z
 SUMMARY:Wreath making at the farm (Va Va Voom)
 LOCATION:Norney Farm\, Shackleford
-DESCRIPTION:With Tim and Kev. Details: https://vavavoom.town/hello.html#wreath
-URL:https://vavavoom.town/hello.html#wreath
+DESCRIPTION:With Tim and Kev. Details: https://vavavoom.town/wreath.html
+URL:https://vavavoom.town/wreath.html
 END:VEVENT
 END:VCALENDAR

@@ -6,6 +6,7 @@ const root=path.join(__dirname,'..'), html=fs.readFileSync(path.join(root,'hello
 const m=html.match(/var EVENTS = (\[[\s\S]*?\n\]);/); if(!m) throw new Error('EVENTS not found');
 const EVENTS=vm.runInNewContext('('+m[1]+')');
 const SITE='https://vavavoom.town/hello.html';
+function link(ev){ return ev.page ? 'https://vavavoom.town/'+ev.page : SITE+'#'+ev.id; }
 function utc(local){ // local Europe/London 'YYYY-MM-DDTHH:MM' -> UTC 'YYYYMMDDTHHMMSSZ'
   const guess=new Date(local+':00Z');
   const lon=new Date(guess.toLocaleString('en-US',{timeZone:'Europe/London'}));
@@ -19,6 +20,6 @@ for(const ev of EVENTS){ if(!ev.start||!ev.end) continue;
   const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Va Va Voom//Godalming//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT',
     'UID:'+ev.id+'-'+ev.start.replace(/\D/g,'')+'@vavavoom.town','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z',
     'DTSTART:'+utc(ev.start),'DTEND:'+utc(ev.end),'SUMMARY:'+esc(/va va voom/i.test(ev.title)?ev.title:ev.title+' (Va Va Voom)'),'LOCATION:'+esc(ev.where),
-    'DESCRIPTION:'+esc('With '+ev.host+'. Details: '+SITE+'#'+ev.id),'URL:'+SITE+'#'+ev.id,'END:VEVENT','END:VCALENDAR'].join('\r\n')+'\r\n';
+    'DESCRIPTION:'+esc('With '+ev.host+'. Details: '+link(ev)),'URL:'+link(ev),'END:VEVENT','END:VCALENDAR'].join('\r\n')+'\r\n';
   fs.writeFileSync(path.join(root,'cal',ev.id+'.ics'),ics); n++; }
 console.log(n+' calendar files written');
