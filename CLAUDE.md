@@ -32,6 +32,11 @@ https://app.notion.com/p/40893f7bf11a8182bc6dcf1ef52242ea
 - Colour never carries meaning alone (tags are border-only with words). Strong contrast.
 - "I'm in" is the only pink button, right-aligned; everything else is a quiet text link. Tap targets 44px+.
 - Test at 390px and 430px wide. Empty inputs get a clear, kind message.
+- Every form checks what people type (Kev, 23 Nov 2026, after a booking email went to "@gmail.cm"):
+  include `<script src="validate.js?v=1"></script>` and name fields by id: ...Name (first name),
+  ...Contact (mobile or email), ...Email, ...Phone. Names: letters only. Emails: real format, with
+  "Did you mean ...@gmail.com?" for common typos and a one-tap fix. Phones: UK 11 digits (07...) or +country.
+  Say what to fix in plain words, never block someone who says "mine is right", and keep optional fields optional.
 
 ## Honest
 - Release name visible on every page (release.js); every submission tagged with it.
