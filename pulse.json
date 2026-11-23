@@ -1,9 +1,9 @@
 {
- "updated": "2026-11-22T08:46",
+ "updated": "2026-11-23T08:45",
  "since": "2026-10-28",
  "counts": {
-  "visitors": 19,
-  "visits": 245,
+  "visitors": 20,
+  "visits": 248,
   "im_in": 17,
   "signups": 21,
   "signups_in": 5,
@@ -12,7 +12,7 @@
   "story_visits": 82,
   "helpers": 13,
   "returning": 4,
-  "visits_known": 203
+  "visits_known": 204
  },
  "threads": [
   {
@@ -271,9 +271,9 @@
    "visits": 3,
    "back": true,
    "threads": [
-    "homes",
     "talk",
-    "grow"
+    "grow",
+    "homes"
    ]
   },
   {
@@ -329,8 +329,8 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "homes",
     "nature",
+    "grow",
     "talk"
    ]
   },
@@ -359,9 +359,9 @@
    "visits": 1,
    "back": false,
    "threads": [
+    "grow",
     "homes",
-    "make",
-    "grow"
+    "make"
    ]
   },
   {
