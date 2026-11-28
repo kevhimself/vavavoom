@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-27T08:46",
+ "updated": "2026-11-28T08:45",
  "since": "2026-10-28",
  "counts": {
   "visitors": 20,
-  "visits": 252,
+  "visits": 256,
   "im_in": 17,
-  "signups": 21,
+  "signups": 22,
   "signups_in": 5,
   "neighbours_gate": 3,
   "posts": 0,
   "story_visits": 82,
   "helpers": 13,
   "returning": 4,
-  "visits_known": 205
+  "visits_known": 209
  },
  "threads": [
   {
@@ -185,7 +185,7 @@
      "id": "surgery",
      "kind": "idea",
      "title": "Safe, shiny and sorted with AI",
-     "n": 0,
+     "n": 1,
      "im_in": 0
     },
     {
@@ -329,9 +329,9 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "nature",
-    "grow",
-    "talk"
+    "homes",
+    "talk",
+    "nature"
    ]
   },
   {
@@ -359,8 +359,8 @@
    "visits": 1,
    "back": false,
    "threads": [
-    "make",
     "grow",
+    "make",
     "homes"
    ]
   },
